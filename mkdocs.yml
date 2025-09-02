@@ -1,6 +1,7 @@
 site_name: Sport Ludique Chartres
 theme :
   name : material
+  language : fr
   palette:
     - scheme: default
       primary: red
