@@ -1,4 +1,4 @@
-# Welcome to MkDocs test pour github zebi le test
+# Welcome to MkDocs
 
 For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
