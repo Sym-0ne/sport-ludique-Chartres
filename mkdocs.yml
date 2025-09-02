@@ -1,8 +1,6 @@
 site_name: Sport Ludique Chartres
 theme :
   name : material
-  features:
-    - toc.follow  # make sure TOC is enabled
   palette:
     - scheme: default
       primary: red
@@ -16,7 +14,4 @@ theme :
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
-  extra:
-  i18n:
-    toc:
-      title: "Table des matières"
+
