@@ -7,3 +7,7 @@ Vous pouvez naviguer a travers les différentes catégories et sous catégories 
 
 Les textes écrits en bleu sont des liens hypertextes a cliquer qui redirigent vers d'autres pages.
 
+La table de contenue a droite permet de naviguer entre les différentes catégories d'une même page.
+
+Bonne visite !
+
