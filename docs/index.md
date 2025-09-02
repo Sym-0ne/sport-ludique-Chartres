@@ -1,17 +1,9 @@
-# Welcome to MkDocs
+# Bienvenue sur notre documentation technique Mkdocs
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Ce site utilise le theme "Material" via Mkdocs et est alimenté par le groupe Sport-Ludique Chartres
 
-## Commands
+## Navigation
+Vous pouvez naviguer a travers les différentes catégories et sous catégories grâce a la barre latéral situé a droite de la page.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Les textes écrits en bleu sont des liens hypertextes a cliquer qui redirigent vers d'autres pages.
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
