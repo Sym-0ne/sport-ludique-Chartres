@@ -5,7 +5,7 @@
 **BTS SIO option SISR**  
 Année scolaire 2025-2026  
 
-**Auteur :** Ludovic MERY  
+**Enseignant :** Ludovic MERY  
 **Co-Enseignant :** Kevin Huet  
 
 ---
@@ -44,6 +44,6 @@ Le Pôle Chartres assure la coordination des activités de l’ensemble des site
 
 ---
 
-Ce site constitue donc le point névralgique de **SportLudique**, assurant le pilotage et la coordination de tous les autres sites : Orléans, Tours et Bourges.
+- Ce site constitue donc le point névralgique de **SportLudique**, assurant le pilotage et la coordination de tous les autres sites : Orléans, Tours et Bourges.
 =======
 
