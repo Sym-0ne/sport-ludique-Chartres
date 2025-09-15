@@ -47,7 +47,3 @@ Le Pôle Chartres assure la coordination des activités de l’ensemble des site
 
 Ce site constitue donc le point névralgique de **SportLudique**, assurant le pilotage et la coordination de tous les autres sites : Orléans, Tours et Bourges.
 =======
-# Bienvenue
-## Bienvenue sur le mkdocs de LaPaillasse, le fourre tout du groupe de Chartres
-Vous y trouverez toutes les différentes documentations de l'infrastructure.
->>>>>>> 8c69bee13d965e58e50fe71168a2d1babaf7c0e6
