@@ -1,3 +1,18 @@
-site_name: My Docs
+site_name: Sport Ludique Chartres
 theme :
   name : material
+  language : fr
+  palette:
+    - scheme: default
+      primary: red
+      accent: white
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: white
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
