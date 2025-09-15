@@ -37,7 +37,7 @@ Depuis le mode configuration système :
 
 ### 3.2. Ajout des interfaces physiques dans l’Eth-Trunk
 Exemple avec **GigabitEthernet1/0/1** et **GigabitEthernet1/0/2** :
-```bash
+```
 [HP] interface GigabitEthernet 1/0/1
 [HP-GigabitEthernet1/0/1] port link-aggregation group 1
 
@@ -51,7 +51,7 @@ Exemple avec **GigabitEthernet1/0/1** et **GigabitEthernet1/0/2** :
 
 ### 3.3. Configuration du type de lien (trunk/access)
 Si le lien doit transporter plusieurs VLANs (trunk) :
-```bash
+```
 [HP] interface Eth-Trunk 1
 [HP-Eth-Trunk1] port link-type trunk
 [HP-Eth-Trunk1] port trunk permit vlan all

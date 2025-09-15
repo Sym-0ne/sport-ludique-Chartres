@@ -40,14 +40,12 @@ Elle couvre les points suivants :
 
 2. Enregistrer : 
 
-   ```
-   <HP> save force 
+   ```<HP> save force 
    ```
 
 3. Redémarrer :
 
-   ```
-   <HP> reboot
+   ```<HP> reboot
    ```
 
 👉 Le switch redémarre avec la configuration d’usine.
