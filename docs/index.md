@@ -42,5 +42,5 @@ Le Pôle Chartres assure la coordination des activités de l’ensemble des site
 - **Effectif sur le site :** Inclus dans les 452 employés de l’entreprise  
 - **Activité :** Conception et fabrication d’articles de sports et loisirs, ainsi que la proposition d’installations clé en main aux collectivités  
 
-=======
+
 
