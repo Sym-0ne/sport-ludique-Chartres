@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# Accueil - Pôle Chartres
+# Accueil - Pôle Chartres 
 
 ## Présentation
 
