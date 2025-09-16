@@ -86,7 +86,7 @@ Exemple de sortie attendue :
 ```
 Aggregation Group 1:
   Aggregation Mode: Dynamic
-  Selected Ports: GigabitEthernet1/0/1, GigabitEthernet1/0/2
+  Selected Ports: GigabitEthernet1/0/32, GigabitEthernet2/0/32
   Operational Key: 1
 ```
 
