@@ -33,10 +33,10 @@ ZFS combine un **système de fichiers** et un **gestionnaire de volumes logiques
 - **Dataset** : sous-volume ZFS avec quotas, snapshots et options spécifiques.
 
 ## 2.3 RAID-Z1
-RAID-Z1 est l’équivalent de RAID 5 :
-- **Tolérance** : un disque peut tomber sans perte de données.
-- **Capacité utilisable** : N-1 disques (ex. 4x1To = 3To utilisables).
-- **Parité distribuée** : répartie sur tous les disques pour reconstruction automatique.
+RAID-Z1 est l’équivalent de RAID 5 :<br>
+- **Tolérance** : un disque peut tomber sans perte de données.<br>
+- **Capacité utilisable** : N-1 disques (ex. 4x1To = 3To utilisables).<br>
+- **Parité distribuée** : répartie sur tous les disques pour reconstruction automatique.<br>
 - **Performance** : lecture rapide grâce au striping ; écriture légèrement plus lente que RAID 10 à cause du calcul de parité.
 
 ## 3. Fonctionnement détaillé de ZFS RAID-Z1
