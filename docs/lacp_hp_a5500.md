@@ -37,12 +37,13 @@ Depuis le mode configuration système :
 ### 3.2. Ajout des interfaces physiques dans l’Eth-Trunk
 Exemple avec **GigabitEthernet1/0/1** et **GigabitEthernet1/0/2** :
 ```
-[SW-A5500] int gig 1/0/31
-[SW-A5500-GigabitEthernet1/0/31] port link-aggregation group 1
-
-[SW-A5500-GigabitEthernet1/0/31] int gig 1/0/32
+[SW-A5500] int gig 1/0/32
 [SW-A5500-GigabitEthernet1/0/32] port link-aggregation group 1
-[SW-A5500-GigabitEthernet1/0/32] quit
+
+[SW-A5500-GigabitEthernet2/0/31] int gig 2/0/32
+[SW-A5500-GigabitEthernet2/0/32] port link-aggregation group 1
+
+[SW-A5500-GigabitEthernet2/0/32] quit
 ```
 
 - Les interfaces physiques sont associées au groupe `Bridge-aggregation1`.  
