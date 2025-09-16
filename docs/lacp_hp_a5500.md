@@ -93,40 +93,10 @@ Aggregation Group 1:
 ---
 
 ## 🔹 4. Points importants
-- Tous les ports d’un même Eth-Trunk doivent être configurés **de manière identique** (même VLAN, même mode trunk/access).  
+- Tous les ports d’un même Bridge-Aggregaton doivent être configurés **de manière identique** (même VLAN, même mode trunk/access).  
 - Sur l’équipement distant (autre switch, serveur), la configuration doit correspondre (même agrégation et VLANs).  
 - LACP est dynamique : seuls les liens valides et actifs seront utilisés dans l’agrégat.  
 - En cas de panne d’un lien, le trafic continue sur les liens restants.  
-
----
-
-## 🔹 5. Exemple complet (stack de switch HP A5500)
-Objectif : agrégation de **4 ports (2 par switch dans la stack)** vers un serveur Nutanix, en trunk VLAN 10 et 20.  
-
-```bash
-[HP] system-view
-[HP] interface Eth-Trunk 1
-[HP-Eth-Trunk1] mode lacp
-[HP-Eth-Trunk1] port link-type trunk
-[HP-Eth-Trunk1] port trunk permit vlan 10 20
-
-[HP] interface GigabitEthernet 1/0/1
-[HP-GigabitEthernet1/0/1] port link-aggregation group 1
-
-[HP] interface GigabitEthernet 1/0/2
-[HP-GigabitEthernet1/0/2] port link-aggregation group 1
-
-[HP] interface GigabitEthernet 2/0/1
-[HP-GigabitEthernet2/0/1] port link-aggregation group 1
-
-[HP] interface GigabitEthernet 2/0/2
-[HP-GigabitEthernet2/0/2] port link-aggregation group 1
-```
-
-Vérification :
-```bash
-[HP] display link-aggregation summary
-```
 
 ---
 
