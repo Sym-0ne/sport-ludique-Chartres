@@ -56,11 +56,12 @@ Si le lien doit transporter plusieurs VLANs (trunk) :
 ```
 [SW-A5500] int bridge-aggregation 1
 [SW-A5500-Bridge-aggregation1] port link-type trunk
-[SW-A5500-Bridge-aggregation1] port trunk permit all
+
+[SW-A5500-Bridge-aggregation1] port trunk permit vlan *num vlan* to *num vlan* 
+
 [SW-A5500-Bridge-aggregation1] quit
 ```
-➡ Autorise tous les VLANs.  
-*(adapter selon ton plan de VLANs)*  
+⚠️ ➡ Le **PERMIT VLAN ALL** ne ***fonctionne PAS*** sur le Swtich HP A5000 JD374A Comware version 5.20 (Raison Inconnu). ⚠️
 
 Si le lien est pour un seul VLAN (access) :
 ```bash
