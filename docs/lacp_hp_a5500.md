@@ -23,28 +23,29 @@ Dans une stack de switchs HP A5500, l’utilisation de **LACP** est recommandée
 
 ## 🔹 3. Étapes de configuration
 
-### 3.1. Création du port logique (Eth-Trunk)
+### 3.1. Création du port logique 
 Depuis le mode configuration système :
 ```bash
-[HP] system-view
-[HP] interface Eth-Trunk 1
-[HP-Eth-Trunk1] mode lacp
+[SW-A5500] system-view
+[SW-A5500] int bridge-aggregation 1
+[SW-A5500-Bridge-aggregation1] link-aggregation mode dynamic
+[SW-A5500-Bridge-aggregation1] quit
 ```
-- `Eth-Trunk 1` : création d’un port agrégé logique numéro 1.  
-- `mode lacp` : activation du protocole LACP.  
 
 ---
 
 ### 3.2. Ajout des interfaces physiques dans l’Eth-Trunk
 Exemple avec **GigabitEthernet1/0/1** et **GigabitEthernet1/0/2** :
 ```
-[HP] interface GigabitEthernet 1/0/1
-[HP-GigabitEthernet1/0/1] port link-aggregation group 1
+[SW-A5500] int gig 1/0/31
+[SW-A5500-GigabitEthernet1/0/31] port link-aggregation group 1
 
-[HP] interface GigabitEthernet 1/0/2
-[HP-GigabitEthernet1/0/2] port link-aggregation group 1
+[SW-A5500-GigabitEthernet1/0/31] int gig 1/0/32
+[SW-A5500-GigabitEthernet1/0/32] port link-aggregation group 1
+[SW-A5500-GigabitEthernet1/0/32] quit
 ```
-- Les interfaces physiques sont associées au groupe `Eth-Trunk 1`.  
+
+- Les interfaces physiques sont associées au groupe `Bridge-aggregation1`.  
 - Elles deviennent des membres du port agrégé.  
 
 ---
@@ -52,18 +53,23 @@ Exemple avec **GigabitEthernet1/0/1** et **GigabitEthernet1/0/2** :
 ### 3.3. Configuration du type de lien (trunk/access)
 Si le lien doit transporter plusieurs VLANs (trunk) :
 ```
-[HP] interface Eth-Trunk 1
-[HP-Eth-Trunk1] port link-type trunk
-[HP-Eth-Trunk1] port trunk permit vlan all
+[SW-A5500] int bridge-aggregation 1
+[SW-A5500-Bridge-aggregation1] port link-type trunk
+[SW-A5500-Bridge-aggregation1] port trunk permit all
+[SW-A5500-Bridge-aggregation1] quit
 ```
 ➡ Autorise tous les VLANs.  
 *(adapter selon ton plan de VLANs)*  
 
 Si le lien est pour un seul VLAN (access) :
 ```bash
-[HP] interface Eth-Trunk 1
-[HP-Eth-Trunk1] port link-type access
-[HP-Eth-Trunk1] port access vlan 10
+[SW-A5500] int bridge-aggregation 1
+[SW-A5500-Bridge-aggregation1] port link-type access
+[SW-A5500-Bridge-aggregation1] port access vlan 10
+```
+
+```
+[SW-A5500] save
 ```
 
 ---
