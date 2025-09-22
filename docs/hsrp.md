@@ -7,8 +7,8 @@ Supposons que vous ayez deux routeurs Cisco, R1 et R2, et que vous souhaitiez co
 ## Configuration de R1 :
 ```
 interface GigabitEthernet0/0
- ip address 172.28.x.251 255.255.255.0
- standby 1 ip 172.28.x.254
+ ip address 172.28.63.2 255.255.255.0
+ standby 1 ip 172.28.63.10
  standby 1 priority 110
  standby 1 preempt
 ```
@@ -24,8 +24,8 @@ L'interface GigabitEthernet0/0 de R1 est configurée avec l'adresse IP 172.28.x.
 ## Configuration de R2 :
 ```
 interface GigabitEthernet0/0
- ip address 172.28.x.252 255.255.255.0
- standby 1 ip 172.28.x.254
+ ip address 172.28.63.3 255.255.255.0
+ standby 1 ip 172.28.63.10
  standby 1 priority 100
  standby 1 preempt
 ```
