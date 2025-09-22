@@ -67,7 +67,6 @@ ip route 172.28.35.0 255.255.255.0 172.28.63.1
 3. Création de la route par défaut
 ```
 ip route 0.0.0.0 0.0.0.0 [adresse_ip_next_hop]
-
 ```
 
 ## Mise en place des ACL
