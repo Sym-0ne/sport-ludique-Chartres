@@ -199,3 +199,47 @@ ssh admin@ip.vlan.management
 4. Une fois SSH fonctionnel, il faut test un PING des machines physiques au Coeur de réseau, des différentes VM Nutanix Coeur de réseau.
 
 ⚠️ Si le ping depuis la machine physique vers la VM Windows ne fonctionne pas : activer une règle dans les paramètres du Pare-Feu de Windows afin d'autoriser les pings entrants car il les bloque par défaut.
+
+## Étape 7 : Route par défaut
+
+1. Tapez la commande pour définir la route par défaut qui va vers le routeur : 
+```
+[HP] ip route-static 0.0.0.0 0.0.0.0 172.28.63.10
+```
+2. Vérifier que votre route fonctionne : 
+```
+[HP] ping 172.28.63.10
+``` 
+
+## Étape 8 : Relay DHCP
+
+✅ Commandes pour DHCP Relay sur A5500 / Comware 5 (v5.20)
+
+1. Activer le service DHCP globalement sur le switch :
+```
+system-view
+dhcp enable
+```
+2.Créer un “server group” pour les serveurs DHCP que tu veux utiliser :
+```
+dhcp relay server-group <num_groupe> ip <adresse_IP_serveur_DHCP>
+```
+3. Pour chaque interface VLAN (ou interface L3) où se trouvent les clients DHCP, configurer :
+- Donner une adresse IP à l’interface, si ce n’est pas déjà fait :
+```
+interface Vlan-interface <num_vlan>
+ip address <adresse_ip_interface> <masque>
+```
+- Activer le mode relais DHCP sur cette interface :
+```
+dhcp select relay
+```
+- Associer cette interface au server‐group que tu as défini :
+```
+dhcp relay server-select <num_groupe>
+```
+4. Vérifier la configuration :
+```
+display dhcp relay server-group
+display dhcp relay
+```
