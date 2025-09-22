@@ -220,7 +220,7 @@ ssh admin@ip.vlan.management
 system-view
 dhcp enable
 ```
-2.Créer un “server group” pour les serveurs DHCP que tu veux utiliser :
+2. Créer un “server group” pour les serveurs DHCP que tu veux utiliser :
 ```
 dhcp relay server-group <num_groupe> ip <adresse_IP_serveur_DHCP>
 ```
