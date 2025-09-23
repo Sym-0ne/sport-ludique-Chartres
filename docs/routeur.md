@@ -63,6 +63,8 @@ ip nat inside source list 1 interface GigabitEthernet0/0 overload
 ip route 172.28.32.0 255.255.255.0 172.28.63.1
 ip route 172.28.33.0 255.255.255.0 172.28.63.1
 ip route 172.28.35.0 255.255.255.0 172.28.63.1
+ip route 172.28.63.128 255.255.255.128 172.28.63.1 #LAN2DMZ
+ip route 172.28.62.0 255.255.255.0 172.26.63.1 #DMZ
 ```
 3. Création de la route par défaut
 ```
@@ -93,3 +95,7 @@ ip dns server
 ip name-server 172.28.33.2
 ip domain-lookup
 ```
+## Protocole HSRP
+Le HSRP est un protocole qui permet de crée une adresse VIP (Virtual IP) qui permet la haute disponibilité ente 2 routeurs. 
+
+Dans notre cas nous allon mettre en place le HSRP entre nos deux routeurs R1 et R2, chaque routeur est connecter a une FAI différente
