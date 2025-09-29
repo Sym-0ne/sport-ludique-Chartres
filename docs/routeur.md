@@ -52,6 +52,26 @@ interface GigabitEthernet0/1.223
  ip address 172.28.63.2 255.255.255.0
  ip nat inside
 ```
+## Activation du SSH 
+1. Génération des clef RSA 
+```
+crypto key generate rsa
+2048
+```
+2. Création d'un compte local
+```
+username admin privilege 15 secret MonMotDePasse
+```
+3. Activation du SSH sur les lignes VTY 
+```
+line vty 0 4
+login local 
+transport input ssh 
+```
+4. Selection de la bonne version SSH 
+```
+ip ssh version 2
+```
 ## Configuration du routage
 
 1. Activation du NAT 
@@ -64,11 +84,11 @@ ip route 172.28.32.0 255.255.255.0 172.28.63.1
 ip route 172.28.33.0 255.255.255.0 172.28.63.1
 ip route 172.28.35.0 255.255.255.0 172.28.63.1
 ip route 172.28.63.128 255.255.255.128 172.28.63.1 #LAN2DMZ
-ip route 172.28.62.0 255.255.255.0 172.26.63.1 #DMZ
+ip route 172.28.62.0 255.255.255.0 172.28.63.1 #DMZ
 ```
 3. Création de la route par défaut
 ```
-ip route 0.0.0.0 0.0.0.0 [adresse_ip_next_hop]
+ip route 0.0.0.0 0.0.0.0 183.44.28.2
 ```
 
 ## Mise en place des ACL
