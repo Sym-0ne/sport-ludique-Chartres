@@ -16,3 +16,20 @@ theme :
         icon: material/weather-sunny
         name: Switch to light mode
 
+nav:
+  - Introduction: index.md
+  - Switch Core:
+      - Configuration du Switch Core & Stack : SWCore/reseau.md
+      - LACP : SWCore/lacp_hp_a5500.md
+  - Routeur:
+      - Configuration: Routeur/routeur.md
+      - HSRP: Routeur/hsrp.md
+  - Service Active Directory:
+      - Domaine Active Directory : Service AD/ad.md
+      - Serveur DNS : Service AD/dns.md
+      - Serveur DHCP : Service AD/dhcp.md
+      - Serveur Fichier : Service AD/servfichier.md
+  - Pare-feux:
+      - Configuration: Pare-feux/stormshield.md
+      - Règles: Pare-feux/opnsense.md
+
