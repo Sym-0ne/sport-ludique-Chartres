@@ -24,6 +24,13 @@
 
 ## 2. Configuration
 
+### Accès Web & comptes
+
+- **Utilisateur administrateur** : `root` (nom d’utilisateur vérifié).  
+- **Mot de passe** : mot de passe initial remplacé — un mot de passe administrateur personnalisé a été défini pour l’accès à l’interface web.  
+- Recommandation : stocker les identifiants de manière sécurisée (gestionnaire de mots de passe).
+
+
 ### Interfaces
 
 * Activation des interfaces **DMZ** et **LAN2DMZ**.
