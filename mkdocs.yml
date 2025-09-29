@@ -30,6 +30,6 @@ nav:
       - Serveur DHCP : Service AD/dhcp.md
       - Serveur Fichier : Service AD/servfichier.md
   - Pare-feux:
-      - Configuration: Pare-feux/stormshield.md
-      - Règles: Pare-feux/opnsense.md
+      - PFW: Pare-feux/stormshield.md
+      - VFW: Pare-feux/opnsense.md
 
