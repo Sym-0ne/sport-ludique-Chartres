@@ -24,14 +24,14 @@ nav:
   - Routeur:
       - Configuration: Routeur/routeur.md
       - HSRP: Routeur/hsrp.md
-  - Service Active Directory:
-      - Domaine Active Directory : Service AD/ad.md
-      - Serveur DNS : Service AD/dns.md
-      - Serveur DHCP : Service AD/dhcp.md
-      - Serveur Fichier : Service AD/servfichier.md
   - Pare-feux:
       - PFW: Pare-feux/stormshield.md
       - VFW: Pare-feux/opnsense.md
   - HyperViseur:
       - Proxmox & Raid: Hyperviseur/proxmox-raid.md
+  - Service Active Directory:
+      - Domaine Active Directory : Service AD/ad.md
+      - Serveur DNS : Service AD/dns.md
+      - Serveur DHCP : Service AD/dhcp.md
+      - Serveur Fichier : Service AD/servfichier.md
 
