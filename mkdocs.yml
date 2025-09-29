@@ -32,4 +32,6 @@ nav:
   - Pare-feux:
       - PFW: Pare-feux/stormshield.md
       - VFW: Pare-feux/opnsense.md
+  - HyperViseur:
+      - Proxmox & Raid: Hyperviseur/proxmox-raid.md
 
