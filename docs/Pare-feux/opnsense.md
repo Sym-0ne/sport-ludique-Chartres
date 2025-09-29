@@ -14,10 +14,10 @@
 ### Réseau et VLAN
 
 * Association de **3 VLAN** :
+  - VLAN **Management** : `120`
+  - VLAN **DMZ** : `226`
+  - VLAN **LAN2DMZ** : `223`
 
-  * VLAN **Management** : `120`
-  * VLAN **DMZ** : `226`
-  * VLAN **LAN2DMZ** : `223`
 * Attribution d’une **adresse IP de management** (10.10.120.70) dans le VLAN 120 pour accéder à l’interface web et administrer le pare-feu.
 
 ---
