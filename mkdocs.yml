@@ -1,4 +1,6 @@
 site_name: Sport Ludique Chartres
+plugins: 
+  - drawio 
 theme :
   name : material
   language : fr
