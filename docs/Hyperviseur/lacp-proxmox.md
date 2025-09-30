@@ -45,9 +45,10 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 ### VLANs sur le bridge
 
 Contraites VLANs with Trunk :<br>
-   - VLAN natif : pour compatibilité avec certaines cartes physiques ne reconnaissant pas les trames taguées à 4 octets.<br>
-   - VLAN serveur : VLAN 221<br>
-   - VLANs supplémentaires : 222 à 229 si nécessaire.<br>
+
+   * VLAN natif : pour compatibilité avec certaines cartes physiques ne reconnaissant pas les trames taguées à 4 octets.<br>
+   * VLAN serveur : VLAN 221<br>
+   * VLANs supplémentaires : 222 à 229 si nécessaire.<br>
 
 > Cette configuration permet de gérer les VLANs directement sur le bridge et d’avoir des VM ou containers connectés aux VLANs via le bridge.
 
