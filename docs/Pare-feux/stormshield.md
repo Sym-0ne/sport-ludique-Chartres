@@ -4,7 +4,7 @@
 
  **Sur les boîtiers physiques:** un appui sur le bouton reset (attendre que les led devant clignotent) pour les boîtiers physiques permet de restaurer la configuration d'usine et redémarrer en bridge sur toutes les interfaces.
 
- ### Schema du pare feu après reset
+### Schema du pare feu après reset
  
  ![schema](PF/schema-pare-feu-apres-reset.png)
 
@@ -20,7 +20,7 @@
 
 ## 3.Configuration générale
 
- ### Modification du mot de passe de l'administrateur
+### Modification du mot de passe de l'administrateur
 
  La modification du mot de passe admin se fait dans le menu **Configuration/Système/Administrateurs puis onglet Compte ADMIN**.
 
@@ -28,7 +28,7 @@
 
  Puis cliquer sur **Appliquer**.
 
- ### Nom
+### Nom
 
  Sélectionner dans le menu à gauche **Configuration / Système puis Configuration Générale**.
 
@@ -38,7 +38,7 @@
 
  Puis cliquer sur **Appliquer**.
 
- ### Fuseau horaire
+### Fuseau horaire
 
  La zone « Paramètres de date et d'heure » permet de modifier le fuseau horaire dans la zone Fuseau horaire, sélectionnez **Europe/Paris**.
 
@@ -66,7 +66,7 @@
 
 ## 5.Routage
 
- ### Route par défaut
+### Route par défaut
 
  Cliquer **Configuration / Réseau / Routage / Routes statiques IPv4**.
 
@@ -78,7 +78,7 @@
 
  Puis cliquer sur **Appliquer**.
 
- #### Route de retour
+#### Route de retour
 
  ![route de retour](PF/route-retour.png)
 
