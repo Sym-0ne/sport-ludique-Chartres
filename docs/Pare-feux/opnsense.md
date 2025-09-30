@@ -55,8 +55,8 @@
 
 * Configuration des **routes aller/retour**.
 
-    * Adresse IP : 172.28.35.0/24 - Gateway : 172.28.63.130 (SWCORE) 
-    * Adresse IP : 172.28.32.0/24 - Gateway : 172.28.63.130 (SWCORE) 
-    * Adresse IP : 172.28.33.0/24 - Gateway : 172.28.63.130 (SWCORE)  
-    
+    * Adresse IP : 172.28.35.0/24 | Gateway : 172.28.63.130 (SWCORE) 
+    * Adresse IP : 172.28.32.0/24 | Gateway : 172.28.63.130 (SWCORE) 
+    * Adresse IP : 172.28.33.0/24 | Gateway : 172.28.63.130 (SWCORE)  
+
 ---
