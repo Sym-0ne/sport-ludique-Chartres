@@ -8,7 +8,7 @@ Drawio est un logiciel en ligne d'édition de diagrames en tout genre, dans notr
 
 Afin de pouvoir utiliser le plugin, il faut tout dabord l'installer, nous allons donc modifier le fichier main.yml de notre github, le but étant d'ajouter la commande qui installeras le plugin "drawio"
 
-```python hl_lines="28"
+```python hl_lines="29"
 name: ci 
 on:
   push:
