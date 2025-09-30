@@ -8,6 +8,11 @@ markdown_extensions:
   - md_in_html
   - pymdownx.superfences
   - pymdownx.highlight
+  - pymdownx.tilde
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+
 plugins: 
   - drawio 
 theme :
@@ -29,7 +34,9 @@ theme :
 
 nav:
   - Introduction: index.md
-  - Documentation Mkdocs: DocumentationMkdocs/plugin.md
+  - Documentation Mkdocs:
+    - Plugins: DocumentationMkdocs/Plugins/plugin.md
+    - Syntaxe: DocumentationMkdocs/Syntaxe/Syntaxe.md
   - Switch Core:
       - Configuration du Switch Core & Stack : SWCore/reseau.md
       - LACP : SWCore/lacp_hp_a5500.md

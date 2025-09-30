@@ -46,7 +46,8 @@ Une fois le workflow modifier, github installeras le plugin "drawio" a chaque mi
 ### Ajout du plugin dans le mkdocs.yml
 
 Il faut ensuite ajouter le plugin dans le fichier de configuration mkdocs
-```python hl_line="2"
+
+```python hl_lines="2"
 plugins: 
   - drawio 
 ```
@@ -54,6 +55,7 @@ plugins:
 ### Ajout du fichier drawio dans une page.
 
 Pour finir il ne reste plus qu'à insérer le fichier avec l'extention ".drawio" dans notre fichier makdown a la manière d'une image
+
 ```
 ![](fichier.drawio)
 ```
