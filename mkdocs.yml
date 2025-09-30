@@ -29,7 +29,7 @@ theme :
 
 nav:
   - Introduction: index.md
-  - Documentation Mkdocs: Plugins.md
+  - Documentation Mkdocs: plugin.md
   - Switch Core:
       - Configuration du Switch Core & Stack : SWCore/reseau.md
       - LACP : SWCore/lacp_hp_a5500.md
