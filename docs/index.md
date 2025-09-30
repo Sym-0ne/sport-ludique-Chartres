@@ -10,11 +10,11 @@ Année scolaire 2025-2026
 
 ---
 
-## Le Pôle Chartres
+## <ins>Le Pôle Chartres</ins>
 
 Le site de **Chartres** est le siège de **SportLudique SARL** et regroupe les fonctions stratégiques et administratives de l’entreprise. Il constitue le cœur opérationnel de la société avec plusieurs départements clés.
 
-### Fonctions et départements
+### <ins>Fonctions et départements</ins>
 
 Le site de Chartres accueille :
 
@@ -27,7 +27,7 @@ Le site de Chartres accueille :
 > La DSI est dirigée par **Monsieur Claude Postic** et compte 4 techniciens.  
 > Le service RH est dirigé par **Madame Helen Paisley-Le Bihan**.
 
-### Mission du site
+### <ins>Mission du site</ins>
 
 Le Pôle Chartres assure la coordination des activités de l’ensemble des sites et joue un rôle central dans :
 
@@ -36,12 +36,12 @@ Le Pôle Chartres assure la coordination des activités de l’ensemble des site
 - La supervision de la production et de la logistique via les autres sites  
 - Le support et la maintenance informatique interne  
 
-### Informations clés
+### <ins>Informations clés</ins>
 
 - **Siège social :** Agglomération chartraine  
 - **Effectif sur le site :** Inclus dans les 452 employés de l’entreprise  
 - **Activité :** Conception et fabrication d’articles de sports et loisirs, ainsi que la proposition d’installations clé en main aux collectivités  
 
-### Schema réseau
+### <ins>Schema réseau<ins>
 ![](shema_reseaux.drawio)
 
