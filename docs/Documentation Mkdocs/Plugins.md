@@ -2,7 +2,7 @@
 
 ## Drawio 
 
-Drawio est un logitiel en ligne d'édition de diagrames en tout genre, dans notre cas il sagit d'un schema réseau, l'utilisation de ce plugin permet de générer une API html interactive utilisant les fichier en .drawio, cela nous permet un zoom et une navigation simplifier du diagrame, de plus l'utilisation de cette API débloque certaines fonctionnalité comme les fenetres réductibles. 
+Drawio est un logiciel en ligne d'édition de diagrames en tout genre, dans notre cas il sagit d'un schema réseau, l'utilisation de ce plugin permet de générer une API html interactive utilisant les fichier en .drawio, cela nous permet un zoom et une navigation simplifier du diagrame, de plus l'utilisation de cette API débloque certaines fonctionnalité comme les fenetres réductibles. 
 
 ### Modification du workflow.
 
