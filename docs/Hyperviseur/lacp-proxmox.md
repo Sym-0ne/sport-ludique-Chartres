@@ -13,10 +13,10 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 2. Allez dans **Datacenter → Node → System → Network**.
 3. Cliquez sur **Create → Linux Bond**.
 4. Paramétrez le bond comme suit :
-   * **Name** : `bond0`
-   * **Slaves** : sélectionnez les interfaces (ex : `eno1`, `ens3f0`, `ens3f1`) 
-   * **Mode** : `802.3ad (LACP)`
-   * **Transmit Hash Policy** : `layer2+3` 
+   - **Name** : `bond0`
+   - **Slaves** : sélectionnez les interfaces (ex : `eno1`, `ens3f0`, `ens3f1`) 
+   - **Mode** : `802.3ad (LACP)`
+   - **Transmit Hash Policy** : `layer2+3` 
 
 ⚠️ Ne mettre aucune IP ni Gateway sur le **Linux Bond**
 
