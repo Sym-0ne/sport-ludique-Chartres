@@ -14,11 +14,11 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 3. Cliquez sur **Create → Linux Bond**.
 4. Paramétrez le bond comme suit :
    - **Name** : `bond0`
-   - **Slaves** : sélectionnez les interfaces physiques (ex : `eno1`, `eno2`)
+   - **Slaves** : sélectionnez les interfaces (ex : `eno1`, `ens3f0`, `ens3f1`) 
    - **Mode** : `802.3ad (LACP)`
-   - **Transmit Hash Policy** : `layer2+3` (optionnel, selon besoin)
-   - **LACP Rate** : `Fast`
-   - **Miimon** : `100ms` (surveillance des liens)
+   - **Transmit Hash Policy** : `layer2+3` 
+
+⚠️ Ne mettre aucune IP ni Gateway sur le **Linux Bond**
 
 5. Cliquez sur **Create** pour valider.
 
@@ -28,31 +28,26 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 
 1. Toujours dans l’onglet **Network**, cliquez sur **Create → Linux Bridge**.
 2. Paramétrez le bridge pour utiliser le bond comme port physique :
-   - **Name** : `vmbr0`
+   - **Name** : `vmbr2`
    - **Bridge ports** : `bond0`
+   - **Manage Vlan's** : `On`
    - **STP** : `Off`
-   - **Forward Delay** : `0`
    - **IP Address** : `172.28.33.4/24`
    - **Gateway (IPv4)** : `172.28.33.254`
+   - **Vlan ID** : `221-229`
 
 3. Cliquez sur **Create** pour appliquer le bridge.
 
-> Le bridge `vmbr0` permet à vos VM de se connecter au réseau via le bond LACP.
+> Le bridge `vmbr2` permet à vos VM de se connecter au réseau via le bond LACP.
 
 ---
 
-### 1.3. Configuration VLANs sur le bridge
+### VLANs sur le bridge
 
-1. Cliquez sur le bridge `vmbr0`, puis sur **Create → VLAN**.
-2. Créez les VLANs suivants :
+Contraites VLANs with Trunk :
    - VLAN natif : pour compatibilité avec certaines cartes physiques ne reconnaissant pas les trames taguées à 4 octets.
    - VLAN serveur : VLAN 221
    - VLANs supplémentaires : 222 à 229 si nécessaire.
-
-3. Pour chaque VLAN :
-   - **VLAN tag** : numéro du VLAN (ex : 221)
-   - **Bridge ports** : `bond0`
-   - **IP configuration** : `Manual` ou `None` selon usage.
 
 > Cette configuration permet de gérer les VLANs directement sur le bridge et d’avoir des VM ou containers connectés aux VLANs via le bridge.
 
@@ -65,15 +60,15 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 1. Sélectionnez les ports connectés à l’hyperviseur.
 2. Créez un **Port-Channel** et activez LACP.
 
-**Exemple Cisco :**
+**Configuration Cisco :**
 
 ```bash
-interface range GigabitEthernet1/0/1-3
-    channel-group 1 mode active
+interface range GigabitEthernet1/0/21-23
+    channel-group 2 mode active
     switchport mode trunk
 ```
 
-* channel-group 1 mode active : active LACP.
+* channel-group 2 mode active : active LACP.
 * switchport mode trunk : configure le trunk.
 
 ### 2.2. Configuration des VLANs sur le trunk
@@ -81,11 +76,11 @@ interface range GigabitEthernet1/0/1-3
 VLAN natif : VLAN par défaut sur le trunk (ex : VLAN 1 ou VLAN spécifique)
 VLANs autorisés sur le trunk : 221 à 229
 
-Exemple Cisco :
+**Configuration Cisco :**
 
 ```bash
-interface Port-channel1
-    switchport trunk native vlan 1
+interface Port-channel2
+    switchport trunk native vlan 221
     switchport trunk allowed vlan 221-229
 ```
 
