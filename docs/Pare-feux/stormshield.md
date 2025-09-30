@@ -8,7 +8,7 @@
  
  ![schema](PF/schema-pare-feu-apres-reset.png)
 
- ## 2.Connexion après reset
+## 2.Connexion après reset
 
 Pour configurer le pare-feu, il faut se brancher sur l'interface IN et mettre son poste en DHCP.
 
