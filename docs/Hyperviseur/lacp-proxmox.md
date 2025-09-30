@@ -28,8 +28,8 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 
 1. Toujours dans l’onglet **Network**, cliquez sur **Create → Linux Bridge**.
 2. Paramétrez le bridge pour utiliser le bond comme port physique :
-    **Name** : `vmbr2`
-    **Bridge ports** : `bond0`
+    - **Name** : `vmbr2`
+    - **Bridge ports** : `bond0`
     **Manage Vlan's** : `On`
     **STP** : `Off`
     **IP Address** : `172.28.33.4/24`
