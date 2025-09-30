@@ -19,7 +19,7 @@ Avant de commencer, assurez-vous de remplir les prérequis suivants :
 ### Configurer une adresse IP fixe :
 Se rendre dans « Panneau de configuration -> Réseau et internet -> Centre réseau et partage -> Cliquer sur votre carte réseau -> Propriété :
 
-![Adresser une IP](docs/images/AD/ad1.png)
+![Adresser une IP](AD/ad1.png)
 
 Définissez une adresse IP, un masque de sous-réseau et une passerelle.
 
@@ -78,7 +78,7 @@ Cliquez sur Promouvoir ce serveur en contrôleur de domaine.
 
 Choisissez Ajouter une nouvelle forêt.
 Entrez le nom de domaine racine, ici c'est ```cha.chartres.sportludique.fr```
-
+pour les pages 
 ![Nouveau domaine](docs/images/AD/ad10.png)
 
 ### 3 – Configurer les options du domaine :
