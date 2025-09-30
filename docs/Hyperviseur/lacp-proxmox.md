@@ -13,10 +13,10 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 2. Allez dans **Datacenter → Node → System → Network**.
 3. Cliquez sur **Create → Linux Bond**.
 4. Paramétrez le bond comme suit :
-   - **Name** : `bond0`
-   - **Slaves** : sélectionnez les interfaces (ex : `eno1`, `ens3f0`, `ens3f1`) 
-   - **Mode** : `802.3ad (LACP)`
-   - **Transmit Hash Policy** : `layer2+3` 
+   * **Name** : `bond0`
+   * **Slaves** : sélectionnez les interfaces (ex : `eno1`, `ens3f0`, `ens3f1`) 
+   * **Mode** : `802.3ad (LACP)`
+   * **Transmit Hash Policy** : `layer2+3` 
 
 ⚠️ Ne mettre aucune IP ni Gateway sur le **Linux Bond**
 
@@ -28,13 +28,13 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 
 1. Toujours dans l’onglet **Network**, cliquez sur **Create → Linux Bridge**.
 2. Paramétrez le bridge pour utiliser le bond comme port physique :
-   - **Name** : `vmbr2`
-   - **Bridge ports** : `bond0`
-   - **Manage Vlan's** : `On`
-   - **STP** : `Off`
-   - **IP Address** : `172.28.33.4/24`
-   - **Gateway (IPv4)** : `172.28.33.254`
-   - **Vlan ID** : `221-229`
+   * **Name** : `vmbr2`
+   * **Bridge ports** : `bond0`
+   * **Manage Vlan's** : `On`
+   * **STP** : `Off`
+   * **IP Address** : `172.28.33.4/24`
+   * **Gateway (IPv4)** : `172.28.33.254`
+   * **Vlan ID** : `221-229`
 
 3. Cliquez sur **Create** pour appliquer le bridge.
 
@@ -93,7 +93,7 @@ a) Vérifiez que le bond fonctionne :
 
 * Datacenter → Node → System → Network → bond0
 * Vérifiez les VLANs sur le bridge :
-* Datacenter → Node → System → Network → vmbr0 → VLANs
+* Datacenter → Node → System → Network → vmbr2 → VLANs
 
 b) Test de connectivité :
 
