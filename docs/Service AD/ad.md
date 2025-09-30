@@ -26,11 +26,11 @@ Définissez une adresse IP, un masque de sous-réseau et une passerelle.
 ### 1. Renommer le serveur :
 Allez dans Paramètres > Système > Informations système > Renommer ce PC.
 
-![Renommer le serveur](docs/images/AD/ad2.png)
+![Renommer le serveur](AD/ad2.png)
 
 Donnez-lui un nom descriptif, comici c'est ```CHA_DC_01``` pour le premier contrôleur de domaine.
 
-![Redémarrez le serveur](docs/images/AD/ad3.png)
+![Redémarrez le serveur](AD/ad3.png)
 
 Puis **Redémarrez le serveur.**
 
@@ -39,31 +39,31 @@ Puis **Redémarrez le serveur.**
 ### 1 – Ouvrir le Gestionnaire de Serveur :
 Cliquez sur Gérer > Ajouter des rôles et fonctionnalités.
 
-![Gestionnaire Serveur](docs/images/AD/ad4.png)
+![Gestionnaire Serveur](AD/ad4.png)
 
 ### 2 – Sélectionner le type d’installation :
 Choisissez Installation basée sur un rôle ou une fonctionnalité et cliquez sur Suivant.
 
-![Type d'installation](docs/images/AD/ad5.png)
+![Type d'installation](AD/ad5.png)
 
 ### 3 – Choisir le serveur cible :
 Sélectionnez le serveur sur lequel installer le rôle.
 
-![Serveur cible](docs/images/AD/ad6.png)
+![Serveur cible](AD/ad6.png)
 
 ### 4 – Sélectionner le rôle Active Directory :
 Dans la liste, cochez Services de domaine Active Directory (AD DS).
 
 Confirmez l’ajout des fonctionnalités nécessaires.
 
-![Role Active Directory](docs/images/AD/ad7.png)
+![Role Active Directory](AD/ad7.png)
 
 ### 5 – Finaliser l’installation :
 Cliquez sur Installer.
 
 Une fois terminé, ne redémarrez pas immédiatement, car vous devrez promouvoir le serveur en tant que contrôleur de domaine.
 
-![Installation finale](docs/images/AD/ad8.png)
+![Installation finale](AD/ad8.png)
 
 ## Étape 3 : Promouvoir le Serveur en Contrôleur de Domaine
 
@@ -72,33 +72,33 @@ Dans le Gestionnaire de Serveur, cliquez sur la notification indiquant que la co
 
 Cliquez sur Promouvoir ce serveur en contrôleur de domaine.
 
-![Lancer assistant](docs/images/AD/ad9.png)
+![Lancer assistant](AD/ad9.png)
 
 ### 2 – Créer un nouveau domaine :
 
 Choisissez Ajouter une nouvelle forêt.
 Entrez le nom de domaine racine, ici c'est ```cha.chartres.sportludique.fr```
 pour les pages 
-![Nouveau domaine](docs/images/AD/ad10.png)
+![Nouveau domaine](AD/ad10.png)
 
 ### 3 – Configurer les options du domaine :
 Sélectionnez le niveau fonctionnel de la forêt et du domaine (Windows Server 2016 ou plus récent).
 
 Configurez un mot de passe pour le mode de restauration des services d’annuaire (DSRM).
 
-![Configurer Domaine](docs/images/AD/ad11.png)
+![Configurer Domaine](AD/ad11.png)
 
 ### 4 – Vérification DNS et NetBIOS :
 Vérifiez le nom NetBIOS proposé et ajustez-le si nécessaire.
 
-![Verifications](docs/images/AD/ad12.png)
+![Verifications](AD/ad12.png)
 
 ### 5 – Valider et installer :
 Laissez l’assistant valider la configuration.
 
 Cliquez sur Installer. Le serveur redémarrera automatiquement.
 
-![Verifications](docs/images/AD/ad13.png)
+![Verifications](AD/ad13.png)
 
 ## Étape 4 : Vérifier l’installation
 
@@ -109,7 +109,7 @@ Vérifiez que le rôle AD DS est installé et fonctionne correctement.
 ### 2. Tester le domaine :
 Ouvrez l’outil Active Directory Users and Computers.
 
-![Verif install](docs/images/AD/ad14.png)
+![Verif install](AD/ad14.png)
 
 Assurez-vous que votre domaine apparaît et que les objets par défaut (comme ```Users``` et ```Computers```) sont présents.
 

@@ -1,13 +1,13 @@
 # Installer et configurer un serveur DNS sur Windows Server.
 
 Dans l’assistant, sélectionnez **Installation basée sur un rôle ou une fonctionnalité** :  
-![Assistant d’installation](docs/images/DNS/1.png)
+![Assistant d’installation](DNS/1.png)
 
 Choisissez votre serveur dans la liste proposée :  
-![Choix du serveur](docs/images/DNS/2.png)
+![Choix du serveur](DNS/2.png)
 
 Dans la section des rôles, sélectionnez le rôle **DNS** :  
-![Sélection du rôle DNS](docs/images/DNS/3.png)
+![Sélection du rôle DNS](DNS/3.png)
 
 Passez ensuite à la section **Confirmation** et cliquez sur **Installer** pour lancer l’installation.
 
@@ -16,25 +16,25 @@ Passez ensuite à la section **Confirmation** et cliquez sur **Installer** pour 
 ### Configuration du service DNS
 
 Dans l’onglet **Outils**, sélectionnez le service **DNS** :  
-![Ouverture du service DNS](docs/images/DNS/4.png)
+![Ouverture du service DNS](DNS/4.png)
 
 Effectuez un clic droit sur votre serveur puis cliquez sur **Configurer un serveur DNS** :  
-![Configuration du serveur DNS](docs/images/DNS/5.png)
+![Configuration du serveur DNS](DNS/5.png)
 
 Créez une **zone de recherche directe** :  
-![Création de la zone](docs/images/DNS/6.png)
+![Création de la zone](DNS/6.png)
 
 Notre serveur gère la zone entière et délègue les requêtes inconnues au DNS de notre FAI :  
-![Gestion de la zone](docs/mages/DNS/7.png)
+![Gestion de la zone](DNS/7.png)
 
 Ajoutez le nom de la zone de recherche, dans notre cas **chartres** :  
-![Nom de la zone](docs/images/DNS/8.png)
+![Nom de la zone](DNS/8.png)
 
 Par mesure de sécurité, seules les **mises à jour dynamiques sécurisées** seront autorisées :  
-![Mises à jour dynamiques](docs/images/DNS/9.png)
+![Mises à jour dynamiques](DNS/9.png)
 
 Ajoutez l’adresse IP du DNS public de votre choix. Dans notre cas, nous utilisons le serveur du réseau Internet fictif :  
-![Ajout du DNS public](docs/images/DNS/10.png)
+![Ajout du DNS public](DNS/10.png)
 
 Enfin, enregistrez votre nouvelle **zone de recherche DNS** :  
-![Enregistrement de la zone](docs/images/DNS/11.png)
+![Enregistrement de la zone](DNS/11.png)
