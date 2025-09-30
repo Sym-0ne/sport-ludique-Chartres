@@ -8,7 +8,7 @@ Drawio est un logitiel en ligne d'édition de diagrames en tout genre, dans notr
 
 Afin de pouvoir utiliser le plugin, il faut tout dabord l'installer, nous allons donc modifier le fichier main.yml de notre github, le but étant d'ajouter la commande qui installeras le plugin "drawio"
 
-```python hl_lines="28"
+```
 name: ci 
 on:
   push:
@@ -46,7 +46,7 @@ Une fois le workflow modifier, github installeras le plugin "drawio" a chaque mi
 ### Ajout du plugin dans le mkdocs.yml
 
 Il faut ensuite ajouter le plugin dans le fichier de configuration mkdocs
-```python hl_line="2"
+```
 plugins: 
   - drawio 
 ```
