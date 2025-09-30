@@ -43,5 +43,5 @@ Le Pôle Chartres assure la coordination des activités de l’ensemble des site
 - **Activité :** Conception et fabrication d’articles de sports et loisirs, ainsi que la proposition d’installations clé en main aux collectivités  
 
 ## Schema réseau
-![](schema_reseaux.drawio)
+![](shema_reseaux.drawio)
 
