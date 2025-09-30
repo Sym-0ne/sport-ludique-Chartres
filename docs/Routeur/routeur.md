@@ -4,9 +4,12 @@
 
 ```
 #Démarer le routeur et presser CTR+BREAK pour être en mode "rommon"
+
 confreg 0x2142
 reset
+
 #Le routeur reboot sans configuration
+
 enable
 configure terminal
 config-register 0x2102 #Permet de remettre le switch sur le bon registre
@@ -119,3 +122,8 @@ ip domain-lookup
 Le HSRP est un protocole qui permet de crée une adresse VIP (Virtual IP) qui permet la haute disponibilité ente 2 routeurs. 
 
 Dans notre cas nous allon mettre en place le HSRP entre nos deux routeurs R1 et R2, chaque routeur est connecter a une FAI différente
+
+<div class="annotate" markdown>
+> Info (1)
+</div>
+1. Voir la page suivante dans la section "Routeur" avec la configuration du HSRP.
