@@ -17,10 +17,9 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
     - **Slaves** : sélectionnez les interfaces (ex : `eno1`, `ens3f0`, `ens3f1`) 
     - **Mode** : `802.3ad (LACP)`
     - **Transmit Hash Policy** : `layer2+3` 
+5. Cliquez sur **Create** pour valider.
 
 ⚠️ Ne mettre aucune IP ni Gateway sur le **Linux Bond**
-
-5. Cliquez sur **Create** pour valider.
 
 ---
 

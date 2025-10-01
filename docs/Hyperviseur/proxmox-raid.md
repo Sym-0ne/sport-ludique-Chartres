@@ -11,6 +11,7 @@
 
 * Attribution d’un **nom d’hôte** :
   `cha.chartres.sportludiques.fr`
+  
 * Association des **VLAN** :
   - VLAN **Mana** : `120` → accès à l’interface web d’administration.
     - Adrresse IP du **Mana** : `10.10.120.50`
