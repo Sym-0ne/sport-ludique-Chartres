@@ -155,9 +155,11 @@ Get-ADGroupMember "Admins du domaine" | Select Name, SamAccountName
 
 📋 Résultat obtenu :
 
+```
 Name           SamAccountName
 ----           ---------------
 Administrator  administrator
 David          david.dsi
 Wassim         wassim.dsi
 Simon          simon.dsi
+```
