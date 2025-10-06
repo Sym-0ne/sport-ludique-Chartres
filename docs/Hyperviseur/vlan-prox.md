@@ -29,11 +29,11 @@ L’objectif est de structurer le réseau en différentes zones logiques et de g
 ### Étapes de création
 1. Dans la section **Vnets**, créer un VLAN pour chaque identifiant mentionné ci-dessus.  
 2. Affecter à chaque VLAN :
-   - Un **nom explicite** (ex. : `VLAN_GestionActif`, `VLAN_Client`, etc.).  
-   - La **zone “Service”**.  
+    - Un **nom explicite** (ex. : `VLAN_GestionActif`, `VLAN_Client`, etc.).  
+    - La **zone “Service”**.  
 3. **Ne pas cocher** :
-   - *Gestion des VLANs*  
-   - *Pare-feu*  
+    - *Gestion des VLANs*  
+    - *Pare-feu*  
 4. **Ne pas ajouter d’étiquette VLAN (VLAN Tag)** lors de la configuration.
 
 ---
