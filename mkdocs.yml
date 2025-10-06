@@ -51,6 +51,7 @@ nav:
   - HyperViseur:
       - Proxmox & Raid: Hyperviseur/proxmox-raid.md
       - LACP on Proxmox: Hyperviseur/lacp-proxmox.md
+      - Gestion Vlan on VM Proxmox: Hyperviseur/vlan-prox.md
   - Service Active Directory:
       - Domaine Active Directory : Service AD/ad.md
       - Serveur DNS : Service AD/dns.md
