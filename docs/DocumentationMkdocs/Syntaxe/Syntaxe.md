@@ -113,6 +113,27 @@ Listes :
 2. James Monroe
 3. John Quincy Adams
 ```
+<div class="annotate" markdown>
+
+Anotation (1) : 
+
+</div>
+1. Ceci est une annotation
+
+```
+<div class="annotate" markdown>
+
+Phrase avant l'annotation (1) phrase après l'annotation
+
+</div>
+1. Contenue de l'annotation
+```
+<div class="annotate" markdown>
+
+Bonus : (1) 
+
+</div>
+1. Il est possbile de différencier les annotation et d'en mettre plusieurs à la suite, il suffit de changer le numéro associé.
 
 <div class="annotate" markdown>
 
