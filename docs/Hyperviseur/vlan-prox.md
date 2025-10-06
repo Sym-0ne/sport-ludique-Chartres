@@ -43,10 +43,10 @@ L’objectif est de structurer le réseau en différentes zones logiques et de g
 Lors de la création d’une nouvelle VM :
 
 1. Dans les paramètres de la **carte réseau** de la VM, section **Pont (Bridge)** :
-   - Sélectionner la **Zone “Service”**.  
+    * Sélectionner la **Zone “Service”**.  
 2. **Ne pas cocher** :
-   - *Gestion des VLANs*  
-   - *Pare-feu*  
+    * *Gestion des VLANs*  
+    * *Pare-feu*   
 3. **Ne pas renseigner de Tag VLAN**.  
 
 ---
@@ -75,8 +75,8 @@ Si une **VM** doit disposer d’un accès au VLAN Management :
 1. Ajouter une **seconde carte réseau** à la VM.  
 2. Dans la rubrique **Pont (Bridge)**, sélectionner **`vmbr0`**.  
 3. **Ne pas cocher** :
-   - *Gestion des VLANs*  
-   - *Pare-feu*  
+    * *Gestion des VLANs*  
+    * *Pare-feu*  
 4. **Ne pas mettre d’étiquette VLAN**.  
 
 ---
