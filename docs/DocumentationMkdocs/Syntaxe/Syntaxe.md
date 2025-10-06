@@ -128,6 +128,27 @@ Phrase avant l'annotation (1) phrase après l'annotation
 </div>
 1. Contenue de l'annotation
 ```
+Il est possible de modifier l'icone de l'annotation en ajoutant l'icone dans le mkdocs.yml 
+```python hl_lines="3"
+theme :
+  logo : logo.png
+  icon : material/chevron-right-circle
+  name : material
+  language : fr
+  palette:
+    - scheme: default
+      primary: red
+      accent: white
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: red
+      accent: white
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+```
 <div class="annotate" markdown>
 
 Bonus : (1) 
@@ -151,7 +172,12 @@ Liste de taches : (1)
 - [x] TACHE ACOMPLIE
 - [ ] TACHE A ACOMPLIRE
 
-Emoji :smile: 
+<div class="annotate" markdown>
+Emoji :smile: (1) 
+
+</div>
+
+1. Liste complète des emoji utilisables en markdown [:outbox_tray:](https://gist.github.com/rxaviers/7360908).
 ```
 :EMOJICODE:
 ```
