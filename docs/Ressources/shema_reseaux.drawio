@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0" version="28.2.5">
   <diagram name="Page-1" id="pv2tOKStDJ_Z1Nen-3eF">
-    <mxGraphModel dx="1562" dy="2067" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="937" dy="1708" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -277,9 +277,9 @@
         <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-112" value="&lt;div&gt;Client test&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="842.8" y="390" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-113" value="&lt;div&gt;Management&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="720" y="-330" width="990" height="610" as="geometry">
-            <mxRectangle x="730" y="-250" width="140" height="30" as="alternateBounds" />
+        <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-113" value="&lt;div&gt;Management&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;fontStyle=1" parent="1" vertex="1" collapsed="1">
+          <mxGeometry x="720" y="-330" width="140" height="30" as="geometry">
+            <mxRectangle x="720" y="-330" width="990" height="610" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-114" value="&lt;div&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;10.10.120.0/24 VLAN 120&lt;/span&gt;&lt;/div&gt;" style="html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.bus;gradientColor=none;gradientDirection=north;fontColor=#ffffff;perimeter=backbonePerimeter;backboneSize=20;" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
@@ -336,16 +336,16 @@
         <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-143" value="&lt;div&gt;.70&lt;/div&gt;&lt;div&gt;VFW&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="75" y="270" width="50" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="8CSkVYpYZDG2nSTukLU6-2" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;fontStyle=1" vertex="1" parent="bQ4Uby9vdC2Kh0JUbN-b-113">
+        <mxCell id="8CSkVYpYZDG2nSTukLU6-2" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;fontStyle=1" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="160" y="50" width="60.1" height="81.44" as="geometry" />
         </mxCell>
-        <mxCell id="8CSkVYpYZDG2nSTukLU6-3" value=".4" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" vertex="1" parent="bQ4Uby9vdC2Kh0JUbN-b-113">
+        <mxCell id="8CSkVYpYZDG2nSTukLU6-3" value=".4" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="166.00076211353314" y="121.43038105676658" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8CSkVYpYZDG2nSTukLU6-4" value="Simon" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=30;fontStyle=1" vertex="1" parent="bQ4Uby9vdC2Kh0JUbN-b-113">
+        <mxCell id="8CSkVYpYZDG2nSTukLU6-4" value="Simon" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=30;fontStyle=1" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="166.00076211353314" y="71.43038105676658" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8CSkVYpYZDG2nSTukLU6-5" value="PC Mana Simon" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="bQ4Uby9vdC2Kh0JUbN-b-113">
+        <mxCell id="8CSkVYpYZDG2nSTukLU6-5" value="PC Mana Simon" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="141" y="147.5" width="110" height="30" as="geometry" />
         </mxCell>
         <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-11" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;fontStyle=1" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
@@ -357,7 +357,7 @@
         <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-19" value=".5" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="274.85" y="127.5" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8CSkVYpYZDG2nSTukLU6-7" value="&lt;div&gt;Pc Mana David&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="bQ4Uby9vdC2Kh0JUbN-b-113">
+        <mxCell id="8CSkVYpYZDG2nSTukLU6-7" value="&lt;div&gt;Pc Mana David&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="244.99999999999997" y="147.5" width="100" height="30" as="geometry" />
         </mxCell>
         <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-12" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;fontStyle=1" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
@@ -369,7 +369,7 @@
         <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-18" value=".6" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="380.0000000000001" y="127.50000000000011" width="30" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="8CSkVYpYZDG2nSTukLU6-8" value="&lt;div&gt;Pc Mana Wassim&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="bQ4Uby9vdC2Kh0JUbN-b-113">
+        <mxCell id="8CSkVYpYZDG2nSTukLU6-8" value="&lt;div&gt;Pc Mana Wassim&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="bQ4Uby9vdC2Kh0JUbN-b-113" vertex="1">
           <mxGeometry x="360" y="151.43" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="bQ4Uby9vdC2Kh0JUbN-b-125" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/switch/Switch_24_port_L2.svg;fontStyle=1" parent="1" vertex="1">
