@@ -45,7 +45,6 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 
 Contraites VLANs with Trunk :<br>
 
-   * VLAN natif : pour compatibilité avec certaines cartes physiques ne reconnaissant pas les trames taguées à 4 octets.<br>
    * VLAN serveur : VLAN 221<br>
    * VLANs supplémentaires : 222 à 229 si nécessaire.<br>
 
@@ -73,14 +72,12 @@ interface range GigabitEthernet1/0/21-23
 
 ### 2.2. Configuration des VLANs sur le trunk
 
-VLAN natif : VLAN par défaut sur le trunk (ex : VLAN 1 ou VLAN spécifique)
 VLANs autorisés sur le trunk : 221 à 229
 
 **Configuration Cisco :**
 
 ```bash
 interface Port-channel2
-    switchport trunk native vlan 221
     switchport trunk allowed vlan 221-229
 ```
 
