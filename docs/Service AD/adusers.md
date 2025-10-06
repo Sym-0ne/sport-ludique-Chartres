@@ -41,7 +41,8 @@ Ainsi, la structure reflète à la fois le **besoin fonctionnel** et le **besoin
 
 ## 4. Contenu du script
 
-```powershell
+```
+powershell
 Import-Module ActiveDirectory
 
 # ============================
@@ -110,3 +111,4 @@ Add-ADGroupMember -Identity "G_RH" -Members "helen.rh"
 Write-Host "`n✅ Structure AD créée avec succès !`n"
 Get-ADOrganizationalUnit -Filter * | Select-Object Name
 Get-ADUser -Filter * | Select-Object Name, SamAccountName, DistinguishedName
+```
