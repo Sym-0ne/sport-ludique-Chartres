@@ -15,10 +15,11 @@ interface GigabitEthernet0/0
 
 ### Dans cette configuration :
 
-L'interface GigabitEthernet0/0 de R1 est configurée avec l'adresse IP 172.28.63.2<br>
-"standby 1 ip 172.28.63.10" définit l'adresse VIP (Virtual IP) HSRP à 172.28.x.254.<br>
-"standby 1 priority 110" définit la priorité de ce routeur à 110 (par défaut est 100).<br>
-"standby 1 preempt" permet à R1 de reprendre automatiquement le rôle de routeur actif s'il redevient disponible après une panne.<br>
+L'interface GigabitEthernet0/0 de R1 est configurée avec l'adresse IP 172.28.63.2.<br>
+
+```"standby 1 ip 172.28.63.10"``` définit l'adresse VIP (Virtual IP) HSRP à **172.28.x.254.**<br>
+```"standby 1 priority 110"``` définit la priorité de ce routeur à 110 (par défaut est 100).<br>
+```"standby 1 preempt"``` permet à R1 de reprendre automatiquement le rôle de routeur actif s'il redevient disponible après une panne.<br>
 
 
 ## Configuration de R2 :
