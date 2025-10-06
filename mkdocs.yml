@@ -55,6 +55,7 @@ nav:
   - Service Active Directory:
       - Domaine Active Directory : Service AD/ad.md
       - Active Directory BackUP: Service AD/adbackup.md
+      - Gestion Utilisateurs AD: Service AD/adusers.md
       - Serveur DNS : Service AD/dns.md
       - Serveur DHCP : Service AD/dhcp.md
       - Serveur Fichier : Service AD/servfichier.md
