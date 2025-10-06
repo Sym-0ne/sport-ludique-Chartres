@@ -112,3 +112,52 @@ Write-Host "`n✅ Structure AD créée avec succès !`n"
 Get-ADOrganizationalUnit -Filter * | Select-Object Name
 Get-ADUser -Filter * | Select-Object Name, SamAccountName, DistinguishedName
 ```
+
+## 5. Attribution des droits Administrateurs aux utilisateurs de la DSI
+
+### 1. Le groupe “Admins du domaine”
+
+#### 1.1 Définition
+
+Le groupe **“Admins du domaine”** est un groupe de sécurité intégré créé automatiquement lors de l’installation d’un domaine Active Directory (équivalent anglais : Domain Admins).
+Il est situé dans le conteneur :
+
+```
+CN=Users,DC=cha,DC=chartres,DC=sportludique,DC=fr
+```
+
+#### 1.2 Rôle
+
+Les membres du groupe Admins du domaine disposent de privilèges complets sur :
+
+    - Tous les objets Active Directory (utilisateurs, ordinateurs, groupes, OU)
+    - Les stratégies de groupe (GPO)
+    - Les serveurs et postes membres du domaine
+    - Les droits d’administration locale sur chaque machine du domaine
+
+C’est donc le plus haut niveau d’administration au sein d’un domaine AD.
+
+### 2. Attribution des droits aux techniciens DSI
+
+L’attribution s’est faite à l’aide de la commande PowerShell suivante, exécutée depuis une session administrateur sur un contrôleur de domaine :
+
+```
+Add-ADGroupMember -Identity "Admins du domaine" -Members "david.dsi","wassim.dsi","simon.dsi"
+```
+
+### 3. Vérification de l’appartenance au groupe
+
+Après l’ajout, la commande suivante a été utilisée pour vérifier que les utilisateurs ont bien été intégrés :
+
+```
+Get-ADGroupMember "Admins du domaine" | Select Name, SamAccountName
+```
+
+📋 Résultat obtenu :
+
+Name           SamAccountName
+----           ---------------
+Administrator  administrator
+David          david.dsi
+Wassim         wassim.dsi
+Simon          simon.dsi
