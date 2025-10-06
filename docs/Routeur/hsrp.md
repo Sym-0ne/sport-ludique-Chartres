@@ -13,7 +13,7 @@ interface GigabitEthernet0/0
  standby 1 preempt
 ```
 
-### Dans cette configuration :
+#### Dans cette configuration :
 
 L'interface GigabitEthernet0/0 de R1 est configurée avec l'adresse IP 172.28.63.2.<br>
 
@@ -31,11 +31,13 @@ interface GigabitEthernet0/0
  standby 1 preempt
 ```
 
-### Dans cette configuration :
+#### Dans cette configuration :
 
 L'interface GigabitEthernet0/0 de R2 est configurée avec l'adresse IP 172.28.63.3.<br>
-"standby 1 ip 172.28.63.10" définit également l'adresse VIP HSRP à 172.28.63.10, qui est la même que celle configurée sur R1.<br>
-"standby 1 priority 100" définit la priorité de ce routeur à 100.<br>
-"standby 1 preempt" permet à R2 de prendre le relais en tant que routeur actif si R1 devient indisponible.<br>
 
-Ainsi, avec cette configuration, R1 sera le routeur actif tant qu'il est disponible. En cas de panne de R1 ou de sa connexion, R2 prendra automatiquement le relais en tant que routeur actif, assurant ainsi une haute disponibilité pour la VIP 172.28.63.10
+```"standby 1 ip 172.28.63.10"``` définit également l'adresse VIP HSRP à **172.28.63.10**, qui est la même que celle configurée sur R1.<br>
+```"standby 1 priority 100"``` définit la priorité de ce routeur à 100.<br>
+```"standby 1 preempt"``` permet à R2 de prendre le relais en tant que routeur actif si R1 devient indisponible.<br>
+
+
+Ainsi, avec cette configuration, R1 sera le routeur actif tant qu'il est disponible. En cas de panne de R1 ou de sa connexion, R2 prendra automatiquement le relais en tant que routeur actif, assurant ainsi une haute disponibilité pour la VIP **172.28.63.10.**
