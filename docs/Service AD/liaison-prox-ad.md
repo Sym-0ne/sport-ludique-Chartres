@@ -1,4 +1,4 @@
-# 🧠 Documentation — Intégration de Proxmox avec Active Directory (AD)
+# Documentation — Intégration de Proxmox avec Active Directory (AD)
 
 ## 📋 Objectif
 
@@ -156,9 +156,10 @@ Datacenter → Permissions → Utilisateurs → Add
 | ------------------- | ------------------- |
 | **Nom utilisateur** | proxmox.admin       |
 | **Royaume**         | Authentification AD |
+Appliquer la GPO puis forcer la mise à jour :
 
-
-### 3. Attribution des permissions
+### 3. Attribution des permissiation LDAP / LDAPS.
+ons
 
 Chemin d’accès :
 
@@ -174,14 +175,14 @@ Datacenter → Permissions → Add → Permissions de l'utilisateur
 | **Propager**       | ✅ Activé            |
 
 
-💡 Note : Le mode LDAP est temporaire. Une migration vers LDAPS sera effectuée pour sécuriser les échanges.
+💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges.
 
 ## Etape 3 — Gestion du protocole LDAP / LDAPS
-
+Appliquer la GPO puis forcer la mise à jour :
 ⚠️ Problématique
 
 Depuis Windows Server 2019 (patch 2020) et renforcé dans Windows Server 2022 / 2025,
-les connexions LDAP simples non chiffrées (port 389) sont désormais bloquées ou limitées.
+les connexions **LDAP simples non chiffrées (port 389)** sont désormais **bloquées ou limitées.**
 
 Erreur typique :
 
@@ -192,23 +193,25 @@ can't contact LDAP server
 **Raison :**
 Les identifiants sont envoyés en clair sur le réseau.
 
-Recommandation
+**Recommandation :**
+Utiliser LDAPS (port 636) pour chiffrer les échanges entre Proxmox et Active Directory.
 
-🔐 Utiliser LDAPS (port 636) pour chiffrer les échanges entre Proxmox et Active Directory.
 
-🧭 Méthode : via la Stratégie de groupe (GPO)
+**Méthode : via la Stratégie de groupe (GPO)**
 
-Ouvrir la console de gestion des stratégies de groupe (GPMC).
-Éditer la GPO appliquée aux contrôleurs de domaine (ou créer une dédiée).
+- Ouvrir la console de gestion des stratégies de groupe (GPMC).
+- Éditer la GPO appliquée aux contrôleurs de domaine (ou créer une dédiée).
 
-Naviguer vers :
+**Naviguer vers :**
 
+```
 Configuration ordinateur
    → Stratégies
       → Paramètres Windows
          → Paramètres de sécurité
             → Stratégies locales
                → Options de sécurité
+```
 
 Modifier les paramètres suivants :
 
