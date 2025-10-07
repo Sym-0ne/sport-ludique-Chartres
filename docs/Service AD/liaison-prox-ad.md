@@ -175,7 +175,7 @@ Datacenter → Permissions → Add → Permissions de l'utilisateur
 | **Propager**       | ✅ Activé            |
 
 
-💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges.
+💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges. Nous activerons ici LDAP à des fins de test uniquement, penser à remettre la configuration par défaut que nous allons modifier ci-dessous une fois le test terminé !
 
 ## Etape 3 — Gestion du protocole LDAP / LDAPS
 Appliquer la GPO puis forcer la mise à jour :
@@ -195,6 +195,8 @@ Les identifiants sont envoyés en clair sur le réseau.
 
 **Recommandation :**
 Utiliser LDAPS (port 636) pour chiffrer les échanges entre Proxmox et Active Directory.
+
+💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges. Nous activerons ici LDAP à des **fins de test uniquement**, penser à **remettre la configuration par défaut** que nous allons modifier ci-dessous une fois le test terminé !
 
 
 **Méthode : via la Stratégie de groupe (GPO)**
