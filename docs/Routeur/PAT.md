@@ -8,7 +8,7 @@
 | Résolveur DNS                 | 172.28.33.4    | 53          | 183.44.28.1     | 53         | TCP/UDP   |
 
 
-Objectif : Permettre l’accès depuis Internet aux deux serveurs DNS via une seule IP publique, en utilisant des ports externes différents pour le résolveur.
+**Objectif :** Permettre l’accès depuis Internet aux deux serveurs DNS via une seule IP publique, en utilisant des ports externes différents pour le résolveur.
 
 ## Étape 2 : Configurer le PAT pour le DNS autoritaire
 
@@ -35,14 +35,5 @@ Vérifier que NAT est bien configuré :
 show ip nat translations
 ```
 
-### Schema conceptuel : 
-
-               Internet
-                   |
-           IP publique : 183.44.28.1
-           -------------------------
-          |                         |
-   Port 53 (TCP/UDP)          Port 1053 (TCP/UDP)
-          |                         |
-  DNS autoritaire             Résolveur DNS
-  172.28.62.1                 172.28.33.4
+Cette commande doit retourner le résultat ci-dessous : 
+![Conf PAT](image.png)
