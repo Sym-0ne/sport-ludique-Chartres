@@ -31,7 +31,7 @@ Elle couvre les points suivants :
 <HP> reset saved-configuration
 ```
 
-   Si cette commande ne supprime pas correctement la conf, il faut les supprimés manuellement un par un : 
+Si cette commande ne supprime pas correctement la conf, il faut les supprimés manuellement un par un : 
 ```
 <HP> delete "nom du fichier de conf à supprimer" 
 ```

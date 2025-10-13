@@ -1,6 +1,6 @@
 # Documentation PAT pour DNS avec une seule IP publique
 
-## Contexte.
+## Contexte
 
 | Serveur DNS                  | IP interne      | Port interne | IP publique      | Port externe | Protocole |
 |-------------------------------|----------------|-------------|-----------------|--------------|-----------|
@@ -10,7 +10,7 @@
 
 **Objectif :** Permettre l’accès depuis Internet aux deux serveurs DNS via une seule IP publique, en utilisant des ports externes différents pour le résolveur.
 
-## Étape 2 : Configurer le PAT 
+## 1 : Configurer le PAT 
 
 Le DNS utilise le port standard 53 pour TCP et UDP.
 Le trafic provenant d’Internet sur le port 53 sera redirigé vers le serveur.
@@ -31,7 +31,7 @@ Tcp et udp : on ouvre les deux protocoles utilisés par DNS.<br>
 - 172.28.33.4 53 : IP et port interne du DNS Resolveur.
 - 183.44.28.1 53 : IP publique et port externe visible depuis Internet.
 
-## Étape 3 : Vérification
+## 2 : Vérification
 
 Vérifier que NAT est bien configuré :
 ```
