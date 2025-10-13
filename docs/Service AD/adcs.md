@@ -34,7 +34,7 @@ Ensuite faite **Afficher le certificat** et allez dans **Détails** :
 
 ![certificats](AD-CS/4.png)
 
-Enfin cliquer sur **Coppier dans un fichier** et suivre l'assistant d'exportation pour télécharger le fichier sur votre machine physique.
+Enfin cliquer sur **Copier dans un fichier** et suivre l'assistant d'exportation pour télécharger le fichier sur votre machine physique.
 
 ### 3. L'ajouter sur Proxmox
 
