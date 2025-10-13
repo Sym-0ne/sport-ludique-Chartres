@@ -196,7 +196,7 @@ Les identifiants sont envoyés en clair sur le réseau.
 Utiliser LDAPS (port 636) pour chiffrer les échanges entre Proxmox et Active Directory.
 
 💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges. 
-Voici la **configuration du LADPS** qui a été réalisé : [Tuto LDAPS] (https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
+Voici la **configuration du LADPS** qui a été réalisé : [Tuto LDAPS](https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
 
 **Méthode : via la Stratégie de groupe (GPO)**
 

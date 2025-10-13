@@ -22,7 +22,7 @@ C:\Backup\Certificat
 \\CHA-DC-01\Backup\Certificat\certificat.crt
 ```
 
-Pour toutes ces étapes voir :  [Tuto ADCS et Cerfificat] (https://sym-0ne.github.io/sport-ludique-Chartres/Service%20AD/adcs/)
+Pour toutes ces étapes voir : [Tuto ADCS et Certificat](https://sym-0ne.github.io/sport-ludique-Chartres/Service%20AD/adcs/)
 
 ## Étape 3 – Transfert du certificat vers le serveur Proxmox.
 
@@ -33,7 +33,7 @@ scp Documents/certificat.crt root@10.10.120.50:/usr/local/share/ca-certificates
 
 💡 10.10.120.50 correspond à l’adresse IP du serveur Proxmox.
 
-Étape 4 – Installation du certificat sur Proxmox
+## Étape 4 – Installation du certificat sur Proxmox
 
 Connectez-vous au serveur Proxmox via SSH, puis exécutez :
 ```
