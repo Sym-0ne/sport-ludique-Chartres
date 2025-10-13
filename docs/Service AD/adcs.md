@@ -38,4 +38,4 @@
 
 3. L'ajouter sur Proxmox
 
-    
+    Pour l'ajouter sur le Proxmox aller voir la documentation suivante à l'étape 3 : [LDAPS sur Proxmox](https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
