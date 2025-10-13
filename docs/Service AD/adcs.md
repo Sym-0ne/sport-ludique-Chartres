@@ -10,32 +10,32 @@
 - **Signature numérique** : garantit l’intégrité et la provenance des documents ou du code.
 - **Automatisation** : dans un domaine AD, la délivrance et le renouvellement des certificats peuvent être automatisés via les stratégies de groupe (GPO).
 
-1. Installer le rôle « AD CS »
+### 1. Installer le rôle « AD CS »
 
-    Allez dans "**Ajouter des rôles et des fonctionnalités**".
+Allez dans "**Ajouter des rôles et des fonctionnalités**".
 
-    Puis installer le service ci-dessous :
+Puis installer le service ci-dessous :
 
-    ![installe](AD-CS/1.png)
+![installe](AD-CS/1.png)
 
-    Finir l'intallation.
+Finir l'intallation.
 
-2. Télécharger le certificats sur la machine physique
+### 2. Télécharger le certificats sur la machine physique
 
-    Allez dans le service et ouvrir **L'autorité de certification** :
+Allez dans le service et ouvrir **L'autorité de certification** :
 
-    ![autorité](AD-CS/2.png)
+![autorité](AD-CS/2.png)
 
-    Puis cliquez sur **cha-CHA_DC_02-CA** et allez dans les **Propriétés** :
+Puis cliquez sur **cha-CHA_DC_02-CA** et allez dans les **Propriétés** :
 
-    ![propriétés](AD-CS/3.png)
+![propriétés](AD-CS/3.png)
 
-    Ensuite faite **Afficher le certificat** et allez dans **Détails** :
+Ensuite faite **Afficher le certificat** et allez dans **Détails** :
 
-    ![certificats](AD-CS/4.png)
+![certificats](AD-CS/4.png)
 
-    Enfin cliquer sur **Coppier dans un fichier** et suivre l'assistant d'exportation pour télécharger le fichier sur votre machine physique.
+Enfin cliquer sur **Coppier dans un fichier** et suivre l'assistant d'exportation pour télécharger le fichier sur votre machine physique.
 
-3. L'ajouter sur Proxmox
+### 3. L'ajouter sur Proxmox
 
-    Pour l'ajouter sur le Proxmox aller voir la documentation suivante à l'étape 3 : [LDAPS sur Proxmox](https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
+Pour l'ajouter sur le Proxmox aller voir la documentation suivante à l'étape 3 : [LDAPS sur Proxmox](https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
