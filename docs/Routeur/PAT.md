@@ -5,12 +5,11 @@
 | Serveur DNS                  | IP interne      | Port interne | IP publique      | Port externe | Protocole |
 |-------------------------------|----------------|-------------|-----------------|--------------|-----------|
 | DNS autoritaire               | 172.28.62.1    | 53          | 183.44.28.1     | 53           | TCP/UDP   |
-| Résolveur DNS                 | 172.28.33.4    | 53          | 183.44.28.1     | 53         | TCP/UDP   |
 
 
 **Objectif :** Permettre l’accès depuis Internet aux deux serveurs DNS via une seule IP publique, en utilisant des ports externes différents pour le résolveur.
 
-## 1 : Configurer le PAT 
+## 1. Configurer le PAT 
 
 Le DNS utilise le port standard 53 pour TCP et UDP.
 Le trafic provenant d’Internet sur le port 53 sera redirigé vers le serveur.
@@ -18,9 +17,6 @@ Le trafic provenant d’Internet sur le port 53 sera redirigé vers le serveur.
 ```
 ip nat inside source static tcp 172.28.62.1 53 183.44.28.1 53
 ip nat inside source static udp 172.28.62.1 53 183.44.28.1 53
-ip nat inside source static tcp 172.28.33.4 53 183.44.28.1 53
-ip nat inside source static udp 172.28.33.4 53 183.44.28.1 53
-
 ```
 
 **Explication :**
@@ -28,10 +24,9 @@ ip nat inside source static udp 172.28.33.4 53 183.44.28.1 53
 Tcp et udp : on ouvre les deux protocoles utilisés par DNS.<br>
 
 - 172.28.62.1 53 : IP et port interne du DNS autoritaire.
-- 172.28.33.4 53 : IP et port interne du DNS Resolveur.
 - 183.44.28.1 53 : IP publique et port externe visible depuis Internet.
 
-## 2 : Vérification
+## 2. Vérification
 
 Vérifier que NAT est bien configuré :
 ```
@@ -39,4 +34,3 @@ show ip nat translations
 ```
 
 Cette commande doit retourner le résultat ci-dessous : 
-![Conf PAT](image.png)
