@@ -245,9 +245,9 @@ OU=Users
 
 Import-Module ActiveDirectory
 
-$csvPath = "C:\chemin\vers\chartres.csv"
-$baseDN  = "OU=Users,DC=mondomaine,DC=local"
-$domain  = "mondomaine.local"
+$csvPath = "C:\Users\Administrateur\Documents\chartres.csv"
+$baseDN  = "DC=cha,DC=chartres,DC=sportludique,DC=fr"
+$domain  = "cha.chartres.sportludique.fr"
 $pw = ConvertTo-SecureString "Password" -AsPlainText -Force
 
 $subOUs = @{
