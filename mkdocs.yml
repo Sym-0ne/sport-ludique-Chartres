@@ -68,4 +68,5 @@ nav:
       - Serveur Fichier : Service AD/servfichier.md
   - DNS:
       - DNS D'autorité: DNS/DNS autorité.md
+      - DNS Resolveur: DNS/DNS Resolveur.md
 

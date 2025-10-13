@@ -1,12 +1,5 @@
 # Documentation PAT pour DNS avec une seule IP publique
 
-## Contexte
-
-| Serveur DNS                  | IP interne      | Port interne | IP publique      | Port externe | Protocole |
-|-------------------------------|----------------|-------------|-----------------|--------------|-----------|
-| DNS autoritaire               | 172.28.62.1    | 53          | 183.44.28.1     | 53           | TCP/UDP   |
-
-
 **Objectif :** Permettre l’accès depuis Internet aux deux serveurs DNS via une seule IP publique, en utilisant des ports externes différents pour le résolveur.
 
 ## 1. Configurer le PAT 
