@@ -159,7 +159,6 @@ Datacenter → Permissions → Utilisateurs → Add
 Appliquer la GPO puis forcer la mise à jour :
 
 ### 3. Attribution des permissiation LDAP / LDAPS.
-ons
 
 Chemin d’accès :
 
@@ -196,8 +195,8 @@ Les identifiants sont envoyés en clair sur le réseau.
 **Recommandation :**
 Utiliser LDAPS (port 636) pour chiffrer les échanges entre Proxmox et Active Directory.
 
-💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges. Nous activerons ici LDAP à des **fins de test uniquement**, penser à **remettre la configuration par défaut** que nous allons modifier ci-dessous une fois le test terminé !
-
+💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges. 
+Voici la **configuration du LADPS** qui a été réalisé : [Tuto LDAPS] (https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
 
 **Méthode : via la Stratégie de groupe (GPO)**
 
