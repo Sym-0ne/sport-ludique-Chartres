@@ -1,8 +1,12 @@
-## Installation de L'AD
+## 1. Installation de L'AD 📦
 
 Suivre cette documentation pour configuer l'AD Backup en adaptant pour lui : [Installe AD](https://sym-0ne.github.io/sport-ludique-Chartres/Service%20AD/ad/)
 
+<<<<<<< HEAD
+## 2. Redondance AD1 et AD2 🔄
+=======
 ## Redondance AD Principal et AD Secondaire
+>>>>>>> c59c80cb78d0699178e061e6ba130153b08c0d4b
 
 - AD Principal : 172.28.33.2<br>nom : CHA-DC-01.cha.chartres.sportludique.fr
 - AD Secondaire : 172.28.33.3<br>nom : CHA_DC_02.cha.chartres.sportludique.fr
@@ -39,7 +43,7 @@ Install-ADDSDomainController `
 
 💡 Une fenêtre d’authentification s’ouvre → entre un compte du domaine ayant les droits d’administrateur et redémarrer à la fin.
 
-### Vérification de la réplication AD
+### Vérification de la réplication AD ✅
 
 Sur Powershell :
 ```
@@ -48,7 +52,7 @@ repadmin /replsummary
 
 Si les deux AD s'affiche et qu'il n'y a aucune erreur alors la réplication fonctionne.
 
-### Configuration DNS croisée
+### Configuration DNS croisée 🔧
 
 Sur **AD Principal**, configure :
 ```
@@ -62,7 +66,7 @@ DNS préféré : 172.28.33.3
 DNS secondaire : 172.28.33.2
 ```
 
-### Vérification de la réplication DNS
+### Vérification de la réplication DNS ✅
 
 Sur AD Secondaire, ouvre :
 
@@ -71,7 +75,7 @@ Sur AD Secondaire, ouvre :
 Tu devrais y voir **exactement les mêmes enregistrements que sur AD Principal**.<br>
 Si oui, la réplication DNS fonctionne (grâce à AD).
 
-## Vérification finale 
+## 3. Vérification finale ✅
 
 1. Éteins l'AD Principal.
 

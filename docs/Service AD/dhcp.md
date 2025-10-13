@@ -1,6 +1,6 @@
 # Installer et configurer un serveur DHCP sur Windows Server 2025.
 
-## Etape 1. Installation du rôle DHCP
+## 1. Installation du rôle DHCP 📦
 Ouvrir le Gestionnaire de serveur.
 Cliquer sur Gérer, puis sur Ajouter des rôles et fonctionnalités.
 

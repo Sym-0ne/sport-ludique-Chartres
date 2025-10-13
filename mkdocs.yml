@@ -17,6 +17,8 @@ plugins:
   - drawio 
   - search
 theme :
+  icon :
+    annotation : material/arrow-right-circle-outline
   logo : logo.png
   name : material
   language : fr
@@ -66,5 +68,4 @@ nav:
       - Serveur Fichier : Service AD/servfichier.md
   - DNS:
       - DNS D'autorité: DNS/DNS autorité.md
-      - DNS Résolveur: DNS/DNS Resolveur.md
 

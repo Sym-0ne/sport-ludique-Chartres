@@ -1,10 +1,10 @@
 # Documentation des plugins
 
-## Drawio 
+## 1. Drawio ✏️
 
 Drawio est un logiciel en ligne d'édition de diagrames en tout genre, dans notre cas il sagit d'un schema réseau, l'utilisation de ce plugin permet de générer une API html interactive utilisant les fichier en .drawio, cela nous permet un zoom et une navigation simplifier du diagrame, de plus l'utilisation de cette API débloque certaines fonctionnalité comme les fenetres réductibles. 
 
-### Modification du workflow.
+### Modification du workflow. 🛠️
 
 Afin de pouvoir utiliser le plugin, il faut tout dabord l'installer, nous allons donc modifier le fichier main.yml de notre github, le but étant d'ajouter la commande qui installeras le plugin "drawio"
 
@@ -43,7 +43,7 @@ jobs:
 
 Une fois le workflow modifier, github installeras le plugin "drawio" a chaque mise a jour du code. 
 
-### Ajout du plugin dans le mkdocs.yml
+### Ajout du plugin dans le mkdocs.yml ➕
 
 Il faut ensuite ajouter le plugin dans le fichier de configuration mkdocs
 
@@ -52,7 +52,7 @@ plugins:
   - drawio 
 ```
 
-### Ajout du fichier drawio dans une page.
+### Ajout du fichier drawio dans une page ➕
 
 Pour finir il ne reste plus qu'à insérer le fichier avec l'extention ".drawio" dans notre fichier makdown a la manière d'une image
 
@@ -60,11 +60,11 @@ Pour finir il ne reste plus qu'à insérer le fichier avec l'extention ".drawio"
 ![](fichier.drawio)
 ```
 
-## Search 
+## 2. Search 🔍
 
 Search est un plugin qui permet d'ajouter une barre de recherche en haut a droite de votre page, cette barre de recherche permet de rechercher des mots, titres ou pages de votre document Mkdocs. 
 
-### Activation 
+### Activation ⚡
 
 Ce plugin étant natif a Mkdocs, il suffit d'ajouter la ligne dans le fichier mkdocs.yml 
 

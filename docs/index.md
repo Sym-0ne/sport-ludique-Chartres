@@ -51,3 +51,6 @@ Le Pôle Chartres assure la coordination des activités de l’ensemble des site
 ### <ins>Photo de la baie</ins>
 ![](Ressources/Baie.jpg)
 
+### <ins>Photo de la baie serveur</ins>
+[](Ressources/image_baie_serveur.jpeg)
+

@@ -1,6 +1,6 @@
 # Script PowerShell — Création d'une Structure Active Directory
 
-## 1. Objectif
+## 1. Objectif 🎯
 
 Ce script PowerShell automatise la **création d’une arborescence Active Directory** pour le domaine  
 **cha.chartres.sportludique.fr**.  
@@ -13,7 +13,7 @@ Le script permet de créer automatiquement :<br>
 
 ---
 
-## 2. Présentation générale
+## 2. Présentation générale 📋
 
 | Élément                     | Détails                                                                 |
 |-----------------------------|--------------------------------------------------------------------------|
@@ -28,7 +28,7 @@ Le script permet de créer automatiquement :<br>
 
 ---
 
-## 3. Contexte
+## 3. Contexte 📄
 
 - Les utilisateurs **Claude Postic** (Directeur DSI) et **Helen Paisley-Le Bihan** (Directrice RH) ont été créés **car le scénario du projet l’exigeait**, représentant la direction de deux pôles essentiels de l’entreprise.  
 - Les utilisateurs **David**, **Wassim** et **Simon** représentent les **techniciens de la DSI**.  
@@ -39,7 +39,7 @@ Ainsi, la structure reflète à la fois le **besoin fonctionnel** et le **besoin
 
 ---
 
-## 4. Contenu du script
+## 4. Contenu du script 📄
 
 ```
 powershell
@@ -113,11 +113,11 @@ Get-ADOrganizationalUnit -Filter * | Select-Object Name
 Get-ADUser -Filter * | Select-Object Name, SamAccountName, DistinguishedName
 ```
 
-## 5. Attribution des droits Administrateurs aux utilisateurs de la DSI
+## 5. Attribution des droits Administrateurs aux utilisateurs de la DSI 📝
 
-### 1. Le groupe “Admins du domaine”
+### Le groupe “Admins du domaine”
 
-#### 1.1 Définition
+#### Définition
 
 Le groupe **“Admins du domaine”** est un groupe de sécurité intégré créé automatiquement lors de l’installation d’un domaine Active Directory (équivalent anglais : Domain Admins).
 Il est situé dans le conteneur :
@@ -126,7 +126,7 @@ Il est situé dans le conteneur :
 CN=Users,DC=cha,DC=chartres,DC=sportludique,DC=fr
 ```
 
-#### 1.2 Rôle
+#### Rôle
 
 Les membres du groupe Admins du domaine disposent de privilèges complets sur :
 
@@ -137,7 +137,7 @@ Les membres du groupe Admins du domaine disposent de privilèges complets sur :
 
 C’est donc le plus haut niveau d’administration au sein d’un domaine AD.
 
-### 2. Attribution des droits aux techniciens DSI
+### Attribution des droits aux techniciens DSI
 
 L’attribution s’est faite à l’aide de la commande PowerShell suivante, exécutée depuis une session administrateur sur un contrôleur de domaine :
 
@@ -145,7 +145,7 @@ L’attribution s’est faite à l’aide de la commande PowerShell suivante, ex
 Add-ADGroupMember -Identity "Admins du domaine" -Members "david.dsi","wassim.dsi","simon.dsi"
 ```
 
-### 3. Vérification de l’appartenance au groupe
+### Vérification de l’appartenance au groupe
 
 Après l’ajout, la commande suivante a été utilisée pour vérifier que les utilisateurs ont bien été intégrés :
 
