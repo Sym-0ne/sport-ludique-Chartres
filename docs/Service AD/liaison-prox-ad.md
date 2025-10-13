@@ -201,7 +201,7 @@ Voici la **configuration du LADPS** qui a été réalisé : [Tuto LDAPS](https:/
 **Méthode : via la Stratégie de groupe (GPO)**
 
 - Ouvrir la console de gestion des stratégies de groupe (GPMC).
-- Éditer la GPO appliquée aux contrôleurs de domaine (ou créer une dédiée).
+- Éditer la GPO appliquée aux contrôleurs de domaine : ```default domain policy``` → Clique droit → Modifier.
 
 **Naviguer vers :**
 
