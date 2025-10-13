@@ -237,3 +237,83 @@ OU=Users
 └── OU=Juridique
     └── GRP_Juridique
 ```
+
+### Script Powershell afin de mettre en place les consignes ci-dessus.
+
+```
+# === Script création des UO, Utilisateurs et Groupes du Pôle Chartres ===
+
+Import-Module ActiveDirectory
+
+$csvPath = "C:\chemin\vers\chartres.csv"
+$baseDN  = "OU=Users,DC=mondomaine,DC=local"
+$domain  = "mondomaine.local"
+$pw = ConvertTo-SecureString "Password" -AsPlainText -Force
+
+$subOUs = @{
+    "SAV"        = @("Responsable","Operateur")
+    "Marketing"  = @("A","B","X","Y")
+}
+
+function Remove-Accents($text){
+    $n = $text.Normalize([Text.NormalizationForm]::FormD)
+    -join ($n.ToCharArray() | Where-Object{[Globalization.CharUnicodeInfo]::GetUnicodeCategory($_) -ne "NonSpacingMark"})
+}
+
+function Unique-Sam($last,$first){
+    $b = ((Remove-Accents $last).ToLower() -replace "\s+") + "." + ((Remove-Accents $first).ToLower() -replace "\s+")
+    if($b.Length -gt 20){$b=$b.Substring(0,20)}
+    $s=$b;$i=1
+    while(Get-ADUser -Filter "SamAccountName -eq '$s'" -ErrorAction SilentlyContinue){$s="$b$i";$i++}
+    return $s
+}
+
+$users = Import-Csv $csvPath -Delimiter ';' -Encoding Default
+
+foreach($u in $users){
+    $service = $u.service.Trim().ToUpper()
+    $sous = $u.'sous service'.Trim()
+    $nom = $u.NOM; $prenom = $u.PRENOM
+    if(!$nom -or !$prenom -or !$service){continue}
+
+    $ouService = "OU=$service,$baseDN"
+    if(-not (Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$ouService'" -ErrorAction SilentlyContinue)){
+        New-ADOrganizationalUnit -Name $service -Path $baseDN -ProtectedFromAccidentalDeletion $false
+    }
+
+    if($subOUs.ContainsKey($service)){
+        foreach($s in $subOUs[$service]){
+            $ouSous = "OU=$s,OU=$service,$baseDN"
+            if(-not (Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$ouSous'" -ErrorAction SilentlyContinue)){
+                New-ADOrganizationalUnit -Name $s -Path "OU=$service,$baseDN" -ProtectedFromAccidentalDeletion $false
+            }
+        }
+    }
+
+    $grpService = "GRP_$service"
+    if(-not (Get-ADGroup -Filter "Name -eq '$grpService'" -ErrorAction SilentlyContinue)){
+        New-ADGroup -Name $grpService -GroupScope Global -Path $ouService
+    }
+
+    if($sous -and $subOUs[$service] -contains $sous){
+        $grpSous = "GRP_${service}_$sous"
+        if(-not (Get-ADGroup -Filter "Name -eq '$grpSous'" -ErrorAction SilentlyContinue)){
+            New-ADGroup -Name $grpSous -GroupScope Global -Path "OU=$sous,OU=$service,$baseDN"
+        }
+        $targetOU = "OU=$sous,OU=$service,$baseDN"
+    } else {
+        $targetOU = $ouService
+    }
+
+    $sam = Unique-Sam $nom $prenom
+    $upn = "$sam@$domain"
+    $display = "$nom $prenom"
+
+    if(-not (Get-ADUser -Filter "SamAccountName -eq '$sam'" -ErrorAction SilentlyContinue)){
+        New-ADUser -Name $display -GivenName $prenom -Surname $nom -SamAccountName $sam -UserPrincipalName $upn -AccountPassword $pw -Enabled $true -ChangePasswordAtLogon $true -Path $targetOU
+    }
+
+    Add-ADGroupMember -Identity $grpService -Members $sam -ErrorAction SilentlyContinue
+    if($grpSous){Add-ADGroupMember -Identity $grpSous -Members $sam -ErrorAction SilentlyContinue}
+}
+```
