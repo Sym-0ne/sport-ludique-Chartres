@@ -163,3 +163,73 @@ David          david.dsi
 Wassim         wassim.dsi
 Simon          simon.dsi
 ```
+
+## 6. Script création des UO, Utilisateurs et Groupes du Pôle Chartre. 
+
+🧾 **Contexte**
+
+Nous disposons d’un fichier CSV nommé chartres.csv, contenant la liste des utilisateurs à créer dans Active Directory.
+Chaque ligne du fichier indique :
+
+Le nom et prénom de l’utilisateur,
+Le service auquel il appartient,
+Et éventuellement le sous-service.
+
+L’objectif est d’automatiser la création de :
+
+Les Unités d’Organisation (OU) correspondant aux services,
+Les sous-OU correspondant aux sous-services,
+Les groupes de sécurité associés à chaque niveau (service et sous-service),
+Les utilisateurs, placés dans la bonne OU selon leur service/sous-service.
+
+👥 **Groupes de sécurité**
+
+Pour chaque service et sous-service, des groupes AD sont créés afin de faciliter la gestion des droits.
+Les groupes suivent la convention de nommage suivante :
+
+Niveau	Exemple de nom de groupe
+Service global	GRP_<Service> (ex: GRP_SAV)
+Sous-service	GRP_<Service>_<SousService> (ex: GRP_SAV_Responsable, GRP_Marketing_A)
+
+👤 **Utilisateurs**
+
+Chaque utilisateur est créé avec :
+
+Nom d’affichage : Nom Prénom
+Identifiant de connexion (samAccountName) : nomdefamille.prenom
+Mot de passe initial : Password
+Changement de mot de passe obligatoire à la première connexion
+Un contrôle est effectué pour éviter les collisions de samAccountName ; un numéro est ajouté en suffixe si nécessaire (ex : dupont.jean2).
+
+📁 Exemple de structure finale dans l’AD : 
+
+```
+OU=Users
+├── OU=DIRECTION
+│   └── GRP_Direction
+├── OU=DSI
+│   └── GRP_DSI
+├── OU=RH
+│   └── GRP_RH
+├── OU=COMPTABILITE
+│   └── GRP_Comptabilite
+├── OU=SAV
+│   ├── OU=Responsable
+│   └── OU=Operateur
+│   ├── GRP_SAV
+│   ├── GRP_SAV_Responsable
+│   └── GRP_SAV_Operateur
+├── OU=Marketing
+│   ├── OU=A
+│   ├── OU=B
+│   ├── OU=X
+│   └── OU=Y
+│   ├── GRP_Marketing
+│   ├── GRP_Marketing_A
+│   ├── GRP_Marketing_B
+│   ├── GRP_Marketing_X
+│   ├── GRP_Marketing_Y
+│   └── GRP_SAV_Operateur
+└── OU=Juridique
+    └── GRP_Juridique
+```
