@@ -168,38 +168,43 @@ Simon          simon.dsi
 
 🧾 **Contexte**
 
-Nous disposons d’un fichier CSV nommé chartres.csv, contenant la liste des utilisateurs à créer dans Active Directory.
+Nous disposons d’un fichier CSV nommé chartres.csv, contenant la liste des utilisateurs à créer dans Active Directory.<br>
 Chaque ligne du fichier indique :
 
-Le nom et prénom de l’utilisateur,
-Le service auquel il appartient,
-Et éventuellement le sous-service.
+- Le nom et prénom de l’utilisateur,
+- Le service auquel il appartient,
+- Et éventuellement le sous-service.
 
 L’objectif est d’automatiser la création de :
 
-Les Unités d’Organisation (OU) correspondant aux services,
-Les sous-OU correspondant aux sous-services,
-Les groupes de sécurité associés à chaque niveau (service et sous-service),
-Les utilisateurs, placés dans la bonne OU selon leur service/sous-service.
+- Les Unités d’Organisation (OU) correspondant aux services,
+- Les sous-OU correspondant aux sous-services,
+- Les groupes de sécurité associés à chaque niveau (service et sous-service),
+- Les utilisateurs, placés dans la bonne OU selon leur service/sous-service.
 
 👥 **Groupes de sécurité**
 
-Pour chaque service et sous-service, des groupes AD sont créés afin de faciliter la gestion des droits.
+Pour chaque service et sous-service, des groupes AD sont créés afin de faciliter la gestion des droits.<br>
 Les groupes suivent la convention de nommage suivante :
 
-Niveau	Exemple de nom de groupe
-Service global	GRP_<Service> (ex: GRP_SAV)
-Sous-service	GRP_<Service>_<SousService> (ex: GRP_SAV_Responsable, GRP_Marketing_A)
+| Niveau           | Exemple de nom de groupe                                              |
+|------------------|-----------------------------------------------------------------------|
+| **Service global** | `GRP_<Service>` (exemple : `GRP_SAV`)                                |
+| **Sous-service**   | `GRP_<Service>_<SousService>` (exemples : `GRP_SAV_Responsable`, `GRP_Marketing_A`) |
+
 
 👤 **Utilisateurs**
 
 Chaque utilisateur est créé avec :
 
-Nom d’affichage : Nom Prénom
-Identifiant de connexion (samAccountName) : nomdefamille.prenom
-Mot de passe initial : Password
-Changement de mot de passe obligatoire à la première connexion
-Un contrôle est effectué pour éviter les collisions de samAccountName ; un numéro est ajouté en suffixe si nécessaire (ex : dupont.jean2).
+| Champ                                     | Description                                                                                             | Exemple             |
+|-------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------|
+| **Nom d’affichage**                       | Combinaison du nom et du prénom de l’utilisateur.                                                       | `Dupont Jean`       |
+| **Identifiant de connexion (samAccountName)** | Format standardisé : `nomdefamille.prenom`.                                                         | `dupont.jean`       |
+| **Mot de passe initial**                  | Mot de passe générique attribué à la création du compte.                                                | `Password`          |
+| **Changement de mot de passe obligatoire**| L’utilisateur devra définir un nouveau mot de passe à sa première connexion.                            | *(Automatique)*     |
+| **Gestion des doublons (collision)**      | Si un samAccountName existe déjà, un numéro est ajouté en suffixe pour garantir l’unicité.              | `dupont.jean2`      |
+
 
 📁 Exemple de structure finale dans l’AD : 
 
@@ -228,8 +233,7 @@ OU=Users
 │   ├── GRP_Marketing_A
 │   ├── GRP_Marketing_B
 │   ├── GRP_Marketing_X
-│   ├── GRP_Marketing_Y
-│   └── GRP_SAV_Operateur
+│   └── GRP_Marketing_Y
 └── OU=Juridique
     └── GRP_Juridique
 ```
