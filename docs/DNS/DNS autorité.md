@@ -122,7 +122,7 @@ www IN  A   183.44.28.1   ; Serveur Web
 </div>
 1. Tout les enregistrements pointent vers l'IP publique de R1 qui feras ensuite le lien avec le LAN grâce au PAT, la haute disponibilité seras implémenter plus tard
 
-## :warning: Désactivation des 13 serveurs DNS racines
+## :warning: Désactivation des 13 serveurs racines
 
 Les 13 serveurs DNS racines servent à TOUS les serveurs récursifs à se diriger vers les bons serveurs DNS pour accomplir leur résolution, nous allons les désactivées car ils rentrent en conflit avec nos views, de plus il est inutile de les avoirs étant donné que ce serveur ne fait AUCUNE récursion. 
 
@@ -150,7 +150,7 @@ sudo named-checkconf
 ```
 Cette commande ne nous retourne rien si le fichier de configuration est bon
 
- ### Zones 
+### Zones 
 
 ```
 sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportludique.fr.internal
@@ -158,3 +158,51 @@ sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportl
 ```
 
 Ces deux commandes nous retourneront la valeur du numéro de série de la zone si elle est bien configurée
+
+## Pare-feux local (UFW)
+<div class="annotate" markdown>
+
+Nous allons mettre en place un firewall local grâce a UFW (1) afin de bloquer toutes les connexion non necessaire au fonctionnement du DNS pour plus de sécurité.
+
+</div>
+1. Toute la documentation concernant UFW se trouve [ici](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/UFW/)
+
+### Besoins
+
+<div class="annotate" markdown > 
+
+Après avoir installer UFW (1) il nous suffit de mettre en place 3 règles :
+
+</div>
+1. :warning: Attention, l'activation d'UFW dois être effectuer a la fin pour ne pas perdre la connexion SSH avant d'avoir mis les règles qui l'autorise en place.
+
+- Une règle qui autorise les conexion SSH depuis le réseau de management sur mon interface de management
+- Une règle qui autorise les connexions DNS en UDP sur le port 53
+- Une règle qui autorise les connexions DNS en TCP sur le port 53
+
+Ces règles ont été décider grâce a l'étude des connexion qui auront lieu sur notre réseau et leur sens, ces connexions sont répertoriées sur le schéma si dessous :
+
+![](Ressources/shema_reseaux_DNS.drawio)
+
+
+### Configuration
+
+#### Règles par défaut
+Par defaut nous allons refuser toutes les connexion afin d'autoriser uniquement les connexion DNS par la suite.
+
+```
+sudo ufw default deny incoming 
+sudo ufw default deny outgoing
+```
+#### Règles de filtrage
+Voici donc les règles de filtrages a appliquer a nos interfaces :
+```
+sudo ufw allow in on ens4 from 10.10.120.0/24 to 10.10.120.8 port 22 proto tcp
+sudo ufw allow in on ens3 from all to 172.28.62.1 port 53 proto tcp
+sudo ufw allow in on ens3 from all to 172.28.62.1 port 53 proto udp
+```
+#### Activation d'UFW
+Une fois les règles qui laissent passer les trafics voulues il ne nous reste plus qu'à activer UFW afin que nos règles prennent effet.
+```
+sudo ufw enable
+```

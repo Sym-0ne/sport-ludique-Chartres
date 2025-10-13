@@ -48,6 +48,7 @@ nav:
   - Pare-feux:
       - PFW: Pare-feux/stormshield.md
       - VFW: Pare-feux/opnsense.md
+      - UFW: Pare-feux/UFW.md
   - HyperViseur:
       - Proxmox & Raid: Hyperviseur/proxmox-raid.md
       - LACP on Proxmox: Hyperviseur/lacp-proxmox.md
