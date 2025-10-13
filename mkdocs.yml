@@ -47,6 +47,7 @@ nav:
   - Routeur:
       - Configuration: Routeur/routeur.md
       - HSRP: Routeur/hsrp.md
+      - PAT: Routeur/PAT.md
   - Pare-feux:
       - PFW: Pare-feux/stormshield.md
       - VFW: Pare-feux/opnsense.md

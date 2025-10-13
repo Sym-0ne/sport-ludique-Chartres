@@ -5,7 +5,7 @@
 Ce script PowerShell automatise la **création d’une arborescence Active Directory** pour le domaine  
 **cha.chartres.sportludique.fr**.  
 
-Le script permet de créer automatiquement :
+Le script permet de créer automatiquement :<br>
 - Les **Unités Organisationnelles (OU)** des différents services.  
 - Les **utilisateurs** correspondant aux rôles du projet.  
 - Les **groupes de sécurité** associés.  
@@ -162,4 +162,158 @@ Administrator  administrator
 David          david.dsi
 Wassim         wassim.dsi
 Simon          simon.dsi
+```
+
+## 6. Script création des UO, Utilisateurs et Groupes du Pôle Chartre. 
+
+🧾 **Contexte**
+
+Nous disposons d’un fichier CSV nommé chartres.csv, contenant la liste des utilisateurs à créer dans Active Directory.<br>
+Chaque ligne du fichier indique :
+
+- Le nom et prénom de l’utilisateur,
+- Le service auquel il appartient,
+- Et éventuellement le sous-service.
+
+L’objectif est d’automatiser la création de :
+
+- Les Unités d’Organisation (OU) correspondant aux services,
+- Les sous-OU correspondant aux sous-services,
+- Les groupes de sécurité associés à chaque niveau (service et sous-service),
+- Les utilisateurs, placés dans la bonne OU selon leur service/sous-service.
+
+👥 **Groupes de sécurité**
+
+Pour chaque service et sous-service, des groupes AD sont créés afin de faciliter la gestion des droits.<br>
+Les groupes suivent la convention de nommage suivante :
+
+| Niveau           | Exemple de nom de groupe                                              |
+|------------------|-----------------------------------------------------------------------|
+| **Service global** | `GRP_<Service>` (exemple : `GRP_SAV`)                                |
+| **Sous-service**   | `GRP_<Service>_<SousService>` (exemples : `GRP_SAV_Responsable`, `GRP_Marketing_A`) |
+
+
+👤 **Utilisateurs**
+
+Chaque utilisateur est créé avec :
+
+| Champ                                     | Description                                                                                             | Exemple             |
+|-------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------------|
+| **Nom d’affichage**                       | Combinaison du nom et du prénom de l’utilisateur.                                                       | `Dupont Jean`       |
+| **Identifiant de connexion (samAccountName)** | Format standardisé : `nomdefamille.prenom`.                                                         | `dupont.jean`       |
+| **Mot de passe initial**                  | Mot de passe générique attribué à la création du compte.                                                | `Password`          |
+| **Changement de mot de passe obligatoire**| L’utilisateur devra définir un nouveau mot de passe à sa première connexion.                            | *(Automatique)*     |
+| **Gestion des doublons (collision)**      | Si un samAccountName existe déjà, un numéro est ajouté en suffixe pour garantir l’unicité.              | `dupont.jean2`      |
+
+
+📁 Exemple de structure finale dans l’AD : 
+
+```
+OU=Users
+├── OU=DIRECTION
+│   └── GRP_Direction
+├── OU=DSI
+│   └── GRP_DSI
+├── OU=RH
+│   └── GRP_RH
+├── OU=COMPTABILITE
+│   └── GRP_Comptabilite
+├── OU=SAV
+│   ├── OU=Responsable
+│   └── OU=Operateur
+│   ├── GRP_SAV
+│   ├── GRP_SAV_Responsable
+│   └── GRP_SAV_Operateur
+├── OU=Marketing
+│   ├── OU=A
+│   ├── OU=B
+│   ├── OU=X
+│   └── OU=Y
+│   ├── GRP_Marketing
+│   ├── GRP_Marketing_A
+│   ├── GRP_Marketing_B
+│   ├── GRP_Marketing_X
+│   └── GRP_Marketing_Y
+└── OU=Juridique
+    └── GRP_Juridique
+```
+
+### Script Powershell afin de mettre en place les consignes ci-dessus.
+
+```
+# === Script création des UO, Utilisateurs et Groupes du Pôle Chartres ===
+
+Import-Module ActiveDirectory
+
+$csvPath = "C:\Users\Administrateur\Documents\chartres.csv"
+$baseDN  = "DC=cha,DC=chartres,DC=sportludique,DC=fr"
+$domain  = "cha.chartres.sportludique.fr"
+$pw = ConvertTo-SecureString "Password" -AsPlainText -Force
+
+$subOUs = @{
+    "SAV"        = @("Responsable","Operateur")
+    "Marketing"  = @("A","B","X","Y")
+}
+
+function Remove-Accents($text){
+    $n = $text.Normalize([Text.NormalizationForm]::FormD)
+    -join ($n.ToCharArray() | Where-Object{[Globalization.CharUnicodeInfo]::GetUnicodeCategory($_) -ne "NonSpacingMark"})
+}
+
+function Unique-Sam($last,$first){
+    $b = ((Remove-Accents $last).ToLower() -replace "\s+") + "." + ((Remove-Accents $first).ToLower() -replace "\s+")
+    if($b.Length -gt 20){$b=$b.Substring(0,20)}
+    $s=$b;$i=1
+    while(Get-ADUser -Filter "SamAccountName -eq '$s'" -ErrorAction SilentlyContinue){$s="$b$i";$i++}
+    return $s
+}
+
+$users = Import-Csv $csvPath -Delimiter ';' -Encoding Default
+
+foreach($u in $users){
+    $service = $u.service.Trim().ToUpper()
+    $sous = $u.'sous service'.Trim()
+    $nom = $u.NOM; $prenom = $u.PRENOM
+    if(!$nom -or !$prenom -or !$service){continue}
+
+    $ouService = "OU=$service,$baseDN"
+    if(-not (Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$ouService'" -ErrorAction SilentlyContinue)){
+        New-ADOrganizationalUnit -Name $service -Path $baseDN -ProtectedFromAccidentalDeletion $false
+    }
+
+    if($subOUs.ContainsKey($service)){
+        foreach($s in $subOUs[$service]){
+            $ouSous = "OU=$s,OU=$service,$baseDN"
+            if(-not (Get-ADOrganizationalUnit -Filter "DistinguishedName -eq '$ouSous'" -ErrorAction SilentlyContinue)){
+                New-ADOrganizationalUnit -Name $s -Path "OU=$service,$baseDN" -ProtectedFromAccidentalDeletion $false
+            }
+        }
+    }
+
+    $grpService = "GRP_$service"
+    if(-not (Get-ADGroup -Filter "Name -eq '$grpService'" -ErrorAction SilentlyContinue)){
+        New-ADGroup -Name $grpService -GroupScope Global -Path $ouService
+    }
+
+    if($sous -and $subOUs[$service] -contains $sous){
+        $grpSous = "GRP_${service}_$sous"
+        if(-not (Get-ADGroup -Filter "Name -eq '$grpSous'" -ErrorAction SilentlyContinue)){
+            New-ADGroup -Name $grpSous -GroupScope Global -Path "OU=$sous,OU=$service,$baseDN"
+        }
+        $targetOU = "OU=$sous,OU=$service,$baseDN"
+    } else {
+        $targetOU = $ouService
+    }
+
+    $sam = Unique-Sam $nom $prenom
+    $upn = "$sam@$domain"
+    $display = "$nom $prenom"
+
+    if(-not (Get-ADUser -Filter "SamAccountName -eq '$sam'" -ErrorAction SilentlyContinue)){
+        New-ADUser -Name $display -GivenName $prenom -Surname $nom -SamAccountName $sam -UserPrincipalName $upn -AccountPassword $pw -Enabled $true -ChangePasswordAtLogon $true -Path $targetOU
+    }
+
+    Add-ADGroupMember -Identity $grpService -Members $sam -ErrorAction SilentlyContinue
+    if($grpSous){Add-ADGroupMember -Identity $grpSous -Members $sam -ErrorAction SilentlyContinue}
+}
 ```
