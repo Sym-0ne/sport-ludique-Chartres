@@ -1,6 +1,6 @@
 # Documentation — Intégration de Proxmox avec Active Directory (AD)
 
-## 📋 Objectif
+## 1. Objectif 🎯
 
 Ce document détaille les étapes permettant de :
 
@@ -11,7 +11,7 @@ Ce document détaille les étapes permettant de :
 
 ---
 
-## ⚙️ Étape 1 — Création des utilisateurs et groupes AD
+## 2. Création des utilisateurs et groupes AD ✏️
 
 ### 🧩 Description
 
@@ -124,9 +124,9 @@ Select-Object Name, SamAccountName
 Write-Host "`n✅ Script exécuté avec succès."
 ```
 
-## Étape 2 — Intégration du domaine AD dans Proxmox
+## 2. Intégration du domaine AD dans Proxmox
 
-### 1. Création du Realm (Royaume)
+### Création du Realm (Royaume)
 
 Chemin d’accès :
 
@@ -144,7 +144,7 @@ Datacenter → Permissions → Realms → Add → Active Directory
 | **Commentaire**       | Authentification AD          |
 
 
-### 2. Création de l’utilisateur Proxmox dans l’interface
+### Création de l’utilisateur Proxmox dans l’interface
 
 Chemin d’accès :
 
@@ -158,7 +158,7 @@ Datacenter → Permissions → Utilisateurs → Add
 | **Royaume**         | Authentification AD |
 Appliquer la GPO puis forcer la mise à jour :
 
-### 3. Attribution des permissiation LDAP / LDAPS.
+### Attribution des permissiation LDAP / LDAPS.
 
 Chemin d’accès :
 
@@ -176,7 +176,7 @@ Datacenter → Permissions → Add → Permissions de l'utilisateur
 
 💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges. Nous activerons ici LDAP à des fins de test uniquement, penser à remettre la configuration par défaut que nous allons modifier ci-dessous une fois le test terminé !
 
-## Etape 3 — Gestion du protocole LDAP / LDAPS
+## 3. Gestion du protocole LDAP / LDAPS 
 Appliquer la GPO puis forcer la mise à jour :
 ⚠️ Problématique
 

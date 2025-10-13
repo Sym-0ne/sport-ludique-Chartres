@@ -13,7 +13,7 @@ Passez ensuite à la section **Confirmation** et cliquez sur **Installer** pour 
 
 ---
 
-### Configuration du service DNS
+## 1. Configuration du service DNS 🔧
 
 Dans l’onglet **Outils**, sélectionnez le service **DNS** :  
 ![Ouverture du service DNS](DNS/4.png)

@@ -1,8 +1,8 @@
 # Installation et Configuration d’OPNsense sur Nutanix
 
-## 1. Installation
+## 1. Installation 📦
 
-### Déploiement de la VM
+### Déploiement de la VM 🚀
 
 * Création d’une VM **OPNsense** sur Nutanix.
 * Ressources attribuées :
@@ -11,7 +11,7 @@
   * **RAM** : 8 Go
   * **vCPU** : 2
 
-### Réseau et VLAN
+### Réseau et VLAN 🌐
 
 * Association de **3 VLAN** :
   - VLAN **Management** : `120`
@@ -22,16 +22,16 @@
 
 ---
 
-## 2. Configuration
+## 2. Configuration 🔧
 
-### Accès Web & comptes
+### Accès Web & comptes 🖥️
 
 - **Utilisateur administrateur** : `root` (nom d’utilisateur vérifié).  
 - **Mot de passe** : mot de passe initial remplacé — un mot de passe administrateur personnalisé a été défini pour l’accès à l’interface web.  
 - Recommandation : stocker les identifiants de manière sécurisée (gestionnaire de mots de passe).
 
 
-### Interfaces
+### Interfaces 🖧
 
 * Activation des interfaces **DMZ** et **LAN2DMZ**.
 * Attribution d’une **adresse IP** et d’une **passerelle** à chacune : 
@@ -43,7 +43,7 @@
         * Adresse IP : 172.28.63.140
         * Gateway : 172.28.63.254
 
-### Règles de Pare-feu
+### Règles de Pare-feu 🧱
 
 * Mise en place temporaire d’une règle permissive :
 
@@ -51,7 +51,7 @@
   * Objectif : tester le bon fonctionnement initial du pare-feu.
 * Des règles de filtrage plus restrictives seront appliquées ultérieurement.
 
-### Routage
+### Routage 🛣️
 
 * Configuration des **routes aller/retour**.
 
