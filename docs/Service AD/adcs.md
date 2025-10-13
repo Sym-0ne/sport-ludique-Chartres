@@ -1,6 +1,6 @@
 ## AD CS (Active Directory Certificate Services) — À quoi ça sert ?
 
- AD CS est un rôle de Windows Server qui permet de **créer et de gérer une infrastructure de gestion de certificats (PKI — Public Key Infrastructure)**.
+ AD CS est un rôle de Windows Server qui permet de **créer et de gérer une infrastructure de gestion de certificats (PKI — Public Key Infrastructure)**.<br>
  Concrètement, il sert à émettre, renouveler et révoquer des certificats numériques utilisés pour sécuriser les communications et authentifier les utilisateurs, ordinateurs ou services dans un environnement Active Directory.
 
 ## 🔐 À quoi ça sert dans un Active Directory ?
@@ -36,6 +36,6 @@ Ensuite faite **Afficher le certificat** et allez dans **Détails** :
 
 Enfin cliquer sur **Copier dans un fichier** et suivre l'assistant d'exportation pour télécharger le fichier sur votre machine physique.
 
-### 3. L'ajouter sur Proxmox
+### 3. Certificat sur Proxmox
 
-Pour l'ajouter sur le Proxmox aller voir la documentation suivante à l'étape 3 : [LDAPS sur Proxmox](https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
+Afin de mettre en place le certificat sur Proxmox, allez voir la documentation suivante : [LDAPS sur Proxmox](https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
