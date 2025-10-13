@@ -10,23 +10,26 @@
 
 **Objectif :** Permettre l’accès depuis Internet aux deux serveurs DNS via une seule IP publique, en utilisant des ports externes différents pour le résolveur.
 
-## Étape 2 : Configurer le PAT pour le DNS autoritaire
+## Étape 2 : Configurer le PAT 
 
-Le DNS autoritaire interne utilise le port standard 53 pour TCP et UDP.
-Le trafic provenant d’Internet sur le port 53 sera redirigé vers le serveur interne.
+Le DNS utilise le port standard 53 pour TCP et UDP.
+Le trafic provenant d’Internet sur le port 53 sera redirigé vers le serveur.
 
 ```
 ip nat inside source static tcp 172.28.62.1 53 183.44.28.1 53
 ip nat inside source static udp 172.28.62.1 53 183.44.28.1 53
+ip nat inside source static tcp 172.28.33.4 53 183.44.28.1 53
+ip nat inside source static udp 172.28.33.4 53 183.44.28.1 53
+
 ```
 
 **Explication :**
 
-Tcp et udp : on ouvre les deux protocoles utilisés par DNS.
+Tcp et udp : on ouvre les deux protocoles utilisés par DNS.<br>
 
-172.28.62.1 53 : IP et port interne du DNS autoritaire.
-172.28.33.4 53 : IP et port interne du DNS Resolveur.
-183.44.28.1 53 : IP publique et port externe visible depuis Internet.
+- 172.28.62.1 53 : IP et port interne du DNS autoritaire.
+- 172.28.33.4 53 : IP et port interne du DNS Resolveur.
+- 183.44.28.1 53 : IP publique et port externe visible depuis Internet.
 
 ## Étape 3 : Vérification
 

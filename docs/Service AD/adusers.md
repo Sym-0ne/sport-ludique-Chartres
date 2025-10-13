@@ -5,7 +5,7 @@
 Ce script PowerShell automatise la **création d’une arborescence Active Directory** pour le domaine  
 **cha.chartres.sportludique.fr**.  
 
-Le script permet de créer automatiquement :
+Le script permet de créer automatiquement :<br>
 - Les **Unités Organisationnelles (OU)** des différents services.  
 - Les **utilisateurs** correspondant aux rôles du projet.  
 - Les **groupes de sécurité** associés.  
