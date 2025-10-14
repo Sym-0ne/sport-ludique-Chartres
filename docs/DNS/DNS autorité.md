@@ -2,7 +2,7 @@
 
 Cette documentation sert a détailler l'installation et la configuration de notre serveur DNS d'autorité grâce au service BIND9 basé sur Debian 13.
 
-## 1. Préparation :memo:
+## 📝 1. Préparation 
 
 Avant de commencer il faut se poser les bonnes questions, nous aurons donc besoin : 
 
@@ -14,7 +14,7 @@ Avant de commencer il faut se poser les bonnes questions, nous aurons donc besoi
 
 4. Des routes statiques sur le DNS d'autorité à cause de l'IP Forwarding bloqué par l'IPS du StormShield
 
-## 2. Installation de BIND9 
+## 📦 2. Installation de BIND9 
 
 ```
 sudo apt update 
@@ -29,7 +29,7 @@ sudo apt install bind9 bind9utils bind9-doc dnsutils -y
 
 1. A noter que ``` bind9utils bind9-doc dnsutils ``` ne sont que des outils supplémentaires pour le test du DNS et du BIND9
 
-## 3. Création des dossier dédiés
+## ✏️ 3. Création des dossier dédiés
 
 Création de dossiers où l'on va stocker nos fichiers de zones et attribution des droits au service BIND9
 
@@ -37,7 +37,7 @@ Création de dossiers où l'on va stocker nos fichiers de zones et attribution d
 sudo mkdir -p /etc/bind/zones
 sudo chown bind:bind /etc/bind/zones
 ```
-## 4. Configuration des "views"
+## 🔧 4. Configuration des "views"
 Les "view" sont les différentes zones que notre DNS va utiliser en fonction des adresses que ces mêmes zones desservent. 
 
 ```
@@ -68,7 +68,7 @@ view "external" {
 };
 ```
 
-## 5. Création des fichiers de zones
+## ✏️ 5. Création des fichiers de zones
 
 ### Création du fichier "internal"
 Ce fichier servira a traduire les noms de domaines en IP pour toutes les adresses du LAN.
@@ -122,7 +122,7 @@ www IN  A   183.44.28.1   ; Serveur Web
 </div>
 1. Tout les enregistrements pointent vers l'IP publique de R1 qui feras ensuite le lien avec le LAN grâce au PAT, la haute disponibilité seras implémenter plus tard
 
-## 6. :warning: Désactivation des 13 serveurs racines
+## 🔴 6. Désactivation des 13 serveurs racines
 
 Les 13 serveurs DNS racines servent à TOUS les serveurs récursifs à se diriger vers les bons serveurs DNS pour accomplir leur résolution, nous allons les désactivées car ils rentrent en conflit avec nos views, de plus il est inutile de les avoirs étant donné que ce serveur ne fait AUCUNE récursion. 
 
@@ -139,7 +139,7 @@ Il suffit ensuite de mettre toutes les lignes en commentaires
 //      file "/usr/share/dns/root.hints";
 //};
 ```
-## 7. Tests et vérification :white_check_mark:
+## ✅ 7. Tests et vérification :white_check_mark:
 
 Pour finir il ne nous reste plus qu'à exécuter ces 3 commandes afin de vérifier le bon fonctionnement de notre DNS
 
@@ -159,7 +159,7 @@ sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportl
 
 Ces deux commandes nous retourneront la valeur du numéro de série de la zone si elle est bien configurée
 
-## 8. Pare-feux local (UFW)
+## 🧱 8. Pare-feux local (UFW)
 <div class="annotate" markdown>
 
 Nous allons mettre en place un firewall local grâce a UFW (1) afin de bloquer toutes les connexion non necessaire au fonctionnement du DNS pour plus de sécurité.

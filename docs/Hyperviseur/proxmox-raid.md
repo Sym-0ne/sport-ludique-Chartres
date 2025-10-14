@@ -1,13 +1,13 @@
 # Configuration de Proxmox VE & RAID
 
-## 1. Proxmox VE
+## ⚙️ 1. Proxmox VE
 
-### Installation 📦
+### Installation
 
 * Mise en place de **Proxmox VE** sur le serveur physique.
 * Définition d’un **mot de passe administrateur** avec l'utilisateur par défaut **root** pour accéder à l’interface web et à l’OS.
 
-### Configuration de l’hyperviseur 🔧
+### Configuration de l’hyperviseur
 
 * Attribution d’un **nom d’hôte** :
   `cha.chartres.sportludiques.fr`
@@ -19,9 +19,9 @@
     - Adrresse IP du **Serveur** : `172.28.33.4`
 ---
 
-## 2. RAID 1+0
+## ⚙️ 2. RAID 1+0
 
-### Contrainte matérielle ⚙️
+### Contrainte matérielle
 
 * Le serveur (génération 8) ne prend en charge que les niveaux de RAID suivants :
 
@@ -29,7 +29,7 @@
   * RAID 1
   * RAID 1+0
 
-### Choix effectué 🟢
+### Choix effectué
 
 * Mise en place d’un **RAID 1+0** (au lieu du RAID 5 initialement prévu).
 * Conséquence : perte de **50 % de la capacité totale de stockage**, mais gain en **fiabilité** et en **performances** en lecture/écriture.
