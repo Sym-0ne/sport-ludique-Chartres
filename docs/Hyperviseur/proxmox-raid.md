@@ -12,11 +12,11 @@
 * Attribution d’un **nom d’hôte** :
   `cha.chartres.sportludiques.fr`
   
-Association des **VLAN** :
-* VLAN **Mana** : `120` → accès à l’interface web d’administration.
-  * Adresse IP du **Mana** : `10.10.120.50`
-* VLAN **Serveur** : `221` → configuration car l’hyperviseur est utilisé en tant que serveur.
-  * Adresse IP du **Serveur** : `172.28.33.4`
+* Association des **VLAN** :
+  - VLAN **Mana** : `120` → accès à l’interface web d’administration.
+    - Adresse IP du **Mana** : `10.10.120.50`
+  - VLAN **Serveur** : `221` → configuration car l’hyperviseur est utilisé en tant que serveur.
+    - Adresse IP du **Serveur** : `172.28.33.4`
 ---
 
 ## ⚙️ 2. RAID 1+0
