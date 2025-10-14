@@ -18,7 +18,7 @@ Il sert à contrôler le trafic réseau entrant et sortant grâce à des règles
 
 ## 📦 1. Instalation 
 
-Mettez a jour votre system
+Mettez a jour votre système
 ```
 sudo apt update 
 sudo apt upgrade
