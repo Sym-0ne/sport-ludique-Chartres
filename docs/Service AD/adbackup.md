@@ -2,11 +2,9 @@
 
 Suivre cette documentation pour configuer l'AD Backup en adaptant pour lui : [Installe AD](https://sym-0ne.github.io/sport-ludique-Chartres/Service%20AD/ad/)
 
-<<<<<<< HEAD
 ## 2. Redondance AD1 et AD2 🔄
-=======
+
 ## Redondance AD Principal et AD Secondaire
->>>>>>> c59c80cb78d0699178e061e6ba130153b08c0d4b
 
 - AD Principal : 172.28.33.2<br>nom : CHA-DC-01.cha.chartres.sportludique.fr
 - AD Secondaire : 172.28.33.3<br>nom : CHA_DC_02.cha.chartres.sportludique.fr
