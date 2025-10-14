@@ -1,5 +1,5 @@
 # Configuration du routeur Cisco 1921
-## 1. Configuration initial 🔧
+## 🔧 1. Configuration initial 
 1. Première étape : Réinitialiser le routeur a sa configuration d'origine sans le mot de passe admin. 
 
 ```
@@ -22,7 +22,7 @@ enable
 config
 hostname CHA-R1
 ```
-## 2. Configuration des interfaces 🔧
+## 🔧 2. Configuration des interfaces 
 1. Configurer la première interface Gigabit0/0
 ```
 interface GigabitEthernet0/0
@@ -40,7 +40,7 @@ interface GigabitEthernet0/1
 </div>
 1. A noter que le port du switch coeur de réseau relié au routeur doit être configurer en mode trunk 
 
-## 3. Ajout des vlans ➕
+## ➕ 3. Ajout des vlans 
 1. Ajout du Vlan de management
 ```
 interface GigabitEthernet0/1.120
@@ -55,7 +55,7 @@ interface GigabitEthernet0/1.223
  ip address 172.28.63.2 255.255.255.0
  ip nat inside
 ```
-## 4. Activation du SSH 🟢
+## 🟢 4. Activation du SSH 
 1. Génération des clef RSA 
 ```
 crypto key generate rsa
@@ -75,7 +75,7 @@ transport input ssh
 ```
 ip ssh version 2
 ```
-## 5. Configuration du routage 🔧
+## 🔧 5. Configuration du routage 
 
 1. Activation du NAT 
 ```
@@ -94,7 +94,7 @@ ip route 172.28.62.0 255.255.255.0 172.28.63.1 #DMZ
 ip route 0.0.0.0 0.0.0.0 183.44.28.2
 ```
 
-## 6. Mise en place des ACL ➕
+## ➕ 6. Mise en place des ACL 
 1. Creation de l'acces list contenant les réseaux qui auront accès a internet
 ```
 access-list 1 permit 172.28.32.0 0.0.31.255 
@@ -109,7 +109,7 @@ access-list 1 permit 172.28.32.0 0.0.31.255
 access-list 100 deny ip 10.10.120.0 0.0.0.255 any
 access-list 100 permit ip any any
 ```
-## 7. Redirection DNS 🔀
+## 🔀 7. Redirection DNS 
 
 La redirection DNS permettra aux machine n'ayant pas de serveur DNS dans leur configuration à pouvoir utiliser le DNS interne de Chartres
 
@@ -118,7 +118,7 @@ ip dns server
 ip name-server 172.28.33.2
 ip domain-lookup
 ```
-## 8. Protocole HSRP ⚙️
+## ⚙️ 8. Protocole HSRP 
 Le HSRP est un protocole qui permet de crée une adresse VIP (Virtual IP) qui permet la haute disponibilité ente 2 routeurs. 
 
 Dans notre cas nous allon mettre en place le HSRP entre nos deux routeurs R1 et R2, chaque routeur est connecter a une FAI différente
