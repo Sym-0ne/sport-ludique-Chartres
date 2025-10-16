@@ -2,7 +2,7 @@
 
 Voici les principales commandes de syntaxe sous mkdocs avec le theme matérial, toute ces tips ont été trouvé sur cette page0 [github](https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#nested-lists).
 
-## 1. Liste des extension Markdown 📝
+## 📝 1. Liste des extension Markdown 
 Voici la liste de nos extension en markdown a implémenter dans votre fichier mkdocs.yml afin de garentir le bon fonctionnement de toutes les commandes de styntaxes. 
 
 ```
@@ -22,8 +22,8 @@ markdown_extensions:
 
 ```
 
-## 2. Les commandes principales ⌨️
-### Syntaxe 🔤
+## ⌨️ 2. Les commandes principales 
+### Syntaxe 
 **Gras :**
 ```
 **texte**
@@ -45,7 +45,7 @@ texte
 </ins>
 ```
 
-### Mise en forme 🆎
+### Mise en forme
 Code inline :
 ```
 `code`
@@ -84,13 +84,13 @@ exposant
 
 "####" Sous titre 3 
 
-### Outils 🧰
+### Outils
 
-Liens externe [google](https://google.fr): 
+#### Liens externe [google](https://google.fr)
 ```
 [texte du lien](http://ceciestunlien)
 ```
-Images : 
+#### Images
 ```
 ![texte de l'image](lien vers l'image)
 ```
@@ -103,7 +103,7 @@ Dans les problèmes, les demandes de tirage et les commentaires du dépôt	../bl
 Dans un fichier .md dans un autre dépôt	/../../../../github/docs/blob/main/assets/images/electrocat.png
 Dans les problèmes, les demandes de tirage et les commentaires d’un autre dépôt	../../../github/docs/blob/main/assets/images/electrocat.png?raw=true
 ```
-Listes : 
+#### Listes 
 ```
 -Premier élément 
 -Deuxième element
@@ -115,7 +115,8 @@ Listes :
 ```
 <div class="annotate" markdown>
 
-Anotation (1) : 
+#### Anotation
+(1)
 
 </div>
 1. Ceci est une annotation
@@ -151,14 +152,12 @@ theme :
 ```
 <div class="annotate" markdown>
 
-Bonus : (1) 
-
-</div>
-1. Il est possbile de différencier les annotation et d'en mettre plusieurs à la suite, il suffit de changer le numéro associé.
+Il est possbile de différencier les annotation et d'en mettre plusieurs à la suite, il suffit de changer le numéro associé.
 
 <div class="annotate" markdown>
 
-Liste de taches : (1)
+#### Liste de taches
+(1)
 
 </div>
 1. mettre un "x" entre les crochet marque la tâche comme faite
@@ -173,11 +172,26 @@ Liste de taches : (1)
 - [ ] TACHE A ACOMPLIRE
 
 <div class="annotate" markdown>
-Emoji :smile: (1) 
 
-</div>
-
-1. Liste complète des emoji utilisables en markdown [:outbox_tray:](https://gist.github.com/rxaviers/7360908).
+#### Emoji
+(1)
 ```
 :EMOJICODE:
+```
+</div>
+
+1. Liste complète des emoji utilisables en markdown [ici](https://gist.github.com/rxaviers/7360908).
+
+#### Surligner 
+
+Il est possible sur surligner des lignes de codes dans un bloc de code, il suffit d'ajouter 
+```
+python hl_lines="0"
+```
+Juste après "```" la ou 0 représente le numéro de ligne. 
+```python hl_lines="4"
+Dans mon exemple 
+la 4 ème ligne
+seras surligner
+celle la
 ```

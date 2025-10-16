@@ -71,4 +71,5 @@ nav:
       - DNS Resolveur: DNS/DNS Resolveur.md
   - Services: 
       - Base de Données: Services/bdd.md
+      - Serveur web: Services/Web.md
 
