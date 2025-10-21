@@ -92,7 +92,7 @@ Dans notre cas nous modifions l'adresse sur laquel notre service écoute sois l'
 
 ### Ajout du lien Symlink 
 
-Grâce a ce lien qui est l'equivalent d'un racourcis vers le site répertorier dans le fichier de configuration du VHost, le VHost iras directement cherche le site dans le bon répertoire. 
+Ce lien qui est l'equivalent d'un racourcis permet d'aller directement vers le site répertorier dans le fichier de configuration du VHost, le VHost iras directement cherche le site dans le bon répertoire. 
 
 ```
 sudo a2ensite www.chartres.sportludique.fr.conf
