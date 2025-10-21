@@ -99,4 +99,4 @@ sudo a2ensite www.chartres.sportludique.fr.conf
 sudo systemctl reload apache2
 ```
 
-Le VHost est maintenant configurer et prêt à fonctionner
+Le VHost est maintenant configurer et prêt à fonctionner.
