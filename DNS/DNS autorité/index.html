@@ -1,0 +1,973 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../Service%20AD/servfichier/" rel="prev"/>
+<link href="../DNS%20Resolveur/" rel="next"/>
+<link href="../../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.22" name="generator"/>
+<title>DNS D'autorité - Sport Ludique Chartres</title>
+<link href="../../assets/stylesheets/main.84d31ad4.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20d%3D%22M6%2013v-2h8l-3.5-3.5%201.42-1.42L17.84%2012l-5.92%205.92-1.42-1.42L14%2013zm16-1a10%2010%200%200%201-10%2010A10%2010%200%200%201%202%2012%2010%2010%200%200%201%2012%202a10%2010%200%200%201%2010%2010m-2%200a8%208%200%200%200-8-8%208%208%200%200%200-8%208%208%208%200%200%200%208%208%208%208%200%200%200%208-8%22/%3E%3C/svg%3E');}</style>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="white" data-md-color-primary="red" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#configuration-dns-autorite-bind9">
+          Aller au contenu
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--shadow" data-md-component="header">
+<nav aria-label="En-tête" class="md-header__inner md-grid">
+<a aria-label="Sport Ludique Chartres" class="md-header__button md-logo" data-md-component="logo" href="../.." title="Sport Ludique Chartres">
+<img alt="logo" src="../../logo.png"/>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Sport Ludique Chartres
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              DNS D'autorité
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="white" data-md-color-media="" data-md-color-primary="red" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="white" data-md-color-media="" data-md-color-primary="red" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Rechercher" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Rechercher" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="Recherche" class="md-search__options">
+<button aria-label="Effacer" class="md-search__icon md-icon" tabindex="-1" title="Effacer" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Sport Ludique Chartres" class="md-nav__button md-logo" data-md-component="logo" href="../.." title="Sport Ludique Chartres">
+<img alt="logo" src="../../logo.png"/>
+</a>
+    Sport Ludique Chartres
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+<span class="md-ellipsis">
+    Introduction
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+<span class="md-ellipsis">
+    Documentation Mkdocs
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Documentation Mkdocs
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../DocumentationMkdocs/Plugins/plugin/">
+<span class="md-ellipsis">
+    Plugins
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../DocumentationMkdocs/Syntaxe/Syntaxe/">
+<span class="md-ellipsis">
+    Syntaxe
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_3" type="checkbox"/>
+<label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+<span class="md-ellipsis">
+    Switch Core
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_3_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_3">
+<span class="md-nav__icon md-icon"></span>
+            Switch Core
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../SWCore/reseau/">
+<span class="md-ellipsis">
+    Configuration du Switch Core &amp; Stack
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../SWCore/lacp_hp_a5500/">
+<span class="md-ellipsis">
+    LACP
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_4" type="checkbox"/>
+<label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+<span class="md-ellipsis">
+    Routeur
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_4_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_4">
+<span class="md-nav__icon md-icon"></span>
+            Routeur
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Routeur/routeur/">
+<span class="md-ellipsis">
+    Configuration
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Routeur/hsrp/">
+<span class="md-ellipsis">
+    HSRP
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Routeur/PAT/">
+<span class="md-ellipsis">
+    PAT
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+<span class="md-ellipsis">
+    Pare-feux
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_5_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+            Pare-feux
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Pare-feux/stormshield/">
+<span class="md-ellipsis">
+    PFW
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Pare-feux/opnsense/">
+<span class="md-ellipsis">
+    VFW
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Pare-feux/UFW/">
+<span class="md-ellipsis">
+    UFW
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+<span class="md-ellipsis">
+    HyperViseur
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_6_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_6">
+<span class="md-nav__icon md-icon"></span>
+            HyperViseur
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Hyperviseur/proxmox-raid/">
+<span class="md-ellipsis">
+    Proxmox &amp; Raid
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Hyperviseur/lacp-proxmox/">
+<span class="md-ellipsis">
+    LACP on Proxmox
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Hyperviseur/vlan-prox/">
+<span class="md-ellipsis">
+    Gestion Vlan on VM Proxmox
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Hyperviseur/ldaps-prox/">
+<span class="md-ellipsis">
+    LDAPS on Proxmox
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
+    Service Active Directory
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            Service Active Directory
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Service%20AD/ad/">
+<span class="md-ellipsis">
+    Domaine Active Directory
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Service%20AD/adbackup/">
+<span class="md-ellipsis">
+    Active Directory BackUP
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Service%20AD/adusers/">
+<span class="md-ellipsis">
+    Gestion Utilisateurs AD
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Service%20AD/liaison-prox-ad/">
+<span class="md-ellipsis">
+    Liaison Proxmox &amp; AD
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Service%20AD/adcs/">
+<span class="md-ellipsis">
+    Cerficat ADCS &amp; LDAPS
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Service%20AD/dns/">
+<span class="md-ellipsis">
+    Serveur DNS
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Service%20AD/dhcp/">
+<span class="md-ellipsis">
+    Serveur DHCP
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Service%20AD/servfichier/">
+<span class="md-ellipsis">
+    Serveur Fichier
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_8" type="checkbox"/>
+<label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+<span class="md-ellipsis">
+    DNS
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_8_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_8">
+<span class="md-nav__icon md-icon"></span>
+            DNS
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    DNS D'autorité
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    DNS D'autorité
+    
+  </span>
+</a>
+<nav aria-label="Table des matières" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-preparation">
+<span class="md-ellipsis">
+      📝 1. Préparation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-installation-de-bind9">
+<span class="md-ellipsis">
+      📦 2. Installation de BIND9
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-creation-des-dossier-dedies">
+<span class="md-ellipsis">
+      ✏️ 3. Création des dossier dédiés
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-configuration-des-views">
+<span class="md-ellipsis">
+      🔧 4. Configuration des "views"
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-creation-des-fichiers-de-zones">
+<span class="md-ellipsis">
+      ✏️ 5. Création des fichiers de zones
+    </span>
+</a>
+<nav aria-label="✏️ 5. Création des fichiers de zones" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creation-du-fichier-internal">
+<span class="md-ellipsis">
+      Création du fichier "internal"
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creation-du-fichier-external">
+<span class="md-ellipsis">
+      Création du fichier "external"
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-desactivation-des-13-serveurs-racines">
+<span class="md-ellipsis">
+      🔴 6. Désactivation des 13 serveurs racines
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-tests-et-verification">
+<span class="md-ellipsis">
+      ✅ 7. Tests et vérification :
+    </span>
+</a>
+<nav aria-label="✅ 7. Tests et vérification :" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-de-configuration">
+<span class="md-ellipsis">
+      Fichier de configuration
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zones">
+<span class="md-ellipsis">
+      Zones
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-pare-feux-local-ufw">
+<span class="md-ellipsis">
+      🧱 8. Pare-feux local (UFW)
+    </span>
+</a>
+<nav aria-label="🧱 8. Pare-feux local (UFW)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#besoins">
+<span class="md-ellipsis">
+      Besoins
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration">
+<span class="md-ellipsis">
+      Configuration
+    </span>
+</a>
+<nav aria-label="Configuration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#regles-par-defaut">
+<span class="md-ellipsis">
+      Règles par défaut
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#regles-de-filtrage">
+<span class="md-ellipsis">
+      Règles de filtrage
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#activation-dufw">
+<span class="md-ellipsis">
+      Activation d'UFW
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../DNS%20Resolveur/">
+<span class="md-ellipsis">
+    DNS Resolveur
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" id="__nav_9" type="checkbox"/>
+<label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+<span class="md-ellipsis">
+    Services
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_9_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+            Services
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Services/bdd/">
+<span class="md-ellipsis">
+    Base de Données
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../Services/Web/">
+<span class="md-ellipsis">
+    Serveur web
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table des matières" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-preparation">
+<span class="md-ellipsis">
+      📝 1. Préparation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-installation-de-bind9">
+<span class="md-ellipsis">
+      📦 2. Installation de BIND9
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-creation-des-dossier-dedies">
+<span class="md-ellipsis">
+      ✏️ 3. Création des dossier dédiés
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#4-configuration-des-views">
+<span class="md-ellipsis">
+      🔧 4. Configuration des "views"
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#5-creation-des-fichiers-de-zones">
+<span class="md-ellipsis">
+      ✏️ 5. Création des fichiers de zones
+    </span>
+</a>
+<nav aria-label="✏️ 5. Création des fichiers de zones" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creation-du-fichier-internal">
+<span class="md-ellipsis">
+      Création du fichier "internal"
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#creation-du-fichier-external">
+<span class="md-ellipsis">
+      Création du fichier "external"
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#6-desactivation-des-13-serveurs-racines">
+<span class="md-ellipsis">
+      🔴 6. Désactivation des 13 serveurs racines
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#7-tests-et-verification">
+<span class="md-ellipsis">
+      ✅ 7. Tests et vérification :
+    </span>
+</a>
+<nav aria-label="✅ 7. Tests et vérification :" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fichier-de-configuration">
+<span class="md-ellipsis">
+      Fichier de configuration
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zones">
+<span class="md-ellipsis">
+      Zones
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#8-pare-feux-local-ufw">
+<span class="md-ellipsis">
+      🧱 8. Pare-feux local (UFW)
+    </span>
+</a>
+<nav aria-label="🧱 8. Pare-feux local (UFW)" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#besoins">
+<span class="md-ellipsis">
+      Besoins
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#configuration">
+<span class="md-ellipsis">
+      Configuration
+    </span>
+</a>
+<nav aria-label="Configuration" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#regles-par-defaut">
+<span class="md-ellipsis">
+      Règles par défaut
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#regles-de-filtrage">
+<span class="md-ellipsis">
+      Règles de filtrage
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#activation-dufw">
+<span class="md-ellipsis">
+      Activation d'UFW
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="configuration-dns-autorite-bind9">Configuration DNS autorité BIND9</h1>
+<p>Cette documentation sert a détailler l'installation et la configuration de notre serveur DNS d'autorité grâce au service BIND9 basé sur Debian 13.</p>
+<h2 id="1-preparation">📝 1. Préparation</h2>
+<p>Avant de commencer il faut se poser les bonnes questions, nous aurons donc besoin : </p>
+<ol>
+<li>
+<p>Serveur d'autorité UNIQUEMENT <img alt="➡" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/27a1.svg" title=":arrow_right:"> aucune récursivité sur celui-ci</img></p>
+</li>
+<li>
+<p>Deux zones de recherche DNS, une locale et une externe, explication sur le <a href="https://lmeryfulbert.github.io/SportLudique2025-2026/cours/05-Services/dns/dns/#dns-partage-split-horizon-dns">mkdoc de Mr Merry</a></p>
+</li>
+<li>
+<p>Un PAT sur le routeur pour les utilisateurs externes</p>
+</li>
+<li>
+<p>Des routes statiques sur le DNS d'autorité à cause de l'IP Forwarding bloqué par l'IPS du StormShield</p>
+</li>
+</ol>
+<h2 id="2-installation-de-bind9">📦 2. Installation de BIND9</h2>
+<div class="highlight"><pre><span></span><code>sudo apt update 
+sudo apt upgrade 
+sudo apt install bind9 bind9utils bind9-doc dnsutils -y
+</code></pre></div>
+<div class="annotate">
+<p><img alt="💡" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4a1.svg" title=":bulb:">(1)</img></p>
+</div>
+<ol>
+<li>A noter que <code>bind9utils bind9-doc dnsutils</code> ne sont que des outils supplémentaires pour le test du DNS et du BIND9</li>
+</ol>
+<h2 id="3-creation-des-dossier-dedies">✏️ 3. Création des dossier dédiés</h2>
+<p>Création de dossiers où l'on va stocker nos fichiers de zones et attribution des droits au service BIND9</p>
+<div class="highlight"><pre><span></span><code>sudo mkdir -p /etc/bind/zones
+sudo chown bind:bind /etc/bind/zones
+</code></pre></div>
+<h2 id="4-configuration-des-views">🔧 4. Configuration des "views"</h2>
+<p>Les "view" sont les différentes zones que notre DNS va utiliser en fonction des adresses que ces mêmes zones desservent. </p>
+<div class="highlight"><pre><span></span><code>sudo nano /etc/bind/name.conf.local
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>// === VUE INTERNE ===
+view "internal" {
+    match-clients { 172.28.0.0/16; 127.0.0.1; };
+    recursion no;
+
+    zone "chartres.sportludique.fr" {
+        type master;
+        file "/etc/bind/zones/db.chartres.sportludique.fr.internal";
+    };
+};
+
+// === VUE EXTERNE ===
+view "external" {
+    match-clients { any; };
+    recursion no;
+
+    zone "chartres.sportludique.fr" {
+        type master;
+        file "/etc/bind/zones/db.chartres.sportludique.fr.external";
+    };
+};
+</code></pre></div>
+<h2 id="5-creation-des-fichiers-de-zones">✏️ 5. Création des fichiers de zones</h2>
+<h3 id="creation-du-fichier-internal">Création du fichier "internal"</h3>
+<p>Ce fichier servira a traduire les noms de domaines en IP pour toutes les adresses du LAN.
+<div class="highlight"><pre><span></span><code>sudo nano /etc/bind/zones/db.chartres.sportludique.fr.internal
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$TTL 86400
+@   IN  SOA ns1.chartres.sportludique.fr. admin.chartres.sportludique.fr. (
+        2025100701 ; Numéros de série au format YYYY/MM/DD/01
+        3600       ; Intervalle de rafraîchissement
+        1800       ; Intervalle de réessai
+        1209600    ; Intervalle d'expiration
+        86400 )    ; Durée minimale de cache
+
+; Serveurs de nom
+@   IN  NS  ns1.chartres.sportludique.fr.
+
+; Enregistrements
+ns1 IN  A   172.28.62.1   ; Serveur DNS d'autorité (nous même)
+www IN  A   172.28.62.2   ; Serveur Web
+cha IN  A   172.28.33.2   ; Serveur DNS de l'AD
+</code></pre></div>
+<h3 id="creation-du-fichier-external">Création du fichier "external"</h3>
+<p>Ce fichier servira a traduire les noms de domaines en IP pour toutes les adresses externes à notre infrastructure. 
+<div class="highlight"><pre><span></span><code>sudo nano /etc/bind/zones/db.chartres.sportludique.fr.external
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code>$TTL 86400
+@   IN  SOA ns1.chartres.sportludique.fr. admin.chartres.sportludique.fr. (
+        2025100701 ; Numéros de série au format YYYY/MM/DD/01
+        3600       ; Intervalle de rafraîchissement
+        1800       ; Intervalle de réessai
+        1209600    ; Intervalle d'expiration
+        86400 )    ; Durée minimale de cache
+
+; Serveurs de nom
+@   IN  NS  ns1.chartres.sportludique.fr.
+
+; Enregistrements
+ns1 IN  A   183.44.28.1   ; Serveur DNS d'autorité (nous même)
+www IN  A   183.44.28.1   ; Serveur Web
+</code></pre></div>
+<div class="annotate">
+<p><img alt="💡" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/1f4a1.svg" title=":bulb:"/>(1)</p>
+</div>
+<ol>
+<li>Tout les enregistrements pointent vers l'IP publique de R1 qui feras ensuite le lien avec le LAN grâce au PAT, la haute disponibilité seras implémenter plus tard</li>
+</ol>
+<h2 id="6-desactivation-des-13-serveurs-racines">🔴 6. Désactivation des 13 serveurs racines</h2>
+<p>Les 13 serveurs DNS racines servent à TOUS les serveurs récursifs à se diriger vers les bons serveurs DNS pour accomplir leur résolution, nous allons les désactivées car ils rentrent en conflit avec nos views, de plus il est inutile de les avoirs étant donné que ce serveur ne fait AUCUNE récursion. </p>
+<div class="highlight"><pre><span></span><code>sudo nano /etc/bind/named.conf.root-hints 
+</code></pre></div>
+<p>Il suffit ensuite de mettre toutes les lignes en commentaires</p>
+<div class="highlight"><pre><span></span><code>// prime the server with knowledge of the root servers
+//zone "." {
+//      type hint;
+//      file "/usr/share/dns/root.hints";
+//};
+</code></pre></div>
+<h2 id="7-tests-et-verification">✅ 7. Tests et vérification :</h2>
+<p>Pour finir il ne nous reste plus qu'à exécuter ces 3 commandes afin de vérifier le bon fonctionnement de notre DNS</p>
+<h3 id="fichier-de-configuration">Fichier de configuration</h3>
+<p><div class="highlight"><pre><span></span><code>sudo named-checkconf
+</code></pre></div>
+Cette commande ne nous retourne rien si le fichier de configuration est bon</p>
+<h3 id="zones">Zones</h3>
+<div class="highlight"><pre><span></span><code>sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportludique.fr.internal
+sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportludique.fr.external
+</code></pre></div>
+<p>Ces deux commandes nous retourneront la valeur du numéro de série de la zone si elle est bien configurée</p>
+<h2 id="8-pare-feux-local-ufw">🧱 8. Pare-feux local (UFW)</h2>
+<div class="annotate">
+<p>Nous allons mettre en place un firewall local grâce a UFW (1) afin de bloquer toutes les connexion non necessaire au fonctionnement du DNS pour plus de sécurité.</p>
+</div>
+<ol>
+<li>Toute la documentation concernant UFW se trouve <a href="Pare-feux/UFW/">ici</a></li>
+</ol>
+<h3 id="besoins">Besoins</h3>
+<div class="annotate">
+<p>Après avoir installer UFW (1) il nous suffit de mettre en place 3 règles :</p>
+</div>
+<ol>
+<li>
+<p><img alt="⚠" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.1.0/assets/svg/26a0.svg" title=":warning:"/> Attention, l'activation d'UFW dois être effectuer a la fin pour ne pas perdre la connexion SSH avant d'avoir mis les règles qui l'autorise en place.</p>
+</li>
+<li>
+<p>Une règle qui autorise les conexion SSH depuis le réseau de management sur mon interface de management</p>
+</li>
+<li>Une règle qui autorise les connexions DNS en UDP sur le port 53</li>
+<li>Une règle qui autorise les connexions DNS en TCP sur le port 53</li>
+</ol>
+<p>Ces règles ont été décider grâce a l'étude des connexion qui auront lieu sur notre réseau et leur sens, ces connexions sont répertoriées sur le schéma si dessous :</p>
+<p><div class="mxgraph" data-mxgraph="{&quot;toolbar&quot;: &quot;zoom&quot;, &quot;tooltips&quot;: &quot;1&quot;, &quot;border&quot;: 5, &quot;resize&quot;: &quot;1&quot;, &quot;edit&quot;: &quot;_blank&quot;, &quot;highlight&quot;: null, &quot;xml&quot;: &quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; agent=\&quot;Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0\&quot; version=\&quot;28.2.6\&quot;&gt;\n  &lt;diagram name=\&quot;Page-1\&quot; id=\&quot;pv2tOKStDJ_Z1Nen-3eF\&quot;&gt;\n    &lt;mxGraphModel dx=\&quot;1426\&quot; dy=\&quot;1923\&quot; grid=\&quot;1\&quot; gridSize=\&quot;10\&quot; guides=\&quot;1\&quot; tooltips=\&quot;1\&quot; connect=\&quot;1\&quot; arrows=\&quot;1\&quot; fold=\&quot;1\&quot; page=\&quot;1\&quot; pageScale=\&quot;1\&quot; pageWidth=\&quot;827\&quot; pageHeight=\&quot;1169\&quot; math=\&quot;0\&quot; shadow=\&quot;0\&quot;&gt;\n      &lt;root&gt;\n        &lt;mxCell id=\&quot;0\&quot;/&gt;\n        &lt;mxCell id=\&quot;1\&quot; parent=\&quot;0\&quot;/&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-3\&quot; value=\&quot;\&quot; style=\&quot;image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/switch/Switch_24_port_L3.svg;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;376\&quot; y=\&quot;440\&quot; width=\&quot;74.4\&quot; height=\&quot;51\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-4\&quot; value=\&quot;\&quot; style=\&quot;image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/switch/Switch_24_port_L3.svg;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;376\&quot; y=\&quot;420\&quot; width=\&quot;74.4\&quot; height=\&quot;51\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-5\&quot; value=\&quot;&amp;lt;div&amp;gt;SWCORE&amp;amp;nbsp;&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;(2X HP A5500 stacker)&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;338.2\&quot; y=\&quot;491\&quot; width=\&quot;150\&quot; height=\&quot;40\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-25\&quot; value=\&quot;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;quot;color: rgb(0, 0, 0);&amp;quot;&amp;gt;172.28.62.0/24 VLAN 226&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;\&quot; style=\&quot;html=1;outlineConnect=0;fillColor=#FFD966;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.bus;gradientColor=none;gradientDirection=north;fontColor=#ffffff;perimeter=backbonePerimeter;backboneSize=20;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;314\&quot; y=\&quot;160\&quot; width=\&quot;200\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-26\&quot; value=\&quot;&amp;lt;span style=&amp;quot;color: rgb(0, 0, 0);&amp;quot;&amp;gt;172.28.63.128/25 VLAN 223&amp;lt;/span&amp;gt;\&quot; style=\&quot;html=1;outlineConnect=0;fillColor=#00994D;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.bus;gradientColor=none;gradientDirection=north;fontColor=#ffffff;perimeter=backbonePerimeter;backboneSize=20;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;314\&quot; y=\&quot;340\&quot; width=\&quot;200\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-27\&quot; value=\&quot;\&quot; style=\&quot;sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.concepts.firewall;fillColor=#2072B8;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;390.5\&quot; y=\&quot;250\&quot; width=\&quot;47\&quot; height=\&quot;43\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-28\&quot; value=\&quot;\&quot; style=\&quot;sketch=0;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#505050;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;outlineConnect=0;align=center;shape=mxgraph.office.concepts.firewall;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;389.7\&quot; y=\&quot;40\&quot; width=\&quot;47\&quot; height=\&quot;43\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-29\&quot; value=\&quot;&amp;lt;span style=&amp;quot;color: rgb(0, 153, 77);&amp;quot;&amp;gt;LAN2DMZ&amp;lt;/span&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;374\&quot; y=\&quot;365.61\&quot; width=\&quot;80\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-30\&quot; value=\&quot;VFW\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;340.5\&quot; y=\&quot;256.5\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-31\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;strokeColor=#00994D;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-4\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-29\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;340\&quot; y=\&quot;420\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;390\&quot; y=\&quot;370\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-32\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;strokeColor=#00994D;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-26\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-27\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;413.58\&quot; y=\&quot;330\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;413.58\&quot; y=\&quot;300\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-34\&quot; value=\&quot;.140\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;420\&quot; y=\&quot;293\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-35\&quot; value=\&quot;&amp;lt;div&amp;gt;.130&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;418.2\&quot; y=\&quot;395.61\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-37\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;strokeColor=#FFD966;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-27\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-51\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;450\&quot; y=\&quot;240\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;300\&quot; y=\&quot;230\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-38\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;strokeColor=#FFD966;fontStyle=1\&quot; parent=\&quot;1\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;413.17\&quot; y=\&quot;160\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;413.17\&quot; y=\&quot;89\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-39\&quot; value=\&quot;PFW\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;338.2\&quot; y=\&quot;46.5\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-40\&quot; value=\&quot;&amp;lt;div&amp;gt;.254&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;418.2\&quot; y=\&quot;83\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-41\&quot; value=\&quot;&amp;lt;div&amp;gt;.253&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;420\&quot; y=\&quot;220\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-42\&quot; value=\&quot;\&quot; style=\&quot;image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/networking/Virtual_Router.svg;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;384.2\&quot; y=\&quot;-180\&quot; width=\&quot;58\&quot; height=\&quot;58\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-43\&quot; value=\&quot;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;quot;color: rgb(0, 0, 0);&amp;quot;&amp;gt;172.28.63.0/25 VLAN 225&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;\&quot; style=\&quot;html=1;outlineConnect=0;fillColor=#00994D;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.bus;gradientColor=none;gradientDirection=north;fontColor=#ffffff;perimeter=backbonePerimeter;backboneSize=20;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;314\&quot; y=\&quot;-50\&quot; width=\&quot;200\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-44\&quot; value=\&quot;&amp;lt;span style=&amp;quot;color: rgb(0, 153, 77);&amp;quot;&amp;gt;DMZ2WAN&amp;lt;/span&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;373.2\&quot; y=\&quot;-30\&quot; width=\&quot;80\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-45\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;strokeColor=#00994D;fontStyle=1\&quot; parent=\&quot;1\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-44\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;414\&quot; y=\&quot;40\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;464\&quot; y=\&quot;-10\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-46\&quot; value=\&quot;.1\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;418.2\&quot; y=\&quot;10\&quot; width=\&quot;30\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-47\&quot; value=\&quot;&amp;lt;div&amp;gt;VR&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;340.5\&quot; y=\&quot;-166\&quot; width=\&quot;40\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-48\&quot; value=\&quot;.10\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;419\&quot; y=\&quot;-122\&quot; width=\&quot;40\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-50\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;strokeColor=#00994D;fontStyle=1\&quot; parent=\&quot;1\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-42\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;412.2\&quot; y=\&quot;-50\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;462.2\&quot; y=\&quot;-100\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-51\&quot; value=\&quot;&amp;lt;div&amp;gt;&amp;lt;span style=&amp;quot;color: rgb(255, 217, 102);&amp;quot;&amp;gt;DMZ&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;389\&quot; y=\&quot;180\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-52\&quot; value=\&quot;OpnSens (Machine virtuel)\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;439\&quot; y=\&quot;256.5\&quot; width=\&quot;170\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-53\&quot; value=\&quot;StormShield SN270\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;439\&quot; y=\&quot;46.5\&quot; width=\&quot;130\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-54\&quot; value=\&quot;Virtual IP\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;442.2\&quot; y=\&quot;-166\&quot; width=\&quot;70\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-55\&quot; value=\&quot;\&quot; style=\&quot;sketch=0;points=[[0.5,0,0],[1,0.5,0],[0.5,1,0],[0,0.5,0],[0.145,0.145,0],[0.8555,0.145,0],[0.855,0.8555,0],[0.145,0.855,0]];verticalLabelPosition=bottom;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.rect;prIcon=router;fillColor=#FAFAFA;strokeColor=#005073;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;264\&quot; y=\&quot;-310\&quot; width=\&quot;50\&quot; height=\&quot;50\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-57\&quot; value=\&quot;\&quot; style=\&quot;sketch=0;points=[[0.5,0,0],[1,0.5,0],[0.5,1,0],[0,0.5,0],[0.145,0.145,0],[0.8555,0.145,0],[0.855,0.8555,0],[0.145,0.855,0]];verticalLabelPosition=bottom;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.rect;prIcon=router;fillColor=#FAFAFA;strokeColor=#005073;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;490\&quot; y=\&quot;-310\&quot; width=\&quot;50\&quot; height=\&quot;50\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-58\&quot; value=\&quot;R1\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;224\&quot; y=\&quot;-300\&quot; width=\&quot;40\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-59\&quot; value=\&quot;&amp;lt;div&amp;gt;R2&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;447.2\&quot; y=\&quot;-300\&quot; width=\&quot;40\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-60\&quot; value=\&quot;Cisco 1921\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;316\&quot; y=\&quot;-300\&quot; width=\&quot;80\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-61\&quot; value=\&quot;&amp;lt;div&amp;gt;Cisco 1921&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;540\&quot; y=\&quot;-300\&quot; width=\&quot;80\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-62\&quot; value=\&quot;.30\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;495\&quot; y=\&quot;-260\&quot; width=\&quot;40\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-63\&quot; value=\&quot;.20\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;265\&quot; y=\&quot;-260\&quot; width=\&quot;40\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-64\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;entryX=1.013;entryY=-0.061;entryDx=0;entryDy=0;entryPerimeter=0;strokeColor=#00994D;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-55\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-47\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;340\&quot; y=\&quot;-80\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;390\&quot; y=\&quot;-130\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-65\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;strokeColor=#00994D;exitX=0.145;exitY=0.855;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.962;entryY=0.172;entryDx=0;entryDy=0;entryPerimeter=0;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-57\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-42\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;450\&quot; y=\&quot;-220\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;434\&quot; y=\&quot;-180\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-66\&quot; value=\&quot;\&quot; style=\&quot;image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/internet_cloud.svg;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;470\&quot; y=\&quot;-506.3\&quot; width=\&quot;90\&quot; height=\&quot;56.7\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-67\&quot; value=\&quot;\&quot; style=\&quot;image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/internet_cloud.svg;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;231.5\&quot; y=\&quot;-500\&quot; width=\&quot;89\&quot; height=\&quot;56.07\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-68\&quot; value=\&quot;Fibre\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;251\&quot; y=\&quot;-486.97\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-69\&quot; value=\&quot;ADSL\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;494\&quot; y=\&quot;-492.94999999999993\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-70\&quot; value=\&quot;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;quot;color: rgb(0, 0, 0);&amp;quot;&amp;gt;183.44.28.0/30&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;\&quot; style=\&quot;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.bus;gradientColor=none;gradientDirection=north;fontColor=#ffffff;perimeter=backbonePerimeter;backboneSize=20;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;184.2\&quot; y=\&quot;-400\&quot; width=\&quot;200\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-71\&quot; value=\&quot;&amp;lt;span&amp;gt;&amp;lt;span style=&amp;quot;color: rgb(0, 0, 0);&amp;quot;&amp;gt;221.97.136.0/30&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;\&quot; style=\&quot;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.bus;gradientColor=none;gradientDirection=north;fontColor=#ffffff;perimeter=backbonePerimeter;backboneSize=20;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;420\&quot; y=\&quot;-400\&quot; width=\&quot;200\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-72\&quot; value=\&quot;&amp;lt;div&amp;gt;FAI 2&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;259\&quot; y=\&quot;-380\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-73\&quot; value=\&quot;&amp;lt;div&amp;gt;&amp;lt;span&amp;gt;FAI 1&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;494\&quot; y=\&quot;-380\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-74\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;entryX=0.517;entryY=0.961;entryDx=0;entryDy=0;entryPerimeter=0;fontStyle=1\&quot; parent=\&quot;1\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-72\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;286\&quot; y=\&quot;-310\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;336\&quot; y=\&quot;-360\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-75\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;entryX=0.507;entryY=0.906;entryDx=0;entryDy=0;entryPerimeter=0;fontStyle=1\&quot; parent=\&quot;1\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-73\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;519\&quot; y=\&quot;-309\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;510\&quot; y=\&quot;-350\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-76\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-70\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;271\&quot; y=\&quot;-389\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;279\&quot; y=\&quot;-440\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-78\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;fontStyle=1\&quot; parent=\&quot;1\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;519.58\&quot; y=\&quot;-400\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;519.58\&quot; y=\&quot;-440\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-79\&quot; value=\&quot;&amp;lt;span style=&amp;quot;color: rgb(0, 0, 0);&amp;quot;&amp;gt;172.28.33.0/24 VLAN 221&amp;lt;/span&amp;gt;\&quot; style=\&quot;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.bus;gradientColor=none;gradientDirection=north;fontColor=#ffffff;perimeter=backbonePerimeter;backboneSize=20;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;314\&quot; y=\&quot;600\&quot; width=\&quot;200\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-80\&quot; value=\&quot;Serveurs\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;labelBackgroundColor=default;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;378.2\&quot; y=\&quot;620\&quot; width=\&quot;70\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-81\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-79\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-5\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;384.2\&quot; y=\&quot;594.4\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;434.2\&quot; y=\&quot;544.4\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-83\&quot; value=\&quot;\&quot; style=\&quot;image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/windows_server_2.svg;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;204\&quot; y=\&quot;670\&quot; width=\&quot;56\&quot; height=\&quot;70\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-84\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=0;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-83\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;270.5\&quot; y=\&quot;670\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;310\&quot; y=\&quot;620\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-85\&quot; value=\&quot;&amp;lt;div&amp;gt;ActiveDirectory&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;DHCP&amp;lt;/div&amp;gt;&amp;lt;div&amp;gt;DNS&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;labelBackgroundColor=default;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;104\&quot; y=\&quot;675\&quot; width=\&quot;100\&quot; height=\&quot;60\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-86\&quot; value=\&quot;WindowsServer 2025\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;labelBackgroundColor=default;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;150\&quot; y=\&quot;735\&quot; width=\&quot;140\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-88\&quot; value=\&quot;&amp;lt;span&amp;gt;.1&amp;lt;/span&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;279.2\&quot; y=\&quot;-443.93\&quot; width=\&quot;30\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-89\&quot; value=\&quot;&amp;lt;span&amp;gt;.1&amp;lt;/span&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;530\&quot; y=\&quot;-449.6\&quot; width=\&quot;30\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-90\&quot; value=\&quot;.2\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;labelBackgroundColor=default;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;229\&quot; y=\&quot;650\&quot; width=\&quot;30\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-97\&quot; value=\&quot;&amp;lt;div&amp;gt;.254&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;420\&quot; y=\&quot;531.9\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-100\&quot; value=\&quot;\&quot; style=\&quot;pointerEvents=1;shadow=0;dashed=0;html=1;strokeColor=none;fillColor=#4495D1;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;align=center;outlineConnect=0;shape=mxgraph.veeam.hyper_v_host;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;379\&quot; y=\&quot;830\&quot; width=\&quot;70\&quot; height=\&quot;70\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-101\&quot; value=\&quot;ProxMox\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;labelBackgroundColor=default;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;309.2\&quot; y=\&quot;840\&quot; width=\&quot;70\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-102\&quot; value=\&quot;&amp;lt;font style=&amp;quot;font-size: 10px;&amp;quot;&amp;gt;HP ProLiant DL380P&amp;lt;/font&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;labelBackgroundColor=default;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;442.2\&quot; y=\&quot;840\&quot; width=\&quot;120\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-105\&quot; value=\&quot;&amp;lt;span style=&amp;quot;color: rgb(0, 0, 0);&amp;quot;&amp;gt;172.28.35.0/24 VLAN 224&amp;lt;/span&amp;gt;\&quot; style=\&quot;html=1;outlineConnect=0;fillColor=#CCCCCC;strokeColor=#6881B3;gradientColor=none;gradientDirection=north;strokeWidth=2;shape=mxgraph.networks.bus;gradientColor=none;gradientDirection=north;fontColor=#ffffff;perimeter=backbonePerimeter;backboneSize=20;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;550\&quot; y=\&quot;440\&quot; width=\&quot;200\&quot; height=\&quot;20\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-106\&quot; value=\&quot;Clients\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;620\&quot; y=\&quot;465.5\&quot; width=\&quot;60\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-107\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;exitX=1.034;exitY=0.883;exitDx=0;exitDy=0;exitPerimeter=0;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-4\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-105\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;475\&quot; y=\&quot;490\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;525\&quot; y=\&quot;440\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-108\&quot; value=\&quot;&amp;lt;div&amp;gt;.254&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;456\&quot; y=\&quot;471\&quot; width=\&quot;50\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-109\&quot; value=\&quot;\&quot; style=\&quot;image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;860\&quot; y=\&quot;423.7\&quot; width=\&quot;45.6\&quot; height=\&quot;61.800000000000004\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-110\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;entryX=-0.065;entryY=0.511;entryDx=0;entryDy=0;entryPerimeter=0;fontStyle=1\&quot; parent=\&quot;1\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-109\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;750\&quot; y=\&quot;455.5\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;800\&quot; y=\&quot;405.5\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-111\&quot; value=\&quot;&amp;lt;div&amp;gt;~~~(dhcp)&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;labelBackgroundColor=default;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;805\&quot; y=\&quot;476.4\&quot; width=\&quot;80\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-112\&quot; value=\&quot;&amp;lt;div&amp;gt;Client test&amp;lt;/div&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=default;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;842.8\&quot; y=\&quot;390\&quot; width=\&quot;80\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-125\&quot; value=\&quot;\&quot; style=\&quot;image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/switch/Switch_24_port_L2.svg;fontStyle=1\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;376\&quot; y=\&quot;700\&quot; width=\&quot;74.4\&quot; height=\&quot;51\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-126\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;fontStyle=1\&quot; parent=\&quot;1\&quot; target=\&quot;bQ4Uby9vdC2Kh0JUbN-b-125\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;414\&quot; y=\&quot;830\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;464\&quot; y=\&quot;780\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;bQ4Uby9vdC2Kh0JUbN-b-127\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;exitX=0.503;exitY=-0.011;exitDx=0;exitDy=0;exitPerimeter=0;fontStyle=1\&quot; parent=\&quot;1\&quot; source=\&quot;bQ4Uby9vdC2Kh0JUbN-b-125\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;413\&quot; y=\&quot;710\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;413\&quot; y=\&quot;650\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-1\&quot; value=\&quot;\&quot; style=\&quot;image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;646.4\&quot; y=\&quot;90\&quot; width=\&quot;33.6\&quot; height=\&quot;60\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-2\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;DNS d'Autorit\u00e9&amp;amp;nbsp;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;610\&quot; y=\&quot;60\&quot; width=\&quot;110\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-3\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;.1&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;616\&quot; y=\&quot;138\&quot; width=\&quot;30\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-4\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;\&quot; parent=\&quot;1\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;510\&quot; y=\&quot;168\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;640\&quot; y=\&quot;130\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-5\&quot; value=\&quot;\&quot; style=\&quot;image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;581\&quot; y=\&quot;650\&quot; width=\&quot;33.6\&quot; height=\&quot;60\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-6\&quot; value=\&quot;&amp;lt;b&amp;gt;DNS R\u00e9cursif&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;550\&quot; y=\&quot;620\&quot; width=\&quot;100\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-7\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;.4&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;551\&quot; y=\&quot;705\&quot; width=\&quot;30\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-8\&quot; value=\&quot;\&quot; style=\&quot;endArrow=none;html=1;rounded=0;\&quot; parent=\&quot;1\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;506\&quot; y=\&quot;630\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;560\&quot; y=\&quot;670\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-10\&quot; value=\&quot;\&quot; style=\&quot;shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#33FF33;\&quot; parent=\&quot;1\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;620\&quot; y=\&quot;620\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;660\&quot; y=\&quot;170\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-13\&quot; value=\&quot;\&quot; style=\&quot;image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer.svg;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;940\&quot; y=\&quot;83\&quot; width=\&quot;45.6\&quot; height=\&quot;61.800000000000004\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-14\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;Management&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;912.8\&quot; y=\&quot;53\&quot; width=\&quot;100\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-15\&quot; value=\&quot;\&quot; style=\&quot;shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#33FF33;\&quot; parent=\&quot;1\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;912.8\&quot; y=\&quot;123\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;700\&quot; y=\&quot;123\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-16\&quot; value=\&quot;\&quot; style=\&quot;shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#33FF33;\&quot; parent=\&quot;1\&quot; target=\&quot;LAFtY0myLUHdr0bXuM7f-2\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;540\&quot; y=\&quot;-150\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;605\&quot; y=\&quot;-210\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-17\&quot; value=\&quot;\&quot; style=\&quot;shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#33FF33;\&quot; parent=\&quot;1\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;531\&quot; y=\&quot;-260\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;540\&quot; y=\&quot;-160\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;LAFtY0myLUHdr0bXuM7f-18\&quot; value=\&quot;\&quot; style=\&quot;shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#33FF33;\&quot; parent=\&quot;1\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;319.2\&quot; y=\&quot;-270\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;530\&quot; y=\&quot;-160\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;I9sabKImvE99SmKlVC6E-1\&quot; value=\&quot;\&quot; style=\&quot;image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;862.8\&quot; y=\&quot;-92\&quot; width=\&quot;40\&quot; height=\&quot;71.43\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;I9sabKImvE99SmKlVC6E-2\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;Services&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;852.8\&quot; y=\&quot;-122\&quot; width=\&quot;70\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;I9sabKImvE99SmKlVC6E-3\&quot; value=\&quot;\&quot; style=\&quot;shape=flexArrow;endArrow=classic;html=1;rounded=0;fillColor=#33FF33;entryX=1.005;entryY=0.011;entryDx=0;entryDy=0;entryPerimeter=0;\&quot; parent=\&quot;1\&quot; target=\&quot;LAFtY0myLUHdr0bXuM7f-2\&quot; edge=\&quot;1\&quot;&gt;\n          &lt;mxGeometry width=\&quot;50\&quot; height=\&quot;50\&quot; relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;\n            &lt;mxPoint x=\&quot;860\&quot; y=\&quot;-20\&quot; as=\&quot;sourcePoint\&quot;/&gt;\n            &lt;mxPoint x=\&quot;710\&quot; y=\&quot;45.5\&quot; as=\&quot;targetPoint\&quot;/&gt;\n          &lt;/mxGeometry&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;I9sabKImvE99SmKlVC6E-4\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;Interface de Management&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;730\&quot; y=\&quot;90\&quot; width=\&quot;170\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;I9sabKImvE99SmKlVC6E-5\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;Interface DMZ&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=-30;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;740\&quot; y=\&quot;-20\&quot; width=\&quot;100\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;I9sabKImvE99SmKlVC6E-6\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;Interface DMZ&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;rotation=60;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;570\&quot; y=\&quot;-60\&quot; width=\&quot;100\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n        &lt;mxCell id=\&quot;I9sabKImvE99SmKlVC6E-7\&quot; value=\&quot;&amp;lt;b style=&amp;quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&amp;quot;&amp;gt;Interface DMZ&amp;amp;nbsp;&amp;lt;/b&amp;gt;\&quot; style=\&quot;text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;\&quot; parent=\&quot;1\&quot; vertex=\&quot;1\&quot;&gt;\n          &lt;mxGeometry x=\&quot;650\&quot; y=\&quot;270\&quot; width=\&quot;110\&quot; height=\&quot;30\&quot; as=\&quot;geometry\&quot;/&gt;\n        &lt;/mxCell&gt;\n      &lt;/root&gt;\n    &lt;/mxGraphModel&gt;\n  &lt;/diagram&gt;\n&lt;/mxfile&gt;&quot;}" style="max-width:100%;border:1px solid transparent;"></div></p>
+<h3 id="configuration">Configuration</h3>
+<h4 id="regles-par-defaut">Règles par défaut</h4>
+<p>Par defaut nous allons refuser toutes les connexion afin d'autoriser uniquement les connexion DNS par la suite.</p>
+<div class="highlight"><pre><span></span><code>sudo ufw default deny incoming 
+sudo ufw default deny outgoing
+</code></pre></div>
+<h4 id="regles-de-filtrage">Règles de filtrage</h4>
+<p>Voici donc les règles de filtrages a appliquer a nos interfaces :
+<div class="highlight"><pre><span></span><code>sudo ufw allow in on ens4 from 10.10.120.0/24 to 10.10.120.8 port 22 proto tcp
+sudo ufw allow in on ens3 from all to 172.28.62.1 port 53 proto tcp
+sudo ufw allow in on ens3 from all to 172.28.62.1 port 53 proto udp
+</code></pre></div></p>
+<h4 id="activation-dufw">Activation d'UFW</h4>
+<p>Une fois les règles qui laissent passer les trafics voulues il ne nous reste plus qu'à activer UFW afin que nos règles prennent effet.
+<div class="highlight"><pre><span></span><code>sudo ufw enable
+</code></pre></div></p>
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+<script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+<script src="https://viewer.diagrams.net/js/viewer-static.min.js"></script></body>
+</html>
