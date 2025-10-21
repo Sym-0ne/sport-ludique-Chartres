@@ -139,7 +139,7 @@ Il suffit ensuite de mettre toutes les lignes en commentaires
 //      file "/usr/share/dns/root.hints";
 //};
 ```
-## ✅ 7. Tests et vérification :white_check_mark:
+## ✅ 7. Tests et vérification :
 
 Pour finir il ne nous reste plus qu'à exécuter ces 3 commandes afin de vérifier le bon fonctionnement de notre DNS
 
