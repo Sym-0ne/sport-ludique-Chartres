@@ -100,7 +100,7 @@ sudo systemctl enable unbound
 Vérifier que le DNS redirige bien vers l'autorité :
 
 ```
-sudo cat /etc/resolve.conf
+sudo cat /etc/resolv.conf
 ```
 
 Le résultat attendus est :
