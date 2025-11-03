@@ -100,3 +100,24 @@ sudo systemctl reload apache2
 ```
 
 Le VHost est maintenant configurer et prêt à fonctionner.
+
+## ⚠️ 4. Route statique
+
+### Pourquoi
+L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme expliqué [ici](https://sym-0ne.github.io/sport-ludique-Chartres/DNS/DNS%20autorit%C3%A9/#7-Statefull-Inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement.
+### Ajout des routes
+Il nous faut donc ajouter manuellement des routes statiques afin de passer directement par le VFW pour rejoindre notre LAN.
+```
+sudo nano /etc/network/interfaces
+```
+
+Ajouter ensuite ces lignes :
+
+```
+# Exemple de route : up ip route add 'réseau à joindre' via 'passerelle' dev 'interface sortante'
+up ip route add 172.28.32.0/24 via 172.28.62.253 dev ens3
+up ip route add 172.28.33.0/24 via 172.28.62.253 dev ens3
+up ip route add 172.28.35.0/24 via 172.28.62.253 dev ens3
+```
+
+Grâce à ces lignes, notre DNS passera directement par le VFW et non par le PFW (Stormshield).
