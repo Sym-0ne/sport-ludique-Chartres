@@ -48,7 +48,7 @@ server:
     access-control: 127.0.0.0/8 allow        # localhost
     access-control: 172.28.33.0/24 allow     # LAN
     access-control: 172.28.62.0/24 allow     # DMZ
-    access-control: 172.28.35.0/24           # CLIENTS
+    access-control: 172.28.35.0/24 allow          # CLIENTS
     access-control: 0.0.0.0/0 refuse         # tout le reste bloqué
 
     # Désactive DNSSEC
