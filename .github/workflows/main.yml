@@ -27,4 +27,5 @@ jobs:
             mkdocs-material-
       - run: pip install mkdocs-material 
       - run: pip install mkdocs-drawio
+      - run: pip install mkdocs-imaging
       - run: mkdocs gh-deploy --force
