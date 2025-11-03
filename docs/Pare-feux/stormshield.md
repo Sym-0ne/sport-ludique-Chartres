@@ -96,7 +96,7 @@
 
 ## ⚠️ 7. Statefull Inspection
 
-Le Stormshield dispose par défaut d’une inspection des paquets qui n’est pas désactivable. Cette inspection peut rejeter silencieusement des paquets, sans même les enregistrer dans les logs. Dans notre cas, elle pose problème avec le handshake TCP.
+Le Stormshield dispose par défaut d’une inspection des paquets qui n’est pas désactivable. Cette inspection peut rejeter silencieusement des paquets, sans même les enregistrer dans les logs. Dans notre cas, elle pose problème avec le handshake TCP, à noter que cela ne concerne pas les connexion UDP car il n'y as aucune vérification de session (seamless).
 
 Ce principe est la base du protocole TCP : il s'agit d'une liaison composée des états SYN, SYN-ACK et ACK. Le client envoie un SYN, le serveur répond avec un SYN-ACK, puis le client renvoie un ACK au serveur. Cela permet au client de savoir que le serveur a bien reçu son paquet grâce au SYN-ACK, et au serveur de confirmer que le client a reçu le paquet grâce à l’ACK. Ce mécanisme assure la vérification des différentes étapes de transition d’un paquet TCP.
 
