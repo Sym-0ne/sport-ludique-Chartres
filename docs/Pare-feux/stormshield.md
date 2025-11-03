@@ -96,8 +96,17 @@
 
 ## ⚠️ 7. Statefull Inspection
 
-Le stormshield a par défaut un inspection des paquets qui n'est pas désactivable, cette inspection peut rejeter silencieusement des paquets sans même l'enregistrer dans les logs, dans notre cas cette inspection pose problème avec le TCP handcheck.
+Le Stormshield dispose par défaut d’une inspection des paquets qui n’est pas désactivable. Cette inspection peut rejeter silencieusement des paquets, sans même les enregistrer dans les logs. Dans notre cas, elle pose problème avec le handshake TCP.
 
-Ce principe est la base du protocole TCP, il sagit d'une liaison des états SYN, SYN-ACK et ACK, le client envoie un SYN, le serveur envoie le paquet avec un SYN-ACK au client puis le client renvoie un ACK au serveur, cela permet au client de savoir que le paquet a été reçus par le seruveur grâce au SYN-ACK puis au serveur de savoir que le client a bien reçus le paquet grâce au ACK. Ce principe permet la vérification des "étapes" de transition d'un paquet.
+Ce principe est la base du protocole TCP : il s'agit d'une liaison composée des états SYN, SYN-ACK et ACK. Le client envoie un SYN, le serveur répond avec un SYN-ACK, puis le client renvoie un ACK au serveur. Cela permet au client de savoir que le serveur a bien reçu son paquet grâce au SYN-ACK, et au serveur de confirmer que le client a reçu le paquet grâce à l’ACK. Ce mécanisme assure la vérification des différentes étapes de transition d’un paquet TCP.
 
-Ce qui veux dire que Stormshield refuse les paquets TCP dont il n'a aucune trace d'initialisation en mémoire ou qu'il n'a pas initialiser lui même, de ce fait, si le Stormshield reçois un SYN-ACK sans avoir reçus de SYN sur la même session, il ne considère pas avoir démaré la session TCP et ne répond donc pas a celle ci.
+Autrement dit, le Stormshield refuse les paquets TCP dont il n’a aucune trace d’initialisation en mémoire ou qu’il n’a pas initialisés lui-même. Par conséquent, si le Stormshield reçoit un SYN-ACK sans avoir reçu de SYN sur la même session, il ne considère pas la session TCP comme démarrée et ne répond pas à celle-ci.
+
+Sur ce premier schéma, le flux est refusé par le Stormshield :
+![](PF/Handshake_Fail.drawio)
+Sur ce schéma, nous pouvons voir qu’au lieu de renvoyer un **SYN-ACK**, le Stormshield ne renvoie rien, mettant ainsi fin à la connexion TCP sans aucune explication.
+
+Voici donc le moyen d’assurer une communication correcte entre les équipements, sans rompre le **handshake** :
+![](PF/Handshake_sucsess.drawio)
+
+Si l’on ne passe pas par le **Stormshield**, le paquet est correctement transmis grâce au bon déroulement du **handshake**.
