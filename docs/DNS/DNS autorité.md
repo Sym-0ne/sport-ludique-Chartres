@@ -206,3 +206,7 @@ Une fois les règles qui laissent passer les trafics voulues il ne nous reste pl
 ```
 sudo ufw enable
 ```
+
+## ⚠️ 9. Route statique
+
+L'ajout de routes statiques au sein de notre DNS est obligatoire a cause de notre pare feux Stormshield et de la conception de notre réseau. En effet comme expliquer [ici](https://sym-0ne.github.io/sport-ludique-Chartres/DNS/DNS%20autorit%C3%A9/#7-Statefull-Inspection)

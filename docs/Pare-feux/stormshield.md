@@ -93,3 +93,11 @@
  ![régle](PF/regle.png)
 
  Puis cliquer sur **Appliquer**.
+
+## ⚠️ 7. Statefull Inspection
+
+Le stormshield a par défaut un inspection des paquets qui n'est pas désactivable, cette inspection peut rejeter silencieusement des paquets sans même l'enregistrer dans les logs, dans notre cas cette inspection pose problème avec le TCP handcheck.
+
+Ce principe est la base du protocole TCP, il sagit d'une liaison des états SYN, SYN-ACK et ACK, le client envoie un SYN, le serveur envoie le paquet avec un SYN-ACK au client puis le client renvoie un ACK au serveur, cela permet au client de savoir que le paquet a été reçus par le seruveur grâce au SYN-ACK puis au serveur de savoir que le client a bien reçus le paquet grâce au ACK. Ce principe permet la vérification des "étapes" de transition d'un paquet.
+
+Ce qui veux dire que Stormshield refuse les paquets TCP dont il n'a aucune trace d'initialisation en mémoire ou qu'il n'a pas initialiser lui même, de ce fait, si le Stormshield reçois un SYN-ACK sans avoir reçus de SYN sur la même session, il ne considère pas avoir démaré la session TCP et ne répond donc pas a celle ci.
