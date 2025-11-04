@@ -44,8 +44,11 @@ chmod 400 /root/ca/private/ca.key.pem
 🪪 Création du certificat racine auto-signé
 ```
 openssl req -x509 -new -nodes -key /root/ca/private/ca.key.pem \
-    -sha256 -days 3650 -out /root/ca/certs/ca.cert.pem \
-    -subj "/C=FR/ST=Ile-de-France/L=Paris/O=Chartres/CN=CA-Interne"
+  -sha256 -days 3650 -out /root/ca/certs/ca.cert.pem \
+  -subj "/C=FR/ST=Centre-Val de Loire/L=Chartres/O=SportLudique/CN=CA-Interne"
+```
+
+```
 chmod 444 /root/ca/certs/ca.cert.pem
 ```
 
@@ -57,33 +60,35 @@ chmod 444 /root/ca/certs/ca.cert.pem
 🔑 Création de la clé privée
 ```
 sudo mkdir -p /etc/ssl/localcerts
-sudo openssl genrsa -out /etc/ssl/localcerts/web.local.key.pem 2048
-sudo chmod 400 /etc/ssl/localcerts/web.local.key.pem
+sudo openssl genrsa -out /etc/ssl/localcerts/www.chartres.sportludique.fr.key.pem 2048
+sudo chmod 400 /etc/ssl/localcerts/www.chartres.sportludique.fr.key.pem
 ```
 
 🧠 Création de la demande de signature (CSR)
 ```
-sudo openssl req -new -key /etc/ssl/localcerts/web.local.key.pem \
-    -out /etc/ssl/localcerts/web.local.csr.pem \
-    -subj "/C=FR/ST=France/L=Paris/O=Chartres/CN=web.local"
+sudo openssl req -new -key /etc/ssl/localcerts/www.chartres.sportludique.fr.key.pem \
+  -out /etc/ssl/localcerts/www.chartres.sportludique.fr.csr.pem \
+  -subj "/C=FR/ST=Centre-Val de Loire/L=Chartres/O=SportLudique/CN=www.chartres.sportludique.fr"
+
 ```
 
 📦 Envoi du CSR vers la CA interne
 ```
-scp /etc/ssl/localcerts/web.local.csr.pem certificat@10.10.120.12:/root/ca/
+scp /etc/ssl/localcerts/www.chartres.sportludique.fr.csr.pem certificat@10.10.120.12:/root/ca/
 ```
 
 🪙 4. Signature du certificat sur la CA interne
 ```
-openssl ca -in /root/ca/web.local.csr.pem \
-    -out /root/ca/certs/web.local.cert.pem \
-    -days 825 -notext -md sha256
+openssl ca -in /root/ca/www.chartres.sportludique.fr.csr.pem \
+  -out /root/ca/certs/www.chartres.sportludique.fr.cert.pem \
+  -days 825 -notext -md sha256
+
 ```
 
 Puis transfère les certificats vers le serveur web :
 
 ```
-scp /root/ca/certs/web.local.cert.pem user@10.10.120.11:/etc/ssl/localcerts/
+scp /root/ca/certs/www.chartres.sportludique.fr.cert.pem user@10.10.120.11:/etc/ssl/localcerts/
 scp /root/ca/certs/ca.cert.pem user@10.10.120.11:/etc/ssl/localcerts/
 ```
 
@@ -92,47 +97,49 @@ Sur CHA-WEB :
 
 📝 Création du VirtualHost
 ```
-sudo nano /etc/apache2/sites-available/web.local.conf
+sudo nano /etc/apache2/sites-available/www.chartres.sportludique.fr.conf
 ```
 
 Contenu :
 ```
 <VirtualHost *:80>
-    ServerName web.local
-    Redirect permanent / https://web.local/
+    ServerName www.chartres.sportludique.fr
+    Redirect permanent / https://www.chartres.sportludique.fr/
 </VirtualHost>
 
 <VirtualHost *:443>
-    ServerName web.local
-    DocumentRoot /var/www/web.local
+    ServerName www.chartres.sportludique.fr
+    DocumentRoot /var/www/www.chartres.sportludique.fr
 
     SSLEngine on
-    SSLCertificateFile /etc/ssl/localcerts/web.local.cert.pem
-    SSLCertificateKeyFile /etc/ssl/localcerts/web.local.key.pem
+    SSLCertificateFile /etc/ssl/localcerts/www.chartres.sportludique.fr.cert.pem
+    SSLCertificateKeyFile /etc/ssl/localcerts/www.chartres.sportludique.fr.key.pem
     SSLCACertificateFile /etc/ssl/localcerts/ca.cert.pem
 
-    <Directory /var/www/web.local>
+    <Directory /var/www/www.chartres.sportludique.fr>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
     </Directory>
 
-    ErrorLog ${APACHE_LOG_DIR}/web.local-error.log
-    CustomLog ${APACHE_LOG_DIR}/web.local-access.log combined
+    ErrorLog ${APACHE_LOG_DIR}/www.chartres-error.log
+    CustomLog ${APACHE_LOG_DIR}/www.chartres-access.log combined
 </VirtualHost>
+
 ```
 
 📂 6. Organisation du site web
 ```
-sudo mkdir -p /var/www/web.local
-sudo mv /var/www/html/index.html /var/www/web.local/
-sudo chown -R www-data:www-data /var/www/web.local
-sudo chmod -R 755 /var/www/web.local
+sudo mkdir -p /var/www/www.chartres.sportludique.fr
+sudo mv /var/www/html/index.html /var/www/www.chartres.sportludique.fr/
+sudo chown -R www-data:www-data /var/www/www.chartres.sportludique.fr
+sudo chmod -R 755 /var/www/www.chartres.sportludique.fr
+
 ```
 
 ⚙️ 7. Activation du site et vérification
 ```
-sudo a2ensite web.local.conf
+sudo a2ensite www.chartres.sportludique.fr.conf
 sudo a2dissite 000-default.conf
 sudo apachectl configtest
 ```
@@ -150,7 +157,7 @@ sudo systemctl reload apache2
 🧪 8. Test du certificat SSL
 🔍 Test depuis le serveur web
 ```
-curl -Iv https://web.local --cacert /etc/ssl/localcerts/ca.cert.pem
+curl -Iv https://www.chartres.sportludique.fr --cacert /etc/ssl/localcerts/ca.cert.pem
 ```
 
 Résultat attendu :
