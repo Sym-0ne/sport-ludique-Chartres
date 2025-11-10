@@ -1,6 +1,4 @@
-==========================================================
-# Tutoriel : Mise en place HTTPS avec CA interne
-==========================================================
+# Mise en place HTTPS avec CA interne
 
 ## Objectif :
 ----------
