@@ -90,13 +90,6 @@ Exemple de configuration :
     CustomLog ${APACHE_LOG_DIR}/wordpress_access.log combined
 </VirtualHost>
 ```
-Cette documentation couvre l’installation complète avec :
-
-* Vérification des chemins et droits
-* Configuration Apache VirtualHost
-* Installation du module PHP `mysqli`
-* Debug de page blanche PHP
-* Connexion à une BDD distante
 
 Activer le site et le module rewrite, désactiver le site par défaut :
 
