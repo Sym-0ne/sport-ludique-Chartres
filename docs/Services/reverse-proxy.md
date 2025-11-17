@@ -47,7 +47,7 @@ Puis vérifier si depuis l'interne et l'externe le site est accessible.
 
 ## 3. Mise en place des certificats pour HTTPS
 
-Il faut iporter **le certificat autorité, le certificat auto-signé et la clé privée qui sont lié au nom de domaine du site**. Les certificats se situe sur la vm Openssl :
+Il faut importer **le certificat autorité, le certificat auto-signé et la clé privée qui sont lié au nom de domaine du site**. Les certificats se situe sur la vm Openssl :
 
 ```
 scp www.chartres.sportludique.fr.cert.pem user@10.10.120.80:/tmp/
