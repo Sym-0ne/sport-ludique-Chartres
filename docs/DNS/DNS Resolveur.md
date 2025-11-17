@@ -119,3 +119,32 @@ Il devrait renvoyer **l'adresse IP du DNS autorité**.
 Et ensuite tester depuis un poste d'un autre groupe avec la même commande.
 
 Il devrait renvoyer **l'adresse IP de la FAI (183.44.28.1)**.
+
+# Configuration DNS Secondaire
+
+Refaire toute les étapes ci-dessus.
+
+Ajouter en plus le dns secondaire authorité :
+
+```
+# Zone locale -> DNS de la DMZ
+stub-zone:
+    name: "chartres.sportludique.fr"
+    stub-addr: 172.28.62.1     # ← IP du DNS autoritaire primaire de la DMZ
+    stub-addr: 172.28.62.11    # ← IP du DNS autoritaire secondaire de la DMZ
+```
+
+Vérifier que le DNS redirige bien vers l'autorité secondaire :
+
+```
+sudo cat /etc/resolv.conf
+```
+
+Le résultat attendus est :
+
+```
+search chartes.sportludique.fr
+nameserver 172.28.62.1
+nameserver 172.28.62.11
+
+```
