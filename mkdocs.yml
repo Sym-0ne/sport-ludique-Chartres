@@ -46,7 +46,7 @@ nav:
       - LACP : SWCore/lacp_hp_a5500.md
   - Routeur:
       - R1: Routeur/R1.md
-      - R2: Routeur/R2.md
+      - R2: Routeur/R2.md 
       - HSRP: Routeur/hsrp.md
       - PAT: Routeur/PAT.md
   - Pare-feux:
