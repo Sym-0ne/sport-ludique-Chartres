@@ -59,14 +59,14 @@ nav:
       - Gestion Vlan on VM Proxmox: Hyperviseur/vlan-prox.md
       - LDAPS on Proxmox: Hyperviseur/ldaps-prox.md
   - Service Active Directory:
-      - Domaine Active Directory : Service AD/ad.md
+      - Domaine Active Directory: Service AD/ad.md
       - Active Directory BackUP: Service AD/adbackup.md
       - Gestion Utilisateurs AD: Service AD/adusers.md
       - Liaison Proxmox & AD: Service AD/liaison-prox-ad.md
       - Cerficat ADCS & LDAPS: Service AD/adcs.md
-      - Serveur DNS : Service AD/dns.md
-      - Serveur DHCP : Service AD/dhcp.md
-      - Serveur Fichier : Service AD/servfichier.md
+      - Serveur DNS: Service AD/dns.md
+      - Serveur DHCP: Service AD/dhcp.md
+      - Serveur Fichier: Service AD/servfichier.md
   - DNS:
       - DNS D'autorité: DNS/DNS autorité.md
       - DNS Resolveur: DNS/DNS Resolveur.md
@@ -79,4 +79,4 @@ nav:
       - Serveur web: Services/Web.md
       - Certificat SSL/TLS & HTTPS: Services/https.md
       - WordPress: Services/wordpress.md
-
+      - Reverse Proxy: Services/reverse-proxy.md
