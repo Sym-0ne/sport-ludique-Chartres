@@ -74,4 +74,5 @@ nav:
       - Serveur web: Services/Web.md
       - Certificat SSL/TLS & HTTPS: Services/https.md
       - WordPress: Services/wordpress.md
+      - Reverse Proxy : Services/reverse-proxy.md
 
