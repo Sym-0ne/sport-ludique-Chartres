@@ -1,5 +1,7 @@
 # Installation de WordPress sur Debian avec serveur MySQL distant
 
+---
+
 ## 1. Prérequis sur le serveur web (10.10.120.11)
 
 Installer Apache, PHP et extensions nécessaires :
@@ -8,6 +10,8 @@ Installer Apache, PHP et extensions nécessaires :
 sudo apt update
 sudo apt install apache2 php php-mysql libapache2-mod-php php-cli php-curl php-xml php-mbstring unzip wget -y
 ```
+
+---
 
 ## 2. Télécharger et placer WordPress
 
@@ -18,12 +22,16 @@ sudo unzip latest.zip
 sudo mv wordpress /var/www/html/
 ```
 
+---
+
 ## 3. Configurer les droits
 
 ```bash
 sudo chown -R www-data:www-data /var/www/html/wordpress
 sudo chmod -R 755 /var/www/html/wordpress
 ```
+
+---
 
 ## 4. Créer la base de données MySQL (10.10.120.7)
 
@@ -48,6 +56,8 @@ Modifier le fichier MySQL pour autoriser les connexions distantes :
 * Éditer `/etc/mysql/mysql.conf.d/mysqld.cnf` et modifier `bind-address = 127.0.0.1` et mettre `bind-address = 10.10.120.11`
 * Redémarrer MySQL : `sudo systemctl restart mysql`
 
+---
+
 ## 5. Configurer WordPress
 
 ```bash
@@ -64,6 +74,8 @@ define( 'DB_USER', 'wp_user' );
 define( 'DB_PASSWORD', 'mot_de_passe_fort' );
 define( 'DB_HOST', '10.10.120.7' );
 ```
+
+---
 
 ## 6. Configurer Apache
 
@@ -100,6 +112,8 @@ sudo a2dissite 000-default.conf
 sudo systemctl reload apache2
 ```
 
+---
+
 ## 7. Installer l’extension MySQL pour PHP
 
 Si page blanche avec message "Your PHP installation appears to be missing the MySQL extension":
@@ -109,6 +123,8 @@ sudo apt install php-mysql -y
 sudo systemctl restart apache2
 php -m | grep mysqli   # vérifier que mysqli est actif
 ```
+
+---
 
 ## 8. Activer l’affichage des erreurs PHP (pour debug)
 
@@ -129,6 +145,8 @@ Puis redémarrer Apache :
 ```bash
 sudo systemctl restart apache2
 ```
+
+---
 
 ## 9. Accéder à WordPress
 

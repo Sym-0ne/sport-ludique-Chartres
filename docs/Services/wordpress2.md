@@ -1,6 +1,6 @@
 # Configuration du site WordPress & Nom de domaine.
 
-Site WordPress: www.cimmob.chartres.sportludique.fr
+Site WordPress : ```www.cimmob.chartres.sportludique.fr```
 
 
 ## 1. Prérequis
@@ -53,7 +53,7 @@ sudo systemctl reload bind9
 ## 3. Configuration Reverse Proxy (Nginx)
 
 ### 3.1 Site client (déjà existant)
-- Domaine : www.cimmob.chartres.sportludique.fr
+- Domaine : ```www.cimmob.chartres.sportludique.fr```
 - Redirige le trafic vers WordPress
 
 ### 3.2 Site admin pour réseau management
@@ -109,7 +109,7 @@ sudo systemctl reload nginx
 
 - Redémarrer Apache:
 ```
-    sudo systemctl restart apache2
+sudo systemctl restart apache2
 ```
 
 ---
@@ -131,7 +131,7 @@ define( 'DB_HOST', '10.10.120.7' );
 ## 6. Vérifications
 
 ### 6.1 Depuis réseau client :
-- URL: http://www.cimmob.chartres.sportludique.fr
+- URL : ```http://www.cimmob.chartres.sportludique.fr```
 - Résultat: site accessible via reverse proxy
 
 ---
