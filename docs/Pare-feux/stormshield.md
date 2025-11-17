@@ -4,17 +4,17 @@
 
  **Sur les boîtiers physiques:** un appui sur le bouton reset (attendre que les led devant clignotent) pour les boîtiers physiques permet de restaurer la configuration d'usine et redémarrer en bridge sur toutes les interfaces.
 
-### Schema du pare feu après reset
+### Schema physique du pare feu après reset
  
  ![schema](PF/schema-pare-feu-apres-reset.png)
 
 ## 🖥️ 2.Connexion après reset 
 
- Pour configurer le pare-feu, il faut se brancher sur l'interface IN et mettre son poste en DHCP.
+ Pour configurer le pare-feu, il faut se brancher sur une interface IN et mettre son poste en DHCP.
 
- En configuration usine sur un boîtier physique, toutes les interfaces sont incluses dans un **bridge dont l'adresse est 10.0.0.254/8**.Un serveur DHCP est actif sur toutes les interfaces du bridge et il distribue des adresses IP comprises entre 10.0.0.10 et 10.0.0.100. **L'accès à l'interface web** de configuration du pare-feu se fait avec l'url : **https://10.0.0.254/admin**.
+ En configuration usine sur un boîtier physique, toutes les interfaces sont incluses dans un **bridge dont l'adresse est 10.0.0.254/8**.Un serveur DHCP est actif sur toutes les interfaces du bridge et il distribue des adresses IP comprises entre 10.0.0.10 et 10.0.0.100. **L'accès à l'interface web** de configuration du pare-feu se fait avec l'url : **https://10.0.0.254/**.
 
- Par défaut, seul le compte système **admin (mot de passe par défaut admin)**, disposant de tous les privilèges sur le boîtier.
+ Par défaut, seul le compte système **admin (mot de passe par défaut admin)**, dispose de tous les privilèges sur le boîtier.
 
  ![page d'accueil](PF/page-d'accueil.png)
 
@@ -26,13 +26,11 @@
 
  ![mdp admin](PF/mdp-admin.png)
 
- Puis cliquer sur **Appliquer**.
-
 ### Nom
 
  Sélectionner dans le menu à gauche **Configuration / Système puis Configuration Générale**.
 
- Commencer par donner un nom à votre boîtier et changer la langue de la console.
+ Commencer par donner un nom à votre Firewall si besoin et changer la langue du clavier du CLI.
 
  ![nom](PF/nom.png)
 
@@ -40,27 +38,22 @@
 
 ### Fuseau horaire
 
- La zone « Paramètres de date et d'heure » permet de modifier le fuseau horaire dans la zone Fuseau horaire, sélectionnez **Europe/Paris**.
+ La zone **Paramètres de date et d'heure** permet de modifier le fuseau horaire. Dans la zone Fuseau horaire, sélectionnez **Europe/Paris**.
 
  ![heure](PF/heure.png)
 
- Après le redémarrage (au bout d'environ 3 minutes), revenir au menu Configuration / Système puis Configuration et dans la zone Paramètres de date et d'heure cliquer sur **Maintenir le pare-feu à l'heure (NTP) pour que les mises à jour d'heure d'été/heure d'hiver soient également effectives**.
-
- Puis cliquer sur **Appliquer**.
-
+Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l'équipement à l'heure
 ## 🔧 4.Configuration du réseau 
 
- Toute les interfaces sont dans le **bridge**.
+ Par defaut, toutes les interfaces sont dans le **bridge**.
 
  ![bridge](PF/bridge.png)
 
- Choisir une interface (par exemple IN), pour la **sortir du bridge et la configurer avec une IP fixe**.
+ Choisir une interface (par exemple IN) et configurer une **IP fixe** afin de la faire sortir du **Bridge**. 
 
  ![IP](PF/IP.png)
 
- Puis cliquer sur **Appliquer**.
-
- Faire pareil avec les autres interfaces (WAN,DMZ).
+ Faire pareil avec les autres interfaces.
 
  ![WAN/DMZ](PF/interfaces.png)
 
@@ -72,11 +65,9 @@
 
  ![route](PF/route.png)
 
- Cliquer sur l'icône ![icone](PF/icone.png) pour ajouter un objet réseau, choisir **Machine et renseigner les champs Nom et Adresse IPv4** du pare-feu puis cliquer sur le bouton Créer.
+ Sur les sytèmes stormshield les configurations fonctionnent majoritairement avec les **Objets**, il vous faudras donc en crée un pour l'IP de votre passerelle. Cliquer sur l'icône ![icone](PF/icone.png) pour ajouter un objet réseau, choisir **Machine** et renseigner le nom et l'IP de votre passerelle. 
 
  ![passerelle](PF/gateway.png)
-
- Puis cliquer sur **Appliquer**.
 
 ### Route de retour
 
@@ -92,7 +83,9 @@
 
  ![régle](PF/regle.png)
 
- Puis cliquer sur **Appliquer**.
+ ⚠️⚠️⚠️ **ATTENTION** ⚠️⚠️⚠️
+ Cette configuration des règles est temporaire et **NON SECURISEE** il faut bien vieller a mettre en place des règles par la suite !!!
+ ⚠️⚠️⚠️ **ATTENTION** ⚠️⚠️⚠️
 
 ## ⚠️ 7. Statefull Inspection
 
