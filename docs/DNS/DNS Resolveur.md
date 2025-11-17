@@ -120,8 +120,8 @@ Et ensuite tester depuis un poste d'un autre groupe avec la même commande.
 
 Il devrait renvoyer **l'adresse IP de la FAI (183.44.28.1)**.
 
-# Configuration DNS Secondaire
 
+# Configuration DNS Secondaire
 Refaire toute les étapes ci-dessus.
 
 Ajouter en plus le dns secondaire authorité :

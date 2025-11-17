@@ -90,7 +90,8 @@ $TTL 86400
 
 ; Enregistrements
 ns1 IN  A   172.28.62.1   ; Serveur DNS d'autorité (nous même)
-www IN  A   172.28.62.2   ; Serveur Web
+www IN  A   172.28.62.5   ; Reverse Proxy
+www.cimmob IN A 172.28.62.5
 cha IN  A   172.28.33.2   ; Serveur DNS de l'AD
 ```
 ### Création du fichier "external"
@@ -114,6 +115,7 @@ $TTL 86400
 ; Enregistrements
 ns1 IN  A   183.44.28.1   ; Serveur DNS d'autorité (nous même)
 www IN  A   183.44.28.1   ; Serveur Web
+www.cimmob IN A 183.44.28.1
 ```
 <div class="annotate" markdown>
 
