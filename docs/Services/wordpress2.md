@@ -3,18 +3,18 @@
 Site WordPress: www.cimmob.chartres.sportludique.fr
 
 
-1. Prérequis
--------------
-- Serveur WordPress: 10.10.120.11
-- Reverse Proxy: 172.28.62.5 (Nginx)
-- DNS interne: Bind9 (serveur autorité interne)
-- WordPress installé dans /var/www/html/wordpress
+## 1. Prérequis
 
-2. Configuration DNS (Bind9)
-----------------------------
-2.1 Zone **interne**: chartres.sportludique.fr
-- Fichier: /etc/bind/zones/db.chartres.sportludique.fr.internal
-- Ajouter les enregistrements:
+- Serveur WordPress : ```10.10.120.11```
+- Reverse Proxy : ```172.28.62.5 (Nginx)```
+- DNS interne : ```Bind9 (serveur autorité interne)```
+- WordPress installé dans : ```/var/www/html/wordpress```
+
+## 2. Configuration DNS (Bind9)
+
+### 2.1 Zone **interne**: chartres.sportludique.fr
+- Fichier : /etc/bind/zones/db.chartres.sportludique.fr.internal<br>
+- Ajouter les enregistrements :
 ```
 www      IN  A   172.28.62.5
 cimmob   IN  A   172.28.62.5   ; pour accéder à l'admin via le reverse proxy
@@ -32,15 +32,15 @@ sudo systemctl reload bind9
 
 ---
 
-2.1 Zone **externe**: chartres.sportludique.fr
-- Fichier: /etc/bind/zones/db.chartres.sportludique.fr.external
-- Ajouter les enregistrements:
+### 2.1 Zone **externe**: chartres.sportludique.fr
+- Fichier : /etc/bind/zones/db.chartres.sportludique.fr.external<br>
+- Ajouter les enregistrements :
 ```
 www      IN  A   183.44.28.1
 cimmob   IN  A   183.44.28.1   ; IP de la FAI
 ```
 
-- Vérifier la syntaxe:
+- Vérifier la syntaxe :
 ```
 sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportludique.fr.external
 ```
@@ -50,15 +50,15 @@ sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportl
 sudo systemctl reload bind9
 ```
 
-3. Configuration Reverse Proxy (Nginx)
---------------------------------------
-3.1 Site client (déjà existant)
-- Domaine: www.cimmob.chartres.sportludique.fr
+## 3. Configuration Reverse Proxy (Nginx)
+
+### 3.1 Site client (déjà existant)
+- Domaine : www.cimmob.chartres.sportludique.fr
 - Redirige le trafic vers WordPress
 
-3.2 Site admin pour réseau management
-- Fichier: /etc/nginx/sites-available/cimmob-admin.conf
-- Contenu:
+### 3.2 Site admin pour réseau management
+- Fichier : /etc/nginx/sites-available/cimmob-admin.conf
+- Contenu :
 
 ```
 server {
@@ -87,8 +87,8 @@ sudo systemctl reload nginx
 
 ---
 
-4. Configuration Apache sur serveur WordPress
----------------------------------------------
+## 4. Configuration Apache sur serveur WordPress
+
 - VirtualHost pour WordPress (/etc/apache2/sites-available/cimmob.conf):
 
 ```
@@ -114,10 +114,10 @@ sudo systemctl reload nginx
 
 ---
 
-5. WordPress Configuration (wp-config.php)
--------------------------------------------
+## 5. WordPress Configuration (wp-config.php)
+
 - Fichier: /var/www/html/wordpress/wp-config.php
-- Vérifier les lignes DB:
+- Vérifier les lignes DB :
 
 ```
 define( 'DB_NAME', 'wordpress_db' );
@@ -128,9 +128,9 @@ define( 'DB_HOST', '10.10.120.7' );
 
 ---
 
-6. Vérifications
-----------------
-6.1 Depuis réseau client:
+## 6. Vérifications
+
+### 6.1 Depuis réseau client :
 - URL: http://www.cimmob.chartres.sportludique.fr
 - Résultat: site accessible via reverse proxy
 
