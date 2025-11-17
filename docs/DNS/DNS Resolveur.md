@@ -146,5 +146,4 @@ Le résultat attendus est :
 search chartes.sportludique.fr
 nameserver 172.28.62.1
 nameserver 172.28.62.11
-
 ```
