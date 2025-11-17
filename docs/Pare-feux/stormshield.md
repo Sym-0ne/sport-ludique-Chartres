@@ -73,7 +73,7 @@ Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l
 
  ![route de retour](PF/route-retour.png)
 
-## 🧱 6.Filtrage 
+## 🧱 6.Filtrage temporaire. 
 
  Allez dans **Configuration / Politique de sécurité / Filtrage et NAT**.
 
@@ -84,7 +84,9 @@ Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l
  ![régle](PF/regle.png)
 
  ⚠️⚠️⚠️ **ATTENTION** ⚠️⚠️⚠️
+
  Cette configuration des règles est temporaire et **NON SECURISEE** il faut bien vieller a mettre en place des règles par la suite !!!
+
  ⚠️⚠️⚠️ **ATTENTION** ⚠️⚠️⚠️
 
 ## ⚠️ 7. Statefull Inspection
