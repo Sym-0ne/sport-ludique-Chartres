@@ -45,7 +45,8 @@ nav:
       - Configuration du Switch Core & Stack : SWCore/reseau.md
       - LACP : SWCore/lacp_hp_a5500.md
   - Routeur:
-      - Configuration: Routeur/routeur.md
+      - R1: Routeur/R1.md
+      - R2: Routeur/R2.md
       - HSRP: Routeur/hsrp.md
       - PAT: Routeur/PAT.md
   - Pare-feux:
@@ -69,6 +70,10 @@ nav:
   - DNS:
       - DNS D'autorité: DNS/DNS autorité.md
       - DNS Resolveur: DNS/DNS Resolveur.md
+      - DNS Secondaires : 
+            - DNS D'autorité Secondaire : DNS/DNS autorité secondaire.md
+            - DNS Résolveur Secondaire : DNS/DNS resolveur secondaire.md
+           
   - Services: 
       - Base de Données: Services/bdd.md
       - Serveur web: Services/Web.md
