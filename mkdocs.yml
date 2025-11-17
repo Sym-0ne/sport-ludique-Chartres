@@ -78,5 +78,6 @@ nav:
       - Base de Données: Services/bdd.md
       - Serveur web: Services/Web.md
       - Certificat SSL/TLS & HTTPS: Services/https.md
-      - WordPress: Services/wordpress.md
+      - Installation WordPress: Services/wordpress.md
+      - Configuration WordPress: Services/wordpress2.md
       - Reverse Proxy: Services/reverse-proxy.md
