@@ -17,7 +17,7 @@ Site WordPress : ```www.cimmob.chartres.sportludique.fr```
 - Ajouter les enregistrements :
 ```
 www      IN  A   172.28.62.5
-cimmob   IN  A   172.28.62.5   ; pour accéder à l'admin via le reverse proxy
+cimmob   IN  A   172.28.62.5   
 ```
 
 - Vérifier la syntaxe:
@@ -32,11 +32,11 @@ sudo systemctl reload bind9
 
 ---
 
-### 2.1 Zone **externe**: chartres.sportludique.fr
+### 2.1 Zone **externe** : chartres.sportludique.fr
 - Fichier : /etc/bind/zones/db.chartres.sportludique.fr.external<br>
 - Ajouter les enregistrements :
 ```
-www      IN  A   183.44.28.1
+www      IN  A   183.44.28.1; IP de la FAI
 cimmob   IN  A   183.44.28.1   ; IP de la FAI
 ```
 
@@ -45,7 +45,7 @@ cimmob   IN  A   183.44.28.1   ; IP de la FAI
 sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportludique.fr.external
 ```
 
-- Recharger Bind9:
+- Recharger Bind9 :
 ```
 sudo systemctl reload bind9
 ```
@@ -57,30 +57,28 @@ sudo systemctl reload bind9
 - Redirige le trafic vers WordPress
 
 ### 3.2 Site admin pour réseau management
-- Fichier : /etc/nginx/sites-available/cimmob-admin.conf
+- Fichier : /etc/nginx/sites-enabled/cimmob.chartres.sportludique.fr 
 - Contenu :
 
 ```
 server {
     listen 80;
-    server_name admin.cimmob.chartres.sportludique.fr;
+    server_name www.cimmob.chartres.sportludique.fr;
 
     location / {
-        proxy_pass http://10.10.120.11/;
+        proxy_pass http://192.168.28.20;   
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
-
-    access_log /var/log/nginx/cimmob-admin_access.log;
-    error_log  /var/log/nginx/cimmob-admin_error.log;
 }
+
 ```
 
 - Activer le site:
 ```
-sudo ln -s /etc/nginx/sites-available/cimmob-admin.conf /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-enabled/cimmob.chartres.sportludique.fr  /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
