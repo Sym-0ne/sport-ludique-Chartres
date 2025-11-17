@@ -90,7 +90,8 @@ $TTL 86400
 
 ; Enregistrements
 ns1 IN  A   172.28.62.1   ; Serveur DNS d'autorité (nous même)
-www IN  A   172.28.62.2   ; Serveur Web
+www IN  A   172.28.62.5   ; Reverse Proxy
+www.cimmob IN A 172.28.62.5
 cha IN  A   172.28.33.2   ; Serveur DNS de l'AD
 ```
 ### Création du fichier "external"
@@ -114,6 +115,7 @@ $TTL 86400
 ; Enregistrements
 ns1 IN  A   183.44.28.1   ; Serveur DNS d'autorité (nous même)
 www IN  A   183.44.28.1   ; Serveur Web
+www.cimmob IN A 183.44.28.1
 ```
 <div class="annotate" markdown>
 
@@ -180,10 +182,7 @@ Après avoir installer UFW (1) il nous suffit de mettre en place 3 règles :
 - Une règle qui autorise les connexions DNS en UDP sur le port 53
 - Une règle qui autorise les connexions DNS en TCP sur le port 53
 
-Ces règles ont été décider grâce a l'étude des connexion qui auront lieu sur notre réseau et leur sens, ces connexions sont répertoriées sur le schéma si dessous :
-
-![](Ressources/shema_reseaux_DNS.drawio)
-
+Ces règles ont été décider grâce a l'étude des connexion qui auront lieu sur notre réseau et leur sens.
 
 ### Configuration
 
@@ -210,7 +209,7 @@ sudo ufw enable
 ## ⚠️ 9. Route statique
 
 ### Pourquoi
-L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme expliqué [ici](https://sym-0ne.github.io/sport-ludique-Chartres/DNS/DNS%20autorit%C3%A9/#7-Statefull-Inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement.
+L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme [expliqué ici](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/stormshield/#7-statefull-inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement.
 ### Ajout des routes
 Il nous faut donc ajouter manuellement des routes statiques afin de passer directement par le VFW pour rejoindre notre LAN.
 ```
@@ -227,3 +226,9 @@ up ip route add 172.28.35.0/24 via 172.28.62.253 dev ens3
 ```
 
 Grâce à ces lignes, notre DNS passera directement par le VFW et non par le PFW (Stormshield).
+
+## 🖧 10. NS1 et NS2 
+
+Afin de garentir la **haute disponibilité** de nos services, nous avons doubler notre PFW ainsi que notre DNS d'autorité, dans notre cas le cheminement réseau change donc en fonction des équipements en service ou hors service.
+
+Ce schema représente le flux extérieur et comment il passeras afin d'atteindre nos services
