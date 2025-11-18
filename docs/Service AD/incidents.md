@@ -40,15 +40,15 @@ ComplexityEnabled : True
 
 3. Après la coupure de courant :
 
-   * Les DC ont redémarré brutalement, certains journaux NTDS non flushés.
-   * L'heure système sur les DC a pu être désynchronisée.
-   * Les DC ont réévalué `pwdLastSet` pour tous les comptes.
-   * Comme l'heure ou les USN étaient incohérents, AD a marqué tous les mots de passe comme expirés.
+- Les DC ont redémarré brutalement, certains journaux NTDS non flushés.
+- L'heure système sur les DC a pu être désynchronisée.
+- Les DC ont réévalué `pwdLastSet` pour tous les comptes.
+- Comme l'heure ou les USN étaient incohérents, AD a marqué tous les mots de passe comme expirés.
 
 4. Même sans expiration forcée dans la GPO pour certains comptes, AD peut appliquer `PASSWORD_EXPIRED` si :
 
-   * `pwdLastSet + MaxPasswordAge` > heure système (calcul erroné)
-   * ou si le DC considère que le compte n'a jamais eu son mot de passe défini correctement (corruption partielle NTDS)
+- `pwdLastSet + MaxPasswordAge` > heure système (calcul erroné)
+- ou si le DC considère que le compte n'a jamais eu son mot de passe défini correctement (corruption partielle NTDS)
 
 ---
 
