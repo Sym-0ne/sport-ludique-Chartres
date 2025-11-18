@@ -2,7 +2,7 @@
 
 ---
 
-## 1. Prérequis sur le serveur web (10.10.120.11)
+## 1. Prérequis sur le serveur web (172.28.62.3)
 
 Installer Apache, PHP et extensions nécessaires :
 
@@ -63,13 +63,13 @@ Modifier le fichier MySQL pour autoriser les connexions distantes :
 ```bash
 cd /var/www/html/wordpress
 sudo cp wp-config-sample.php wp-config.php
-sudo nano wp-config.php
+sudo nano /var/www/html/wordpress/wp-config.php
 ```
 
 Modifier :
 
 ```php
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', 'wordpress_db' );
 define( 'DB_USER', 'wp_user' );
 define( 'DB_PASSWORD', 'mot_de_passe_fort' );
 define( 'DB_HOST', '192.168.28.10' );
@@ -115,7 +115,7 @@ sudo systemctl reload apache2
 ---
 
 ## 7. Installer l’extension MySQL pour PHP
-
+/var/www/html/wordpress
 Si page blanche avec message "Your PHP installation appears to be missing the MySQL extension":
 
 ```bash
