@@ -59,6 +59,7 @@ nav:
       - Gestion Vlan on VM Proxmox: Hyperviseur/vlan-prox.md
       - LDAPS on Proxmox: Hyperviseur/ldaps-prox.md
   - Service Active Directory:
+      - Incident Utilisateurs Active Directory: Service AD/incidents.md
       - Domaine Active Directory: Service AD/ad.md
       - Active Directory BackUP: Service AD/adbackup.md
       - Gestion Utilisateurs AD: Service AD/adusers.md
