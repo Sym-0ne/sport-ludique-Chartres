@@ -33,27 +33,27 @@ sudo chmod -R 755 /var/www/html/wordpress
 
 ---
 
-## 4. Créer la base de données MySQL (10.10.120.7)
+## 4. Créer la base de données MySQL (192.168.28.10)
 
 Se connecter à MySQL :
 
 ```bash
-mysql -u wp_user -p -h 10.10.120.7
+mysql -u wp_user -p -h 192.168.28.10
 ```
 
 Puis créer la BDD et l'utilisateur :
 
 ```sql
 CREATE DATABASE wordpress DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'wp_user'@'10.10.120.11' IDENTIFIED BY 'mot_de_passe_fort';
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wp_user'@'10.10.120.11';
+CREATE USER 'wp_user'@'192.168.28.10' IDENTIFIED BY 'mot_de_passe_fort';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'wp_user'@'192.168.28.10';
 FLUSH PRIVILEGES;
 EXIT;
 ```
 
 Modifier le fichier MySQL pour autoriser les connexions distantes :
 
-* Éditer `/etc/mysql/mysql.conf.d/mysqld.cnf` et modifier `bind-address = 127.0.0.1` et mettre `bind-address = 10.10.120.11`
+* Éditer `/etc/mysql/mariadb.conf.d/50-server.cnf` et modifier `bind-address = 127.0.0.1` et mettre `bind-address = 192.168.28.10` (adresse de la BDD)
 * Redémarrer MySQL : `sudo systemctl restart mysql`
 
 ---
@@ -72,7 +72,7 @@ Modifier :
 define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'wp_user' );
 define( 'DB_PASSWORD', 'mot_de_passe_fort' );
-define( 'DB_HOST', '10.10.120.7' );
+define( 'DB_HOST', '192.168.28.10' );
 ```
 
 ---
@@ -89,9 +89,9 @@ Exemple de configuration :
 
 ```apache
 <VirtualHost *:80>
-    ServerAdmin admin@10.10.120.11
+    ServerAdmin admin@192.168.28.10
     DocumentRoot /var/www/html/wordpress
-    ServerName 10.10.120.11
+    ServerName 192.168.28.10
 
     <Directory /var/www/html/wordpress>
         AllowOverride All
@@ -153,7 +153,7 @@ sudo systemctl restart apache2
 Dans ton navigateur :
 
 ```
-http://10.10.120.11/
+http://192.168.28.10/
 ```
 
 Tu devrais voir l’écran d’installation de WordPress (choix de la langue, création compte admin, etc.).
