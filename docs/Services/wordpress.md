@@ -89,9 +89,9 @@ Exemple de configuration :
 
 ```apache
 <VirtualHost *:80>
-    ServerAdmin admin@192.168.28.10
+    ServerAdmin admin@172.28.62.3
     DocumentRoot /var/www/html/wordpress
-    ServerName 192.168.28.10
+    ServerName 172.28.62.3
 
     <Directory /var/www/html/wordpress>
         AllowOverride All
