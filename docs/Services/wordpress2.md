@@ -67,7 +67,7 @@ server {
     server_name www.cimmob.chartres.sportludique.fr;
 
     location / {
-        proxy_pass http://192.168.28.20;   
+        proxy_pass http://172.28.62.3;   
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -122,7 +122,7 @@ sudo systemctl restart apache2
 define( 'DB_NAME', 'wordpress_db' );
 define( 'DB_USER', 'wp_user' );
 define( 'DB_PASSWORD', 'CHABDD083' );
-define( 'DB_HOST', '10.10.120.7' );
+define( 'DB_HOST', '192.168.28.10' );
 ```
 
 ---
