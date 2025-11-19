@@ -22,18 +22,18 @@ sudo nano /etc/nginx/sites-available/chartres.sportludique.fr
 Mettre cette conf pour un accès en http :
 
 ```
-    server {
-        listen 80;
-        server_name www.chartres.sportludique.fr;
+server {
+    listen 80;
+    server_name www.chartres.sportludique.fr;
 
-        location / {
-            proxy_pass http://192.168.28.20;   
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-        }
+    location / {
+        proxy_pass http://172.28.62.3;   
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
+}
 ```
 
 Activez-le :
