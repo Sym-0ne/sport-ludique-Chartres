@@ -17,7 +17,7 @@ Site WordPress : ```www.cimmob.chartres.sportludique.fr```
 - Ajouter les enregistrements :
 ```
 www      IN  A   172.28.62.5
-cimmob   IN  A   172.28.62.5   
+www.cimmob   IN  A   172.28.62.5   
 ```
 
 - Vérifier la syntaxe:
@@ -32,12 +32,12 @@ sudo systemctl reload bind9
 
 ---
 
-### 2.1 Zone **externe** : chartres.sportludique.fr
+### 2.2 Zone **externe** : chartres.sportludique.fr
 - Fichier : /etc/bind/zones/db.chartres.sportludique.fr.external<br>
 - Ajouter les enregistrements :
 ```
 www      IN  A   183.44.28.1; IP de la FAI
-cimmob   IN  A   183.44.28.1   ; IP de la FAI
+www.cimmob   IN  A   183.44.28.1   ; IP de la FAI
 ```
 
 - Vérifier la syntaxe :
