@@ -5,7 +5,8 @@ Site WordPress : ```www.cimmob.chartres.sportludique.fr```
 
 ## 1. Prérequis
 
-- Serveur WordPress : ```10.10.120.11```
+- Serveur WordPress : ```172.28.62.3```
+- Serveur Base de données : ```192.168.28.10```
 - Reverse Proxy : ```172.28.62.5 (Nginx)```
 - DNS interne : ```Bind9 (serveur autorité interne)```
 - WordPress installé dans : ```/var/www/html/wordpress```
