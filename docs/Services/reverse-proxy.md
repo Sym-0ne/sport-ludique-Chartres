@@ -119,7 +119,7 @@ server {
 
     location / {
         # Redirection vers ton site interne HTTPS (ta VM)
-        proxy_pass https://192.168.28.20;
+        proxy_pass https://172.28.62.3;
 
         proxy_ssl_server_name on;
         proxy_ssl_verify off;  # si ton certificat interne n’est pas signé par une autorité publique
