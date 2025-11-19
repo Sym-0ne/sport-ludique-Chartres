@@ -78,3 +78,4 @@ nav:
       - Installation WordPress: Services/wordpress.md
       - Configuration WordPress: Services/wordpress2.md
       - Reverse Proxy: Services/reverse-proxy.md
+      - Reverse Proxy Secondaire: Services/reverse-proxy-secondaire.md
