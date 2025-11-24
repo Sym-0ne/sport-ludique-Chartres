@@ -63,7 +63,7 @@ Une fois l’installation lancée, WordPress fournit deux blocs de code à ajout
 
 ### 4.1 Dans le fichiers ```wp-config.php``` 
 
-Le chemin d'accès : ```sudo nano /var/www/html/wordpress/wp-config.php```
+Le chemin d'accès : sudo nano /var/www/html/wordpress/wp-config.php
 
 ```define('WP_ALLOW_MULTISITE', true);
 define('MULTISITE', true);
@@ -76,7 +76,7 @@ define('BLOG_ID_CURRENT_SITE', 1);
 
 ### 4.2 Dans le fichier ```.htaccess``` 
 
-Le chemin d'accès : ```sudo nano /var/www/html/wordpress/.htaccess```
+Le chemin d'accès : sudo nano /var/www/html/wordpress/.htaccess
 
 ```RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
