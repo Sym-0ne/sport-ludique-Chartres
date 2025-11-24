@@ -1,7 +1,7 @@
 # Mise en place du Multi Site sur WordPress.        
 
-Site (Wassim) WordPress : ```www.cimmob.chartres.sportludique.fr```
-Site (David) WordPress : ```www.david.cimmob.chartres.sportludique.fr```
+Site (Wassim) WordPress : ```www.cimmob.chartres.sportludique.fr```<br>
+Site (David) WordPress : ```www.david.cimmob.chartres.sportludique.fr```<br>
 Site (Simon) WordPress : ```www.simon.cimmob.chartres.sportludique.fr```
 
 ## Prérequis
@@ -63,8 +63,7 @@ Une fois l’installation lancée, WordPress fournit deux blocs de code à ajout
 
 ### 4.1 Dans le fichiers : ```wp-config.php``` 
 
-```sudo nano /var/www/html/wordpress/wp-config.php
-```
+```sudo nano /var/www/html/wordpress/wp-config.php```
 
 Exemple de lignes (Ici la configuratio de notre WordPress) :
 
@@ -79,8 +78,7 @@ define('BLOG_ID_CURRENT_SITE', 1);
 
 ### 4.2 Dans le fichier ```.htaccess``` 
 
-```sudo nano /var/www/html/wordpress/.htaccess
-```
+```sudo nano /var/www/html/wordpress/.htaccess```
 
 Remplacer toute la partie WordPress par le bloc fourni, exemple :
 
