@@ -14,7 +14,7 @@ ssh-keygen -t ed25519
 
 La clé se créee dans le repertoire **/root/.ssh/id_ed25519**.
 
-Elle servira pour la connexion automatique vers B.
+Elle servira pour la connexion automatique vers le Reverse Proxy Secondaire.
 
 ### 2.2 Copie de la clé publique vers le Reverse Proxy Secondaire
 
