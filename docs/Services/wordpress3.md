@@ -61,11 +61,16 @@ Une fois l’installation lancée, WordPress fournit deux blocs de code à ajout
 
 A) Dans le fichiers : ```wp-config.php``` :
 
-Exemple de lignes (varient selon configuration) :
+```
+sudo nano /var/www/html/wordpress/wp-config.php
+```
 
-```define('MULTISITE', true);
+Exemple de lignes (Ici la configuratio de notre WordPress) :
+
+```define('WP_ALLOW_MULTISITE', true);
+define('MULTISITE', true);
 define('SUBDOMAIN_INSTALL', true);
-define('DOMAIN_CURRENT_SITE', 'chartres.sportludique.fr');
+define('DOMAIN_CURRENT_SITE', 'www.cimmob.chartres.sportludique.fr');
 define('PATH_CURRENT_SITE', '/');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
@@ -73,16 +78,32 @@ define('BLOG_ID_CURRENT_SITE', 1);
 
 B) Dans le fichier : ```.htaccess``` :
 
+```
+sudo nano /var/www/html/wordpress/.htaccess
+```
+
 Remplacer toute la partie WordPress par le bloc fourni, exemple :
 
-```RewriteEngine On
+```
+# BEGIN WordPress
+# Les directives (lignes) entre « BEGIN WordPress » et « END WordPress » sont générées
+# dynamiquement, et doivent être modifiées uniquement via les filtres WordPress.
+# Toute modification des directives situées entre ces marqueurs sera surchargée.
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
+
+# add a trailing slash to /wp-admin
+RewriteRule ^wp-admin$ wp-admin/ [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
+RewriteRule ^(wp-(content|admin|includes).*) $1 [L]
+RewriteRule ^(.*\.php)$ $1 [L]
 RewriteRule . index.php [L]
+# END WordPress
 ```
 
 (WordPress fournit exactement les lignes adaptées, il faut respecter ce qu’il montre.)
