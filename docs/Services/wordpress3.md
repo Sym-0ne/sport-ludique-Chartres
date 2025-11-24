@@ -65,7 +65,8 @@ Une fois l’installation lancée, WordPress fournit deux blocs de code à ajout
 
 Le chemin d'accès : sudo nano /var/www/html/wordpress/wp-config.php
 
-```define('WP_ALLOW_MULTISITE', true);
+```
+define('WP_ALLOW_MULTISITE', true);
 define('MULTISITE', true);
 define('SUBDOMAIN_INSTALL', true);
 define('DOMAIN_CURRENT_SITE', 'www.cimmob.chartres.sportludique.fr');
@@ -78,7 +79,8 @@ define('BLOG_ID_CURRENT_SITE', 1);
 
 Le chemin d'accès : sudo nano /var/www/html/wordpress/.htaccess
 
-```RewriteEngine On
+```
+RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
