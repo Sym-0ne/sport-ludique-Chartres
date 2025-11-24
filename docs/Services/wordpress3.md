@@ -78,14 +78,12 @@ define('BLOG_ID_CURRENT_SITE', 1);
 
 B) Dans le fichier : ```.htaccess``` :
 
-```
-sudo nano /var/www/html/wordpress/.htaccess
+```sudo nano /var/www/html/wordpress/.htaccess
 ```
 
 Remplacer toute la partie WordPress par le bloc fourni, exemple :
 
-```
-# BEGIN WordPress
+```# BEGIN WordPress
 # Les directives (lignes) entre « BEGIN WordPress » et « END WordPress » sont générées
 # dynamiquement, et doivent être modifiées uniquement via les filtres WordPress.
 # Toute modification des directives situées entre ces marqueurs sera surchargée.
