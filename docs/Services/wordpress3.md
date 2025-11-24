@@ -61,11 +61,11 @@ Puis cliquer sur “Installer”.
 
 Une fois l’installation lancée, WordPress fournit deux blocs de code à ajouter :
 
-### 4.1 Dans le fichiers : ```wp-config.php``` 
+### 4.1 Dans le fichiers ```wp-config.php``` 
 
-```sudo nano /var/www/html/wordpress/wp-config.php```
+```sudo nano /var/www/html/wordpress/wp-config.php
+```
 
-Exemple de lignes (Ici la configuratio de notre WordPress) :
 
 ```define('WP_ALLOW_MULTISITE', true);
 define('MULTISITE', true);
@@ -78,9 +78,8 @@ define('BLOG_ID_CURRENT_SITE', 1);
 
 ### 4.2 Dans le fichier ```.htaccess``` 
 
-```sudo nano /var/www/html/wordpress/.htaccess```
-
-Remplacer toute la partie WordPress par le bloc fourni, exemple :
+```sudo nano /var/www/html/wordpress/.htaccess
+```
 
 ```RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
