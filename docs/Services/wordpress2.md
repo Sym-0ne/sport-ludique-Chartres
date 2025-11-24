@@ -13,7 +13,7 @@ Site WordPress : ```www.cimmob.chartres.sportludique.fr```
 
 ## 2. Configuration DNS (Bind9)
 
-### 2.1 Zone **interne**: chartres.sportludique.fr
+### 2.1 Zone **interne** : chartres.sportludique.fr
 - Fichier : /etc/bind/zones/db.chartres.sportludique.fr.internal<br>
 - Ajouter les enregistrements :
 ```
@@ -21,12 +21,12 @@ www      IN  A   172.28.62.5
 www.cimmob   IN  A   172.28.62.5   
 ```
 
-- Vérifier la syntaxe:
+- Vérifier la syntaxe :
 ```
 sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportludique.fr.internal
 ```
 
-- Recharger Bind9:
+- Recharger Bind9 :
 ```
 sudo systemctl reload bind9
 ```
@@ -57,8 +57,8 @@ sudo systemctl reload bind9
 - Domaine : ```www.cimmob.chartres.sportludique.fr```
 - Redirige le trafic vers WordPress
 
-### 3.2 Site admin pour réseau management
-- Fichier : /etc/nginx/sites-enabled/cimmob.chartres.sportludique.fr 
+### 3.2 Site admin 
+- Fichier : /etc/nginx/sites-available/cimmob.chartres.sportludique.fr 
 - Contenu :
 
 ```
@@ -77,11 +77,11 @@ server {
 
 ```
 
-- Activer le site:
+- Activer le site :
 ```
-sudo ln -s /etc/nginx/sites-enabled/cimmob.chartres.sportludique.fr  /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/cimmob.chartres.sportludique.fr  /etc/nginx/sites-enabled/
 sudo nginx -t
-sudo systemctl reload nginx
+sudo systemctl restart nginx
 ```
 
 ---
