@@ -15,7 +15,6 @@ Site (Simon) WordPress : ```www.simon.cimmob.chartres.sportludique.fr```
 ---
 
 ## 1. Choix du type de multisite
------------------------------
 
 WordPress permet deux modes de multisite :
 
@@ -32,7 +31,6 @@ Ici, nous choisirons la **méthode A** à savoir les *Sous-domaines*.
 ---
 
 ## 2. Activer le mode multisite
------------------------------
 
 Modifier le fichier wp-config.php (à la racine de WordPress).
 
@@ -45,7 +43,6 @@ Enregistrer et recharger l’interface d’administration WordPress.
 ---
 
 ## 3. Installer le réseau multisite
----------------------------------
 
 Dans le tableau de bord WordPress :
 
@@ -59,7 +56,6 @@ Puis cliquer sur “Installer”.
 ---
 
 ## 4. Ajouter les lignes demandées par WordPress
----------------------------------------------
 
 Une fois l’installation lancée, WordPress fournit deux blocs de code à ajouter :
 
@@ -94,7 +90,6 @@ RewriteRule . index.php [L]
 ---
 
 ## 5. Reconnexion
---------------
 
 Après les modifications, WordPress demande de se reconnecter.  
 Vous êtes maintenant en mode multisite.
@@ -102,7 +97,6 @@ Vous êtes maintenant en mode multisite.
 ---
 
 ## 6. Créer les sites pour chaque utilisateur
-------------------------------------------
 
 Aller dans :
 
@@ -119,16 +113,14 @@ Chaque site est totalement indépendant.
 ---
 
 ## 7. Configuration DNS & Proxy (si vous utilisez les sous-domaines)
-----------------------------------------------------------
 
-Mettre en place la meme configuration pour tout les noms de domaines qui ont été créer via le Multisite grace aux explciations présentes sur les pages suivantes : 
+Mettre en place la même configuration pour tous les noms de domaines qui ont été créés via le Multisite grâce aux explications présentes sur les pages suivantes :
 
 Vous pouvez aller voir la documention pour le [Reverse Proxy & DNS](https://sym-0ne.github.io/sport-ludique-Chartres/Services/wordpress2/).
 
 ---
 
 ## 8. Gestion des utilisateurs
----------------------------
 
 Dans :
 
