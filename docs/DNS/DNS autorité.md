@@ -209,7 +209,7 @@ sudo ufw enable
 ## ⚠️ 9. Route statique
 
 ### Pourquoi
-L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme [expliqué ici](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/stormshield/#7-statefull-inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement.
+L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme[expliqué ici](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/stormshield/#7-statefull-inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement..
 ### Ajout des routes
 Il nous faut donc ajouter manuellement des routes statiques afin de passer directement par le VFW pour rejoindre notre LAN.
 ```
@@ -229,6 +229,96 @@ Grâce à ces lignes, notre DNS passera directement par le VFW et non par le PFW
 
 ## 🖧 10. NS1 et NS2 
 
-Afin de garentir la **haute disponibilité** de nos services, nous avons doubler notre PFW ainsi que notre DNS d'autorité, dans notre cas le cheminement réseau change donc en fonction des équipements en service ou hors service.
+<div class="annotate"markdown>
+Voici la phrase corrigée :
 
-Ce schema représente le flux extérieur et comment il passeras afin d'atteindre nos services
+Afin de **garantir la haute disponibilité** de nos services, nous avons doublé notre PFW ainsi que notre DNS d'autorité (1). Dans notre cas, le cheminement réseau change en fonction des équipements en service ou hors service.
+
+</div>
+1. À noter que c'est à cause de la [Stateful Inspection](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/stormshield/#7-statefull-inspection) du StormShield que nous devons doubler ces équipements.
+
+### Besoins
+
+<div class="annotate" markdown>
+Les zones **internes** ne changeant pas, NS1 et NS2 seront donc synchronisées, NS1 étant **master** et NS2 **slave** (1).
+
+Les zones externes, elles, changent, notamment au niveau de la résolution, où **NS1** renvoie vers **R1** et **NS2** vers **R2**.
+</div>
+1. **Master** est le maître et **Slave** l'esclave ; le maître envoie la configuration et les esclaves la copient.
+
+### Configuration
+
+Dans le fichier `/etc/bind/name.conf.local` de <ins>**NS1**</ins>, il faut ajouter ces lignes :
+```python hl_lines="9 10"
+// === VUE INTERNE ===
+view "internal" {
+    match-clients { 172.28.0.0/16; 127.0.0.1; };
+    recursion no;
+
+    zone "chartres.sportludique.fr" {
+        type master;
+        file "/etc/bind/zones/db.chartres.sportludique.fr.internal";
+        allow-transfer {172.28.62.11;};
+		also-notify {172.28.62.11;};
+    };
+};
+
+// === VUE EXTERNE ===
+view "external" {
+    match-clients { any; };
+    recursion no;
+
+    zone "chartres.sportludique.fr" {
+        type master;
+        file "/etc/bind/zones/db.chartres.sportludique.fr.external";
+    };
+};
+```
+Ensuite, dans le fichier `/etc/bind/name.conf.local` de <ins>**NS2**</ins>, il suffit de rajouter ces lignes :
+```python hl_lines="7 8 9"
+// Vue interne
+view "internal" {
+    match-clients { 127.0.0.1; 172.28.0.0/16; };
+    recursion no;
+
+    zone "chartres.sportludique.fr" {
+        type slave;
+        masters { 172.28.62.1; };  // IP du maître
+        file "/var/cache/bind/db.chartres.sportludique.fr.internal";
+    };
+};
+
+// Vue externe
+view "external" {
+    match-clients { any; };
+    recursion no;
+
+    zone "chartres.sportludique.fr" {
+        type master;
+        file "/etc/bind/zones/db.chartres.sportludique.fr.external";
+    };
+};
+```
+Pour finir, il suffit de modifier le fichier `/etc/bind/zones/db.chartres.sportludique.fr.external` de <ins>**NS2**</ins> pour qu'il pointe vers **R2** et non **R1**. 
+```
+$TTL 86400
+@       IN SOA  ns1.chartres.sportludique.fr. admin.chartres.sportludique.fr. (
+                2025100704 ; Serial
+                3600        ; Refresh
+                1800        ; Retry
+                1209600     ; Expire
+                86400 )     ; Negative Cache TTL
+
+; ----- Serveurs DNS -----
+@       IN NS   ns1.chartres.sportludique.fr.
+@       IN NS   ns2.chartres.sportludique.fr.
+
+; Exemple (à compléter si tu veux) :
+ns1    IN A 183.44.28.1
+ns2    IN A 221.97.136.2  
+www    IN A 221.97.136.2
+cimmob IN A 221.97.136.2
+```
+
+Ne pas oublier de mettre à jour le fichier **External** sur les deux DNS, puisqu'ils ne sont plus synchronisés.
+
