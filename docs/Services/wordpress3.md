@@ -18,11 +18,13 @@ Site (Simon) WordPress : ```www.simon.cimmob.chartres.sportludique.fr```
 
 WordPress permet deux modes de multisite :
 
-A) Sous-domaines  
+### 1.1 Sous-domaines  
+
    Exemple : site1.domain.fr, site2.domain.fr  
    → Nécessite la configuration DNS (wildcard ou enregistrements individuels).
 
-B) Sous-répertoires  
+### 1.2 Sous-répertoires 
+
    Exemple : domain.fr/site1, domain.fr/site2  
    → Ne nécessite aucune modification DNS.
 
@@ -59,10 +61,9 @@ Puis cliquer sur “Installer”.
 
 Une fois l’installation lancée, WordPress fournit deux blocs de code à ajouter :
 
-A) Dans le fichiers : ```wp-config.php``` :
+### 4.1 Dans le fichiers : ```wp-config.php``` 
 
-```
-sudo nano /var/www/html/wordpress/wp-config.php
+```sudo nano /var/www/html/wordpress/wp-config.php
 ```
 
 Exemple de lignes (Ici la configuratio de notre WordPress) :
@@ -76,23 +77,18 @@ define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
 ```
 
-B) Dans le fichier : ```.htaccess``` :
+### 4.2 Dans le fichier ```.htaccess``` 
 
 ```sudo nano /var/www/html/wordpress/.htaccess
 ```
 
 Remplacer toute la partie WordPress par le bloc fourni, exemple :
 
-```# BEGIN WordPress
-# Les directives (lignes) entre « BEGIN WordPress » et « END WordPress » sont générées
-# dynamiquement, et doivent être modifiées uniquement via les filtres WordPress.
-# Toute modification des directives situées entre ces marqueurs sera surchargée.
-RewriteEngine On
+```RewriteEngine On
 RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
 RewriteRule ^index\.php$ - [L]
 
-# add a trailing slash to /wp-admin
 RewriteRule ^wp-admin$ wp-admin/ [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -101,7 +97,6 @@ RewriteRule ^ - [L]
 RewriteRule ^(wp-(content|admin|includes).*) $1 [L]
 RewriteRule ^(.*\.php)$ $1 [L]
 RewriteRule . index.php [L]
-# END WordPress
 ```
 
 (WordPress fournit exactement les lignes adaptées, il faut respecter ce qu’il montre.)
