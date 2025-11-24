@@ -1,8 +1,8 @@
 # Mise en place du Multi Site sur WordPress.        
 
-Site (Wassim) WordPress : ```www.cimmob.chartres.sportludique.fr```<br>
-Site (David) WordPress : ```www.david.cimmob.chartres.sportludique.fr```<br>
-Site (Simon) WordPress : ```www.simon.cimmob.chartres.sportludique.fr```
+- Site (Wassim) WordPress : ```www.cimmob.chartres.sportludique.fr```
+- Site (David) WordPress : ```www.david.cimmob.chartres.sportludique.fr```
+- Site (Simon) WordPress : ```www.simon.cimmob.chartres.sportludique.fr```
 
 ## Prérequis
 
