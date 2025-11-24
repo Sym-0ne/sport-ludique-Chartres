@@ -32,7 +32,7 @@ Ici, nous choisirons la **méthode A** à savoir les *Sous-domaines*.
 
 ## 2. Activer le mode multisite
 
-Modifier le fichier wp-config.php (à la racine de WordPress).
+Modifier le fichier ```wp-config.php``` (à la racine de WordPress).
 
 Ajouter avant la ligne : **/* That's all, stop editing! */** :
 
@@ -46,7 +46,7 @@ Enregistrer et recharger l’interface d’administration WordPress.
 
 Dans le tableau de bord WordPress :
 
-Outils > Configuration du Réseau
+```Outils > Configuration du Réseau```
 
 Choisir :
 - Sous-domaines
@@ -59,7 +59,7 @@ Puis cliquer sur “Installer”.
 
 Une fois l’installation lancée, WordPress fournit deux blocs de code à ajouter :
 
-A) Dans wp-config.php :
+A) Dans le fichiers : ```wp-config.php``` :
 
 Exemple de lignes (varient selon configuration) :
 
@@ -71,7 +71,7 @@ define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
 ```
 
-B) Dans .htaccess :
+B) Dans le fichier : ```.htaccess``` :
 
 Remplacer toute la partie WordPress par le bloc fourni, exemple :
 
@@ -124,7 +124,7 @@ Vous pouvez aller voir la documention pour le [Reverse Proxy & DNS](https://sym-
 
 Dans :
 
-Réseau admin > Utilisateurs > Ajouter
+```Réseau admin > Utilisateurs > Ajouter```
 
 Créer ou associer un utilisateur à un site spécifique en lui donnant le rôle “Administrateur” uniquement sur son site (et non sur le réseau entier).
 
