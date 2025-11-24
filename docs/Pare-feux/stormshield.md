@@ -105,3 +105,5 @@ Voici donc le moyen d’assurer une communication correcte entre les équipement
 ![](PF/Handshake_sucsess.drawio)
 
 Si l’on ne passe pas par le **Stormshield**, le paquet est correctement transmis grâce au bon déroulement du **handshake**.
+
+Et pour ne pas passer par le **Stormshield** voici la [solution](https://sym-0ne.github.io/sport-ludique-Chartres/DNS/DNS-autorité/#9-Route-statique).

@@ -97,7 +97,7 @@ sudo systemctl restart unbound
 sudo systemctl enable unbound
 ```
 
-Vérifier que le DNS redirige bien vers l'autorité :
+Vérifier que le fichier comporte les bonnes adresses IP :
 
 ```
 sudo cat /etc/resolv.conf
@@ -106,8 +106,9 @@ sudo cat /etc/resolv.conf
 Le résultat attendus est :
 
 ```
-nameserver 172.28.62.1
 search chartres.sportludique.fr
+nameserver 172.28.33.4
+namserver 172.28.33.5
 ```
 
 ## ✅ 3. Vérification
@@ -132,18 +133,4 @@ stub-zone:
     name: "chartres.sportludique.fr"
     stub-addr: 172.28.62.1     # ← IP du DNS autoritaire primaire de la DMZ
     stub-addr: 172.28.62.11    # ← IP du DNS autoritaire secondaire de la DMZ
-```
-
-Vérifier que le DNS redirige bien vers l'autorité secondaire :
-
-```
-sudo cat /etc/resolv.conf
-```
-
-Le résultat attendus est :
-
-```
-search chartes.sportludique.fr
-nameserver 172.28.62.1
-nameserver 172.28.62.11
 ```

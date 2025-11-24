@@ -39,40 +39,52 @@ theme :
 nav:
   - Introduction: index.md
   - Documentation Mkdocs:
-    - Plugins: DocumentationMkdocs/Plugins/plugin.md
-    - Syntaxe: DocumentationMkdocs/Syntaxe/Syntaxe.md
+      - Plugins: DocumentationMkdocs/Plugins/plugin.md
+      - Syntaxe: DocumentationMkdocs/Syntaxe/Syntaxe.md
   - Switch Core:
       - Configuration du Switch Core & Stack : SWCore/reseau.md
       - LACP : SWCore/lacp_hp_a5500.md
   - Routeur:
       - R1: Routeur/R1.md
       - R2: Routeur/R2.md 
-      - HSRP: Routeur/hsrp.md
-      - PAT: Routeur/PAT.md
+      - Protocoles:
+          - HSRP: Routeur/hsrp.md
+          - PAT: Routeur/PAT.md
   - Pare-feux:
       - PFW: Pare-feux/stormshield.md
+      - Proxy: Pare-feux/proxy.md
       - VFW: Pare-feux/opnsense.md
       - UFW: Pare-feux/UFW.md
   - HyperViseur:
       - Proxmox & Raid: Hyperviseur/proxmox-raid.md
-      - LACP on Proxmox: Hyperviseur/lacp-proxmox.md
       - Gestion Vlan on VM Proxmox: Hyperviseur/vlan-prox.md
-      - LDAPS on Proxmox: Hyperviseur/ldaps-prox.md
+      - Protocoles: 
+          - LACP on Proxmox: Hyperviseur/lacp-proxmox.md
+          - LDAPS on Proxmox: Hyperviseur/ldaps-prox.md
   - Service Active Directory:
+      - Incident Utilisateurs Active Directory: Service AD/incidents.md
       - Domaine Active Directory: Service AD/ad.md
       - Active Directory BackUP: Service AD/adbackup.md
       - Gestion Utilisateurs AD: Service AD/adusers.md
       - Liaison Proxmox & AD: Service AD/liaison-prox-ad.md
       - Cerficat ADCS & LDAPS: Service AD/adcs.md
-      - Serveur DNS: Service AD/dns.md
-      - Serveur DHCP: Service AD/dhcp.md
-      - Serveur Fichier: Service AD/servfichier.md
+      - Service Active Directory:
+          - Serveur DNS (Actuellement Innactif): Service AD/dns.md
+          - Serveur DHCP: Service AD/dhcp.md
+          - Serveur Fichier: Service AD/servfichier.md
   - DNS:
-      - DNS D'autorité: DNS/DNS autorité.md
+      - DNS Autorité: DNS/DNS autorité.md
       - DNS Resolveur: DNS/DNS Resolveur.md
   - Services: 
-      - Base de Données: Services/bdd.md
-      - Serveur web: Services/Web.md
-      - Certificat SSL/TLS & HTTPS: Services/https.md
-      - WordPress: Services/wordpress.md
-      - Reverse Proxy: Services/reverse-proxy.md
+      - Serveurs : 
+          - Base de Données: Services/bdd.md
+          - Serveur web: Services/Web.md
+      - Sécurité:
+          - Certificat SSL/TLS & HTTPS: Services/https.md
+      - WordPress:
+          - Installation WordPress: Services/wordpress.md
+          - Configuration WordPress: Services/wordpress2.md
+          - Configuration Multi Site WordPress: Services/wordpress3.md
+      - Reverse Proxy: 
+          - Configuration Reverse Proxy: Services/reverse-proxy.md
+          - Reverse Proxy Secondaire: Services/reverse-proxy-secondaire.md
