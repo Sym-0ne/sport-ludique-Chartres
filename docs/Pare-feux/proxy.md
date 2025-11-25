@@ -1,9 +1,6 @@
 # Mise en place et configuration d'un Proxy Filtrant via Stormshield (SN210)
 
-*Prérequis :*
-- Connectez-vous à l’interface Web du SN210 avec un compte administrateur.
-
-# Contexte : c’est quoi un proxy filtrant ?
+## Contexte : c’est quoi un proxy filtrant ?
 
 Un **proxy filtrant** est un composant de sécurité réseau qui se place entre les utilisateurs et Internet.<br>
 Son rôle est de **contrôler**, **analyser** et éventuellement **bloquer** ou **modifier** le trafic web avant qu’il n’atteigne les sites visités.
@@ -30,16 +27,18 @@ Ce proxy fait partie des modules de protection applicative du firewall, et il pe
 
 ## 1. Configurer la politique de filtrage SSL
 
-### 1.1  Allez dans : Configuration → Politique de sécurité → Filtrage SSL.
-### 1.2  Créez une politique SSL.
+### 1.1  
+Allez dans : Configuration → Politique de sécurité → Filtrage SSL.
+### 1.2  
+Créez une politique SSL.
 ### 1.3  Configurez les règles par catégories d’URL ou CN :
     -   Déchiffrer → inspection SSL,
     -   Passer sans déchiffrer,
     -   Bloquer sans déchiffrer.
 ### 1.4  Assurez-vous du bon ordre des règles.
 
-<div class="annotate">
-Note : (1)
+<div class="annotate" markdown>
+Note Importante
 </div>
 URL-CN est sous forme d'objet (catégorie d'url) qui regroupe plusieurs sites, exemple :
 
@@ -55,52 +54,36 @@ URL-CN est sous forme d'objet (catégorie d'url) qui regroupe plusieurs sites, e
 
 Sur chaque machine client, installez la CA interne dans les autorités
 de certification racine de confiance : 
-    - Windows
-    - Linux 
-    - macOS
-    - Navigateurs si nécessaire (Firefox, Edge...)
+- Windows
+- Linux 
+- macOS
+- Navigateurs si nécessaire (Firefox, Edge...)
 
 ## 4. Tester le déchiffrement SSL
 
-### 4.1  Depuis un poste client, accédez à un site HTTPS.
+### 4.1  
+Depuis un poste client, accédez à un site HTTPS.
+
 ### 4.2  Vérifiez que :
     -   Le site se charge.
     -   Le site chargé est bloqué avec une page violette qui est le Proxy avec le message suivant : 
 
-    ```
-    Your administrator reject the connection to this SSL Server 
+    ```Your administrator reject the connection to this SSL Server 
     ```
 
     - Cela signifique que le Proxy est bel et bien fonctionnel !
 
 
-## 5. Accéder à la configuration :
-    Object → Certificat / PKI → Ajouter → Importer un fichier :
+## 5. Accéder aux objects :
+Objets → Certificat / PKI → Ajouter → Importer un fichier :
         - Importer le CA
         - Selectionner le format **PEM**
         - Ne pas mettre de mot de passe
         - Élements à importer : CA
-    Puis valider l'importation !
+Puis valider l'importation !
 
-### 5.1  Allez dans : 
+### 5.1 Accéder à la configuration : 
     - Configuration → Protection applicative → Protocoles.
     - Sélectionnez *SSL*.
     - Cliquez sur *Accéder à la configuration globale*.
     - Autorités de certification personnalisées → Ajouter → Séléctionner le CA
-
-
-4.1 Ajouter des CA personnalisées
-
--   Dans Autorités de certification personnalisées, ajoutez les CA
-    internes / privées à considérer comme fiables.
-
-4.3 Certificats de confiance
-
--   Dans Certificats de confiance, ajoutez les certificats serveurs
-    explicitement approuvés.
-
-5. Appliquer la CA signataire au proxy SSL
-
-1.  Assurez-vous que la CA interne est bien sélectionnée comme CA
-    signataire.
-2.  Cliquez sur Appliquer pour sauvegarder.
