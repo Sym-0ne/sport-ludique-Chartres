@@ -47,13 +47,33 @@ Assurez-vous du bon ordre des règles selon les autorisations et interdictions m
 * URL-CN : **Online** → sites de paris en ligne, réseaux sociaux, plateformes interactives…
 * URL-CN : **News** → journaux en ligne, sites de radiodiffusion, magazines, médias d’actualité…
 
+## 2. Configurer la politique de Filtrage et NAT 
 
-## 2. Exportez la CA publique depuis l’interface Web du SN210.
+### 2.1 Se rendre dans la configuration :
+Configuration → Politique de sécurité → Filtrage & NAT.
+
+### 2.2 Mettre en place le filtrage
+Créez une nouvelle politique de filtrage en cliquant sur ```Nouvelle règle```
+
+### 2.3 Configurez la règle :
+    -   État : Activé
+    -   Action : Déchiffrer
+    -   Sources : Network_Internals
+    -   Destination : In
+    -   Port Destiation : SSL_srv (Objet incluant les protocoles : https, imaps, ftps...)
+    -   Protocole : Laisser cette case vide
+    -   Inspection de Sécurité : Filrte SSL : *Nom de la règle de filtrage SSL créér précédemment*
+
+### 2.4 Odres des réglès
+Assurez-vous que cette règle se trouve en tête de liste.
+
+
+## 3. Exportez la CA publique depuis l’interface Web du SN210.
     Object → Certificat / PKI 
             - Clique droit sur le cerfiticat : SSL Proxy Default Authority
             - Le télécharger 
 
-## 3. Installer la CA sur les postes clients
+## 3.1. Installer la CA sur les postes clients
 
 Sur chaque machine client, installez la CA interne dans les autorités
 de certification racine de confiance :
@@ -74,7 +94,6 @@ b) Le site chargé est bloqué avec une page violette qui est le Proxy avec le m
 ```
 
 Cela signifique que le Proxy est bel et bien fonctionnel !
-
 
 ## 5. Accéder aux objects :
     Objets → Certificat / PKI → Ajouter → Importer un fichier :
