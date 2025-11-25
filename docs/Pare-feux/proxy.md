@@ -40,12 +40,16 @@ Créez une nouvelle politique SSL.
 ### 1.4  Assurez-vous du bon ordre des règles.
 
 <div class="annotate" markdown>
-Note Importante
-</div>
-URL-CN est sous forme d'objet (catégorie d'url) qui regroupe plusieurs sites, exemple :
 
-* URL-CN : **Online** = Sites de paris en ligne, réseaux sociaux...
-* URL-CN : **News** = Journaux en ligne, sites de radiodiffusion, magazines..
+Note importante (1)
+
+</div>
+
+URL-CN est un objet (catégorie d’URL) regroupant plusieurs sites. Par exemple :
+
+* URL-CN : **Online** → sites de paris en ligne, réseaux sociaux, plateformes interactives…
+* URL-CN : **News** → journaux en ligne, sites de radiodiffusion, magazines, médias d’actualité…
+
 
 ## 2. Exportez la CA publique depuis l’interface Web du SN210.
     Object → Certificat / PKI 
@@ -65,22 +69,22 @@ de certification racine de confiance :
 Depuis un poste client, accédez à un site HTTPS.
 
 ### 4.1  Vérifiez que :
-    -   Le site se charge.
-    -   Le site chargé est bloqué avec une page violette qui est le Proxy avec le message suivant : 
+- Le site se charge.
+- Le site chargé est bloqué avec une page violette qui est le Proxy avec le message suivant : 
 
-    ```Your administrator reject the connection to this SSL Server 
-    ```
+```Your administrator reject the connection to this SSL Server 
+```
 
-    - Cela signifique que le Proxy est bel et bien fonctionnel !
+- Cela signifique que le Proxy est bel et bien fonctionnel !
 
 
 ## 5. Accéder aux objects :
-Objets → Certificat / PKI → Ajouter → Importer un fichier :
-    - Importer le CA
-    - Selectionner le format **PEM**
-    - Ne pas mettre de mot de passe
-    - Élements à importer : CA
-Puis valider l'importation !
+    Objets → Certificat / PKI → Ajouter → Importer un fichier :
+        - Importer le CA
+        - Selectionner le format **PEM**
+        - Ne pas mettre de mot de passe
+        - Élements à importer : CA
+    Puis valider l'importation !
 
 ### 5.1 Accéder à la configuration : 
     - Configuration → Protection applicative → Protocoles.
