@@ -62,26 +62,10 @@ Créez une nouvelle politique de filtrage en cliquant sur ```Nouvelle règle```
     -   Destination : In
     -   Port Destiation : SSL_srv (Objet incluant les protocoles : https, imaps, ftps...)
     -   Protocole : Laisser cette case vide
-    -   Inspection de Sécurité : Filrte SSL : *Nom de la règle de filtrage SSL créér précédemment*
+    -   Inspection de Sécurité : Filtrage SSL : *Nom de la règle de filtrage SSL créér précédemment*
 
 ### 2.4 Odres des réglès
 Assurez-vous que cette règle se trouve en tête de liste.
-
-
-## 3. Exportez la CA publique depuis l’interface Web du SN210.
-    Object → Certificat / PKI 
-            - Clique droit sur le cerfiticat : SSL Proxy Default Authority
-            - Le télécharger 
-
-## 3.1. Installer la CA sur les postes clients
-
-Sur chaque machine client, installez la CA interne dans les autorités
-de certification racine de confiance :
-
-* Windows
-* Linux
-* macOS
-* Navigateurs si nécessaire (Firefox, Edge...)
 
 ## 4. Tester le déchiffrement SSL
 Depuis un poste client, accédez à un site HTTPS.
@@ -97,7 +81,7 @@ Cela signifique que le Proxy est bel et bien fonctionnel !
 
 ## 5. Accéder aux objects :
     Objets → Certificat / PKI → Ajouter → Importer un fichier :
-        - Importer le CA
+        - Importer le CA (de tout les sites sportludique.fr)
         - Selectionner le format **PEM**
         - Ne pas mettre de mot de passe
         - Élements à importer : CA
