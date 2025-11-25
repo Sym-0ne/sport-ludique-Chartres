@@ -1,7 +1,7 @@
 # Configuration LDAPS Stormshield SN210
 
 
-## 1. CONFIGURATION DES ANNUAIRES DISTANTS
+## 1. Configuration des Annuaires Distants
 
 Chemin interface web : Configuration > Utilisateurs > Configuration Annuaires > Ajouter un annuaire
 
@@ -21,8 +21,8 @@ Connexion Sécurisée (SSL) :
 
 | Paramètre                                                      | Valeur / Description        |
 | -------------------------------------------------------------- | --------------------------- |
-| **Activer l'accès en SSL**                                     | Oui *Cocher la case*        |
-| **Vérifier le certificat selon une Autorité de certification** | Non *Ne pas cocher la case* |
+| **Activer l'accès en SSL**                                     | *Cocher la case*            |
+| **Vérifier le certificat selon une Autorité de certification** | *Ne pas cocher la case*     |
 
 Configuration Avancée :
 
@@ -30,13 +30,13 @@ Configuration Avancée :
 | -------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | **Serveur de secours**                                               | *Créer l'objet ActiveDirectorySecondaire* avec l'adresse IP 10.10.120.3 |
 | **Port serveur de secours**                                          | LDAPS (636)                                                             |
-| **Utiliser le compte du firewall pour vérifier l’authentification**  | Non *Ne pas cocher la case*                                             |
-| **Ne pas compléter l'identifiant (ID) par le Domain Name (Base DN)** | Non *Ne pas cocher la case*                                             |
+| **Utiliser le compte du firewall pour vérifier l’authentification**  | *Ne pas cocher la case*                                                 |
+| **Ne pas compléter l'identifiant (ID) par le Domain Name (Base DN)** | *Ne pas cocher la case*                                                 |
 
 
 ---
 
-## 2. AJOUT DES UTILISATEURS ADMINISTRATEURS TECHNICIENS DSI
+## 2. Ajout des utilisateurs Administrateurs Techniciens DSI
 
 Chemin interface web : Configuration > Système > Administrateurs > Ajouter un administrateur
 
@@ -47,16 +47,12 @@ Chemin interface web : Configuration > Système > Administrateurs > Ajouter un a
 
 ---
 
-## 3. PROBLÈMES RENCONTRÉS LORS DE LA CONFIGURATION
+## 3. Problèmes rencontrés lors de la confgiruation
 
 - Stormshield garde en mémoire le premier ajout d'annuaire, même si celui-ci n'était plus visible dans l'interface web.
 - Dans les fichiers de configuration LDAP, l'annuaire externe peut rester présent, ce qui empêche de réinitialiser la configuration correctement.
 
----
-
-:eight_pointed_black_star: **PROBLÈME RENCONTRÉ**
-
-## RÉINITIALISER LES COMPTEURS LDAP (CLI)
+### 3.1 Réinitialiser les compteurs LDAP (CLI)
 
 Chemin interface web : Configuration > Système > Console CLI
 
