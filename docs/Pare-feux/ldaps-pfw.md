@@ -7,24 +7,32 @@ Chemin interface web : Configuration > Utilisateurs > Configuration Annuaires > 
 
 Annuaire Distant :
 
-- Nom de domaine : cha.chartres.sportludique.fr
-- Serveur : *Créer l'objet ActiveDirectory* avec l'adresse IP 10.10.120.2
-- Port : LDAPS (636)
-- Domaine Racine (Base DN) : DC=cha,DC=chartres,DC=sportludique,DC=fr
-- Identifiant : CN=admin.ldap,OU=UserServices
-- Mot de Passe : *Mot de passe de l'utilisateur de liaison : admin.ldap*
+| Paramètre                    | Valeur / Description                                          |
+| ---------------------------- | ------------------------------------------------------------- |
+| **Nom de domaine**           | cha.chartres.sportludique.fr                                  |
+| **Serveur**                  | *Créer l'objet ActiveDirectory* avec l'adresse IP 10.10.120.2 |
+| **Port**                     | LDAPS (636)                                                   |
+| **Domaine Racine (Base DN)** | DC=cha,DC=chartres,DC=sportludique,DC=fr                      |
+| **Identifiant**              | CN=admin.ldap,OU=UserServices                                 |
+| **Mot de Passe**             | *Mot de passe de l'utilisateur de liaison : admin.ldap*       |
+
 
 Connexion Sécurisée (SSL) :
 
-- Activer l'accès en SSL : Oui *Cocher la case*
-- Vérifier le certificat selon une Autorité de certification : Non *Ne pas cocher la case*
+| Paramètre                                                      | Valeur / Description        |
+| -------------------------------------------------------------- | --------------------------- |
+| **Activer l'accès en SSL**                                     | Oui *Cocher la case*        |
+| **Vérifier le certificat selon une Autorité de certification** | Non *Ne pas cocher la case* |
 
 Configuration Avancée :
 
-- Serveur de secours : *Créer l'objet ActiveDirectorySecondaire* avec l'adresse IP 10.10.120.3
-- Port : LDAPS (636)
-- Utiliser le compte du firewall pour vérifier l'authentification des utilisateurs sur l'annuaire : Non *Ne pas cocher la case*
-- Ne pas compléter l'identifiant (ID) par le Domain Name (Base DN) : Non *Ne pas cocher la case*
+| Paramètre                                                            | Valeur / Description                                                    |
+| -------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| **Serveur de secours**                                               | *Créer l'objet ActiveDirectorySecondaire* avec l'adresse IP 10.10.120.3 |
+| **Port serveur de secours**                                          | LDAPS (636)                                                             |
+| **Utiliser le compte du firewall pour vérifier l’authentification**  | Non *Ne pas cocher la case*                                             |
+| **Ne pas compléter l'identifiant (ID) par le Domain Name (Base DN)** | Non *Ne pas cocher la case*                                             |
+
 
 ---
 
