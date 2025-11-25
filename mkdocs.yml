@@ -53,6 +53,7 @@ nav:
   - Pare-feux:
       - PFW: Pare-feux/stormshield.md
       - Proxy: Pare-feux/proxy.md
+      - LDAPS - Liaison PFW & AD: Pare-feux/ldaps-pfw.md
       - VFW: Pare-feux/opnsense.md
       - UFW: Pare-feux/UFW.md
   - HyperViseur:

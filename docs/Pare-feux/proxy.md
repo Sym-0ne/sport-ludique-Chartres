@@ -1,5 +1,7 @@
 # Mise en place et configuration d'un Proxy Filtrant via Stormshield (SN210)
 
+---
+
 ## Contexte : c’est quoi un proxy filtrant ?
 
 Un **proxy filtrant** est un composant de sécurité réseau qui se place entre les utilisateurs et Internet.<br>
@@ -14,6 +16,8 @@ Il sert notamment à :
 
 En résumé, c’est un intermédiaire sécurisé qui vérifie tout ce qui sort et tout ce qui rentre.
 
+---
+
 ## 🛡️ Stormshield et son proxy filtrant
 
 Les firewalls **Stormshield (SNS)** intègrent un **proxy filtrant natif**, capable de gérer :
@@ -24,6 +28,8 @@ Les firewalls **Stormshield (SNS)** intègrent un **proxy filtrant natif**, capa
 * L’application de règles de sécurité par utilisateur, catégorie ou site.
 
 Ce proxy fait partie des modules de protection applicative du firewall, et il permet d’aller beaucoup plus loin qu’un simple filtrage IP classique.
+
+---
 
 ## 1. Configurer la politique de filtrage SSL
 
@@ -47,6 +53,8 @@ Assurez-vous du bon ordre des règles selon les autorisations et interdictions m
 * URL-CN : **Online** → sites de paris en ligne, réseaux sociaux, plateformes interactives…
 * URL-CN : **News** → journaux en ligne, sites de radiodiffusion, magazines, médias d’actualité…
 
+---
+
 ## 2. Configurer la politique de Filtrage et NAT 
 
 ### 2.1 Se rendre dans la configuration :
@@ -67,6 +75,8 @@ Créez une nouvelle politique de filtrage en cliquant sur ```Nouvelle règle```
 ### 2.4 Odres des réglès
 Assurez-vous que cette règle se trouve en tête de liste.
 
+---
+
 ## 4. Tester le déchiffrement SSL
 Depuis un poste client, accédez à un site HTTPS.
 
@@ -78,6 +88,8 @@ b) Le site chargé est bloqué avec une page violette qui est le Proxy avec le m
 ```
 
 Cela signifique que le Proxy est bel et bien fonctionnel !
+
+---
 
 ## 5. Accéder aux objects :
     Objets → Certificat / PKI → Ajouter → Importer un fichier :
