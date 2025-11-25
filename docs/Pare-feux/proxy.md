@@ -1,81 +1,106 @@
-Comment faire une CA interne sur un SN210 (SNS v4.3.29)
+# Mise en place et configuration d'un Proxy Filtrant via Stormshield (SN210)
 
-Connecte-toi à l’interface Web du SN210 en admin.
+*Prérequis :*
+- Connectez-vous à l’interface Web du SN210 avec un compte administrateur.
 
-Accéder à la configuration SSL / PKI :
+# Contexte : c’est quoi un proxy filtrant ?
 
-Va dans Configuration → Protection applicative → Protocoles.
+Un **proxy filtrant** est un composant de sécurité réseau qui se place entre les utilisateurs et Internet.<br>
+Son rôle est de **contrôler**, **analyser** et éventuellement **bloquer** ou **modifier** le trafic web avant qu’il n’atteigne les sites visités.
 
-Sélectionne le protocole SSL, puis clique sur Configuration globale (ou “Go to global configuration”) pour accéder à la partie proxy SSL. 
-Stormshield Documentation
-+1
+Il sert notamment à :
 
-Définir l’autorité de signature (signing CA) pour le proxy SSL :
+* Bloquer les sites dangereux ou non conformes aux règles de l’entreprise,
+* Analyser le trafic HTTPS (inspection SSL),
+* Protéger les utilisateurs contre les malwares,
+* Appliquer des politiques d’accès (catégories, filtrage, blocage…).
 
-Dans l’onglet Proxy, tu vas voir une section “Génération des certificats pour émuler le serveur SSL” (Generate certificates to emulate the SSL‑server). 
-Stormshield Documentation
+En résumé, c’est un intermédiaire sécurisé qui vérifie tout ce qui sort et tout ce qui rentre.
 
-Là, tu peux choisir une CA signataire, définir un mot de passe, et paramétrer la durée de vie des certificats émis par cette CA. 
-Stormshield Documentation
-+1
+## 🛡️ Stormshield et son proxy filtrant
 
-Si tu ne définis pas de CA personnalisée, Stormshield utilise sa “default authority” par défaut.
+Les firewalls **Stormshield (SNS)** intègrent un **proxy filtrant natif, capable de gérer :
 
-Gérer les autorités de confiance :
+* Le filtrage URL,
+* L’analyse HTTPS (déchiffrement SSL),
+* Les contrôles de certificats,
+* L’application de règles de sécurité par utilisateur, catégorie ou site.
 
-Toujours dans la configuration SSL, va dans l’onglet Autorités de certification personnalisées (Customized certificate authorities) : tu peux y ajouter des CA privées que tu souhaites que le SN210 “croie”. 
-Stormshield Documentation
+Ce proxy fait partie des modules de protection applicative du firewall, et il permet d’aller beaucoup plus loin qu’un simple filtrage IP classique.
 
-Ensuite, dans l’onglet Autorités de certification publiques, tu peux activer / désactiver les CA publiques que tu veux juger “de confiance” pour le proxy SSL. 
-Stormshield Documentation
+## 1. Configurer la politique de filtrage SSL
 
-Et dans l’onglet Certificats de confiance (Trusted certificates), ajoute les certificats (serveurs) que tu veux explicitement faire confiance. 
-Stormshield Documentation
+### 1.1  Allez dans : Configuration → Politique de sécurité → Filtrage SSL.
+### 1.2  Créez une politique SSL.
+### 1.3  Configurez les règles par catégories d’URL ou CN :
+    -   Déchiffrer → inspection SSL,
+    -   Passer sans déchiffrer,
+    -   Bloquer sans déchiffrer.
+### 1.4  Assurez-vous du bon ordre des règles.
 
-Appliquer la CA signataire au filtrage SSL :
+<div class="annotate">
+Note : (1)
+</div>
+URL-CN est sous forme d'objet (catégorie d'url) qui regroupe plusieurs sites, exemple :
 
-Une fois ta CA interne / “signing authority” configurée, il faut que le filtrage SSL l’utilise. Assure-toi qu’elle est bien sélectionnée dans la configuration SSL du proxy.
+* URL-CN : **Online** = Sites de paris en ligne, réseaux sociaux...
+* URL-CN : **News** = Journaux en ligne, sites de radiodiffusion, magazines..
 
-Clique sur Appliquer (“Apply”) pour enregistrer la config. 
-Stormshield Documentation
+## 2.  Exportez la CA publique depuis l’interface Web du SN210.
+    Object → Certificat / PKI 
+            - CLique droit sur le cerfiticat : SSL Proxy Default Authority
+            - Le télécharger 
 
-Configurer la politique de filtrage SSL :
+## 3. Installer la CA sur les postes clients
 
-Va dans Configuration → Politique de sécurité → Filtrage SSL. 
-Stormshield Documentation
+Sur chaque machine client, installez la CA interne dans les autorités
+de certification racine de confiance : 
+    - Windows
+    - Linux 
+    - macOS
+    - Navigateurs si nécessaire (Firefox, Edge...)
 
-Crée ou modifie une politique SSL : tu vas définir des règles selon des catégories d’URL / de certificats (CN). 
-Stormshield Documentation
+## 4. Tester le déchiffrement SSL
 
-Action “Déchiffrer” pour les catégories où tu veux intercepter / inspecter. 
-Stormshield Documentation
+### 4.1  Depuis un poste client, accédez à un site HTTPS.
+### 4.2  Vérifiez que :
+    -   Le site se charge.
+    -   Le site chargé est bloqué avec une page violette qui est le Proxy avec le message suivant : 
 
-Action “Passer sans déchiffrer” ou “Bloquer sans déchiffrer” selon les cas (ex : certains sites sensibles à laisser passer sans décryptage) 
-Stormshield Documentation
+    ```
+    Your administrator reject the connection to this SSL Server 
+    ```
 
-Assure-toi de mettre les règles dans le bon ordre, car le SN210 les évalue séquentiellement. 
-Stormshield Documentation
+    - Cela signifique que le Proxy est bel et bien fonctionnel !
 
-Exporter la CA publique :
 
-Une fois la CA signataire configurée, exporte son certificat racine depuis le SN210 (certificat public de la CA) pour l’installer sur les postes clients.
+## 5. Accéder à la configuration :
+    Object → Certificat / PKI → Ajouter → Importer un fichier :
+        - Importer le CA
+        - Selectionner le format **PEM**
+        - Ne pas mettre de mot de passe
+        - Élements à importer : CA
+    Puis valider l'importation !
 
-L’interface Web devrait avoir une option “Exporter certificat CA” (ou équivalent) dans la page des certificats / PKI.
+### 5.1  Allez dans : 
+    - Configuration → Protection applicative → Protocoles.
+    - Sélectionnez *SSL*.
+    - Cliquez sur *Accéder à la configuration globale*.
+    - Autorités de certification personnalisées → Ajouter → Séléctionner le CA
 
-Installer la CA sur les postes clients :
 
-Sur chaque machine (Windows, Linux, mac, etc.), installe le certificat racine exporté comme autorité de certification racine de confiance.
+4.1 Ajouter des CA personnalisées
 
-Cela permet aux navigateurs / aux systèmes d’accepter les certificats “faux” / “interceptés” générés par le proxy SSL du SN210.
+-   Dans Autorités de certification personnalisées, ajoutez les CA
+    internes / privées à considérer comme fiables.
 
-Tester le déchiffrement SSL :
+4.3 Certificats de confiance
 
-Depuis un poste client, accède à des sites HTTPS.
+-   Dans Certificats de confiance, ajoutez les certificats serveurs
+    explicitement approuvés.
 
-Vérifie :
+5. Appliquer la CA signataire au proxy SSL
 
-Si le site charge correctement.
-
-Dans le navigateur, regarde le certificat : il doit être signé par ta CA interne (ex : SN210-CA).
-
-Sur le SN210, consulte les logs de filtrage SSL pour voir les connexions inspectées.
+1.  Assurez-vous que la CA interne est bien sélectionnée comme CA
+    signataire.
+2.  Cliquez sur Appliquer pour sauvegarder.

@@ -73,7 +73,7 @@ nav:
           - Serveur DHCP: Service AD/dhcp.md
           - Serveur Fichier: Service AD/servfichier.md
   - DNS:
-      - DNS Autorité: DNS/DNS autorité.md
+      - DNS Autorité: DNS/DNS-autorité.md
       - DNS Resolveur: DNS/DNS Resolveur.md
   - Services: 
       - Serveurs : 
