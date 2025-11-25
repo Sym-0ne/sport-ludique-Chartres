@@ -31,7 +31,7 @@ Ce proxy fait partie des modules de protection applicative du firewall, et il pe
 Configuration → Politique de sécurité → Filtrage SSL.
 
 ### 1.2 Mettre en place le filtrage SSL
-Créez une nouvelle politique SSL.
+Créez une nouvelle politique SSL en cliquant sur ```Ajouter```
 
 ### 1.3 Configurez la règle :
     -   Déchiffrer → inspection SSL,
@@ -56,17 +56,17 @@ URL-CN est un objet (catégorie d’URL) regroupant plusieurs sites. Par exemple
 ## 3. Installer la CA sur les postes clients
 
 Sur chaque machine client, installez la CA interne dans les autorités
-de certification racine de confiance : 
-    - Windows
-    - Linux 
-    - macOS
+de certification racine de confiance :<br> 
+    - Windows<br>
+    - Linux<br>
+    - macOS<br>
     - Navigateurs si nécessaire (Firefox, Edge...)
 
 ## 4. Tester le déchiffrement SSL
 Depuis un poste client, accédez à un site HTTPS.
 
 ### 4.1  Vérifiez que :
-a) Le site se charge.
+a) Le site se charge.<br>
 b) Le site chargé est bloqué avec une page violette qui est le Proxy avec le message suivant : 
 
 ```Your administrator reject the connection to this SSL Server 
