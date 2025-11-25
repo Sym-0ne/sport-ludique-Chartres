@@ -16,7 +16,7 @@ En résumé, c’est un intermédiaire sécurisé qui vérifie tout ce qui sort 
 
 ## 🛡️ Stormshield et son proxy filtrant
 
-Les firewalls **Stormshield (SNS)** intègrent un **proxy filtrant natif, capable de gérer :
+Les firewalls **Stormshield (SNS)** intègrent un **proxy filtrant natif**, capable de gérer :
 
 * Le filtrage URL,
 * L’analyse HTTPS (déchiffrement SSL),
@@ -33,17 +33,14 @@ Configuration → Politique de sécurité → Filtrage SSL.
 ### 1.2 Mettre en place le filtrage SSL
 Créez une nouvelle politique SSL.
 
-### 1.3  Configurez la règle :
+### 1.3 Configurez la règle :
     -   Déchiffrer → inspection SSL,
     -   Passer sans déchiffrer,
     -   Bloquer sans déchiffrer.
-### 1.4  Assurez-vous du bon ordre des règles.
+### 1.4 Odres des réglès
+Assurez-vous du bon ordre des règles selon les autorisations et interdictions mises en place.
 
-<div class="annotate" markdown>
-
-Note importante (1)
-
-</div>
+### 1.5 Catégories d'objets :
 
 URL-CN est un objet (catégorie d’URL) regroupant plusieurs sites. Par exemple :
 
@@ -60,22 +57,22 @@ URL-CN est un objet (catégorie d’URL) regroupant plusieurs sites. Par exemple
 
 Sur chaque machine client, installez la CA interne dans les autorités
 de certification racine de confiance : 
-- Windows
-- Linux 
-- macOS
-- Navigateurs si nécessaire (Firefox, Edge...)
+    - Windows
+    - Linux 
+    - macOS
+    - Navigateurs si nécessaire (Firefox, Edge...)
 
 ## 4. Tester le déchiffrement SSL
 Depuis un poste client, accédez à un site HTTPS.
 
 ### 4.1  Vérifiez que :
-- Le site se charge.
-- Le site chargé est bloqué avec une page violette qui est le Proxy avec le message suivant : 
+a) Le site se charge.
+b) Le site chargé est bloqué avec une page violette qui est le Proxy avec le message suivant : 
 
 ```Your administrator reject the connection to this SSL Server 
 ```
 
-- Cela signifique que le Proxy est bel et bien fonctionnel !
+Cela signifique que le Proxy est bel et bien fonctionnel !
 
 
 ## 5. Accéder aux objects :
