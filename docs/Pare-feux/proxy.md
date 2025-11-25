@@ -27,11 +27,13 @@ Ce proxy fait partie des modules de protection applicative du firewall, et il pe
 
 ## 1. Configurer la politique de filtrage SSL
 
-### 1.1  
-Allez dans : Configuration → Politique de sécurité → Filtrage SSL.
-### 1.2  
-Créez une politique SSL.
-### 1.3  Configurez les règles par catégories d’URL ou CN :
+### 1.1 Se rendre dans la configuration :
+Configuration → Politique de sécurité → Filtrage SSL.
+
+### 1.2 Mettre en place le filtrage SSL
+Créez une nouvelle politique SSL.
+
+### 1.3  Configurez la règle :
     -   Déchiffrer → inspection SSL,
     -   Passer sans déchiffrer,
     -   Bloquer sans déchiffrer.
@@ -45,7 +47,7 @@ URL-CN est sous forme d'objet (catégorie d'url) qui regroupe plusieurs sites, e
 * URL-CN : **Online** = Sites de paris en ligne, réseaux sociaux...
 * URL-CN : **News** = Journaux en ligne, sites de radiodiffusion, magazines..
 
-## 2.  Exportez la CA publique depuis l’interface Web du SN210.
+## 2. Exportez la CA publique depuis l’interface Web du SN210.
     Object → Certificat / PKI 
             - CLique droit sur le cerfiticat : SSL Proxy Default Authority
             - Le télécharger 
@@ -60,11 +62,9 @@ de certification racine de confiance :
 - Navigateurs si nécessaire (Firefox, Edge...)
 
 ## 4. Tester le déchiffrement SSL
-
-### 4.1  
 Depuis un poste client, accédez à un site HTTPS.
 
-### 4.2  Vérifiez que :
+### 4.1  Vérifiez que :
     -   Le site se charge.
     -   Le site chargé est bloqué avec une page violette qui est le Proxy avec le message suivant : 
 
@@ -76,10 +76,10 @@ Depuis un poste client, accédez à un site HTTPS.
 
 ## 5. Accéder aux objects :
 Objets → Certificat / PKI → Ajouter → Importer un fichier :
-        - Importer le CA
-        - Selectionner le format **PEM**
-        - Ne pas mettre de mot de passe
-        - Élements à importer : CA
+    - Importer le CA
+    - Selectionner le format **PEM**
+    - Ne pas mettre de mot de passe
+    - Élements à importer : CA
 Puis valider l'importation !
 
 ### 5.1 Accéder à la configuration : 
