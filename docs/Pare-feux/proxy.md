@@ -42,7 +42,7 @@ Assurez-vous du bon ordre des règles selon les autorisations et interdictions m
 
 ### 1.5 Catégories d'objets :
 
-URL-CN est un objet (catégorie d’URL) regroupant plusieurs sites. Par exemple :
+```URL-CN``` est un objet (catégorie d’URL) regroupant plusieurs sites. Par exemple :
 
 * URL-CN : **Online** → sites de paris en ligne, réseaux sociaux, plateformes interactives…
 * URL-CN : **News** → journaux en ligne, sites de radiodiffusion, magazines, médias d’actualité…
@@ -50,17 +50,17 @@ URL-CN est un objet (catégorie d’URL) regroupant plusieurs sites. Par exemple
 
 ## 2. Exportez la CA publique depuis l’interface Web du SN210.
     Object → Certificat / PKI 
-            - CLique droit sur le cerfiticat : SSL Proxy Default Authority
+            - Clique droit sur le cerfiticat : SSL Proxy Default Authority
             - Le télécharger 
 
 ## 3. Installer la CA sur les postes clients
 
 Sur chaque machine client, installez la CA interne dans les autorités
 de certification racine de confiance :<br> 
-    - Windows<br>
-    - Linux<br>
-    - macOS<br>
-    - Navigateurs si nécessaire (Firefox, Edge...)
+* Windows
+* Linux
+* macOS
+* Navigateurs si nécessaire (Firefox, Edge...)
 
 ## 4. Tester le déchiffrement SSL
 Depuis un poste client, accédez à un site HTTPS.
