@@ -56,7 +56,8 @@ Assurez-vous du bon ordre des règles selon les autorisations et interdictions m
 ## 3. Installer la CA sur les postes clients
 
 Sur chaque machine client, installez la CA interne dans les autorités
-de certification racine de confiance :<br> 
+de certification racine de confiance :
+
 * Windows
 * Linux
 * macOS
