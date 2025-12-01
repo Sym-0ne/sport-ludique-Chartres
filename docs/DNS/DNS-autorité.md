@@ -339,9 +339,9 @@ $TTL 86400
 
 ; Exemple (à compléter si tu veux) :
 ns1    IN A 183.44.28.1
-ns2    IN A 221.97.136.2  
-www    IN A 221.97.136.2
-cimmob IN A 221.97.136.2
+ns2    IN A 221.87.128.2  
+www    IN A 221.87.128.2
+cimmob IN A 221.87.128.2
 ```
 
 Ne pas oublier de mettre à jour le fichier **External** sur les deux DNS, puisqu'ils ne sont plus synchronisés.
