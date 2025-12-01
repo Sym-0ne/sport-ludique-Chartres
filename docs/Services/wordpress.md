@@ -38,7 +38,7 @@ sudo chmod -R 755 /var/www/html/wordpress
 Se connecter à MySQL :
 
 ```bash
-mysql -u wp_user -p -h 192.168.28.10
+mysql -u wp_user -p -h 192.168.28.10 --ssl=0
 ```
 
 Puis créer la BDD et l'utilisateur :
