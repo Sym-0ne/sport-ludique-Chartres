@@ -9,7 +9,7 @@ Il offre une vue globale sur les équipements (postes, serveurs, réseaux, logic
 
 En résumé, GLPI est un outil essentiel pour organiser, superviser et optimiser l’ensemble des activités du service informatique.
 
----d
+---
 
 ## 1. Prérequis
 
@@ -24,8 +24,8 @@ En résumé, GLPI est un outil essentiel pour organiser, superviser et optimiser
 ## 2. Installation des dépendances
 
 Sur VM Linux :
-
-```sudo apt update
+```
+sudo apt update
 sudo apt upgrade
 sudo apt install apache2 mariadb-client php php-cli php-common php-mysql php-xml php-gd php-curl php-intl php-zip php-ldap php-mbstring php-apcu php-bz2 php-imap
 ```
@@ -33,8 +33,8 @@ sudo apt install apache2 mariadb-client php php-cli php-common php-mysql php-xml
 ---
 
 ## 3. Téléchargement de GLPI
-
-```wget https://github.com/glpi-project/glpi/releases/latest/download/glpi.tgz
+```
+wget https://github.com/glpi-project/glpi/releases/latest/download/glpi.tgz
 tar -xzf glpi.tgz
 sudo mv glpi /var/www/html/
 sudo chown -R www-data:www-data /var/www/html/glpi
@@ -44,9 +44,10 @@ sudo chown -R www-data:www-data /var/www/html/glpi
 
 ## 4. Configuration Apache
 
-Créer /etc/apache2/sites-available/glpi.conf :
+Créer ```/etc/apache2/sites-available/glpi.conf``` :
 
-```<VirtualHost *:80>
+```
+<VirtualHost *:80>
     ServerName glpi.local
     DocumentRoot ```/var/www/html/glpi
     <Directory /var/www/html/glpi>
@@ -57,8 +58,8 @@ Créer /etc/apache2/sites-available/glpi.conf :
 ```
 
 Activer :
-
-```sudo a2ensite glpi
+```
+sudo a2ensite glpi
 sudo a2enmod rewrite
 sudo systemctl restart apache2
 ```
@@ -68,8 +69,8 @@ sudo systemctl restart apache2
 ## 5. Configuration base de données (serveur externe)
 
 Connexion au serveur SQL de la BDD :
-
-```CREATE DATABASE glpi CHARACTER SET utf8mb4;
+```
+CREATE DATABASE glpi CHARACTER SET utf8mb4;
 CREATE USER 'glpi_user'@'...' IDENTIFIED BY 'motdepasse';
 GRANT ALL PRIVILEGES ON glpidb.* TO 'glpi_user'@'...';
 FLUSH PRIVILEGES;
