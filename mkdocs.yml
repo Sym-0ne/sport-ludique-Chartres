@@ -81,7 +81,10 @@ nav:
       - Serveurs : 
           - Base de Données: Services/bdd.md
           - Serveur web: Services/Web.md
-          - GLPI: Services/Glpi.md
+          - GLPI: 
+                - Installation GLPI: Glpi.md
+                - Liaison AD & GLPI via LDAP: Glpi-ldap.md
+                - Mise en place inventaire: Glpi-inventaire.md
       - Sécurité:
           - Certificat SSL/TLS & HTTPS: Services/https.md
       - WordPress:
