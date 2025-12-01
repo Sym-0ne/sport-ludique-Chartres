@@ -80,6 +80,7 @@ nav:
       - Serveurs : 
           - Base de Données: Services/bdd.md
           - Serveur web: Services/Web.md
+          - GLPI: Services/Glpi.md
       - Sécurité:
           - Certificat SSL/TLS & HTTPS: Services/https.md
       - WordPress:

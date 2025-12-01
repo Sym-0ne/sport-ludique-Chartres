@@ -2,19 +2,21 @@
 
 Cette documentation sert a détailler l'installation et la configuration de notre serveur DNS d'autorité grâce au service BIND9 basé sur Debian 13.
 
-## 📝 1. Préparation 
+## 1. Préparation 
 
 Avant de commencer il faut se poser les bonnes questions, nous aurons donc besoin : 
 
-1. Serveur d'autorité UNIQUEMENT :arrow_right: aucune récursivité sur celui-ci
+1.1 Serveur d'autorité UNIQUEMENT :arrow_right: aucune récursivité sur celui-ci
 
-2. Deux zones de recherche DNS, une locale et une externe, explication sur le [mkdoc de Mr Merry](https://lmeryfulbert.github.io/SportLudique2025-2026/cours/05-Services/dns/dns/#dns-partage-split-horizon-dns)
+1.2 Deux zones de recherche DNS, une locale et une externe, explication sur le [mkdoc de Mr Merry](https://lmeryfulbert.github.io/SportLudique2025-2026/cours/05-Services/dns/dns/#dns-partage-split-horizon-dns)
 
-3. Un PAT sur le routeur pour les utilisateurs externes
+1.3 Un PAT sur le routeur pour les utilisateurs externes
 
-4. Des routes statiques sur le DNS d'autorité à cause de l'IP Forwarding bloqué par l'IPS du StormShield
+1.4 Des routes statiques sur le DNS d'autorité à cause de l'IP Forwarding bloqué par l'IPS du StormShield
 
-## 📦 2. Installation de BIND9 
+---
+
+## 2. Installation de BIND9 
 
 ```
 sudo apt update 
@@ -29,7 +31,9 @@ sudo apt install bind9 bind9utils bind9-doc dnsutils -y
 
 1. A noter que ``` bind9utils bind9-doc dnsutils ``` ne sont que des outils supplémentaires pour le test du DNS et du BIND9
 
-## ✏️ 3. Création des dossier dédiés
+---
+
+## 3. Création des dossier dédiés
 
 Création de dossiers où l'on va stocker nos fichiers de zones et attribution des droits au service BIND9
 
@@ -37,7 +41,10 @@ Création de dossiers où l'on va stocker nos fichiers de zones et attribution d
 sudo mkdir -p /etc/bind/zones
 sudo chown bind:bind /etc/bind/zones
 ```
-## 🔧 4. Configuration des "views"
+
+---
+
+## 4. Configuration des "views"
 Les "view" sont les différentes zones que notre DNS va utiliser en fonction des adresses que ces mêmes zones desservent. 
 
 ```
@@ -68,7 +75,9 @@ view "external" {
 };
 ```
 
-## ✏️ 5. Création des fichiers de zones
+---
+
+## 5. Création des fichiers de zones
 
 ### Création du fichier "internal"
 Ce fichier servira a traduire les noms de domaines en IP pour toutes les adresses du LAN.
@@ -124,7 +133,9 @@ www.cimmob IN A 183.44.28.1
 </div>
 1. Tout les enregistrements pointent vers l'IP publique de R1 qui feras ensuite le lien avec le LAN grâce au PAT, la haute disponibilité seras implémenter plus tard
 
-## 🔴 6. Désactivation des 13 serveurs racines
+---
+
+## 6. Désactivation des 13 serveurs racines
 
 Les 13 serveurs DNS racines servent à TOUS les serveurs récursifs à se diriger vers les bons serveurs DNS pour accomplir leur résolution, nous allons les désactivées car ils rentrent en conflit avec nos views, de plus il est inutile de les avoirs étant donné que ce serveur ne fait AUCUNE récursion. 
 
@@ -141,7 +152,10 @@ Il suffit ensuite de mettre toutes les lignes en commentaires
 //      file "/usr/share/dns/root.hints";
 //};
 ```
-## ✅ 7. Tests et vérification :
+
+---
+
+## 7. Tests et vérification :
 
 Pour finir il ne nous reste plus qu'à exécuter ces 3 commandes afin de vérifier le bon fonctionnement de notre DNS
 
@@ -161,7 +175,9 @@ sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportl
 
 Ces deux commandes nous retourneront la valeur du numéro de série de la zone si elle est bien configurée
 
-## 🧱 8. Pare-feux local (UFW)
+---
+
+## 8. Pare-feux local (UFW)
 <div class="annotate" markdown>
 
 Nous allons mettre en place un firewall local grâce a UFW (1) afin de bloquer toutes les connexion non necessaire au fonctionnement du DNS pour plus de sécurité.
@@ -206,7 +222,9 @@ Une fois les règles qui laissent passer les trafics voulues il ne nous reste pl
 sudo ufw enable
 ```
 
-## ⚠️ 9. Route statique
+---
+
+## 9. Route statique
 
 ### Pourquoi
 L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme[expliqué ici](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/stormshield/#7-statefull-inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement..
@@ -227,7 +245,9 @@ up ip route add 172.28.35.0/24 via 172.28.62.253 dev ens3
 
 Grâce à ces lignes, notre DNS passera directement par le VFW et non par le PFW (Stormshield).
 
-## 🖧 10. NS1 et NS2 
+---
+
+## 10. NS1 et NS2 
 
 <div class="annotate"markdown>
 Voici la phrase corrigée :
@@ -263,7 +283,7 @@ view "internal" {
     };
 };
 
-// === VUE EXTERNE ===
+// === VUE EXTERNE ===---
 view "external" {
     match-clients { any; };
     recursion no;
@@ -296,10 +316,12 @@ view "external" {
     zone "chartres.sportludique.fr" {
         type master;
         file "/etc/bind/zones/db.chartres.sportludique.fr.external";
-    };
+    };---
 };
 ```
+
 Pour finir, il suffit de modifier le fichier `/etc/bind/zones/db.chartres.sportludique.fr.external` de <ins>**NS2**</ins> pour qu'il pointe vers **R2** et non **R1**. 
+
 ```
 $TTL 86400
 @       IN SOA  ns1.chartres.sportludique.fr. admin.chartres.sportludique.fr. (
@@ -322,3 +344,4 @@ cimmob IN A 221.97.136.2
 
 Ne pas oublier de mettre à jour le fichier **External** sur les deux DNS, puisqu'ils ne sont plus synchronisés.
 
+---

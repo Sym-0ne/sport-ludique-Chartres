@@ -1,6 +1,5 @@
 # Installation d'un serveur GLPI
 
-
 ## Objectif :
 ----------
 
@@ -10,7 +9,7 @@ Il offre une vue globale sur les équipements (postes, serveurs, réseaux, logic
 
 En résumé, GLPI est un outil essentiel pour organiser, superviser et optimiser l’ensemble des activités du service informatique.
 
----
+---d
 
 ## 1. Prérequis
 

@@ -2,7 +2,9 @@
 
 On met en place **Unbound comme résolveur DNS** (non validateur DNSSEC) sur une VM Debian, en l’intégrant à un DNS autoritaire.
 
-## 📦 1. Installation de UNBOUND
+---
+
+## 1. Installation de UNBOUND
 
 ```
 sudo apt update
@@ -17,7 +19,9 @@ Vérifier si c'est bien le cas :
 sudo systemctl status unbound
 ```
 
-## 🔧 2. Configuration du DNS
+---
+
+## 2. Configuration du DNS
 
 Editer le fichier suivant :
 
@@ -111,7 +115,9 @@ nameserver 172.28.33.4
 namserver 172.28.33.5
 ```
 
-## ✅ 3. Vérification
+---
+
+## 3. Vérification
 
 Tester depuis le client avec **"nslookup ns1.chartres.sportludique.fr"**.
 
@@ -134,3 +140,5 @@ stub-zone:
     stub-addr: 172.28.62.1     # ← IP du DNS autoritaire primaire de la DMZ
     stub-addr: 172.28.62.11    # ← IP du DNS autoritaire secondaire de la DMZ
 ```
+
+---
