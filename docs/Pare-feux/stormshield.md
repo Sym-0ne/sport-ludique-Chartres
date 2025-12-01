@@ -1,14 +1,14 @@
 # Configuration du Pare Feu Stormshield
 
-## 🔄 1.Reset du pare feu 
+## 1.Reset du pare feu 
 
  **Sur les boîtiers physiques:** un appui sur le bouton reset (attendre que les led devant clignotent) pour les boîtiers physiques permet de restaurer la configuration d'usine et redémarrer en bridge sur toutes les interfaces.
 
-### Schema physique du pare feu après reset
+### 1.1 Schema physique du pare feu après reset
  
  ![schema](PF/schema-pare-feu-apres-reset.png)
 
-## 🖥️ 2.Connexion après reset 
+## 2.Connexion après reset 
 
  Pour configurer le pare-feu, il faut se brancher sur une interface IN et mettre son poste en DHCP.
 
@@ -18,15 +18,15 @@
 
  ![page d'accueil](PF/page-d'accueil.png)
 
-## 🔧 3.Configuration générale 
+## 3.Configuration générale 
 
-### Modification du mot de passe de l'administrateur
+### 3.1 Modification du mot de passe de l'administrateur
 
  La modification du mot de passe admin se fait dans le menu **Configuration/Système/Administrateurs puis onglet Compte ADMIN**.
 
  ![mdp admin](PF/mdp-admin.png)
 
-### Nom
+### 3.2 Nom
 
  Sélectionner dans le menu à gauche **Configuration / Système puis Configuration Générale**.
 
@@ -36,14 +36,15 @@
 
  Puis cliquer sur **Appliquer**.
 
-### Fuseau horaire
+### 3.3 Fuseau horaire
 
  La zone **Paramètres de date et d'heure** permet de modifier le fuseau horaire. Dans la zone Fuseau horaire, sélectionnez **Europe/Paris**.
 
  ![heure](PF/heure.png)
 
 Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l'équipement à l'heure
-## 🔧 4.Configuration du réseau 
+
+## 4.Configuration du réseau 
 
  Par defaut, toutes les interfaces sont dans le **bridge**.
 
@@ -57,9 +58,9 @@ Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l
 
  ![WAN/DMZ](PF/interfaces.png)
 
-## 🛣️ 5.Routage 
+## 5.Routage 
 
-### Route par défaut 
+### 5.1 Route par défaut 
 
  Cliquer **Configuration / Réseau / Routage / Routes statiques IPv4**.
 
@@ -69,11 +70,11 @@ Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l
 
  ![passerelle](PF/gateway.png)
 
-### Route de retour
+### 5.2 Route de retour
 
  ![route de retour](PF/route-retour.png)
 
-## 🧱 6.Filtrage temporaire. 
+## 6.Filtrage temporaire. 
 
  Allez dans **Configuration / Politique de sécurité / Filtrage et NAT**.
 
@@ -107,3 +108,5 @@ Voici donc le moyen d’assurer une communication correcte entre les équipement
 Si l’on ne passe pas par le **Stormshield**, le paquet est correctement transmis grâce au bon déroulement du **handshake**.
 
 Et pour ne pas passer par le **Stormshield** voici la [solution](https://sym-0ne.github.io/sport-ludique-Chartres/DNS/DNS-autorité/#9-Route-statique).
+
+---

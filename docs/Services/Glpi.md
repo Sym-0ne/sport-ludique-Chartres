@@ -82,9 +82,13 @@ FLUSH PRIVILEGES;
 
 Accéder via navigateur : http://IP_SERVEUR_GLPI/glpi
 
-Puis suivre les étapes : - Sélection langue - Acceptation licence -
-Choix installation - Connexion à la base externe - Création du schéma -
-Finalisation
+Puis suivre les étapes : 
+6.1 - Sélection langue 
+6.2 - Acceptation licence 
+6.3 - Choix installation 
+6.4 - Connexion à la base externe 
+6.5 - Création du schéma 
+6.6 - Finalisation
 
 ---
 

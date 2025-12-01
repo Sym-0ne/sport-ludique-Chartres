@@ -113,13 +113,13 @@ Get-ADOrganizationalUnit -Filter * | Select-Object Name
 Get-ADUser -Filter * | Select-Object Name, SamAccountName, DistinguishedName
 ```
 
-----------------------------------------------------------
+---
 
 ## 5. Attribution des droits Administrateurs aux utilisateurs de la DSI 
 
-### Le groupe “Admins du domaine”
+### 5.1 Le groupe “Admins du domaine”
 
-#### Définition
+#### 5.1.1 Définition
 
 Le groupe **“Admins du domaine”** est un groupe de sécurité intégré créé automatiquement lors de l’installation d’un domaine Active Directory (équivalent anglais : Domain Admins).
 Il est situé dans le conteneur :
@@ -128,7 +128,7 @@ Il est situé dans le conteneur :
 CN=Users,DC=cha,DC=chartres,DC=sportludique,DC=fr
 ```
 
-#### Rôle
+#### 5.1.2 Rôle
 
 Les membres du groupe Admins du domaine disposent de privilèges complets sur :
 
@@ -139,7 +139,7 @@ Les membres du groupe Admins du domaine disposent de privilèges complets sur :
 
 C’est donc le plus haut niveau d’administration au sein d’un domaine AD.
 
-### Attribution des droits aux techniciens DSI
+### 5.2 Attribution des droits aux techniciens DSI
 
 L’attribution s’est faite à l’aide de la commande PowerShell suivante, exécutée depuis une session administrateur sur un contrôleur de domaine :
 
@@ -147,7 +147,7 @@ L’attribution s’est faite à l’aide de la commande PowerShell suivante, ex
 Add-ADGroupMember -Identity "Admins du domaine" -Members "david.dsi","wassim.dsi","simon.dsi"
 ```
 
-### Vérification de l’appartenance au groupe
+### 5.3 Vérification de l’appartenance au groupe
 
 Après l’ajout, la commande suivante a été utilisée pour vérifier que les utilisateurs ont bien été intégrés :
 
@@ -166,9 +166,11 @@ Wassim         wassim.dsi
 Simon          simon.dsi
 ```
 
-----------------------------------------------------------
+---
 
 ## 6. Script création des UO, Utilisateurs et Groupes du Pôle Chartre. 
+
+---
 
 🧾 **Contexte**
 
@@ -186,6 +188,8 @@ L’objectif est d’automatiser la création de :
 - Les groupes de sécurité associés à chaque niveau (service et sous-service),
 - Les utilisateurs, placés dans la bonne OU selon leur service/sous-service.
 
+---
+
 👥 **Groupes de sécurité**
 
 Pour chaque service et sous-service, des groupes AD sont créés afin de faciliter la gestion des droits.<br>
@@ -196,6 +200,7 @@ Les groupes suivent la convention de nommage suivante :
 | **Service global** | `GRP_<Service>` (exemple : `GRP_SAV`)                                |
 | **Sous-service**   | `GRP_<Service>_<SousService>` (exemples : `GRP_SAV_Responsable`, `GRP_Marketing_A`) |
 
+---
 
 👤 **Utilisateurs**
 
@@ -242,7 +247,9 @@ OU=Users
     └── GRP_Juridique
 ```
 
-### Script Powershell afin de mettre en place les consignes ci-dessus.
+---
+
+### 6.1 Script Powershell afin de mettre en place les consignes ci-dessus.
 
 ```
 # === Script création des UO, Utilisateurs et Groupes du Pôle Chartres ===
@@ -322,4 +329,4 @@ foreach($u in $users){
 }
 ```
 
-----------------------------------------------------------
+---

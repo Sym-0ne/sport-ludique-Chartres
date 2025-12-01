@@ -1,13 +1,17 @@
 # Documentation : Configuration LACP et Trunk via l’interface Web Proxmox VE
 
-## 🎯 Objectif 
+---
+
+## Objectif :
+----------
+
 Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN sur Proxmox VE et le switch hyperviseur, afin d’assurer la haute disponibilité et la segmentation réseau via VLANs.
 
 ---
 
-## 🔧 1. Configuration sur Proxmox VE (Interface Web) 
+## 1. Configuration sur Proxmox VE (Interface Web) 
 
-### Création du Bond LACP 
+### 1.1 Création du Bond LACP 
 
 1. Connectez-vous à l’interface web de Proxmox VE.
 2. Allez dans **Datacenter → Node → System → Network**.
@@ -23,7 +27,7 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 
 ---
 
-### Attribution de l’IP au bond via un Linux Bridge 
+### 1.2 Attribution de l’IP au bond via un Linux Bridge 
 
 1. Toujours dans l’onglet **Network**, cliquez sur **Create → Linux Bridge**.
 2. Paramétrez le bridge pour utiliser le bond comme port physique :
@@ -41,7 +45,7 @@ Mettre en place une configuration de liens agrégés (LACP) et de trunks VLAN su
 
 ---
 
-### VLANs sur le bridge 
+### 1.3 VLANs sur le bridge 
 
 Contraites VLANs with Trunk :<br>
 
@@ -52,9 +56,9 @@ Contraites VLANs with Trunk :<br>
 
 ---
 
-## 🔧 2. Configuration sur le Switch Hyperviseur 
+## 2. Configuration sur le Switch Hyperviseur 
 
-### Création du Port-Channel (LACP)
+### 2.1 Création du Port-Channel (LACP)
 
 1. Sélectionnez les ports connectés à l’hyperviseur.
 2. Créez un **Port-Channel** et activez LACP.
@@ -70,7 +74,7 @@ interface range GigabitEthernet1/0/21-23
 * channel-group 2 mode active : active LACP.
 * switchport mode trunk : configure le trunk.
 
-### Configuration des VLANs sur le trunk
+### 2.2 Configuration des VLANs sur le trunk
 
 VLANs autorisés sur le trunk : 221 à 229
 
@@ -81,9 +85,11 @@ interface Port-channel2
     switchport trunk allowed vlan 221-229
 ```
 
-## ✅ 3. Vérifications 
+---
 
-### Sur Proxmox VE 
+## 3. Vérifications 
+
+### 3.1 Sur Proxmox VE 
 
 a) Vérifiez que le bond fonctionne :
 
@@ -96,7 +102,7 @@ b) Test de connectivité :
 * Ping depuis l’hyperviseur vers la passerelle : ping 172.28.33.254
 * Ping vers d’autres VLANs si configurés
 
-### Sur le Switch
+### 3.2 Sur le Switch
 
 ```bash
 show etherchannel summary
@@ -105,3 +111,5 @@ show interfaces trunk
 ```
 
 * Vérifier que le port-channel est actif et les VLANs correctement propagés.
+
+---

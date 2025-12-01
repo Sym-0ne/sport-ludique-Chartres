@@ -8,11 +8,11 @@
 3. Configurer les permissions dans Proxmox.  
 4. Gérer le mode d’authentification LDAP / LDAPS.
 
-----------------------------------------------------------
+---
 
 ## 2. Création des utilisateurs et groupes AD 
 
-### Description
+### 2.1 Description
 
 Le script PowerShell suivant permet de :
 
@@ -22,9 +22,9 @@ Le script PowerShell suivant permet de :
 - Ajouter l’utilisateur au groupe.
 - Vérifier la création et l’appartenance.
 
--------------------------------------------------------------
+---
 
-### Script PowerShell
+### 2.2 Script PowerShell
 
 ```
 Import-Module ActiveDirectory
@@ -123,11 +123,11 @@ Select-Object Name, SamAccountName
 Write-Host "`n✅ Script exécuté avec succès."
 ```
 
-----------------------------------------------------------
+---
 
 ## 2. Intégration du domaine AD dans Proxmox
 
-### Création du Realm (Royaume)
+### 2.2 Création du Realm (Royaume)
 
 Chemin d’accès :
 
@@ -145,7 +145,7 @@ Datacenter → Permissions → Realms → Add → Active Directory
 | **Commentaire**       | Authentification AD          |
 
 
-### Création de l’utilisateur Proxmox dans l’interface
+### 2.3 Création de l’utilisateur Proxmox dans l’interface
 
 Chemin d’accès :
 
@@ -159,7 +159,7 @@ Datacenter → Permissions → Utilisateurs → Add
 | **Royaume**         | Authentification AD |
 Appliquer la GPO puis forcer la mise à jour :
 
-### Attribution des permissiation LDAP / LDAPS.
+### 2.4 Attribution des permissiation LDAP / LDAPS.
 
 Chemin d’accès :
 
@@ -177,7 +177,7 @@ Datacenter → Permissions → Add → Permissions de l'utilisateur
 
 💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges. Nous activerons ici LDAP à des fins de test uniquement, penser à remettre la configuration par défaut que nous allons modifier ci-dessous une fois le test terminé !
 
-----------------------------------------------------------
+---
 
 ## 3. Gestion du protocole LDAP / LDAPS 
 Appliquer la GPO puis forcer la mise à jour :
@@ -231,4 +231,4 @@ Appliquer la GPO puis forcer la mise à jour :
 gpupdate /force
 ```
 
-----------------------------------------------------------
+---

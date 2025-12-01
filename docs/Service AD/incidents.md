@@ -1,17 +1,17 @@
 # Incident Utilisateurs AD : Expiration massive des mots de passe utilisateurs dans Active Directory après coupure de courant
 
-----------------------------------------------------------
+---
 
-## Contexte
+## 1. Contexte
 
 * Environnement : Active Directory avec plusieurs Domain Controllers (DC), un principal et un secondaire (AD CS).
 * Proxmox lié à l'AD pour authentification LDAP.
 * Les utilisateurs du DSI (wassim.dsi, simon.dsi, david.dsi) étaient configurés avec des mots de passe actifs et ne devaient pas expirer.
 * Une coupure de courant a provoqué l'arrêt brutal du DC Secondaire.
 
-----------------------------------------------------------
+---
 
-## Symptômes observés
+## 2. Symptômes observés
 
 * Les utilisateurs ont tous un mot de passe expirés donc la connexion aux sessions est impossible.
 * Logs Proxmox indiquant :
@@ -22,9 +22,9 @@ authentication failure; user=<utilisateur>@ad msg=80090308: LdapErr: DSID-0C0905
 
 * `data 532` signifie : **Password expired**.
 
-----------------------------------------------------------
+---
 
-## Analyse technique
+## 3. Analyse technique
 
 1. Chaque compte utilisateur AD possède les attributs :
 
@@ -50,16 +50,16 @@ ComplexityEnabled : True
 - `pwdLastSet + MaxPasswordAge` > heure système (calcul erroné)
 - ou si le DC considère que le compte n'a jamais eu son mot de passe défini correctement (corruption partielle NTDS)
 
-----------------------------------------------------------
+---
 
-## Conséquences
+## 4. Conséquences
 
 * Tous les utilisateurs apparaissent comme ayant un mot de passe expiré.
 * Proxmox renvoie des erreurs LDAP 532.
 
-----------------------------------------------------------
+---
 
-## Solution appliquée
+## 5. Solution appliquée
 
 1. Réinitialiser les mots de passe expirés pour tous les utilisateurs du domaine (sauf DSI) :
 
@@ -74,7 +74,7 @@ Get-ADUser -Filter * -SearchBase "DC=cha,DC=chartres,DC=sportludique,DC=fr" | Wh
 }
 ```
 
-----------------------------------------------------------
+---
 
 2. Vérifier les utilisateurs avec mots de passe expirés :
 
@@ -82,7 +82,7 @@ Get-ADUser -Filter * -SearchBase "DC=cha,DC=chartres,DC=sportludique,DC=fr" | Wh
 Search-ADAccount -PasswordExpired | Select-Object Name, SamAccountName, DistinguishedName
 ```
 
-----------------------------------------------------------
+---
 
 3. Pour éviter que le problème se reproduise :
 
@@ -93,22 +93,22 @@ Search-ADAccount -PasswordExpired | Select-Object Name, SamAccountName, Distingu
 PS C:\WINDOWS\system32> Get-ADUser -Filter * | Where-Object {$Exclude -notcontains $_.SamAccountName} | Set-ADUser -PasswordNeverExpires $true
 ```
 
-----------------------------------------------------------
+---
 
-## Recommandations
+## 6. Recommandations
 
 * Surveiller la synchronisation horaire des DC (`w32tm /query /status`).
 * Vérifier régulièrement l'état des journaux NTDS après redémarrage brutal.
 * Maintenir des scripts pour réinitialiser les mots de passe expirés rapidement après un incident.
 * Pour les comptes critiques (Proxmox, service admin), utiliser "Password never expires" pour éviter les blocages inattendus.
 
-----------------------------------------------------------
+---
 
-## Références Microsoft
+## 7. Références Microsoft
 
 * [Search-ADAccount](https://learn.microsoft.com/en-us/powershell/module/activedirectory/search-adaccount)
 * [Get-ADUser](https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-aduser)
 * [GPO Password Policy](https://learn.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-policy)
 * [Troubleshoot password expiration](https://learn.microsoft.com/en-us/troubleshoot/windows-server/identity/password-expiration-issues)
 
-----------------------------------------------------------
+---

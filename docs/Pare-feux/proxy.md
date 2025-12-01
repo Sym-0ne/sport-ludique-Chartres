@@ -104,3 +104,5 @@ Cela signifique que le Proxy est bel et bien fonctionnel !
     - Sélectionnez *SSL*.
     - Cliquez sur *Accéder à la configuration globale*.
     - Autorités de certification personnalisées → Ajouter → Séléctionner le CA
+
+---

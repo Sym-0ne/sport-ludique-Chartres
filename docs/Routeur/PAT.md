@@ -12,7 +12,7 @@ Dans notre cas, nous avons besoin du PAT pour la redirection vers le reverse-pro
 
 ---
 
-### Configuration R1 
+### 1.1 Configuration R1 
 
 ```
 ip nat inside source static tcp 172.28.62.1 53 183.44.28.1 53
@@ -23,7 +23,7 @@ ip nat inside source static tcp 172.28.62.5 443 183.44.28.1 443
 
 ---
 
-### Configuration R2
+### 1.2 Configuration R2
 
 ```
 ip nat inside source static tcp 172.28.62.11 53 221.87.128.2 53

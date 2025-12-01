@@ -6,16 +6,15 @@ Un serveur de fichiers permet de centraliser, partager et sécuriser l’accès 
 
 Dans cet article, nous allons voir comment installer et configurer un serveur de fichiers sur Windows Server, avec une explication des différentes options disponibles pour adapter la configuration à vos besoins.
 
-----------------------------------------------------------
+---
 
 ## 2. Prérequis
 
 Un Windows Server installé (et de préférence rejoint à un domaine). Un disque ou volume disponible pour le stockage des données. Une connexion à l’interface d’administration(Gestionnaire de serveur).
 
-1. Installer le rôle « Serveur de fichiers »
-
-Ouvrir le Gestionnaire de serveur.
-Cliquer sur Gérer, puis sur Ajouter des rôles et fonctionnalités :
+A) Installer le rôle « Serveur de fichiers »
+B) Ouvrir le Gestionnaire de serveur.
+C) Cliquer sur Gérer, puis sur Ajouter des rôles et fonctionnalités :
 
 ![alt text](srvdefichier/image.png)
 
@@ -67,4 +66,4 @@ Configurer les autorisations d’accès selon les besoins (voir section suivante
 
 ![alt text](srvdefichier/image-11.png)
 
-----------------------------------------------------------
+---

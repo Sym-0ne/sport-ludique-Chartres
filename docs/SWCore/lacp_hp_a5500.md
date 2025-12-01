@@ -1,6 +1,6 @@
 # Mise en place de LACP sur HP A5500
 
-##  1. Introduction
+## 1. Introduction
 
 **LACP (Link Aggregation Control Protocol)** est défini dans la norme IEEE 802.3ad.  
 Il permet de regrouper plusieurs interfaces physiques en une seule interface logique (**Eth-Trunk**) afin de :  
@@ -14,7 +14,7 @@ Dans une stack de switchs HP A5500, l’utilisation de **LACP** est recommandée
 
 ---
 
-##  2. Prérequis
+## 2. Prérequis
 - Deux équipements **compatibles LACP** (ex. switchs HP, serveur avec carte réseau supportant IEEE 802.3ad).  
 - Même configuration de vitesse et duplex sur les interfaces physiques.  
 - VLAN et trunk configurés de manière cohérente de part et d’autre du lien.  
@@ -22,9 +22,9 @@ Dans une stack de switchs HP A5500, l’utilisation de **LACP** est recommandée
 
 ---
 
-##  3. Étapes de configuration
+## 3. Étapes de configuration
 
-### Création du port logique 
+### 3.1 Création du port logique 
 Depuis le mode configuration système :
 ```bash
 [SW-A5500] system-view
@@ -35,7 +35,7 @@ Depuis le mode configuration système :
 
 ---
 
-### Ajout des interfaces physiques dans le port link-aggregation
+### 3.2 Ajout des interfaces physiques dans le port link-aggregation
 Exemple avec **GigabitEthernet1/0/32** et **GigabitEthernet2/0/32** :
 ```
 [SW-A5500] int gig 1/0/32
@@ -52,7 +52,7 @@ Exemple avec **GigabitEthernet1/0/32** et **GigabitEthernet2/0/32** :
 
 ---
 
-### Configuration du type de lien (trunk/access)
+### 3.3 Configuration du type de lien (trunk/access)
 Si le lien doit transporter plusieurs VLANs (trunk) :
 ```
 [SW-A5500] int bridge-aggregation 1
@@ -77,7 +77,7 @@ Si le lien est pour un seul VLAN (access) :
 
 ---
 
-### Vérification de l’état LACP
+### 3.4 Vérification de l’état LACP
 Commande de diagnostic :
 ```bash
 [HP] display link-aggregation verbose

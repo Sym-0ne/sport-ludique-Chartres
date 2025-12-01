@@ -18,7 +18,7 @@
 
 ---
 
-### Installer le rôle « AD CS »
+### 2.1 Installer le rôle « AD CS »
 
 Allez dans "**Ajouter des rôles et des fonctionnalités**".
 
@@ -28,7 +28,7 @@ Puis installer le service ci-dessous :
 
 Finir l'intallation.
 
-### Télécharger les certificats sur la machine physique
+### 2.2 Télécharger les certificats sur la machine physique
 
 Allez dans le service et ouvrir **L'autorité de certification** :
 
@@ -44,7 +44,7 @@ Ensuite faite **Afficher le certificat** et allez dans **Détails** :
 
 Enfin cliquer sur **Copier dans un fichier** et suivre l'assistant d'exportation pour télécharger le fichier sur votre machine physique.
 
-### Certificat sur Proxmox
+### 2.3 Certificat sur Proxmox
 
 Afin de mettre en place le certificat sur Proxmox, allez voir la documentation suivante : [LDAPS sur Proxmox](https://sym-0ne.github.io/sport-ludique-Chartres/Hyperviseur/ldaps-prox/)
 

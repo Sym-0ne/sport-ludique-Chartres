@@ -18,7 +18,7 @@ interface GigabitEthernet0/0
  standby 1 preempt
 ```
 
-### Dans cette configuration
+### 1.1 Dans cette configuration
 
 L'interface GigabitEthernet0/0 de R1 est configurée avec l'adresse IP 172.28.63.2.<br>
 
@@ -37,7 +37,7 @@ interface GigabitEthernet0/0
  standby 1 preempt
 ```
 
-#### Dans cette configuration
+### 2.2 Dans cette configuration
 
 L'interface GigabitEthernet0/0 de R2 est configurée avec l'adresse IP 172.28.63.3.<br>
 

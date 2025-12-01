@@ -26,9 +26,9 @@ Utiliser Putty sur le laptop et la connexion fonctionne directement.
 
 ---
 
-## Réinitialisation de la configuration (Factory Reset)
+## 1. Réinitialisation de la configuration (Factory Reset)
 
-1. Une fois démarré, supprimer la configuration existante :
+### 1.1 Une fois démarré, supprimer la configuration existante :
 ```
 <HP> reset saved-configuration
 ```
@@ -38,34 +38,34 @@ Si cette commande ne supprime pas correctement la conf, il faut les supprimés m
 <HP> delete "nom du fichier de conf à supprimer" 
 ```
 
-2. Enregistrer : 
+### 1.2 Enregistrer : 
 ```
 <HP> save force 
 ```
 
-3. Redémarrer :
+### 1.3 Redémarrer :
 ```
 <HP> reboot
 ```
 
 👉 Le switch redémarre avec la configuration d’usine.
 
-## Configuration d’un stack IRF (Intelligent Resilient Framework)
+## 2. Configuration d’un stack IRF (Intelligent Resilient Framework)
+*Vérifier que les deux switchs ont la même version logicielle.
 
-1. Vérifier que les deux switchs ont la même version logicielle.
-2. Configurer l’ID IRF sur chaque switch :
+### 2.1 Configurer l’ID IRF sur chaque switch :
 ```
 <HP> system-view
 [HP] irf member 1 renumber 1   ← premier switch
 [HP] irf member 1 renumber 2   ← deuxième switch
 ```
 
-3. Sauvegarder et redémarrer :
+### 2.2 Sauvegarder et redémarrer :
 ```
 [HP] save
 ```
 
-4. Configurer les ports IRF :<br>
+### 2.3 Configurer les ports IRF :<br>
 
 **Rack4sw1 (Switch Master) IRF port configuration**<br>
 ```
@@ -106,7 +106,7 @@ Si cette commande ne supprime pas correctement la conf, il faut les supprimés m
 [Rack6sw2]save force 
 ```
 
-5. Activer la configuration IRF et redémarrer :
+### 2.4 Activer la configuration IRF et redémarrer :
 ```
 [HP] irf-port-configuration active
 [HP] save
@@ -126,22 +126,22 @@ Switch  Role   Priority  CPU-Mac         Description<br>
 
 ----------------------------------------------------------
 
-## Étape 4 : Création d’un VLAN de management (VLAN 120)
+## 3. Création d’un VLAN de management (VLAN 120)
 
-1. Créer le VLAN 120 :<br>
+### 3.1 Créer le VLAN 120 :<br>
 ```
 [HP] vlan 120
 [HP-vlan120] quit
 ```
 
-2. Créer l’interface VLAN et attribuer une adresse IP libre :<br>
+### 3.2 Créer l’interface VLAN et attribuer une adresse IP libre :<br>
 ```
 [HP] interface Vlan-interface 120
 [HP-Vlan-interface120] ip address "ip" "masque sous réseau"
 [HP-Vlan-interface120] quit
 ```
 
-3. Associer un port physique au VLAN 120 :<br>
+### 3.3 Associer un port physique au VLAN 120 :<br>
 ```
 [HP] interface GigabitEthernet1/0/1
 [HP-GigabitEthernet1/0/1] port link-type access
@@ -152,19 +152,19 @@ Switch  Role   Priority  CPU-Mac         Description<br>
 
 ----------------------------------------------------------
 
-## Étape 5 : Activer et sécuriser l’accès SSH
+## 4. Activer et sécuriser l’accès SSH
 
-1. Générer les clés RSA pour SSH :
+### 4.1 Générer les clés RSA pour SSH :
 ```
 [HP] public-key local create rsa
 ```
 
-2. Activer le service SSH (stelnet) :
+### 4.2 Activer le service SSH (stelnet) :
 ```
 [HPSwitch] ssh server enable
 ```
 
-3. Créer un utilisateur administrateur :
+### 4.3 Créer un utilisateur administrateur :
 ```
 [HP] local-user admin
 [HP-luser-admin] password simple MonMotDePasseFort
@@ -172,7 +172,7 @@ Switch  Role   Priority  CPU-Mac         Description<br>
 [HP-luser-admin] authorization-attribute level 3
 ```
    
-4. Configurer les sessions VTY pour n’autoriser que SSH :
+### 4.4 Configurer les sessions VTY pour n’autoriser que SSH :
 ```
 [HP] user-interface vty 0 4
 [HP-ui-vty0-4] authentication-mode scheme
@@ -184,59 +184,63 @@ Switch  Role   Priority  CPU-Mac         Description<br>
 
 ----------------------------------------------------------
 
-## Étape 6 : Vérifications et tests
+## 5. Vérifications et tests
 
-1. Vérifier l’état du stack IRF :
+### 5.1 Vérifier l’état du stack IRF :
 ```
 <HP> display irf
 ```
 
-2. Vérifier l’adresse IP du VLAN de management :
+### 5.2 Vérifier l’adresse IP du VLAN de management :
 ```
 <HP> display ip interface brief
 ```
 
-3. Depuis un poste client, tester l’accès SSH :
+### 5.3 Depuis un poste client, tester l’accès SSH :
 ```
 ssh admin@ip.vlan.management
 ```
 
 👉 Si tout est correct, la connexion doit s’établir en SSH avec l’utilisateur admin.
 
-
-4. Une fois SSH fonctionnel, il faut test un PING des machines physiques au Coeur de réseau, des différentes VM Nutanix Coeur de réseau.
+### 5.4 Test 
+Une fois SSH fonctionnel, il faut test un PING des machines physiques au Coeur de réseau, des différentes VM Nutanix Coeur de réseau.
 
 ⚠️ Si le ping depuis la machine physique vers la VM Windows ne fonctionne pas : activer une règle dans les paramètres du Pare-Feu de Windows afin d'autoriser les pings entrants car il les bloque par défaut.
 
 ----------------------------------------------------------
 
-## Étape 7 : Route par défaut
+## 6. Route par défaut
 
-1. Tapez la commande pour définir la route par défaut qui va vers le routeur : 
+### 6.1 Tapez la commande pour définir la route par défaut qui va vers le routeur : 
 ```
 [HP] ip route-static 0.0.0.0 0.0.0.0 172.28.63.10
 ```
-2. Vérifier que votre route fonctionne : 
+
+### 6.2 Vérifier que votre route fonctionne : 
 ```
 [HP] ping 172.28.63.10
 ``` 
 
 ----------------------------------------------------------
 
-## Étape 8 : Relay DHCP
+## 7. Relay DHCP
 
 ✅ Commandes pour DHCP Relay sur A5500 / Comware 5 (v5.20)
 
-1. Activer le service DHCP globalement sur le switch :
+### 7.1 Activer le service DHCP globalement sur le switch :
 ```
 system-view
 dhcp enable
 ```
-2. Créer un “server group” pour les serveurs DHCP que tu veux utiliser :
+
+### 7.2 Créer un “server group” pour les serveurs DHCP que tu veux utiliser :
 ```
 dhcp relay server-group <num_groupe> ip <adresse_IP_serveur_DHCP>
 ```
-3. Pour chaque interface VLAN (ou interface L3) où se trouvent les clients DHCP, configurer :
+
+### 7.3 Pour chaque interface VLAN (ou interface L3) où se trouvent les clients DHCP, configurer :
+
 - Donner une adresse IP à l’interface, si ce n’est pas déjà fait :
 ```
 interface Vlan-interface <num_vlan>
@@ -250,7 +254,8 @@ dhcp select relay
 ```
 dhcp relay server-select <num_groupe>
 ```
-4. Vérifier la configuration :
+
+### 7.4 Vérifier la configuration :
 ```
 display dhcp relay server-group
 display dhcp relay

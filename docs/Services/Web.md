@@ -20,13 +20,13 @@ sudo apt install apache2
 
 ## 3. Configuration d'Apache2 
 
-### Besoins 
+### 3.1 Besoins 
 <div class="annotate" markdown>
 Dans notre cas ce serveur vas a terme heberger plusieurs sites internets, nous aurons donc besoin des VirtualsHosts. :light_bulb:(1)
 </div>
 1. Toute la documentation sur les VirtualsHosts est contenue sur [it-connect](https://www.it-connect.fr/les-vhosts-sous-apache2/)
 
-### Création de la page
+### 3.2 Création de la page
 
 Nous allons tout dabord crée un nouveau répertoire et lui donner les bonnes permissions dans le dossier `/var/www/` afin que le VHost puisse avoir un Symlink qui pointe vers un site.
 ```
@@ -51,7 +51,8 @@ Dans ce fichier nous allons crée une page des plus basiques juste pour pouvoir 
 </body>
 </html>
 ```
-### Création du fichier VHost
+
+### 3.3 Création du fichier VHost
 
 Nous allons crée le fichier de configuration VHost dans le dossier `/etc/apache2/sites-available` :
 ```
@@ -94,7 +95,7 @@ Dans ce fichier de configuration nous avons copier et adapter la configuration d
 
 Dans notre cas nous modifions l'adresse sur laquel notre service écoute sois l'interface DMZ, l'adresse mail du responsable du site et enfin le chemin vers le site. 
 
-### Ajout du lien Symlink 
+### 3.4 Ajout du lien Symlink 
 
 Ce lien qui est l'equivalent d'un racourcis permet d'aller directement vers le site répertorier dans le fichier de configuration du VHost, le VHost iras directement cherche le site dans le bon répertoire. 
 
@@ -105,7 +106,7 @@ sudo systemctl reload apache2
 
 Le VHost est maintenant configurer et prêt à fonctionner.
 
-----------------------------------------------------------
+---
 
 ## 4. Route statique
 
@@ -128,4 +129,4 @@ up ip route add 172.28.35.0/24 via 172.28.62.253 dev ens3
 
 Grâce à ces lignes, notre DNS passera directement par le VFW et non par le PFW (Stormshield).
 
-----------------------------------------------------------
+---

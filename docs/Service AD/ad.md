@@ -18,14 +18,14 @@ Avant de commencer, assurez-vous de remplir les prérequis suivants :
 
 ## 1. Préparer votre serveur 
 
-### Configurer une adresse IP fixe :
+### 1.1 Configurer une adresse IP fixe :
 Se rendre dans « Panneau de configuration -> Réseau et internet -> Centre réseau et partage -> Cliquer sur votre carte réseau -> Propriété :
 
 ![Adresser une IP](AD/ad1.png)
 
 Définissez une adresse IP, un masque de sous-réseau et une passerelle.
 
-### Renommer le serveur :
+### 1.2 Renommer le serveur :
 Allez dans Paramètres > Système > Informations système > Renommer ce PC.
 
 ![Renommer le serveur](AD/ad2.png)
@@ -40,29 +40,29 @@ Puis **Redémarrez le serveur.**
 
 ## 2. Ajouter le rôle Active Directory 
 
-### Ouvrir le Gestionnaire de Serveur :
+### 2.1 Ouvrir le Gestionnaire de Serveur :
 Cliquez sur Gérer > Ajouter des rôles et fonctionnalités.
 
 ![Gestionnaire Serveur](AD/ad4.png)
 
-### Sélectionner le type d’installation :
+### 2.2 Sélectionner le type d’installation :
 Choisissez Installation basée sur un rôle ou une fonctionnalité et cliquez sur Suivant.
 
 ![Type d'installation](AD/ad5.png)
 
-### Choisir le serveur cible :
+### 2.3 Choisir le serveur cible :
 Sélectionnez le serveur sur lequel installer le rôle.
 
 ![Serveur cible](AD/ad6.png)
 
-### Sélectionner le rôle Active Directory :
+### 2.4 Sélectionner le rôle Active Directory :
 Dans la liste, cochez Services de domaine Active Directory (AD DS).
 
 Confirmez l’ajout des fonctionnalités nécessaires.
 
 ![Role Active Directory](AD/ad7.png)
 
-### Finaliser l’installation :
+### 2.5 Finaliser l’installation :
 Cliquez sur Installer.
 
 Une fois terminé, ne redémarrez pas immédiatement, car vous devrez promouvoir le serveur en tant que contrôleur de domaine.
@@ -73,33 +73,33 @@ Une fois terminé, ne redémarrez pas immédiatement, car vous devrez promouvoir
 
 ## 3. Promouvoir le Serveur en Contrôleur de Domaine 
 
-### Lancer l’assistant :
+### 3.1 Lancer l’assistant :
 Dans le Gestionnaire de Serveur, cliquez sur la notification indiquant que la configuration post-installation est nécessaire.
 
 Cliquez sur Promouvoir ce serveur en contrôleur de domaine.
 
 ![Lancer assistant](AD/ad9.png)
 
-### Créer un nouveau domaine :
+### 3.2 Créer un nouveau domaine :
 
 Choisissez Ajouter une nouvelle forêt.
 Entrez le nom de domaine racine, ici c'est ```cha.chartres.sportludique.fr```
 pour les pages 
 ![Nouveau domaine](AD/ad10.png)
 
-### Configurer les options du domaine :
+### 3.3 Configurer les options du domaine :
 Sélectionnez le niveau fonctionnel de la forêt et du domaine (Windows Server 2016 ou plus récent).
 
 Configurez un mot de passe pour le mode de restauration des services d’annuaire (DSRM).
 
 ![Configurer Domaine](AD/ad11.png)
 
-### Vérification DNS et NetBIOS :
+### 3.4 Vérification DNS et NetBIOS :
 Vérifiez le nom NetBIOS proposé et ajustez-le si nécessaire.
 
 ![Verifications](AD/ad12.png)
 
-### Valider et installer :
+### 3.5 Valider et installer :
 Laissez l’assistant valider la configuration.
 
 Cliquez sur Installer. Le serveur redémarrera automatiquement.
@@ -110,11 +110,11 @@ Cliquez sur Installer. Le serveur redémarrera automatiquement.
 
 ## 4. Vérifier l’installation 
 
-### Confirmer le rôle Active Directory :
+### 4.1 Confirmer le rôle Active Directory :
 Après le redémarrage, connectez-vous et ouvrez le Gestionnaire de Serveur.
 Vérifiez que le rôle AD DS est installé et fonctionne correctement.
 
-### Tester le domaine :
+### 4.2 Tester le domaine :
 Ouvrez l’outil Active Directory Users and Computers.
 
 ![Verif install](AD/ad14.png)
