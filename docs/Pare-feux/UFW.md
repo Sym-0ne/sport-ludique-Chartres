@@ -1,4 +1,8 @@
 # UFW 
+
+## Objectif :
+----------
+
 Cette documentation donne les commandes basiques et l'installation d'UFW (Uncomplicated Fire Wall)
 
 UFW (Uncomplicated Firewall) est un pare-feu simple pour Linux, basé sur iptables.
@@ -16,7 +20,9 @@ Il sert à contrôler le trafic réseau entrant et sortant grâce à des règles
 
 - Objectif : sécuriser un serveur ou un réseau en autorisant uniquement le trafic nécessaire.
 
-## 📦 1. Instalation 
+----------------------------------------------------------
+
+## 1. Instalation 
 
 Mettez a jour votre système
 ```
@@ -29,7 +35,9 @@ Installez UFW
 sudo apt install ufw -y
 ```
 
-## 🔧 2. Configuration basique 
+----------------------------------------------------------
+
+## 2. Configuration basique 
 
 Voici les commandes basiques d'UFW :
 
@@ -60,3 +68,5 @@ Voici une commande type d'UFW
 sudo ufw <allow/deny> <in/out> on <interface> from <all/ip/réseau> to <all/ip/réseau> port <n°de port> proto <protocole ip>
 ```
 Chaque règle peut être adapté en fonction des besoins. 
+
+----------------------------------------------------------

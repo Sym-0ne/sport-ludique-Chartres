@@ -14,7 +14,9 @@ Avant de commencer, assurez-vous de remplir les prérequis suivants :
     Accès administrateur : Les droits d’administrateur local sur le serveur.
     Mise à jour : Le serveur est à jour avec les derniers correctifs de sécurité.
 
-## 1. Préparer votre serveur ⚙️
+---------------------------------------------------------
+
+## 1. Préparer votre serveur 
 
 ### Configurer une adresse IP fixe :
 Se rendre dans « Panneau de configuration -> Réseau et internet -> Centre réseau et partage -> Cliquer sur votre carte réseau -> Propriété :
@@ -34,7 +36,9 @@ Donnez-lui un nom descriptif, comici c'est ```CHA_DC_01``` pour le premier contr
 
 Puis **Redémarrez le serveur.**
 
-## 2. Ajouter le rôle Active Directory ➕
+----------------------------------------------------------
+
+## 2. Ajouter le rôle Active Directory 
 
 ### Ouvrir le Gestionnaire de Serveur :
 Cliquez sur Gérer > Ajouter des rôles et fonctionnalités.
@@ -65,7 +69,9 @@ Une fois terminé, ne redémarrez pas immédiatement, car vous devrez promouvoir
 
 ![Installation finale](AD/ad8.png)
 
-## 3. Promouvoir le Serveur en Contrôleur de Domaine 🖥️
+----------------------------------------------------------
+
+## 3. Promouvoir le Serveur en Contrôleur de Domaine 
 
 ### Lancer l’assistant :
 Dans le Gestionnaire de Serveur, cliquez sur la notification indiquant que la configuration post-installation est nécessaire.
@@ -100,7 +106,9 @@ Cliquez sur Installer. Le serveur redémarrera automatiquement.
 
 ![Verifications](AD/ad13.png)
 
-## 4. Vérifier l’installation ✅
+----------------------------------------------------------
+
+## 4. Vérifier l’installation 
 
 ### Confirmer le rôle Active Directory :
 Après le redémarrage, connectez-vous et ouvrez le Gestionnaire de Serveur.
@@ -113,10 +121,14 @@ Ouvrez l’outil Active Directory Users and Computers.
 
 Assurez-vous que votre domaine apparaît et que les objets par défaut (comme ```Users``` et ```Computers```) sont présents.
 
-## 5. Conclusion 📄
+----------------------------------------------------------
+
+## 5. Conclusion 
 
 Vous avez maintenant un serveur configuré comme contrôleur de domaine. Les prochaines étapes incluront :
 
 1. **Créer des unités organisationnelles (OU) :** Pour organiser les utilisateurs et les ordinateurs.
 2. **Ajouter des utilisateurs au domaine :** Créez des comptes pour les utilisateurs.
 3. **Joindre un ordinateur au domaine :** Pour intégrer des machines au réseau Active Directory.
+
+----------------------------------------------------------

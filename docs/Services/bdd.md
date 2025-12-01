@@ -1,5 +1,7 @@
 # Base De Données
 
+----------------------------------------------------------
+
 ## Installation
 
 Pour commencer, mettez à jour votre système :
@@ -24,6 +26,8 @@ Si le service n'es pas actif (1)
 1. ```
 systemctl enable mariadb 
 systemctl start mariadb```
+
+----------------------------------------------------------
 
 ## Sécurisation basique
 

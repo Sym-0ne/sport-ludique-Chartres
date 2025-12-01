@@ -11,20 +11,22 @@ Elle couvre les points suivants :
 
 ---
 
-## 🔌 Connexion au switch via port console (Linux Mint)
+## Connexion au switch via port console (Linux Mint)
 
 ### Matériel requis
 - Câble console (RJ45-DB9 ou adaptateur USB-RJ45 selon le modèle)
 - PC sous Linux Mint avec droits administrateur
 
-### Étapes
+### Comment faire ?
 1. Brancher le câble console entre le PC et le switch.  
 
-   ⚠️ Linux Mint ne supporte pas les Switchs HP dû à un problème d'OS, donc il faut utiliser le Laptot Windows XP afin de configurer les équipements HP sans problèmes.
+⚠️ Linux Mint ne supporte pas les Switchs HP dû à un problème d'OS, donc il faut utiliser le Laptot Windows XP afin de configurer les équipements HP sans problèmes.
 
-   Utiliser Putty sur le laptop et la connexion fonctionne directement.
+Utiliser Putty sur le laptop et la connexion fonctionne directement.
 
-## 🔄 Réinitialisation de la configuration (Factory Reset)
+---
+
+## Réinitialisation de la configuration (Factory Reset)
 
 1. Une fois démarré, supprimer la configuration existante :
 ```
@@ -48,7 +50,7 @@ Si cette commande ne supprime pas correctement la conf, il faut les supprimés m
 
 👉 Le switch redémarre avec la configuration d’usine.
 
-## 🖇 Configuration d’un stack IRF (Intelligent Resilient Framework)
+## Configuration d’un stack IRF (Intelligent Resilient Framework)
 
 1. Vérifier que les deux switchs ont la même version logicielle.
 2. Configurer l’ID IRF sur chaque switch :
@@ -65,7 +67,7 @@ Si cette commande ne supprime pas correctement la conf, il faut les supprimés m
 
 4. Configurer les ports IRF :<br>
 
-   **Rack4sw1 (Switch Master) IRF port configuration**<br>
+**Rack4sw1 (Switch Master) IRF port configuration**<br>
 ```
 [Rack4sw1]interface Ten-GigabitEthernet 1/1/1
 [Rack4sw1-Ten-GigabitEthernet1/1/1]shutdown
@@ -79,7 +81,7 @@ Si cette commande ne supprime pas correctement la conf, il faut les supprimés m
 [Rack4sw1]save force 
 ```
 
-   **Rack4sw2 (Switch Slave) port configuration**<br>
+**Rack4sw2 (Switch Slave) port configuration**<br>
 ```
 [Rack6sw2]interface Ten-GigabitEthernet 2/1/1
 [Rack6sw2-Ten-GigabitEthernet2/1/1]shutdown
@@ -111,7 +113,7 @@ Si cette commande ne supprime pas correctement la conf, il faut les supprimés m
 [HP] reboot
 ```
 
-   **IRF verification**
+**IRF verification**
 ```
 <Rack4sw1>display irf<br>
 ```
@@ -122,7 +124,9 @@ Switch  Role   Priority  CPU-Mac         Description<br>
 2   Slave   1         b8af-xxxx-xxxx  -----
 ```
 
-## 🌐 Étape 4 : Création d’un VLAN de management (VLAN 120)
+----------------------------------------------------------
+
+## Étape 4 : Création d’un VLAN de management (VLAN 120)
 
 1. Créer le VLAN 120 :<br>
 ```
@@ -146,7 +150,9 @@ Switch  Role   Priority  CPU-Mac         Description<br>
 
 👉 Ce VLAN servira exclusivement pour l’administration.
 
-## 🔐 Étape 5 : Activer et sécuriser l’accès SSH
+----------------------------------------------------------
+
+## Étape 5 : Activer et sécuriser l’accès SSH
 
 1. Générer les clés RSA pour SSH :
 ```
@@ -176,7 +182,9 @@ Switch  Role   Priority  CPU-Mac         Description<br>
 
 👉 Ainsi, Telnet est désactivé et seul SSH est autorisé.
 
-## ✅ Étape 6 : Vérifications et tests
+----------------------------------------------------------
+
+## Étape 6 : Vérifications et tests
 
 1. Vérifier l’état du stack IRF :
 ```
@@ -200,6 +208,8 @@ ssh admin@ip.vlan.management
 
 ⚠️ Si le ping depuis la machine physique vers la VM Windows ne fonctionne pas : activer une règle dans les paramètres du Pare-Feu de Windows afin d'autoriser les pings entrants car il les bloque par défaut.
 
+----------------------------------------------------------
+
 ## Étape 7 : Route par défaut
 
 1. Tapez la commande pour définir la route par défaut qui va vers le routeur : 
@@ -210,6 +220,8 @@ ssh admin@ip.vlan.management
 ```
 [HP] ping 172.28.63.10
 ``` 
+
+----------------------------------------------------------
 
 ## Étape 8 : Relay DHCP
 
@@ -243,3 +255,5 @@ dhcp relay server-select <num_groupe>
 display dhcp relay server-group
 display dhcp relay
 ```
+
+----------------------------------------------------------

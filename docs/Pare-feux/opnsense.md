@@ -1,6 +1,6 @@
 # Installation et Configuration d’OPNsense sur Nutanix
 
-## 📦 1. Installation 
+## 1. Installation 
 
 ### Déploiement de la VM
 
@@ -20,9 +20,9 @@
 
 * Attribution d’une **adresse IP de management** (10.10.120.70) dans le VLAN 120 pour accéder à l’interface web et administrer le pare-feu.
 
----
+----------------------------------------------------------
 
-## 🔧 2. Configuration 
+## 2. Configuration 
 
 ### Accès Web & comptes
 

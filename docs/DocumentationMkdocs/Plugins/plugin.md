@@ -60,6 +60,8 @@ Pour finir il ne reste plus qu'à insérer le fichier avec l'extention ".drawio"
 ![](fichier.drawio)
 ```
 
+----------------------------------------------------------
+
 ## 🔍 2. Search 
 
 Search est un plugin qui permet d'ajouter une barre de recherche en haut a droite de votre page, cette barre de recherche permet de rechercher des mots, titres ou pages de votre document Mkdocs. 

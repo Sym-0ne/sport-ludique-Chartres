@@ -1,9 +1,15 @@
-## 1. AD CS (Active Directory Certificate Services) — À quoi ça sert ?
+# Mise en place AD CS (Active Directory Certificate Services)
+
+----------------------------------------------------------
+
+## 1. À quoi ça sert ?
 
  AD CS est un rôle de Windows Server qui permet de **créer et de gérer une infrastructure de gestion de certificats (PKI — Public Key Infrastructure)**.<br>
  Concrètement, il sert à émettre, renouveler et révoquer des certificats numériques utilisés pour sécuriser les communications et authentifier les utilisateurs, ordinateurs ou services dans un environnement Active Directory.
 
-## 2. À quoi ça sert dans un Active Directory 🔐
+---------------------------------------------------------
+
+## 2. À quoi ça sert dans un Active Directory 
 
 - **Authentification sécurisée** : permet d’utiliser des certificats pour authentifier les utilisateurs et les machines (par exemple, avec les connexions Wi-Fi 802.1X ou VPN).
 - **Chiffrement** : les certificats permettent de chiffrer les échanges (HTTPS, e-mails, fichiers…).

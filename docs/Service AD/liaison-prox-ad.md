@@ -1,19 +1,18 @@
-# Documentation — Intégration de Proxmox avec Active Directory (AD)
+# Mise en place liaison LDAP entre Proxmox & AD.
 
-## 1. Objectif 🎯
-
-Ce document détaille les étapes permettant de :
+## Objectif :
+----------
 
 1. Créer un utilisateur et un groupe d’administration Proxmox dans Active Directory (AD).  
 2. Intégrer le domaine Active Directory dans Proxmox VE pour l’authentification centralisée.  
 3. Configurer les permissions dans Proxmox.  
 4. Gérer le mode d’authentification LDAP / LDAPS.
 
----
+----------------------------------------------------------
 
-## 2. Création des utilisateurs et groupes AD ✏️
+## 2. Création des utilisateurs et groupes AD 
 
-### 🧩 Description
+### Description
 
 Le script PowerShell suivant permet de :
 
@@ -23,9 +22,9 @@ Le script PowerShell suivant permet de :
 - Ajouter l’utilisateur au groupe.
 - Vérifier la création et l’appartenance.
 
----
+-------------------------------------------------------------
 
-### 💻 Script PowerShell
+### Script PowerShell
 
 ```
 Import-Module ActiveDirectory
@@ -124,6 +123,8 @@ Select-Object Name, SamAccountName
 Write-Host "`n✅ Script exécuté avec succès."
 ```
 
+----------------------------------------------------------
+
 ## 2. Intégration du domaine AD dans Proxmox
 
 ### Création du Realm (Royaume)
@@ -176,6 +177,8 @@ Datacenter → Permissions → Add → Permissions de l'utilisateur
 
 💡 Note : **Le mode LDAP est temporaire**. Une migration vers **LDAPS** sera effectuée pour sécuriser les échanges. Nous activerons ici LDAP à des fins de test uniquement, penser à remettre la configuration par défaut que nous allons modifier ci-dessous une fois le test terminé !
 
+----------------------------------------------------------
+
 ## 3. Gestion du protocole LDAP / LDAPS 
 Appliquer la GPO puis forcer la mise à jour :
 ⚠️ Problématique
@@ -227,3 +230,5 @@ Appliquer la GPO puis forcer la mise à jour :
 ```
 gpupdate /force
 ```
+
+----------------------------------------------------------

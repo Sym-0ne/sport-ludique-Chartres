@@ -1,8 +1,12 @@
-## 1. Installation de L'AD 📦
+# Mise en place & Installation d'un AD BACK UP 
+
+## 1. Installation de L'AD 
 
 Suivre cette documentation pour configuer l'AD Backup en adaptant pour lui : [Installe AD](https://sym-0ne.github.io/sport-ludique-Chartres/Service%20AD/ad/)
 
-## 2. Redondance AD1 et AD2 🔄
+----------------------------------------------------------
+
+## 2. Redondance AD1 et AD2 
 
 ## Redondance AD Principal et AD Secondaire
 
@@ -64,7 +68,7 @@ DNS préféré : 172.28.33.3
 DNS secondaire : 172.28.33.2
 ```
 
-### Vérification de la réplication DNS ✅
+### Vérification de la réplication DNS 
 
 Sur AD Secondaire, ouvre :
 
@@ -73,7 +77,9 @@ Sur AD Secondaire, ouvre :
 Tu devrais y voir **exactement les mêmes enregistrements que sur AD Principal**.<br>
 Si oui, la réplication DNS fonctionne (grâce à AD).
 
-## 3. Vérification finale ✅
+----------------------------------------------------------
+
+## 3. Vérification finale 
 
 1. Éteins l'AD Principal.
 
@@ -87,3 +93,5 @@ Si il y a une réponse sa veut dire que le **DNS est bien redondant**.
 
 Si l'authentification fonctionne alors **l'AD est redondant aussi**.
 Si ces deux test fonctionne alors notre **AD Secondaire et bien en backup de l'AD Principal**.
+
+----------------------------------------------------------

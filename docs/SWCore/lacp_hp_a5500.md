@@ -1,6 +1,7 @@
 # Mise en place de LACP sur HP A5500
 
 ##  1. Introduction
+
 **LACP (Link Aggregation Control Protocol)** est défini dans la norme IEEE 802.3ad.  
 Il permet de regrouper plusieurs interfaces physiques en une seule interface logique (**Eth-Trunk**) afin de :  
 - augmenter la bande passante disponible,  
@@ -103,3 +104,5 @@ Aggregation Group 1:
 ## 5. Conclusion
 Avec LACP, tu disposes d’un **lien logique robuste et performant** entre ton stack HP A5500 et un serveur ou autre switch.  
 Cette configuration est standard et réutilisable dans différents contextes (uplink, serveur, cluster).  
+
+----------------------------------------------------------

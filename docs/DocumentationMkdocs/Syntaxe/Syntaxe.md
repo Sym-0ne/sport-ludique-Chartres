@@ -2,7 +2,9 @@
 
 Voici les principales commandes de syntaxe sous mkdocs avec le theme matérial, toute ces tips ont été trouvé sur cette page0 [github](https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#nested-lists).
 
-## 📝 1. Liste des extension Markdown 
+----------------------------------------------------------
+
+## 1. Liste des extension Markdown 
 Voici la liste de nos extension en markdown a implémenter dans votre fichier mkdocs.yml afin de garentir le bon fonctionnement de toutes les commandes de styntaxes. 
 
 ```
@@ -22,7 +24,9 @@ markdown_extensions:
 
 ```
 
-## ⌨️ 2. Les commandes principales 
+----------------------------------------------------------
+
+## 2. Les commandes principales 
 ### Syntaxe 
 **Gras :**
 ```

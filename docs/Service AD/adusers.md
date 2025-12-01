@@ -1,6 +1,7 @@
 # Script PowerShell — Création d'une Structure Active Directory
 
-## 1. Objectif 🎯
+## Objectif :
+----------
 
 Ce script PowerShell automatise la **création d’une arborescence Active Directory** pour le domaine : **cha.chartres.sportludique.fr**.  
 
@@ -12,7 +13,7 @@ Le script permet de créer automatiquement :<br>
 
 ---
 
-## 2. Présentation générale 📋
+## 2. Présentation générale 
 
 | Élément                     | Détails                                                                 |
 |-----------------------------|--------------------------------------------------------------------------|
@@ -27,7 +28,7 @@ Le script permet de créer automatiquement :<br>
 
 ---
 
-## 3. Contexte 📄
+## 3. Contexte
 
 - Les utilisateurs **Claude Postic** (Directeur DSI) et **Helen Paisley-Le Bihan** (Directrice RH) ont été créés **car le scénario du projet l’exigeait**, représentant la direction de deux pôles essentiels de l’entreprise.  
 - Les utilisateurs **David**, **Wassim** et **Simon** représentent les **techniciens de la DSI**.  
@@ -38,7 +39,7 @@ Ainsi, la structure reflète à la fois le **besoin fonctionnel** et le **besoin
 
 ---
 
-## 4. Contenu du script 📄
+## 4. Contenu du script 
 
 ```
 powershell
@@ -112,7 +113,9 @@ Get-ADOrganizationalUnit -Filter * | Select-Object Name
 Get-ADUser -Filter * | Select-Object Name, SamAccountName, DistinguishedName
 ```
 
-## 5. Attribution des droits Administrateurs aux utilisateurs de la DSI 📝
+----------------------------------------------------------
+
+## 5. Attribution des droits Administrateurs aux utilisateurs de la DSI 
 
 ### Le groupe “Admins du domaine”
 
@@ -162,6 +165,8 @@ David          david.dsi
 Wassim         wassim.dsi
 Simon          simon.dsi
 ```
+
+----------------------------------------------------------
 
 ## 6. Script création des UO, Utilisateurs et Groupes du Pôle Chartre. 
 
@@ -316,3 +321,5 @@ foreach($u in $users){
     if($grpSous){Add-ADGroupMember -Identity $grpSous -Members $sam -ErrorAction SilentlyContinue}
 }
 ```
+
+----------------------------------------------------------

@@ -1,9 +1,11 @@
 # Serveur WEB 
 
-## 🎯 1. Objectifs 
+## 1. Objectifs 
 Héberger un site web fais partie des services "basiques" d'une entreprise, dans notre cas nous allons implémenter un premier site web sur un serveur Apache2 heberger sur une machine Debian 13.
 
-## 📦 2. Installation d'Apache2 
+----------------------------------------------------------
+
+## 2. Installation d'Apache2 
 Mettez a jour votre système :
 ```
 sudo apt update 
@@ -14,7 +16,9 @@ Installez les packages Apache2
 sudo apt install apache2
 ```
 
-## 🔧 3. Configuration d'Apache2 
+----------------------------------------------------------
+
+## 3. Configuration d'Apache2 
 
 ### Besoins 
 <div class="annotate" markdown>
@@ -101,7 +105,9 @@ sudo systemctl reload apache2
 
 Le VHost est maintenant configurer et prêt à fonctionner.
 
-## ⚠️ 4. Route statique
+----------------------------------------------------------
+
+## 4. Route statique
 
 ### Pourquoi
 L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme expliqué [ici](https://sym-0ne.github.io/sport-ludique-Chartres/DNS/DNS%20autorit%C3%A9/#7-Statefull-Inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement.
@@ -121,3 +127,5 @@ up ip route add 172.28.35.0/24 via 172.28.62.253 dev ens3
 ```
 
 Grâce à ces lignes, notre DNS passera directement par le VFW et non par le PFW (Stormshield).
+
+----------------------------------------------------------
