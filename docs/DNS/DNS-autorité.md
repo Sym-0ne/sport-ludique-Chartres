@@ -79,7 +79,7 @@ view "external" {
 
 ## 5. Création des fichiers de zones
 
-### Création du fichier "internal"
+### 5.1 Création du fichier "internal"
 Ce fichier servira a traduire les noms de domaines en IP pour toutes les adresses du LAN.
 ```
 sudo nano /etc/bind/zones/db.chartres.sportludique.fr.internal
@@ -103,7 +103,8 @@ www IN  A   172.28.62.5   ; Reverse Proxy
 www.cimmob IN A 172.28.62.5
 cha IN  A   172.28.33.2   ; Serveur DNS de l'AD
 ```
-### Création du fichier "external"
+
+### 5.2 Création du fichier "external"
 Ce fichier servira a traduire les noms de domaines en IP pour toutes les adresses externes à notre infrastructure. 
 ```
 sudo nano /etc/bind/zones/db.chartres.sportludique.fr.external
@@ -159,14 +160,14 @@ Il suffit ensuite de mettre toutes les lignes en commentaires
 
 Pour finir il ne nous reste plus qu'à exécuter ces 3 commandes afin de vérifier le bon fonctionnement de notre DNS
 
-### Fichier de configuration 
+### 7.1 Fichier de configuration 
 
 ```
 sudo named-checkconf
 ```
 Cette commande ne nous retourne rien si le fichier de configuration est bon
 
-### Zones 
+### 7.2 Zones 
 
 ```
 sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportludique.fr.internal
@@ -185,7 +186,7 @@ Nous allons mettre en place un firewall local grâce a UFW (1) afin de bloquer t
 </div>
 1. Toute la documentation concernant UFW se trouve [ici](Pare-feux/UFW/)
 
-### Besoins
+### 8.1 Besoins
 
 <div class="annotate" markdown > 
 
@@ -200,23 +201,23 @@ Après avoir installer UFW (1) il nous suffit de mettre en place 3 règles :
 
 Ces règles ont été décider grâce a l'étude des connexion qui auront lieu sur notre réseau et leur sens.
 
-### Configuration
+### 8.2 Configuration
 
-#### Règles par défaut
+#### 8.2.1 Règles par défaut
 Par defaut nous allons refuser toutes les connexion afin d'autoriser uniquement les connexion DNS par la suite.
 
 ```
 sudo ufw default deny incoming 
 sudo ufw default deny outgoing
 ```
-#### Règles de filtrage
+#### 8.2.2 Règles de filtrage
 Voici donc les règles de filtrages a appliquer a nos interfaces :
 ```
 sudo ufw allow in on ens4 from 10.10.120.0/24 to 10.10.120.8 port 22 proto tcp
 sudo ufw allow in on ens3 from all to 172.28.62.1 port 53 proto tcp
 sudo ufw allow in on ens3 from all to 172.28.62.1 port 53 proto udp
 ```
-#### Activation d'UFW
+#### 8.2.3 Activation d'UFW
 Une fois les règles qui laissent passer les trafics voulues il ne nous reste plus qu'à activer UFW afin que nos règles prennent effet.
 ```
 sudo ufw enable
@@ -226,9 +227,10 @@ sudo ufw enable
 
 ## 9. Route statique
 
-### Pourquoi
+### 9.1 Pourquoi
 L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme[expliqué ici](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/stormshield/#7-statefull-inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement..
-### Ajout des routes
+
+### 9.2 Ajout des routes
 Il nous faut donc ajouter manuellement des routes statiques afin de passer directement par le VFW pour rejoindre notre LAN.
 ```
 sudo nano /etc/network/interfaces
@@ -257,7 +259,7 @@ Afin de **garantir la haute disponibilité** de nos services, nous avons doublé
 </div>
 1. À noter que c'est à cause de la [Stateful Inspection](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/stormshield/#7-statefull-inspection) du StormShield que nous devons doubler ces équipements.
 
-### Besoins
+### 10.1 Besoins
 
 <div class="annotate" markdown>
 Les zones **internes** ne changeant pas, NS1 et NS2 seront donc synchronisées, NS1 étant **master** et NS2 **slave** (1).
@@ -266,7 +268,7 @@ Les zones externes, elles, changent, notamment au niveau de la résolution, où 
 </div>
 1. **Master** est le maître et **Slave** l'esclave ; le maître envoie la configuration et les esclaves la copient.
 
-### Configuration
+### 10.2 Configuration
 
 Dans le fichier `/etc/bind/name.conf.local` de <ins>**NS1**</ins>, il faut ajouter ces lignes :
 ```python hl_lines="9 10"

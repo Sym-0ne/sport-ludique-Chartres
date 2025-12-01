@@ -1,7 +1,5 @@
 # Documentation : Configuration LACP et Trunk via l’interface Web Proxmox VE
 
----
-
 ## Objectif :
 ----------
 

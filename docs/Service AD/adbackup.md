@@ -26,14 +26,14 @@ Ainsi, si l'AD Principal tombe, les utilisateurs et ordinateurs peuvent encore :
 
 ### 2.2 Mettre l'AD Secondaire en contrôleur de domaine secondaire
 
-### 2.2.1 Installer les rôles nécessaires
+#### 2.2.1 Installer les rôles nécessaires
 
 Dessus en PowerShell :
 ```
 Install-WindowsFeature AD-Domain-Services, DNS -IncludeManagementTools
 ```
 
-### 2.2.2 Promouvoir en contrôleur de domaine
+#### 2.2.2 Promouvoir en contrôleur de domaine
 ```
 Install-ADDSDomainController `
     -DomainName "cha.chartres.sportludique.fr" `
@@ -45,7 +45,7 @@ Install-ADDSDomainController `
 
 💡 Une fenêtre d’authentification s’ouvre → entre un compte du domaine ayant les droits d’administrateur et redémarrer à la fin.
 
-### 2.3 Vérification de la réplication AD ✅
+### 2.3 Vérification de la réplication AD 
 
 Sur Powershell :
 ```
@@ -54,7 +54,7 @@ repadmin /replsummary
 
 Si les deux AD s'affiche et qu'il n'y a aucune erreur alors la réplication fonctionne.
 
-### 2.4 Configuration DNS croisée 🔧
+### 2.4 Configuration DNS croisée 
 
 Sur **AD Principal**, configure :
 ```

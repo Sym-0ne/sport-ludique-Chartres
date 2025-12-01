@@ -58,7 +58,7 @@ sudo ufw default allow incoming  # Autorise tout le trafic entrant par défaut
 sudo ufw default allow outgoing  # Autorise tout le trafic sortant par défaut
 sudo ufw default deny outgoing   # Bloque tout le trafic sortant (si serveur très sécurisé)
 ```
-### 2.3 Règles filtrantes :broom:
+### 2.3 Règles filtrantes 
 
 Chaque règle prend en compte plusieurs paramètres, autoriser, refuser, le port, l'IP... 
 
