@@ -51,6 +51,7 @@ nav:
           - HSRP: Routeur/hsrp.md
           - PAT: Routeur/PAT.md
   - Pare-feux:
+      - Régle Pare-Feu: Pare-feux/réglePF.md
       - PFW: Pare-feux/stormshield.md
       - Proxy: Pare-feux/proxy.md
       - LDAPS - Liaison PFW & AD: Pare-feux/ldaps-pfw.md
