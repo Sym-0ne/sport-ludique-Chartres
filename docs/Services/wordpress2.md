@@ -2,6 +2,7 @@
 
 Site WordPress : ```www.cimmob.chartres.sportludique.fr```
 
+---
 
 ## 1. Prérequis
 
@@ -10,6 +11,8 @@ Site WordPress : ```www.cimmob.chartres.sportludique.fr```
 - Reverse Proxy : ```172.28.62.5 (Nginx)```
 - DNS interne : ```Bind9 (serveur autorité interne)```
 - WordPress installé dans : ```/var/www/html/wordpress```
+
+---
 
 ## 2. Configuration DNS (Bind9)
 
@@ -50,6 +53,8 @@ sudo named-checkzone chartres.sportludique.fr /etc/bind/zones/db.chartres.sportl
 ```
 sudo systemctl reload bind9
 ```
+
+---
 
 ## 3. Configuration Reverse Proxy (Nginx)
 

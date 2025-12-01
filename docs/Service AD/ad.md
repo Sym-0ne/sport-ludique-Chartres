@@ -14,7 +14,7 @@ Avant de commencer, assurez-vous de remplir les prérequis suivants :
     Accès administrateur : Les droits d’administrateur local sur le serveur.
     Mise à jour : Le serveur est à jour avec les derniers correctifs de sécurité.
 
----------------------------------------------------------
+---
 
 ## 1. Préparer votre serveur 
 
@@ -36,7 +36,7 @@ Donnez-lui un nom descriptif, comici c'est ```CHA_DC_01``` pour le premier contr
 
 Puis **Redémarrez le serveur.**
 
-----------------------------------------------------------
+---
 
 ## 2. Ajouter le rôle Active Directory 
 
@@ -69,7 +69,7 @@ Une fois terminé, ne redémarrez pas immédiatement, car vous devrez promouvoir
 
 ![Installation finale](AD/ad8.png)
 
-----------------------------------------------------------
+---
 
 ## 3. Promouvoir le Serveur en Contrôleur de Domaine 
 
@@ -106,7 +106,7 @@ Cliquez sur Installer. Le serveur redémarrera automatiquement.
 
 ![Verifications](AD/ad13.png)
 
-----------------------------------------------------------
+---
 
 ## 4. Vérifier l’installation 
 
@@ -121,7 +121,7 @@ Ouvrez l’outil Active Directory Users and Computers.
 
 Assurez-vous que votre domaine apparaît et que les objets par défaut (comme ```Users``` et ```Computers```) sont présents.
 
-----------------------------------------------------------
+---
 
 ## 5. Conclusion 
 
@@ -131,4 +131,4 @@ Vous avez maintenant un serveur configuré comme contrôleur de domaine. Les pro
 2. **Ajouter des utilisateurs au domaine :** Créez des comptes pour les utilisateurs.
 3. **Joindre un ordinateur au domaine :** Pour intégrer des machines au réseau Active Directory.
 
-----------------------------------------------------------
+---

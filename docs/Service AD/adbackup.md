@@ -4,7 +4,7 @@
 
 Suivre cette documentation pour configuer l'AD Backup en adaptant pour lui : [Installe AD](https://sym-0ne.github.io/sport-ludique-Chartres/Service%20AD/ad/)
 
-----------------------------------------------------------
+---
 
 ## 2. Redondance AD1 et AD2 
 
@@ -77,7 +77,7 @@ Sur AD Secondaire, ouvre :
 Tu devrais y voir **exactement les mêmes enregistrements que sur AD Principal**.<br>
 Si oui, la réplication DNS fonctionne (grâce à AD).
 
-----------------------------------------------------------
+---
 
 ## 3. Vérification finale 
 
@@ -94,4 +94,4 @@ Si il y a une réponse sa veut dire que le **DNS est bien redondant**.
 Si l'authentification fonctionne alors **l'AD est redondant aussi**.
 Si ces deux test fonctionne alors notre **AD Secondaire et bien en backup de l'AD Principal**.
 
-----------------------------------------------------------
+---

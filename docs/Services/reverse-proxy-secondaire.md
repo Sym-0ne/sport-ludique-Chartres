@@ -1,8 +1,12 @@
 # Reverse Proxy Secondaire
 
+---
+
 ## 1. Installation de Nginx
 
 Vous pouvez aller voir la documention pour l'[installation](https://sym-0ne.github.io/sport-ludique-Chartres/Services/reverse-proxy).
+
+---
 
 ## 2. Synchronisation des 2 Reverse Proxy
 
@@ -71,6 +75,8 @@ Si il n'y a rien et qu'il y a se message "Normal: Startup of /etc/nginx -> root@
 
 Sinon il faut regarder le message d'erreur et le résoudre.
 
+---
+
 ## 3. Test 
 
 Sur le Reverse Proxy Primaire :
@@ -87,9 +93,12 @@ ls -l /etc/nginx/
 
 Si le fichier "test-sync.txt" y est alors la synchronisation est fonctionnelle.
 
+---
+
 ## 4. Important
 
 Si il y a des sites en https il ne faudra pas oublier d'importer les certificats du site car la synchronisation ne le gère pas.
 
 Pour savoir comment faire voir [ici](https://sym-0ne.github.io/sport-ludique-Chartres/Services/reverse-proxy).
 
+---

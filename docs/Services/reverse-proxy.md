@@ -2,6 +2,8 @@
 
 Voici les étapes nécessaires pour installer et configurer un reverse proxy Nginx avec gestion de HTTPS.
 
+---
+
 ## 1. Installation de Nginx
 
 Sur Debian/Ubuntu :
@@ -10,6 +12,8 @@ Sur Debian/Ubuntu :
 sudo apt update
 sudo apt install nginx
 ```
+
+---
 
 ## 2. Activation de la configuration
 
@@ -45,6 +49,8 @@ sudo systemctl restart nginx
 ```
 Puis vérifier si depuis l'interne et l'externe le site est accessible.
 
+---
+
 ## 3. Mise en place des certificats pour HTTPS
 
 Il faut importer **le certificat autorité, le certificat auto-signé et la clé privée qui sont lié au nom de domaine du site**. Les certificats se situe sur la vm Openssl :
@@ -78,6 +84,8 @@ openssl rsa -noout -modulus -in /etc/ssl/private/chartres.sportludique.fr.key.pe
 
 Si ils ont le même hash alors les fichier sont bien liée, sinon il faut recommencer toute l'étape car il faut **absolument qu'ils soit liée sinon le HTTPS ne fonctionnera jamais**.
 
+---
+
 ## 4. Combiner certificat autorité + auto-signé dans le même fichier
 
 Nginx ne permet pas dans sa configuration d'aller **chercher 2 certificats**, il faut donc assembler les deux dans un seul et même fichier:
@@ -87,6 +95,8 @@ sudo -i
 
 cat /etc/ssl/certs/www.chartres.sportludique.fr.cert.pem /etc/ssl/certs/ca.cert.pem > /etc/ssl/certs/www.chartres.sportludique.fr.fullchain.pem
 ```
+
+---
 
 ## 5. Configuration HTTPS
 
@@ -132,6 +142,8 @@ server {
 }
 ```
 
+---
+
 ## 6. Vérification
 
 Vérifier qu'il n'y a pas d'erreur et redémarrer le service:
@@ -142,3 +154,5 @@ sudo systemctl restart nginx
 ```
 
 Puis vérifier si depuis l'interne et l'externe le site est accessible.
+
+---

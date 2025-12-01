@@ -1,6 +1,6 @@
 # Base De Données
 
-----------------------------------------------------------
+---
 
 ## Installation
 
@@ -27,7 +27,7 @@ Si le service n'es pas actif (1)
 systemctl enable mariadb 
 systemctl start mariadb```
 
-----------------------------------------------------------
+---
 
 ## Sécurisation basique
 
@@ -103,3 +103,5 @@ All done! If you've completed all of the above steps, your MariaDB installation 
  
 Thanks for using MariaDBI bdd@CHA-BDD:"$
 ```
+
+---
