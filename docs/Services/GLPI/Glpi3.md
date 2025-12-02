@@ -4,9 +4,9 @@
 
 Nous avons besoin de :
 
-✔ L’URL du serveur GLPI (ex : http://10.10.120.15:2000)
-✔ Le lien de téléchargement de l’agent GLPI Linux 
-✔ Le port utilisé par l’agent (par défaut 62354) 
+✔ L’URL du serveur GLPI (ex : http://10.10.120.15:2000)<br>
+✔ Le lien de téléchargement de l’agent GLPI Linux <br>
+✔ Le port utilisé par l’agent (par défaut 62354) <br>
 
 ---
 
