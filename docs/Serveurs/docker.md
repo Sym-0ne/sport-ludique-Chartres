@@ -54,8 +54,7 @@ services:
     container_name: glpi_app 
     restart: always 
     ports: 
-      - "172.28.33.8:2000:80"   # LAN
-      - "10.10.120.15:2000:80"  # MANA
+      -  "2000:80"   # LAN
     environment:
       GLPI_DB_HOST: ${DB_HOST}
       GLPI_DB_NAME: ${DB_NAME}
