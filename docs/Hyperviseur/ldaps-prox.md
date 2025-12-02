@@ -3,7 +3,6 @@
 ## Objectif :
 ----------
 
-
 Configurer une authentification **Active Directory sécurisée (LDAPS)** sur un cluster **Proxmox**, à l’aide d’un certificat généré par le service **ADCS (Active Directory Certificate Services)**, et assurer la communication sécurisée entre le serveur **Proxmox** et les **contrôleurs de domaine**.
 
 ---
