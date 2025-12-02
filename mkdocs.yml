@@ -58,6 +58,7 @@ nav:
           - HSRP: Routeur/hsrp.md
           - PAT: Routeur/PAT.md
   - Pare-feux:
+      - Régle Pare-Feu: Pare-feux/réglePF.md
       - PFW: Pare-feux/stormshield.md
       - Proxy: Pare-feux/proxy.md
       - LDAPS - Liaison PFW & AD: Pare-feux/ldaps-pfw.md
@@ -83,18 +84,28 @@ nav:
   - DNS:
       - DNS Autorité: DNS/DNS-autorité.md
       - DNS Resolveur: DNS/DNS Resolveur.md
+  - Serveurs: 
+      - ReverseProxy: 
+          - Configuration Reverse Proxy: Serveurs/ReverseProxy/reverse-proxy.md
+          - Reverse Proxy Secondaire: Serveurs/ReverseProxy/reverse-proxy-secondaire.md
+      - Base de Données: Serveurs/bdd.md
+      - Serveur web: Serveurs/Web.md
   - Services: 
+<<<<<<< HEAD
       - Serveurs : 
           - Base de Données: Services/bdd.md
           - Serveur web: Services/Web.md
           - GLPI: Services/Glpi.md
           - Mail: Services/mail.md
+=======
+>>>>>>> 2252dfef2422eae6076abdea0774592818635aae
       - Sécurité:
           - Certificat SSL/TLS & HTTPS: Services/https.md
+      - GLPI: 
+          - Installation GLPI: Services/GLPI/Glpi.md
+          - Liaison AD & GLPI via LDAP: Services/GLPI/Glpi-ldap.md
+          - Mise en place inventaire: Services/GLPI/Glpi-inventaire.md    
       - WordPress:
           - Installation WordPress: Services/wordpress.md
           - Configuration WordPress: Services/wordpress2.md
           - Configuration Multi Site WordPress: Services/wordpress3.md
-      - Reverse Proxy: 
-          - Configuration Reverse Proxy: Services/reverse-proxy.md
-          - Reverse Proxy Secondaire: Services/reverse-proxy-secondaire.md

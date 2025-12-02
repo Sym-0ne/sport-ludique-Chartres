@@ -71,8 +71,8 @@ sudo systemctl restart apache2
 Connexion au serveur SQL de la BDD :
 ```
 CREATE DATABASE glpi CHARACTER SET utf8mb4;
-CREATE USER 'glpi_user'@'...' IDENTIFIED BY 'motdepasse';
-GRANT ALL PRIVILEGES ON glpidb.* TO 'glpi_user'@'...';
+CREATE USER 'glpi_user'@'172.28.33.8' IDENTIFIED BY 'motdepasse';
+GRANT ALL PRIVILEGES ON glpi.* TO 'glpi_user'@'172.28.33.8';
 FLUSH PRIVILEGES;
 ```
 

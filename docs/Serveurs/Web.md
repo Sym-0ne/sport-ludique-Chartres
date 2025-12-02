@@ -73,7 +73,7 @@ Dans ce fichier de configuration nous avons copier et adapter la configuration d
     #ServerName www.example.com
 
     ServerAdmin admin@chartres.sportludique.fr
-    DocumentRoot /var/www/chartres
+    DocumentRoot /var/www/chartres----------------------------------------------------------
 
     # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
     # error, crit, alert, emerg.
@@ -110,9 +110,10 @@ Le VHost est maintenant configurer et prêt à fonctionner.
 
 ## 4. Route statique
 
-### Pourquoi
+### 4.1 Pourquoi
 L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme expliqué [ici](https://sym-0ne.github.io/sport-ludique-Chartres/DNS/DNS%20autorit%C3%A9/#7-Statefull-Inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement.
-### Ajout des routes
+
+### 4.2 Ajout des routes
 Il nous faut donc ajouter manuellement des routes statiques afin de passer directement par le VFW pour rejoindre notre LAN.
 ```
 sudo nano /etc/network/interfaces

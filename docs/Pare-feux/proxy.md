@@ -45,7 +45,7 @@ Créez une nouvelle politique SSL en cliquant sur ```Ajouter```
     -   Bloquer sans déchiffrer.
 ### 1.4 Odres des réglès
 Assurez-vous du bon ordre des règles selon les autorisations et interdictions mises en place.
-
+---
 ### 1.5 Catégories d'objets :
 
 ```URL-CN``` est un objet (catégorie d’URL) regroupant plusieurs sites. Par exemple :
