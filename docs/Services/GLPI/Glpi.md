@@ -1,6 +1,7 @@
-# Installation d'un serveur GLPI **(Version SANS DOCKER)**
+# Installation d'un serveur GLPI **(Version VIA DOCKER)**
 
-⚠️ L'installation du GLPI via Docker ne necessite pas la procédure suivante !
+⚠️ L'installation du GLPI via Docker est différente qu'une installation classique !
+Pour voir la mise en place du Docker lié à celle de notre GLPI voir [la documentation Docker](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/docker.md/)
 
 ## Objectif :
 ----------
@@ -13,99 +14,47 @@ En résumé, GLPI est un outil essentiel pour organiser, superviser et optimiser
 
 ---
 
-## 1. Prérequis
+## 1. Installation
 
--   Serveur Linux (Debian/Ubuntu/Rocky)
--   Accès root ou sudo
--   Accès réseau vers la base de données externe
--   Apache/Nginx + PHP 8.1+
--   MariaDB/MySQL externe
+```image: diouxx/glpi:latest``` → correspond à l’image Docker officielle GLPI que Docker va télécharger automatiquement depuis Docker Hub si elle n’est pas déjà présente sur ta machine.<br>
+Cette image contient déjà Apache, PHP et GLPI prêt à l’emploi.
 
----
-
-## 2. Installation des dépendances
-
-Sur VM Linux :
 ```
-sudo apt update
-sudo apt upgrade
-sudo apt install apache2 mariadb-client php php-cli php-common php-mysql php-xml php-gd php-curl php-intl php-zip php-ldap php-mbstring php-apcu php-bz2 php-imap
+glpi:
+    image: diouxx/glpi:latest
+    container_name: glpi_app
 ```
 
 ---
 
-## 3. Téléchargement de GLPI
-```
-wget https://github.com/glpi-project/glpi/releases/latest/download/glpi.tgz
-tar -xzf glpi.tgz
-sudo mv glpi /var/www/html/
-sudo chown -R www-data:www-data /var/www/html/glpi
-```
+## 2. Configuration 
 
----
-
-## 4. Configuration Apache
-
-Créer ```/etc/apache2/sites-available/glpi.conf``` :
+Fichier de conf à remplir & modifier dans le serveur Docker afin de faire la liaison avec la Base de Données GLPI.
 
 ```
-<VirtualHost *:80>
-    ServerName glpi.local
-    DocumentRoot ```/var/www/html/glpi
-    <Directory /var/www/html/glpi>
-        AllowOverride All
-        Require all granted
-    </Directory>
-</VirtualHost>
+version: "3.9"
+ 
+services:
+  glpi:
+    image: diouxx/glpi:latest
+    container_name: glpi_app
+    restart: always
+    ports:
+      - "172.28.33.8(RESEAU CLIENT AUTORISÉ):2000:80"   # Port 2000 : Port externe à DOCKER & Local à la machine
+      - "10.10.120.15(RESEAU MANAGEMENT AUTORISÉ):2000:80"  # Port 80 : Port interne à DOCKER
+    environment:
+      GLPI_DB_HOST: ${DB_HOST}
+      GLPI_DB_NAME: ${DB_NAME}
+      GLPI_DB_USER: ${DB_USER}
+      GLPI_DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./glpi:/var/www/html/glpi
+    networks:
+      - glpi_net
+ 
+networks:
+  glpi_net:
+    driver: bridge
 ```
-
-Activer :
-```
-sudo a2ensite glpi
-sudo a2enmod rewrite
-sudo systemctl restart apache2
-```
-
----
-
-## 5. Configuration base de données (serveur externe)
-
-Connexion au serveur SQL de la BDD :
-```
-CREATE DATABASE glpi CHARACTER SET utf8mb4;
-CREATE USER 'glpi_user'@'172.28.33.8' IDENTIFIED BY 'motdepasse';
-GRANT ALL PRIVILEGES ON glpi.* TO 'glpi_user'@'172.28.33.8';
-FLUSH PRIVILEGES;
-```
-
----
-
-## 6. Installation web
-
-Accéder via navigateur : http://IP_SERVEUR_GLPI/glpi
-
-Puis suivre les étapes : 
-6.1 - Sélection langue 
-6.2 - Acceptation licence 
-6.3 - Choix installation 
-6.4 - Connexion à la base externe 
-6.5 - Création du schéma 
-6.6 - Finalisation
-
----
-
-## 7. Sécurisation
-
-```sudo rm -rf /var/www/html/glpi/install
-```
-
----
-
-## 8. Identifiants par défaut
-
--   glpi / glpi
--   tech / tech
--   normal / normal
--   post-only / post-only
 
 ---
