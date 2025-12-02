@@ -95,7 +95,7 @@ nav:
       - Sécurité:
           - Certificat SSL/TLS & HTTPS: Services/https.md
       - GLPI: 
-          - Installation GLPI: Services/GLPI/Glpi1.md
+          - Installation GLPI: Services/GLPI/Glpi.md
           - Liaison AD & GLPI via LDAP: Services/GLPI/Glpi2.md
           - Mise en place inventaire: Services/GLPI/Glpi3.md    
       - WordPress:
