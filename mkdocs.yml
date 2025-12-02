@@ -1,5 +1,11 @@
 site_name: Sport Ludique Chartres
 markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
@@ -7,7 +13,6 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - pymdownx.superfences
-  - pymdownx.highlight
   - pymdownx.tilde
   - pymdownx.tasklist:
       custom_checkbox: true
@@ -19,6 +24,8 @@ plugins:
 theme :
   icon :
     annotation : material/arrow-right-circle-outline
+  features:
+    - content.code.copy
   logo : logo.png
   name : material
   language : fr
@@ -84,6 +91,11 @@ nav:
       - Base de Données: Serveurs/bdd.md
       - Serveur web: Serveurs/Web.md
   - Services: 
+      - Serveurs :
+          - Base de Données: Services/bdd.md
+          - Serveur web: Services/Web.md
+          - GLPI: Services/Glpi.md
+          - Mail: Services/mail.md
       - Sécurité:
           - Certificat SSL/TLS & HTTPS: Services/https.md
       - GLPI: 
