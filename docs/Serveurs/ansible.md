@@ -76,7 +76,7 @@ Voici la configuration nécessaire pour notre infrastructure :
 
 <div class="annotate" markdown>
 
-A chaque fois qu'on mettra en place une nouvelle VM Serveur il faudra l'ajouter dans ce fichier de configuration afin que l'inventaire soit à jour par la suite dans le glpi.
+À chaque fois qu'on mettra en place une nouvelle VM Serveur, il faudra l'ajouter dans ce fichier de configuration afin que l'inventaire soit à jour par la suite dans le GLPI.
 
 </div>
 
@@ -105,39 +105,39 @@ serveurs
 
 ## 4. Generation de la clé publique
 
-Il n'est pas possible d'utiliser une connexion ssh via Mot de Passe car le serveur Ansible ne les connait pas,
-il faut donc mettre en place une ahtneitifcation via clé pubique donc on va generer une clé publique pour le serveur Ansible :
+Il n'est pas possible d'utiliser une connexion SSH via mot de passe car le serveur Ansible ne les connaît pas,
+il faut donc mettre en place une authentification via clé publique, donc on va générer une clé publique pour le serveur Ansible :
 
 ```
 ssh-keygen -t ed25519
 ```
 
-On ne met pas en place de PassPhrase, car le serveur ne les connaitras pas non plus donc ca revient ua meme que le mot de passe !
+On ne met pas en place de PassPhrase, car le serveur ne les connaîtra pas non plus donc ça revient au même que le mot de passe !
 
 ---
 
 ## 5. Copie de la clé publique sur les VM Serveurs de l'infrastructure 
 
-On va copier la clé publique sur toutes les VM que l'ont veut répertorité dans l'inventaire à l'aide d'une commande (scp auto) : 
+On va copier la clé publique sur toutes les VM que l'on veut répertorier dans l'inventaire à l'aide d'une commande (scp auto) :
 
 ```
 ssh-copy-id *utilisateur*@10.10.120.?
 ```
 
-On y precisera le MÊME utilisateur utilisé dans ```ansible_user``` dans la configuration de l'inventaire via ```sudo nano /etc/ansible/hosts``` <br>
-Faire cela pour toutes les VM présentes dans la configuration une par une même si il y en un grands nombres.
+On y précisera le MÊME utilisateur utilisé dans ```ansible_user``` dans la configuration de l'inventaire via ```sudo nano /etc/ansible/hosts``` <br>
+Faire cela pour toutes les VM présentes dans la configuration, une par une, même s'il y en a un grand nombre.
 
 ---
 
 ## 6. Test de connexion
 
-Une fois les étapes précednetes correctement mises en place, nous ferons un test via la commande suivante : 
+Une fois les étapes précédentes correctement mises en place, nous ferons un test via la commande suivante :
 
 ```
 ansible all -m ping 
 ```
 
-Le résultat retourner doit être le suivant (ceci est un exemple): 
+Le résultat retourné doit être le suivant (ceci est un exemple):
 
 ```
 [WARNING]: Host 'dns-resolver-sec' is using the discovered Python interpreter at '/usr/bin/python3.13', but future installation of another Python interpreter could cause a different interpreter to be discovered. See https://docs.ansible.com/ansible-core/2.19/reference_appendices/interpreter_discovery.html for more information.
@@ -150,3 +150,10 @@ dns-resolver-sec | SUCCESS => {
 }
 ```
 
+---
+
+## 7. Mise en place Agent GLPI
+
+Nous allons pousser un Agent GLPI sur toutes les machines Linux dans la documentation de la Mise en place de l'Inventaire GLPI : [documentation] https://sym-0ne.github.io/sport-ludique-Chartres/Services/GLPI/Glpi3/
+
+---
