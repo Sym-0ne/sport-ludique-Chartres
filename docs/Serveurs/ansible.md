@@ -22,7 +22,7 @@ Installer Ansible.
 Ubuntu propose maintenant Ansible via le dépôt officiel ou via apt directement.<br>
 Pour la version stable on utilisera alors la version ```apt```
 
-<div class="annotate" markdown>
+</div>
 
 ```
 sudo apt install ansible -y
@@ -38,7 +38,7 @@ Tu devrais voir la version installée, par exemple ansible 2.14.
 
 ---
 
-## 2. Configuration de base
+## 2. Configuration de base pour test 
 
 Créer le fichier d’inventaire :
 
@@ -63,3 +63,43 @@ ansible all -m ping
 Si tout est OK, tu verras pong.
 
 ---
+
+## 3. Configuration finale
+
+Se rendre dans le fichier suivant : 
+
+```
+sudo nano /etc/ansible/hosts
+```
+
+Voici la configuration nécessaire pour notre infrastructure : 
+
+<div class="annotate" markdown>
+
+A chaque fois qu'on mettra en place une nouvelle VM Serveur il faudra l'ajouter dans ce fichier de configuration afin que l'inventaire soit à jour par la suite dans le glpi.
+
+</div>
+
+```
+[local]
+127.0.0.1 ansible_connection=local
+
+[serveurs]
+bdd ansible_host=10.10.120.7 ansible_user=bdd     
+reverse-proxy ansible_host=10.10.120.80 ansible_user=user
+reverse-proxy-sec ansible_host=10.10.120.90 ansible_user=user
+web ansible_host=10.10.120.11 ansible_user=user
+dns-autorite ansible_host=10.10.120.8 ansible_user=user
+dns-autorite-sec ansible_host=10.10.120.18 ansible_user=user
+dns-resolver ansible_host=10.10.120.9 ansible_user=user
+dns-resolver-sec ansible_host=10.10.120.19 ansible_user=user
+ca-autorite ansible_host=10.10.120.12 ansible_user=certificat
+docker ansible_host=10.10.120.15 ansible_user=user
+
+[all_linux:children]
+serveurs
+```
+
+
+
+
