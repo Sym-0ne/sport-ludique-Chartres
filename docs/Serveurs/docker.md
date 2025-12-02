@@ -6,7 +6,7 @@ Un conteneur est un espace isolé de la machine qui sers a faire tourner des app
 
 Au lieu d'avoir plusieurs application qui utilisent la même instance d'un programme exemple : plusisuers services Web qui utilisent la même instance d'apache, la contenairisation permet d'isoler chaque service Web dans un conteneur dédier, chaque conteneur a sa propre instance d'Apache et sa propre arborescence de fichier limitant les bugs. La conteneurisation evite donc de devoir crée une machine virtuel par application.
 
-Toute la Documentation de docker est disponible sur [le github de mr Mery](https://lmeryfulbert.github.io/SportLudique2025-2026/cours/05-Services/containers/11-docker/#introduction).
+Toute la documentation de docker est disponible sur [le GitHub de Mr Mery](https://lmeryfulbert.github.io/SportLudique2025-2026/cours/05-Services/containers/11-docker/#introduction).
 
 ---
 
