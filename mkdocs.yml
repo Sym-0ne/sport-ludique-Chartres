@@ -78,9 +78,9 @@ nav:
       - DNS Autorité: DNS/DNS-autorité.md
       - DNS Resolveur: DNS/DNS Resolveur.md
   - Serveurs: 
-      - Reverse Proxy: 
-          - Configuration Reverse Proxy: Serveurs/Reverse Proxy/reverse-proxy.md
-          - Reverse Proxy Secondaire: Serveurs/Reverse Proxy/reverse-proxy-secondaire.md
+      - ReverseProxy: 
+          - Configuration Reverse Proxy: Serveurs/ReverseProxy/reverse-proxy.md
+          - Reverse Proxy Secondaire: Serveurs/ReverseProxy/reverse-proxy-secondaire.md
       - Base de Données: Serveurs/bdd.md
       - Serveur web: Serveurs/Web.md
   - Services: 
