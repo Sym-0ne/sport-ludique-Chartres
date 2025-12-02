@@ -6,9 +6,9 @@ Comme dans toute entreprise, la communication est vitale, qu'elle soit interne a
 
 ---
 
-## 1. Instalation 
+## 1. Installation 
 
-Nous avons utilisé le service "HMail" sur Windows ; nous l'utiliserons sur une VM Windows 10 hébergée sur notre hyperviseur Proxmox.
+Nous avons utilisé le service "Hmail" sur Windows, nous l'utiliserons sur une VM Windows 10 hébergée sur notre hyperviseur Proxmox.
 
 ### 1.1 Hmail
 
@@ -420,4 +420,4 @@ Il suffit ensuite d’ajouter le réseau client : 172.28.35.0 → 172.28.35.254 
 
 Côté utilisateur, il suffit de se connecter depuis un client de messagerie, de s’authentifier avec ses identifiants du domaine et d’envoyer des mails !
 
-
+---
