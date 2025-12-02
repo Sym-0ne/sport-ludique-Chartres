@@ -1,21 +1,24 @@
-# Service de messagerie 
+# Installation & Configuration du Serveur Mail
 
 ## Contexte
 
-Comme dans toute entreprise, la communication est vitale, qu'elle soit interne au sein du site de Chartres ou externe entre les différents sites. Dans ce but, nous avons configuré un serveur de messagerie qui utilise les protocoles SMTP et IMAP.
+Comme dans toute entreprise, la communication est vitale, qu'elle soit interne au sein du site de Chartres ou externe entre les différents sites. Dans ce but, nous avons configuré un serveur de messagerie afin d'envoyer des mails qui utilise les protocoles SMTP et IMAP.
 
-## Instalation 
+---
+
+## 1. Instalation 
 
 Nous avons utilisé le service "HMail" sur Windows ; nous l'utiliserons sur une VM Windows 10 hébergée sur notre hyperviseur Proxmox.
 
-### Hmail
+### 1.1 Hmail
 
 La configuration d'installation de HMail est relativement simple : il suffit de lancer le programme d'installation du service disponible [ICI](https://www.hmailserver.com/download), de créer un mot de passe pour le service, éventuellement de modifier les dossiers de l'application, puis de terminer l'installation.
 
+---
 
-## Configuration
+## 2. Configuration
 
-### Domaine et Utilisateurs
+### 2.1 Domaine et Utilisateurs
 La première étape consiste à définir le nom de domaine, dans notre cas : `chartres.sportludique.fr`.
 
 Concernant les utilisateurs, HMail ne dispose pas d’un module de synchronisation LDAP. Deux options sont donc possibles :
@@ -261,7 +264,7 @@ foreach ($result in $results) {
             if ($updateExistingAccounts) {
                 $account = $hmailAccounts[$emailLower]
                 
-                $account.PersonFirstName = $firstName
+                $account.PersonF---irstName = $firstName
                 $account.PersonLastName = $lastName
                 $account.Active = $isEnabled
                 $account.Save()
@@ -339,8 +342,9 @@ Il peut être intégré au Planificateur de tâches Windows pour une exécution 
 </div>
 1. À noter que ce script attribue le mot de passe "azerty" à tous les comptes mail. Ce mot de passe peut évidemment être synchronisé avec les mots de passe de l’Active Directory.
 
+---
 
-### Paramétrage réseau
+### 2.2 Paramétrage réseau
 
 Afin que le serveur SMTP et IMAP puissent joindre et répondre aux connexions des autres réseaux ainsi que des connexions Internet, il faut mettre en place plusieurs choses :
 - Routes de retour sur le serveur HMail
@@ -348,8 +352,9 @@ Afin que le serveur SMTP et IMAP puissent joindre et répondre aux connexions de
 - Enregistrements DNS imap et smtp
 - Ajout des réseaux dans la configuration HMail
 
+---
 
-#### Routes de retour sur le serveur Hmail 
+#### 2.2.1 Routes de retour sur le serveur Hmail 
 
 Toujours à cause du [stateful inspection](https://sym-0ne.github.io/sport-ludique-Chartres/Pare-feux/stormshield/#7-statefull-inspection), nous devons ajouter des routes de retour sur tout équipement ayant besoin de joindre le LAN.
 
@@ -365,14 +370,18 @@ Itinéraires persistants :
 ===========================================================================
 ```
 
-#### PAT sur R1 & R2 
+---
+
+#### 2.2.2 PAT sur R1 & R2 
 
 ```
 ip nat inside source static tcp 172.28.62.2 25 183.44.28.1 25 #Règle SMTP
 ip nat inside source static tcp 172.28.62.2 143 183.44.28.1 143 #Règle IMAP
 ```
 
-#### Enregistrements DNS
+---
+
+#### 2.2.3 Enregistrements DNS
 <div class="annotate" markdown>
 Sur la zone **externe** de notre DNS autorité (1)
 </div>
@@ -395,7 +404,9 @@ imap IN A 172.28.62.2
 chartres.sportludique.fr. IN MX 10 smtp.chartres.sportludique.fr.
 ```
 
-#### Ajout des réseaux dans Hmail 
+---
+
+#### 2.2.4 Ajout des réseaux dans Hmail 
 
 Il faut ajouter les réseaux autorisés à communiquer avec le serveur directement dans la configuration de celui-ci :
 
@@ -403,8 +414,9 @@ Il faut ajouter les réseaux autorisés à communiquer avec le serveur directeme
 
 Il suffit ensuite d’ajouter le réseau client : 172.28.35.0 → 172.28.35.254 et d’augmenter la priorité pour que cette étendue passe au-dessus des autres. Pensez bien à désactiver le SSL/TLS s’il n’est pas utilisé.
 
+---
 
-## Utilisation 
+## 3. Utilisation 
 
 Côté utilisateur, il suffit de se connecter depuis un client de messagerie, de s’authentifier avec ses identifiants du domaine et d’envoyer des mails !
 
