@@ -1,4 +1,6 @@
-# Installation d'un serveur GLPI
+# Installation d'un serveur GLPI **(Version SANS DOCKER)**
+
+⚠️ L'installation du GLPI via Docker ne necessite pas la procédure suivante !
 
 ## Objectif :
 ----------
