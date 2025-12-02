@@ -90,7 +90,7 @@ nav:
           - ReverseProxy Secondaire: Serveurs/ReverseProxy/RpSec.md
       - Base de Données: Serveurs/bdd.md
       - Serveur web: Serveurs/Web.md
-      - Mail: Serveurs/mail.md
+      - Serveur Mail: Serveurs/mail.md
   - Services: 
       - Sécurité:
           - Certificat SSL/TLS & HTTPS: Services/https.md
