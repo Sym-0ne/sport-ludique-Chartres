@@ -40,7 +40,7 @@ Ce [tutoriel](https://www.it-connect.fr/installation-pas-a-pas-de-docker-sur-deb
 
 ### 3.2 Création d'un conteneur
 
-Chaque conteneur travaille dans son propre dossier, pour cet exemple nous allons crée le conteneur de notre [serveur GLPI](). 
+Chaque conteneur travaille dans son propre dossier, pour cet exemple nous allons crée le conteneur de notre [serveur GLPI](https://sym-0ne.github.io/sport-ludique-Chartres/Services/GLPI/Glpi/). 
 
 Il nous faut donc trvavailler dans un dossier a part `mkdir glpi`, il faut ensuite crée le fichier Docker Compose, fichier docker qui permet de gérer des applications multi-conteneurs.
 
@@ -69,13 +69,13 @@ networks:
   glpi_net:
     driver: bridge
 ```
-Les informations propres a ce fichier Docker sont disponibles sur [la page dédiée a glpi]().
+Les informations propres a ce fichier Docker sont disponibles sur [la page dédiée a glpi](https://sym-0ne.github.io/sport-ludique-Chartres/Services/GLPI/Glpi/).
 
 ### 3.3 Lancement d'un conteneur
 
-La commande `docker compose up -d` à éxecuter dans le dossier de votre conteneur permet de lancer les instances présentes dnas votre fichier docker-compose.yml en arrière plan 
+La commande `docker compose up -d` à éxecuter dans le dossier de votre conteneur permet de lancer les instances présentes dnas votre fichier docker-compose.yml en arrière plan. 
 
-Il est possible de vérifier les les services lancées grâce a la commande `docker compose ps`
+Il est possible de vérifier les les services lancées grâce a la commande `docker compose ps`.
 
 Enfin pour arreter un conteneur il suffit d'executer la commande `docker compose down` toujours dans le répertoire de votre conteneur.
 
