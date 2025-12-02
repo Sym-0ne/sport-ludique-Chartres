@@ -91,14 +91,11 @@ nav:
       - Base de Données: Serveurs/bdd.md
       - Serveur web: Serveurs/Web.md
   - Services: 
-<<<<<<< HEAD
-      - Serveurs : 
+      - Serveurs :
           - Base de Données: Services/bdd.md
           - Serveur web: Services/Web.md
           - GLPI: Services/Glpi.md
           - Mail: Services/mail.md
-=======
->>>>>>> 2252dfef2422eae6076abdea0774592818635aae
       - Sécurité:
           - Certificat SSL/TLS & HTTPS: Services/https.md
       - GLPI: 
