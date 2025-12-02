@@ -79,17 +79,17 @@ nav:
       - DNS Resolveur: DNS/DNS Resolveur.md
   - Serveurs: 
       - ReverseProxy: 
-          - Configuration Reverse Proxy: Serveurs/ReverseProxy/reverse-proxy.md
-          - Reverse Proxy Secondaire: Serveurs/ReverseProxy/reverse-proxy-secondaire.md
+          - Configuration ReverseProxy: Serveurs/ReverseProxy/Rp.md
+          - ReverseProxy Secondaire: Serveurs/ReverseProxy/RpSec.md
       - Base de Données: Serveurs/bdd.md
       - Serveur web: Serveurs/Web.md
   - Services: 
       - Sécurité:
           - Certificat SSL/TLS & HTTPS: Services/https.md
       - GLPI: 
-          - Installation GLPI: Services/GLPI/Glpi.md
-          - Liaison AD & GLPI via LDAP: Services/GLPI/Glpi-ldap.md
-          - Mise en place inventaire: Services/GLPI/Glpi-inventaire.md    
+          - Installation GLPI: Services/GLPI/Glpi1.md
+          - Liaison AD & GLPI via LDAP: Services/GLPI/Glpi2.md
+          - Mise en place inventaire: Services/GLPI/Glpi3.md    
       - WordPress:
           - Installation WordPress: Services/wordpress.md
           - Configuration WordPress: Services/wordpress2.md
