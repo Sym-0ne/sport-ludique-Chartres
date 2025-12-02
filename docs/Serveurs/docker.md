@@ -1,4 +1,4 @@
-# Docker
+# Installation et Configuration d'un Docker
 
 ## 1. Principe du conteneur
 
@@ -7,6 +7,8 @@ Un conteneur est un espace isolé de la machine qui sers a faire tourner des app
 Au lieu d'avoir plusieurs application qui utilisent la même instance d'un programme exemple : plusisuers services Web qui utilisent la même instance d'apache, la contenairisation permet d'isoler chaque service Web dans un conteneur dédier, chaque conteneur a sa propre instance d'Apache et sa propre arborescence de fichier limitant les bugs. La conteneurisation evite donc de devoir crée une machine virtuel par application.
 
 Toute la Documentation de docker est disponible sur [le github de mr Mery](https://lmeryfulbert.github.io/SportLudique2025-2026/cours/05-Services/containers/11-docker/#introduction).
+
+---
 
 ## 2. Pourquoi utiliser Docker ? 
 
@@ -24,6 +26,8 @@ Toute la Documentation de docker est disponible sur [le github de mr Mery](https
 
 7. Gestion simplifiée : Docker et ses outils permettent d’automatiser le déploiement et la mise à jour des applications.
 
+---
+
 ## 3. Mise en place de Docker
 
 ### 3.1 Instalation et configuration primaire
@@ -31,6 +35,8 @@ Toute la Documentation de docker est disponible sur [le github de mr Mery](https
 L'installation de docker est légèrement différente des installation de paquets habituels sur linux, en effet docker necessite de récupérer une clef GPG et plussuers autres manipulations pour que l'installation se passe au mieux.
 
 Ce [tutoriel](https://www.it-connect.fr/installation-pas-a-pas-de-docker-sur-debian-11/#II_Installer_Docker_sur_Debian_13) vous montreras pas à pas comment installer docker sur un environement linux Debian 13. 
+
+---
 
 ### 3.2 Création d'un conteneur
 
@@ -73,3 +79,5 @@ La commande `docker compose up -d` à éxecuter dans le dossier de votre contene
 Il est possible de vérifier les les services lancées grâce a la commande `docker compose ps`
 
 Enfin pour arreter un conteneur il suffit d'executer la commande `docker compose down` toujours dans le répertoire de votre conteneur.
+
+---

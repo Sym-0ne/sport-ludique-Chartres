@@ -89,6 +89,7 @@ nav:
           - Configuration ReverseProxy: Serveurs/ReverseProxy/Rp.md
           - ReverseProxy Secondaire: Serveurs/ReverseProxy/RpSec.md
       - Base de Données: Serveurs/bdd.md
+      - Serveur Ansible: Serveurs/ansible.md
       - Serveur web: Serveurs/Web.md
       - Serveur Mail: Serveurs/mail.md
       - Docker: Serveurs/docker.md
