@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64; rv:142.0) Gecko/20100101 Firefox/142.0" version="29.2.4">
   <diagram name="Page-1" id="pv2tOKStDJ_Z1Nen-3eF">
-    <mxGraphModel dx="2789" dy="2067" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
+    <mxGraphModel dx="2004" dy="1708" grid="1" gridSize="10" guides="1" tooltips="1" connect="0" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="#ffffff" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -533,7 +533,7 @@
         <mxCell id="MRyuxS--L2C4a601n-dw-3" parent="S2D03lTNysGUqa_wgf6a-44" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;Serveur Docker (GLPI)&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="100" x="216.6" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="MRyuxS--L2C4a601n-dw-2" parent="S2D03lTNysGUqa_wgf6a-44" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;.7&lt;/b&gt;" vertex="1">
+        <mxCell id="MRyuxS--L2C4a601n-dw-2" parent="S2D03lTNysGUqa_wgf6a-44" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;.8&lt;/b&gt;" vertex="1">
           <mxGeometry height="30" width="60" x="260" y="180" as="geometry" />
         </mxCell>
         <mxCell id="S2D03lTNysGUqa_wgf6a-76" parent="1" style="swimlane;whiteSpace=wrap;html=1;shadow=1;rounded=1;fillColor=#7EA6E0;startSize=23;" value="Services Primaires (Via PFW1)&amp;nbsp;" vertex="1">
