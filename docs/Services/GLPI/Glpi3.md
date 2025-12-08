@@ -42,7 +42,7 @@ Colle ce playbook prêt à l’emploi :
   vars:
     glpi_release_folder: "1.7"
     glpi_agent_filename: "glpi-agent_1.7-1_all.deb"
-    glpi_agent_url: "https://github.com/glpi-project/glpi-agent/releases/download/{{ glpi_release_folder }}/{{ glpi_a>
+    glpi_agent_url: "https://github.com/glpi-project/glpi-agent/releases/download/{{ glpi_release_folder }}/{{ glpi_agent_filename }}"
     glpi_server_url: "http://10.10.120.15:2000/front/inventory.php"
 
   tasks:
