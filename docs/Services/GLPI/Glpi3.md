@@ -35,37 +35,77 @@ Colle ce playbook prêt à l’emploi :
 
 ```
 ---
-- name: Installer l'agent GLPI sur toutes les VM Linux
+- name: Installer et configurer l'agent GLPI sur toutes les VM Linux
   hosts: all_linux
   become: yes
 
   vars:
-    glpi_agent_version: "1.7"
-    glpi_agent_url: "https://github.com/glpi-project/glpi-agent/releases/download/${glpi_agent_version}/glpi-agent_${glpi_agent_version}_all.deb"
+    glpi_release_folder: "1.7"
+    glpi_agent_filename: "glpi-agent_1.7-1_all.deb"
+    glpi_agent_url: "https://github.com/glpi-project/glpi-agent/releases/download/{{ glpi_release_folder }}/{{ glpi_a>
+    glpi_server_url: "http://10.10.120.15:2000/front/inventory.php"
 
   tasks:
 
-    - name: Mettre à jour les dépôts APT
-      apt:
+    - name: 1. Mettre à jour le cache APT
+      ansible.builtin.apt:
         update_cache: yes
+      tags: update
 
-    - name: Télécharger le package GLPI Agent
-      get_url:
+    - name: 2. Télécharger le package GLPI Agent (DEB)
+      ansible.builtin.get_url:
         url: "{{ glpi_agent_url }}"
-        dest: /tmp/glpi-agent.deb
+        dest: "/tmp/glpi-agent.deb"
         mode: '0644'
 
-    - name: Installer le package GLPI Agent
-      apt:
-        deb: /tmp/glpi-agent.deb
+    - name: 3. Installer le package GLPI Agent
+      ansible.builtin.apt:
+        deb: "/tmp/glpi-agent.deb"
         state: present
+        update_cache: yes
+      notify:
+        - Démarrer et Activer GLPI Agent
 
-    - name: Activer le service GLPI Agent
-      systemd:
+    # --- TÂCHES DE NETTOYAGE ET DE CONFIGURATION (NO AUTH) ---
+
+    - name: 4a. Configurer l'URL du serveur GLPI dans agent.cfg
+      ansible.builtin.lineinfile:
+        path: /etc/glpi-agent/agent.cfg
+        regexp: '^server ='
+        line: 'server = {{ glpi_server_url }}'
+        state: present
+      notify: Redémarrer GLPI Agent pour appliquer la config
+
+    - name: 4b. Supprimer l'ancienne configuration de login (pour Aucune Authentification)
+      ansible.builtin.lineinfile:
+        path: /etc/glpi-agent/agent.cfg
+        regexp: '^user ='
+        state: absent
+      notify: Redémarrer GLPI Agent pour appliquer la config
+
+
+    - name: 4c. Supprimer l'ancienne configuration de mot de passe
+      ansible.builtin.lineinfile:
+        path: /etc/glpi-agent/agent.cfg
+        regexp: '^password ='
+        state: absent
+      notify: Redémarrer GLPI Agent pour appliquer la config
+
+  handlers:
+
+    # 1. Handler pour démarrer l'agent après l'installation
+    - name: Démarrer et Activer GLPI Agent
+      ansible.builtin.systemd:
+        name: glpi-agent
+        enabled: yes
+        state: started
+
+    # 2. Handler pour redémarrer l'agent après une modification de config (celui qui manquait)
+    - name: Redémarrer GLPI Agent pour appliquer la config
+      ansible.builtin.systemd:
         name: glpi-agent
         enabled: yes
         state: restarted
-
 ```
 
 ---
@@ -79,6 +119,12 @@ ansible-playbook /etc/ansible/playbooks/install_glpi_agent.yml
 ```
 
 Si tout est OK, tu verras des lignes changed=true un peu partout.
+
+Forcer l'inventaire si après le lancement les machines n'apparaissent pas dans le GLPI.
+
+```
+ansible all_linux -b -m shell -a "sudo glpi-agent --server http://10.10.120.15:2000/front/inventory.php --force"
+```
 
 ---
 
