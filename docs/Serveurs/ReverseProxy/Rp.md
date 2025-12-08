@@ -1,6 +1,9 @@
-# Reverse Proxy
+# Installation & Configuration d'un Reverse Proxy
 
-Voici les étapes nécessaires pour installer et configurer un reverse proxy Nginx avec gestion de HTTPS.
+## Objectif :
+----------
+
+Un reverse proxy est un serveur intermédiaire positionné devant un ou plusieurs serveurs d'application. Il reçoit les requêtes des clients (navigateurs web) et les transmet au serveur interne approprié, puis retourne la réponse du serveur au client, agissant comme le point d'entrée unique.
 
 ---
 

@@ -1,5 +1,10 @@
 # Installation de WordPress sur Debian avec serveur MySQL distant
 
+## Objectif :
+----------
+
+WordPress est un système de gestion de contenu (CMS) open source, basé sur PHP et MySQL/MariaDB. Il est conçu pour permettre aux utilisateurs de créer, gérer et publier des sites web dynamiques à l'aide de templates sans nécessiter de programmation manuelle.
+
 ---
 
 ## 1. Prérequis sur le serveur web (172.28.62.3)

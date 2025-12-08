@@ -155,4 +155,5 @@ dns-resolver-sec | SUCCESS => {
 ## 7. Mise en place Agent GLPI
 
 Nous allons pousser un Agent GLPI sur toutes les machines Linux dans la documentation de la Mise en place de l'Inventaire [GLPI](https://sym-0ne.github.io/sport-ludique-Chartres/Services/GLPI/Glpi3/)
+
 ---
