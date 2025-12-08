@@ -136,6 +136,8 @@ www.cimmob IN A 183.44.28.1
 
 ---
 
+**⚠️⚠️⚠️ Tout changement dans la configuration des zones requier l'incrémentation du "Numéros de série" pour prendre effet ⚠️⚠️⚠️**
+
 ## 6. Désactivation des 13 serveurs racines
 
 Les 13 serveurs DNS racines servent à TOUS les serveurs récursifs à se diriger vers les bons serveurs DNS pour accomplir leur résolution, nous allons les désactivées car ils rentrent en conflit avec nos views, de plus il est inutile de les avoirs étant donné que ce serveur ne fait AUCUNE récursion. 
