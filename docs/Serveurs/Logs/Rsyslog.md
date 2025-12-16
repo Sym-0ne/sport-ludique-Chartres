@@ -10,7 +10,9 @@ Nous utilisons Ansible pour automatiser l’installation et la configuration, ga
 ---
 
 ## 1 : Installer rsyslog sur la VM Ansible
-```sudo apt install rsyslog
+
+```
+sudo apt install rsyslog
 ```
 
 ---
@@ -18,7 +20,9 @@ Nous utilisons Ansible pour automatiser l’installation et la configuration, ga
 ## 2 : Créer le playbook
 
 Éditer le fichier :
-```sudo nano /etc/ansible/playbooks/rsyslog_graylog.yml
+
+```
+sudo nano /etc/ansible/playbooks/rsyslog_graylog.yml
 ```                                   
 
 Mettre le contenu suivant :
