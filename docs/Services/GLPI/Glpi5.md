@@ -90,14 +90,6 @@ Configuration ordinateur
 
 ---
 
-### 3.3 Ajouter le script `glpi-agent.bat` :
-
-- Cliquer droit sur Installation de logiciels → Nouveau → Script
-- Chemin UNC du script : \\CHA-DC-01\Deploy\GLPI-Agent\glpi-agent.bat
-- Action : Attribué (Assigned)
-
----
-
 ### 4. Configuration du registre via GPO 
 
 Pour que toutes les machines pointent vers le serveur GLPI correct :
