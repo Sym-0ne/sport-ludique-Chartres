@@ -54,6 +54,24 @@ Exemple simple de contenu pour tester sur la machine locale :
 127.0.0.1 ansible_connection=local
 ```
 
+### Connexion uniquement avec clé (Recommandée pour Ansible)
+
+Se rendre dans le fichier : 
+```
+sudo visudo 
+```
+
+Ajoute en dessous de Root en bas de page :
+
+```
+ansible ALL=(ALL) ALL
+```
+
+Ou sans mot de passe (idéal pour Ansible) :
+```
+ansible ALL=(ALL) NOPASSWD: ALL
+```
+
 Tester la connexion :
 
 ```

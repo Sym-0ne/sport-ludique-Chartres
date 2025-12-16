@@ -4,7 +4,7 @@
 
 Nous avons besoin de :
 
-✔ L’URL du serveur GLPI (ex : http://10.10.120.15:2000)<br>
+✔ L’URL du serveur GLPI (ex : http://10.10.120.15)<br>
 ✔ Le lien de téléchargement de l’agent GLPI Linux<br>
 ✔ Le port utilisé par l’agent (par défaut 62354)<br>
 
@@ -43,7 +43,7 @@ Colle ce playbook prêt à l’emploi :
     glpi_release_folder: "1.7"
     glpi_agent_filename: "glpi-agent_1.7-1_all.deb"
     glpi_agent_url: "https://github.com/glpi-project/glpi-agent/releases/download/{{ glpi_release_folder }}/{{ glpi_agent_filename }}"
-    glpi_server_url: "http://10.10.120.15:2000/front/inventory.php"
+    glpi_server_url: "http://10.10.120.15/front/inventory.php"
 
   tasks:
 
@@ -123,7 +123,7 @@ Si tout est OK, tu verras des lignes changed=true un peu partout.
 Forcer l'inventaire si après le lancement les machines n'apparaissent pas dans le GLPI.
 
 ```
-ansible all_linux -b -m shell -a "sudo glpi-agent --server http://10.10.120.15:2000/front/inventory.php --force"
+ansible all_linux -b -m shell -a "sudo glpi-agent --server http://10.10.120.15/front/inventory.php --force"
 ```
 
 ---

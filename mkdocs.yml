@@ -99,7 +99,8 @@ nav:
       - GLPI: 
           - Installation GLPI: Services/GLPI/Glpi.md
           - Liaison AD & GLPI via LDAP: Services/GLPI/Glpi2.md
-          - Mise en place inventaire: Services/GLPI/Glpi3.md    
+          - Inventaire - Agent GLPI via Ansible (Linux): Services/GLPI/Glpi3.md   
+          - Inventaire - Agent GLPI via GPO (Windows): Services/GLPI/Glpi5.md   
       - WordPress:
           - Installation WordPress: Services/wordpress.md
           - Configuration WordPress: Services/wordpress2.md
