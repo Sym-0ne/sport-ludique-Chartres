@@ -1,221 +1,127 @@
-# Deploiement de l'agent GLPI sur toutes les VM Windows via GPO
+# Déploiement de l’agent GLPI sur toutes les VM Windows via GPO
 
 
-
-# 1. CONFIGURATION – NOMS EXACTS DES SERVEURS
+## Objectif : 
+-------------
+Centraliser l’inventaire matériel et logiciel des machines Windows du domaine via l’agent GLPI.
+L’objectif est de déployer l’agent automatiquement sur toutes les machines de l’infrastructure grâce à une GPO et la configuration du registre.
 
 ---
 
+## 1. Configuration des serveurs et préparation
+
+### 1.1 Définir les serveurs concernés et le chemin du déploiement :
+
+```
 $servers = @(
     "CHA-DC-01",    # AD Principal
     "CHA_DC_02",    # AD Secondaire
     "CHA-HMAIL"     # Serveur Mail
 )
 
-# Nom de l'OU
-$ouName = "SERVEURS"
-
-# Domaine actuel
-$domain = (Get-ADDomain).DistinguishedName
-
-# Dossier de déploiement et fichier MSI
 $deployPath = "C:\Deploy\GLPI-Agent"
-$msiDest = "$deployPath\glpi-agent.msi"
-
-# Nom du partage réseau
+$batDest = "$deployPath\glpi-agent.bat"
 $shareName = "Deploy"
-
-# Nom de la GPO
 $gpoName = "Déploiement Agent GLPI"
+```
 
 ---
 
-# CRÉATION DE L’OU SERVEURS (si non existante)
+### 1.2 Vérifier le fichier `glpi-agent.bat` :
 
-
-Write-Host "`n[1] Vérification / création OU 'SERVEURS'..." -ForegroundColor Cyan
-
-if (-not (Get-ADOrganizationalUnit -Filter "Name -eq '$ouName'" -ErrorAction SilentlyContinue)) {
-    New-ADOrganizationalUnit -Name $ouName -Path $domain
-    Write-Host "   → OU SERVEURS créée." -ForegroundColor Green
-} else {
-    Write-Host "   → OU SERVEURS existe déjà." -ForegroundColor Yellow
-}
-
----
-
-# 2️⃣ DÉPLACEMENT DES SERVEURS DANS L’OU
-
-
-Write-Host "`n[2] Déplacement des serveurs dans l’OU SERVEURS..." -ForegroundColor Cyan
-
-foreach ($srv in $servers) {
-    $comp = Get-ADComputer -Filter "Name -eq '$srv'" -ErrorAction SilentlyContinue
-    if ($comp) {
-        Move-ADObject -Identity $comp.DistinguishedName -TargetPath "OU=$ouName,$domain"
-        Write-Host "   → $srv déplacé." -ForegroundColor Green
-    } else {
-        Write-Host "   ⚠ Serveur introuvable dans l’AD : $srv" -ForegroundColor Yellow
-    }
-}
-
----
-
-# VÉRIFICATION DU FICHIER MSI
-
-Write-Host "`n[3] Vérification du fichier glpi-agent.msi..." -ForegroundColor Cyan
-
-if (Test-Path $msiDest) {
-    Write-Host "   → Fichier trouvé : $msiDest" -ForegroundColor Green
-} else {
-    Write-Host "❌ Le fichier glpi-agent.msi n'existe pas dans $deployPath !" -ForegroundColor Red
-    Write-Host "   Mets-le dans ce dossier et relance le script."
-    Read-Host "Appuyez sur Entrée pour quitter..."
+```
+if (-not (Test-Path $batDest)) {
+    Write-Host "❌ Le fichier glpi-agent.bat n'existe pas dans $deployPath !"
     exit
 }
+```
 
 ---
 
-# CRÉATION DU PARTAGE RÉSEAU
-
-
-Write-Host "`n[4] Création du partage réseau..." -ForegroundColor Cyan
-
+### 1.3 Créer le partage réseau pour le déploiement :
+```
 if (Get-SmbShare -Name $shareName -ErrorAction SilentlyContinue) {
     Remove-SmbShare -Name $shareName -Force
 }
 
 New-SmbShare -Name $shareName -Path "C:\Deploy" -ReadAccess "Authenticated Users" -FullAccess "Administrators"
-Write-Host "   → Partage créé : \\$env:COMPUTERNAME\$shareName" -ForegroundColor Green
+
+Chemin du partage : \\CHA-DC-01\Deploy
+```
 
 ---
 
-# CRÉATION DE LA GPO
+## 2. Création de la GPO pour déploiement
 
-Write-Host "`n[5] Création de la GPO 'Déploiement Agent GLPI'..." -ForegroundColor Cyan
-
-$gpo = Get-GPO -Name $gpoName -ErrorAction SilentlyContinue
+### 2.1 Créer ou récupérer la GPO :
+```
+$gpo = Get-GPO -Name $gpoName -ErrorAction SilentlyConti(optionnel)nue
 if (!$gpo) {
     $gpo = New-GPO -Name $gpoName
-    Write-Host "   → GPO créée." -ForegroundColor Green
-} else {
-    Write-Host "   → GPO déjà existante." -ForegroundColor Yellow
 }
+```
+
+### 2.2 Lier la GPO à **toutes les machines de l’infrastructure** :
+
+**Exemple : lier à la racine du domaine pour toucher toutes les machines**
+
+```
+New-GPLink -Name $gpoName -Target "DC=mondomaine,DC=local"
+```
 
 ---
 
-# LIAISON DE LA GPO À L’OU SERVEURS
+## 3. Déploiement de l’agent GLPI via la GPO
 
-Write-Host "`n[6] Liaison de la GPO à l’OU SERVEURS..." -ForegroundColor Cyan
+### 3.1 Dans la console GPMC (sur CHA-DC-01) :
 
-New-GPLink -Name $gpoName -Target "OU=$ouName,$domain"
-
-Write-Host "   → GPO liée à l’OU SERVEURS." -ForegroundColor Green
-
----
-
-# INFORMATIONS À L’UTILISATEUR
-
-Write-Host "`n🎉 SCRIPT TERMINÉ !" -ForegroundColor Green
-Write-Host "Les serveurs CHA-DC-01, CHA_DC_02 et CHA-HMAIL sont maintenant dans l'OU SERVEURS." -ForegroundColor Green
-Write-Host "Partage réseau disponible : \\$env:COMPUTERNAME\$shareName" -ForegroundColor Green
-Write-Host "N'oubliez pas d'ajouter le package MSI glpi-agent.msi dans la GPO via la console GPMC." -ForegroundColor Yellow
+- Win + R → `gpmc.msc` → Entrée  
+OU Menu Démarrer → Outils d’administration → Gestion des stratégies de groupe
 
 ---
 
-# ATTENDRE QUE L’UTILISATEUR APPUIE SUR ENTRÉE
-
-Read-Host "Appuyez sur Entrée pour fermer cette fenêtre..."
-
-gpupdate /force
-
-1️⃣ Ouvrir la console de gestion des stratégies de groupe (GPMC)
-
-Sur ton serveur AD principal (CHA-DC-01) :
-
-Win + R → tape gpmc.msc → Entrée
-
-Ou Menu Démarrer → Outils d’administration → Gestion des stratégies de groupe
-
----
-
-2️⃣ Localiser ta GPO
-
-Dans le panneau de gauche :
-
-Forêt : ton-domaine
-    Domaines
-        ton-domaine
-            Objets de stratégie de groupe
-
-
-Clique sur la GPO “Déploiement Agent GLPI”.
-
----
-
-3️⃣ Ajouter le package MSI
-
-Clique droit sur la GPO → Modifier
-
-Dans l’éditeur de stratégie de groupe, va à :
-
+### 3.2 Localiser la GPO “Déploiement Agent GLPI” et modifier :
+```
 Configuration ordinateur
-    Stratégies
-        Paramètres logiciels
-            Installation de logiciels
-
-
-Clique droit sur Installation de logiciels → Nouveau → Package
-
-Dans la fenêtre qui s’ouvre :
-
-Chemin UNC du MSI :
-
-\\CHA-DC-01\Deploy\GLPI-Agent\glpi-agent.msi
-
-
-⚠️ Il faut utiliser le chemin UNC, pas un chemin local (C:\...)
-
-Choisis Attribué (Assigned) → OK
+    → Stratégies
+        → Paramètres logiciels
+            → Installation de logiciels
+```
 
 ---
 
-4️⃣ Vérifier
+### 3.3 Ajouter le script `glpi-agent.bat` :
 
-Le package doit maintenant apparaître sous Installation de logiciels.
-
-Assure-toi que “Attribué” est bien sélectionné et non “Publié”.
-
----
-
-5️⃣ Résultat
-
-Les serveurs de l’OU SERVEURS (CHA-DC-01, CHA_DC_02, CHA-HMAIL) recevront automatiquement l’agent GLPI au prochain redémarrage.
+- Cliquer droit sur Installation de logiciels → Nouveau → Script
+- Chemin UNC du script : \\CHA-DC-01\Deploy\GLPI-Agent\glpi-agent.bat
+- Action : Attribué (Assigned)
 
 ---
 
+### 4. Configuration du registre via GPO 
 
+Pour que toutes les machines pointent vers le serveur GLPI correct :
 
++----------------------+-----------------------------------------------+
+| Élément              | Valeur                                        |
++----------------------+-----------------------------------------------+
+| Chemin du registre   | HKEY_LOCAL_MACHINE\SOFTWARE\GLPI-Agent        |
+| Valeur               | server                                        |
+| Type                 | REG_SZ                                        |
+| Donnée               | http://10.10.120.15/front/inventory.php       |
+| Action               | Mettre à jour                                 |
++----------------------+-----------------------------------------------+
 
+Cela permet de configurer automatiquement l’adresse du serveur GLPI pour toutes les machines.
 
-A FAIRE DU LE DC MANEUELLEMENT 
+---
 
-installer l'agent glpi 
-plugin pr win 64 
+### 5. Installation manuelle (DC principal)
 
-lors de l'installe préciser le serv : server = http://10.10.120.15/front/inventory.php
+- Installer manuellement l’agent sur CHA-DC-01 :  
+  `"C:\Program Files\GLPI-Agent\glpi-agent.bat" --server http://10.10.120.15/front/inventory.php --force --debug --logger=stderr`
 
+- Vérifier que l’agent remonte dans GLPI.
 
-"C:\Program Files\GLPI-Agent\glpi-agent.bat" --server http://10.10.120.15 --force --debug --logger=stderr
+---
 
-PUIS FAIRE LA GPO PR LES AUTRES MACHINES DU DOMAINE 
-
-En effet dans la base des registres j'ai changé la variable serv
-
-configuration > préférence > parametres windows > registre > ajouter un registre : Ordinateur\HKEY_LOCAL_MACHINE\SOFTWARE\GLPI-Agent\server 
-
-ruche : hkey_local_machine
-Action : mettre à jour 
-chemin d'acces : SOFTWARE\GLPI-Agent
-type de valeur : reg sz 
-donnée de valeur : http://10.10.120.15/front/inventory.php
