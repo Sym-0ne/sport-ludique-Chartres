@@ -46,6 +46,64 @@ Créer le fichier d’inventaire :
 sudo mkdir -p /etc/ansible
 sudo nano /etc/ansible/hosts
 ```
+ansible@CHA-ANSIBLE:~$ ansible all_linux -b -m shell -a "sudo glpi-agent --server http://10.10.120.15:2000/front/inventory.php --force"
+[ERROR]: Task failed: Action failed: Module result deserialization failed: No start of json char found
+
+Task failed: Action failed.ansible@CHA-ANSIBLE:~$ ansible all_linux -b -m shell -a "sudo glpi-agent --server http://10.10.120.15:2000/front/inventory.php --force"
+[ERROR]: Task failed: Action failed: Module result deserialization failed: No start of json char found
+
+Task failed: Action failed.
+Origin: <adhoc 'shell' task>
+
+{'action': 'shell', 'args': {'_raw_params': 'sudo glpi-agent --server http://10.10.120.15:2000/front/inventory.php [...]
+
+<<< caused by >>>
+
+Module result deserialization failed: No start of json char found See stdout/stderr for the returned output.
+
+proxmox | FAILED! => {
+    "changed": false,
+    "module_stderr": "Shared connection to 10.10.120.50 closed.\r\n",
+    "module_stdout": "/bin/sh: 1: sudo: not found\r\n",
+    "msg": "Module result deserialization failed: No start of json char found",
+    "rc": 127
+}
+datanode | CHANGED | rc=0 >>
+[info] target server0: server http://10.10.120.15:2000/front/inventory.php
+[info] sending prolog request to server0
+[error] [http client] internal response: 500 Can't connect to 10.10.120.15:2000 (Connection refused)
+[error] No supported answer from server at http://10.10.120.15:2000/front/inventory.php
+graylog | CHANGED | rc=0 >>
+[info] target server0: server http://10.10.120.15:2000/front/inventory.php
+[info] sending prolog request to server0
+[error] [http client] internal response: 500 Can't connect to 10.10.120.15:2000 (Connection refused)
+[error] No supported answer from server at http://10.10.120.15:2000/front/inventory.php
+
+Origin: <adhoc 'shell' task>
+
+{'action': 'shell', 'args': {'_raw_params': 'sudo glpi-agent --server http://10.10.120.15:2000/front/inventory.php [...]
+
+<<< caused by >>>
+
+Module result deserialization failed: No start of json char found See stdout/stderr for the returned output.
+
+proxmox | FAILED! => {
+    "changed": false,
+    "module_stderr": "Shared connection to 10.10.120.50 closed.\r\n",
+    "module_stdout": "/bin/sh: 1: sudo: not found\r\n",
+    "msg": "Module result deserialization failed: No start of json char found",
+    "rc": 127
+}
+datanode | CHANGED | rc=0 >>
+[info] target server0: server http://10.10.120.15:2000/front/inventory.php
+[info] sending prolog request to server0
+[error] [http client] internal response: 500 Can't connect to 10.10.120.15:2000 (Connection refused)
+[error] No supported answer from server at http://10.10.120.15:2000/front/inventory.php
+graylog | CHANGED | rc=0 >>
+[info] target server0: server http://10.10.120.15:2000/front/inventory.php
+[info] sending prolog request to server0
+[error] [http client] internal response: 500 Can't connect to 10.10.120.15:2000 (Connection refused)
+[error] No supported answer from server at http://10.10.120.15:2000/front/inventory.php
 
 Exemple simple de contenu pour tester sur la machine locale :
 

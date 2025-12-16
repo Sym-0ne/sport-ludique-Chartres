@@ -94,15 +94,14 @@ Configuration ordinateur
 
 Pour que toutes les machines pointent vers le serveur GLPI correct :
 
-+----------------------+-----------------------------------------------+
-| Élément              | Valeur                                        |
-+----------------------+-----------------------------------------------+
-| Chemin du registre   | HKEY_LOCAL_MACHINE\SOFTWARE\GLPI-Agent        |
-| Valeur               | server                                        |
-| Type                 | REG_SZ                                        |
-| Donnée               | http://10.10.120.15/front/inventory.php       |
-| Action               | Mettre à jour                                 |
-+----------------------+-----------------------------------------------+
+| Élément            | Valeur                                         |
+|--------------------|------------------------------------------------|
+| Chemin du registre | HKEY_LOCAL_MACHINE\SOFTWARE\GLPI-Agent        |
+| Valeur             | server                                         |
+| Type               | REG_SZ                                         |
+| Donnée             | http://10.10.120.15/front/inventory.php       |
+| Action             | Mettre à jour                                  |
+
 
 Cela permet de configurer automatiquement l’adresse du serveur GLPI pour toutes les machines.
 

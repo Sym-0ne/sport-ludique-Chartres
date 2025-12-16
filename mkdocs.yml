@@ -86,9 +86,9 @@ nav:
       - DNS Resolveur: DNS/DNS Resolveur.md
   - Serveurs: 
       - Logs:
-          - Graylog: Serveurs/log/graylog.md
-          - Datanode: Serveurs/log/datanode.md
-          - Rsyslog via Ansible: Serveurs/log/rsyslog.md
+          - Graylog: Serveurs/Logs/Graylog.md
+          - Datanode: Serveurs/Logs/Datanode.md
+          - Rsyslog via Ansible: Serveurs/Logs/Rsyslog.md
       - ReverseProxy: 
           - Configuration ReverseProxy: Serveurs/ReverseProxy/Rp.md
           - ReverseProxy Secondaire: Serveurs/ReverseProxy/RpSec.md
