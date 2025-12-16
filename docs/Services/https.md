@@ -52,7 +52,8 @@ echo 1000 | sudo tee /etc/ssl/ca/serial
 sudo openssl genrsa -out /etc/ssl/ca/private/ca.key.pem 4096
 sudo chmod 400 /etc/ssl/ca/private/ca.key.pem
 ```
-
+## Objectif :
+----------
 ### 2.3 Création du certificat racine auto-signé
 
 ```
@@ -105,7 +106,8 @@ scp /etc/ssl/localcerts/www.chartres.sportludique.fr.csr.pem \
 ## 4. Signature du certificat côté CA
 
 Sur CHA-CA uniquement :
-
+## Objectif :
+----------
 ### 4.1 Copier la CSR dans le dossier CA
 
 sudo mv /tmp/www.chartres.sportludique.fr.csr.pem /etc/ssl/ca/

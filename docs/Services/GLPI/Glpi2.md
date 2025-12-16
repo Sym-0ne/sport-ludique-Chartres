@@ -37,7 +37,7 @@ Voici les valeurs à remplir dans notre cas :
 | **Utiliser bind**            | Oui                                                                                           |
 | **DN du compte**             | admin.ldap                                                                                    |
 | **Mot de passe du compte**   | *Mot de passe du compte - voir keepass*                                                       |
-| **Champ de l'identifiant**   | UserPrincipalName                                                                             |
+| **Champ de l'identifiant**   | SamAccountName                                                                             |
 | **Champ de synchronisation** | *Laisser le champ vide*                                                                       |
 
 Dans la foulée, GLPI va effectuer un test de connexion LDAP et vous indiquer s'il est parvenu, ou non, à se connecter à votre annuaire. Si ce n'est pas le cas , cliquez sur le nom de votre annuaire, vérifiez la configuration, puis retournez dans **"Tester"** sur la gauche afin de lancer un nouveau test. 
