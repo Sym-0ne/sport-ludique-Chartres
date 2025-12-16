@@ -85,10 +85,10 @@ nav:
       - DNS Autorité: DNS/DNS-autorité.md
       - DNS Resolveur: DNS/DNS Resolveur.md
   - Serveurs: 
-      - Log & Journaux:
-          - Graylog: Serveurs/Log & Journaux/graylog.md
-          - Datanode: Serveurs/Log & Journaux/datanode.md
-          - Rsyslog via Ansible: Serveurs/Log & Journaux/rsyslog.md
+      - Logs:
+          - Graylog: Serveurs/log/graylog.md
+          - Datanode: Serveurs/log/datanode.md
+          - Rsyslog via Ansible: Serveurs/Logs/rsyslog.md
       - ReverseProxy: 
           - Configuration ReverseProxy: Serveurs/ReverseProxy/Rp.md
           - ReverseProxy Secondaire: Serveurs/ReverseProxy/RpSec.md
