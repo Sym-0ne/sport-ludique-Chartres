@@ -46,11 +46,10 @@ Mettre le contenu suivant :
         update_cache: yes
         cache_valid_time: 3600
 
-    - name: Installer rsyslog et netcat
+    - name: Installer rsyslog 
       apt:
         name:
           - rsyslog
-          - netcat-openbsd
         state: present
 
     - name: Créer le dossier rsyslog.d si nécessaire
@@ -73,7 +72,6 @@ Mettre le contenu suivant :
         name: rsyslog
         state: restarted
         enabled: yes
-
 
     - name: Envoyer un log de test pour apparaître dans Graylog
       shell: logger "Test log initial depuis {{ inventory_hostname }}"
