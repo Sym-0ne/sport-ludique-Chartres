@@ -1,6 +1,8 @@
 # Configuration du Pare Feu Stormshield
 
-## 1.Reset du pare feu 
+---
+
+## 1. Réinitialisation du Pare-Feu
 
  **Sur les boîtiers physiques:** un appui sur le bouton reset (attendre que les led devant clignotent) pour les boîtiers physiques permet de restaurer la configuration d'usine et redémarrer en bridge sur toutes les interfaces.
 
@@ -17,6 +19,8 @@
  Par défaut, seul le compte système **admin (mot de passe par défaut admin)**, dispose de tous les privilèges sur le boîtier.
 
  ![page d'accueil](PF/page-d'accueil.png)
+
+---
 
 ## 3.Configuration générale 
 
@@ -44,6 +48,8 @@
 
 Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l'équipement à l'heure
 
+---
+
 ## 4.Configuration du réseau 
 
  Par defaut, toutes les interfaces sont dans le **bridge**.
@@ -57,6 +63,8 @@ Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l
  Faire pareil avec les autres interfaces.
 
  ![WAN/DMZ](PF/interfaces.png)
+
+ ---
 
 ## 5.Routage 
 
@@ -74,6 +82,8 @@ Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l
 
  ![route de retour](PF/route-retour.png)
 
+ ---
+
 ## 6.Filtrage temporaire. 
 
  Allez dans **Configuration / Politique de sécurité / Filtrage et NAT**.
@@ -90,9 +100,11 @@ Il est possible d'utiliser un serveur NTP interne ou externe afin de maintenir l
 
  ⚠️⚠️⚠️ **ATTENTION** ⚠️⚠️⚠️
 
+ ---
+
 ## ⚠️ 7. Statefull Inspection
 
-Le Stormshield dispose par défaut d’une inspection des paquets qui n’est pas désactivable. Cette inspection peut rejeter silencieusement des paquets, sans même les enregistrer dans les logs. Dans notre cas, elle pose problème avec le handshake TCP, à noter que cela ne concerne pas les connexion UDP car il n'y as aucune vérification de session (seamless).
+Le Stormshield dispose par défaut d’une inspection des paquets qui n’est pas désactivable. Cette inspection peut rejeter silencieusement des paquets, sans même les enregistrer dans les logs. Dans notre cas, elle pose problème avec le handshake TCP, à noter que cela ne concerne pas les connexion UDP car il n'y a aucune vérification de session (seamless).
 
 Ce principe est la base du protocole TCP : il s'agit d'une liaison composée des états SYN, SYN-ACK et ACK. Le client envoie un SYN, le serveur répond avec un SYN-ACK, puis le client renvoie un ACK au serveur. Cela permet au client de savoir que le serveur a bien reçu son paquet grâce au SYN-ACK, et au serveur de confirmer que le client a reçu le paquet grâce à l’ACK. Ce mécanisme assure la vérification des différentes étapes de transition d’un paquet TCP.
 

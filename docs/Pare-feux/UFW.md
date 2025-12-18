@@ -24,13 +24,13 @@ Il sert à contrôler le trafic réseau entrant et sortant grâce à des règles
 
 ## 1. Instalation 
 
-Mettez a jour votre système
+Mettez à jour votre système :
 ```
 sudo apt update 
 sudo apt upgrade
 ```
 
-Installez UFW 
+Installez UFW :
 ```
 sudo apt install ufw -y
 ```
@@ -49,6 +49,7 @@ sudo ufw enable     #active le pare-feux
 sudo ufw disable    #désactive le pare-feux
 sudo ufw status     #Donne l'état du pare-feux (actif/inactif)
 ```
+
 ### 2.2 Règles par défaut
 
 UFW compte 4 règles de filtrage par default qui servent a tout bloquer/autoriser sur le trafic entrant ou sortant :
@@ -58,6 +59,7 @@ sudo ufw default allow incoming  # Autorise tout le trafic entrant par défaut
 sudo ufw default allow outgoing  # Autorise tout le trafic sortant par défaut
 sudo ufw default deny outgoing   # Bloque tout le trafic sortant (si serveur très sécurisé)
 ```
+
 ### 2.3 Règles filtrantes 
 
 Chaque règle prend en compte plusieurs paramètres, autoriser, refuser, le port, l'IP... 

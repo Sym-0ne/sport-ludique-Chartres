@@ -9,22 +9,14 @@ Il permet de regrouper plusieurs interfaces physiques en une seule interface log
 - répartir le trafic réseau entre plusieurs ports.  
 
 Dans une stack de switchs HP A5500, l’utilisation de **LACP** est recommandée pour les liaisons :  
-- vers un autre switch (uplink inter-switch),  
-- vers un serveur ou une infrastructure (ex. Nutanix, VMware).  
+- vers un autre switch. 
+- vers un serveur (Nutanix & Proxmox dans notre cas).  
 
 ---
 
-## 2. Prérequis
-- Deux équipements **compatibles LACP** (ex. switchs HP, serveur avec carte réseau supportant IEEE 802.3ad).  
-- Même configuration de vitesse et duplex sur les interfaces physiques.  
-- VLAN et trunk configurés de manière cohérente de part et d’autre du lien.  
-- Accès en **CLI** sur le switch (console/SSH).
+## 2. Étapes de configuration
 
----
-
-## 3. Étapes de configuration
-
-### 3.1 Création du port logique 
+### 2.1 Création du port logique 
 Depuis le mode configuration système :
 ```bash
 [SW-A5500] system-view
@@ -35,7 +27,7 @@ Depuis le mode configuration système :
 
 ---
 
-### 3.2 Ajout des interfaces physiques dans le port link-aggregation
+### 2.2 Ajout des interfaces physiques dans le port link-aggregation
 Exemple avec **GigabitEthernet1/0/32** et **GigabitEthernet2/0/32** :
 ```
 [SW-A5500] int gig 1/0/32
@@ -52,7 +44,7 @@ Exemple avec **GigabitEthernet1/0/32** et **GigabitEthernet2/0/32** :
 
 ---
 
-### 3.3 Configuration du type de lien (trunk/access)
+### 2.3 Configuration du type de lien (trunk/access)
 Si le lien doit transporter plusieurs VLANs (trunk) :
 ```
 [SW-A5500] int bridge-aggregation 1
@@ -77,7 +69,7 @@ Si le lien est pour un seul VLAN (access) :
 
 ---
 
-### 3.4 Vérification de l’état LACP
+### 2.4 Vérification de l’état LACP
 Commande de diagnostic :
 ```bash
 [HP] display link-aggregation verbose
@@ -93,7 +85,7 @@ Aggregation Group 1:
 
 ---
 
-## 4. Points importants
+## 3. Points importants
 - Tous les ports d’un même Bridge-Aggregaton doivent être configurés **de manière identique** (même VLAN, même mode trunk/access).  
 - Sur l’équipement distant (autre switch, serveur), la configuration doit correspondre (même agrégation et VLANs).  
 - LACP est dynamique : seuls les liens valides et actifs seront utilisés dans l’agrégat.  
@@ -101,8 +93,8 @@ Aggregation Group 1:
 
 ---
 
-## 5. Conclusion
-Avec LACP, tu disposes d’un **lien logique robuste et performant** entre ton stack HP A5500 et un serveur ou autre switch.  
+## 4. Conclusion
+Avec LACP, nous disposons d’un **lien logique robuste et performant** entre notre stack HP A5500 et un serveur ou autre switch.  
 Cette configuration est standard et réutilisable dans différents contextes (uplink, serveur, cluster).  
 
-----------------------------------------------------------
+---

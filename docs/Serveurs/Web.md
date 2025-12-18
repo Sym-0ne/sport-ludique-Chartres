@@ -3,7 +3,7 @@
 ## 1. Objectifs 
 Héberger un site web fais partie des services "basiques" d'une entreprise, dans notre cas nous allons implémenter un premier site web sur un serveur Apache2 heberger sur une machine Debian 13.
 
-----------------------------------------------------------
+---
 
 ## 2. Installation d'Apache2 
 Mettez a jour votre système :
@@ -16,7 +16,7 @@ Installez les packages Apache2
 sudo apt install apache2
 ```
 
-----------------------------------------------------------
+---
 
 ## 3. Configuration d'Apache2 
 
@@ -51,6 +51,8 @@ Dans ce fichier nous allons crée une page des plus basiques juste pour pouvoir 
 </body>
 </html>
 ```
+
+---
 
 ### 3.3 Création du fichier VHost
 
@@ -93,7 +95,9 @@ Dans ce fichier de configuration nous avons copier et adapter la configuration d
 </VirtualHost>
 ```
 
-Dans notre cas nous modifions l'adresse sur laquel notre service écoute sois l'interface DMZ, l'adresse mail du responsable du site et enfin le chemin vers le site. 
+Dans notre cas nous modifions l'adresse sur laquel notre service écoute sois l'interface DMZ, l'adresse mail du responsable du site et enfin le chemin vers le site.
+
+---
 
 ### 3.4 Ajout du lien Symlink 
 
@@ -112,6 +116,8 @@ Le VHost est maintenant configurer et prêt à fonctionner.
 
 ### 4.1 Pourquoi
 L'ajout de routes statiques au sein de notre DNS est obligatoire à cause de notre pare-feu Stormshield (PFW) et de la conception de notre réseau. En effet, comme expliqué [ici](https://sym-0ne.github.io/sport-ludique-Chartres/DNS/DNS%20autorit%C3%A9/#7-Statefull-Inspection) le Stormshield et son Statefull Inspection bloquent le flux TCP, car le handshake ne s'effectue pas correctement.
+
+---
 
 ### 4.2 Ajout des routes
 Il nous faut donc ajouter manuellement des routes statiques afin de passer directement par le VFW pour rejoindre notre LAN.

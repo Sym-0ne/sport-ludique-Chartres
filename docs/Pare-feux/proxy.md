@@ -2,7 +2,7 @@
 
 ---
 
-## Contexte : c’est quoi un proxy filtrant ?
+## Contexte : qu'est ce qu'un proxy filtrant ?
 
 Un **proxy filtrant** est un composant de sécurité réseau qui se place entre les utilisateurs et Internet.<br>
 Son rôle est de **contrôler**, **analyser** et éventuellement **bloquer** ou **modifier** le trafic web avant qu’il n’atteigne les sites visités.
@@ -18,7 +18,7 @@ En résumé, c’est un intermédiaire sécurisé qui vérifie tout ce qui sort 
 
 ---
 
-## 🛡️ Stormshield et son proxy filtrant
+## Stormshield et son proxy filtrant
 
 Les firewalls **Stormshield (SNS)** intègrent un **proxy filtrant natif**, capable de gérer :
 

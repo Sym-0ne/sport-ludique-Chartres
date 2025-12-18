@@ -1,6 +1,8 @@
 # Installer et configurer Active Directory sur Windows Server.
 
-## Introduction
+## Objectif
+
+---
 
 L’Active Directory (AD) est une fonctionnalité essentielle dans les environnements Windows Server, permettant la gestion centralisée des utilisateurs, des ordinateurs et des ressources réseau. Dans cet article, nous allons vous guider pas à pas pour installer le rôle Active Directory et promouvoir votre serveur en tant que contrôleur de domaine.
 Pré-requis
@@ -80,12 +82,16 @@ Cliquez sur Promouvoir ce serveur en contrôleur de domaine.
 
 ![Lancer assistant](AD/ad9.png)
 
+---
+
 ### 3.2 Créer un nouveau domaine :
 
 Choisissez Ajouter une nouvelle forêt.
 Entrez le nom de domaine racine, ici c'est ```cha.chartres.sportludique.fr```
 pour les pages 
 ![Nouveau domaine](AD/ad10.png)
+
+---
 
 ### 3.3 Configurer les options du domaine :
 Sélectionnez le niveau fonctionnel de la forêt et du domaine (Windows Server 2016 ou plus récent).
@@ -94,10 +100,14 @@ Configurez un mot de passe pour le mode de restauration des services d’annuair
 
 ![Configurer Domaine](AD/ad11.png)
 
+---
+
 ### 3.4 Vérification DNS et NetBIOS :
 Vérifiez le nom NetBIOS proposé et ajustez-le si nécessaire.
 
 ![Verifications](AD/ad12.png)
+
+---
 
 ### 3.5 Valider et installer :
 Laissez l’assistant valider la configuration.
@@ -113,6 +123,8 @@ Cliquez sur Installer. Le serveur redémarrera automatiquement.
 ### 4.1 Confirmer le rôle Active Directory :
 Après le redémarrage, connectez-vous et ouvrez le Gestionnaire de Serveur.
 Vérifiez que le rôle AD DS est installé et fonctionne correctement.
+
+---
 
 ### 4.2 Tester le domaine :
 Ouvrez l’outil Active Directory Users and Computers.

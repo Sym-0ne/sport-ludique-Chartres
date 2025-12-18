@@ -1,7 +1,8 @@
 # Configuration des Switchs HP A5500 (Coeur de Réseau)
 
-Cette documentation décrit pas à pas la configuration initiale d’un switch HP A5500 sous Comware.  
-Elle couvre les points suivants :  
+## Objectif : 
+
+---
 
 - Connexion au switch via le port console depuis Linux Mint  
 - Réinitialisation de la configuration (factory reset)  

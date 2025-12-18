@@ -77,16 +77,14 @@ Mettre le contenu suivant :
 
     - name: Envoyer un log de test pour apparaître dans Graylog
       shell: logger "Test log initial depuis {{ inventory_hostname }}"
-
-    - name: Ajouter cron pour log keepalive toutes les minutes
-      cron:
-        name: "Log keepalive pour Graylog"
 ```
 
 ---
 
 ## 3 : Exécuter le playbook
-```ansible-playbook -i /etc/ansible/hosts /etc/ansible/playbooks/rsyslog_graylog.yml
+
+```
+ansible-playbook -i /etc/ansible/hosts /etc/ansible/playbooks/rsyslog_graylog.yml
 ```
 
 --- 

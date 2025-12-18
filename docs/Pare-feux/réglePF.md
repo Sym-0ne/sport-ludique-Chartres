@@ -1,4 +1,6 @@
-# Régle des Pare-Feu
+# Régle des Pare-Feu.
+
+---
 
 ## Stormshield n°1
 
@@ -14,7 +16,7 @@
 | Accès Internet LAN                    | LAN       | 8  | 172.28.32.0/19 | *        | *           | *         | ANY       | Permit |
 | Bloc tout WAN                         | WAN       | 9  | *              | *        | *           | *         | ANY       | Deny   |
 
-
+---
 
 ## Stormshield n°2
 
@@ -27,6 +29,7 @@
 | Accès Internet LAN                       | LAN       | 5  | 172.28.32.0/19 | *        | *            | *         | ANY       | Permit |
 | Bloc tout WAN                            | WAN       | 6  | *              | *        | *            | *         | ANY       | Deny   |
 
+---
 
 ## OPNsense
 
@@ -44,3 +47,4 @@
 | Bloc tout                        | LAN       | 2  | *              | *        | *              | *         | ANY       | Deny   | —                          |
 | Bloc tout                        | DMZpriv   | 1  | *              | *        | *              | *         | ANY       | Deny   | Règle par défaut           |
 
+---
