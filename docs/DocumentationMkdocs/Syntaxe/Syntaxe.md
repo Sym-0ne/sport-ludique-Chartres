@@ -1,9 +1,8 @@
-# Syntaxe et tips
+# Syntaxe & tips
 
 Voici les principales commandes de syntaxe sous mkdocs avec le theme matérial, toute ces tips ont été trouvé sur cette page0 [github](https://docs.github.com/fr/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#nested-lists).
 
-----------------------------------------------------------
-
+---
 ## 1. Liste des extension Markdown 
 Voici la liste de nos extension en markdown a implémenter dans votre fichier mkdocs.yml afin de garentir le bon fonctionnement de toutes les commandes de styntaxes. 
 
@@ -24,7 +23,7 @@ markdown_extensions:
 
 ```
 
-----------------------------------------------------------
+---
 
 ## 2. Les commandes principales 
 ### Syntaxe 
@@ -79,7 +78,6 @@ exposant
 </sup>
 ```
 
-
 "#" Titre Principale 
 
 "##" Sous titre 1
@@ -88,12 +86,16 @@ exposant
 
 "####" Sous titre 3 
 
+---
+
 ### Outils
 
 #### Liens externe [google](https://google.fr)
+
 ```
 [texte du lien](http://ceciestunlien)
 ```
+
 #### Images
 ```
 ![texte de l'image](lien vers l'image)
@@ -107,6 +109,7 @@ Dans les problèmes, les demandes de tirage et les commentaires du dépôt	../bl
 Dans un fichier .md dans un autre dépôt	/../../../../github/docs/blob/main/assets/images/electrocat.png
 Dans les problèmes, les demandes de tirage et les commentaires d’un autre dépôt	../../../github/docs/blob/main/assets/images/electrocat.png?raw=true
 ```
+
 #### Listes 
 ```
 -Premier élément 
@@ -199,3 +202,5 @@ la 4 ème ligne
 seras surligner
 celle la
 ```
+
+---

@@ -1,7 +1,5 @@
 # Configuration DNS Resolveur UNBOUND
 
-On met en place **Unbound comme résolveur DNS** (non validateur DNSSEC) sur une VM Debian, en l’intégrant à un DNS autoritaire.
-
 ---
 
 ## 1. Installation de UNBOUND

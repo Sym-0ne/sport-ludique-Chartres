@@ -2,6 +2,8 @@
 
 Cette documentation sert a détailler l'installation et la configuration de notre serveur DNS d'autorité grâce au service BIND9 basé sur Debian 13.
 
+---
+
 ## 1. Préparation 
 
 Avant de commencer il faut se poser les bonnes questions, nous aurons donc besoin : 
