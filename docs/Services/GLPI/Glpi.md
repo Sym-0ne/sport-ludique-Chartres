@@ -12,7 +12,6 @@ Il offre une vue globale sur les équipements (postes, serveurs, réseaux, logic
 
 En résumé, GLPI est un outil essentiel pour organiser, superviser et optimiser l’ensemble des activités du service informatique.
 
-
 ---
 
 ## 1. Installation
@@ -45,15 +44,19 @@ networks:
     driver: bridge
 ```
 
+---
+
 ## 2. Différences
 
 Avec notre installation Docker, plusieurs différences existent entre une installation Docker et une installation classique.
 
+---
 
 ### 2.1 Instalation 
 
 GLPI est installé depuis les dépôts Docker. Étant donné que GLPI est dans un conteneur, la version utilisée est une version spéciale Docker qui fonctionnera sur tous les OS.
 
+---
 
 ### 2.2 Mappage des ports
 
@@ -67,6 +70,7 @@ Dans notre cas, nous avons attribué et délimité ces ports :
 ```
 Nous autorisons le réseau `172.28.33.8` et le réseau `10.10.120.15` sur ce conteneur. Le port 2000 est le port local de notre machine (port à contacter pour joindre le conteneur Docker) et il est mappé sur le port 80 du conteneur. Cela signifie que toutes les requêtes adressées au port 2000 des deux réseaux autorisés de notre VM arriveront sur le port 80 du conteneur GLPI.
 
+---
 
 ### 2.3 Mappage des volumes
 
@@ -80,6 +84,10 @@ ajax        bin           config           css                   files  inc     
 apirest.md  CHANGELOG.md  CONTRIBUTING.md  dependency_injection  front  index.html  INSTALL.md  LICENSE  marketplace  public   resources  SECURITY.md  SUPPORT.md  vendor
 ```
 
+---
+
 ### Isolation des réseaux
 
 L'isolation des réseaux est la création de cartes virtuelles propres à chaque conteneur, qui ne s'activent que lors du lancement du conteneur associé. Cela permet d'éviter toute communication indésirable entre les conteneurs.
+
+---
