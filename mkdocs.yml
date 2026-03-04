@@ -88,6 +88,7 @@ nav:
       - Logs:
           - Graylog: Serveurs/Logs/Graylog.md
           - Datanode: Serveurs/Logs/Datanode.md
+          - Interface Web Graylog: Serveurs/Logs/InterfaceWebLog.md
           - Rsyslog via Ansible: Serveurs/Logs/Rsyslog.md
       - ReverseProxy: 
           - Configuration ReverseProxy: Serveurs/ReverseProxy/Rp.md
