@@ -24,7 +24,7 @@ La première étape consiste à créer un nouvel **"Input"** dans la configurati
 
 ![alt text](GELFUDP.png)
 
-Une fenêtre apparaît à l'écran... Vous devez configurer ce nouvel Input. Vous pouvez utiliser un Input par typologie de machines : un Input peut être utilisé par plusieurs machines Windows. Nommez cet Input, par exemple "Graylog_UDP_NXLogs_Windows", et indiquez "0.0.0.0" comme "Bind address" pour qu'il soit accessible sur toutes les interfaces de l'hôte Graylog (à ajuster si vous avez plusieurs interfaces). Nous pouvons constater que la connexion sera effectuée sur le port 12201.
+Une fenêtre apparaît à l'écran... Vous devez configurer ce nouvel **Input**. Vous pouvez utiliser un Input par typologie de machines : un Input peut être utilisé par plusieurs machines Windows. Nommez cet Input, par exemple **"UDP_Windows"**, et indiquez "0.0.0.0" comme **"Bind address"** pour qu'il soit accessible sur toutes les interfaces de l'hôte Graylog. Nous pouvons constater que la connexion sera effectuée sur le port 12201.
 
 ![alt text](Input.png)
 
