@@ -9,6 +9,10 @@ Nous utilisons Ansible pour automatiser l’installation et la configuration, ga
 
 ---
 
+## Input
+
+Si l'input n'est pas encore créé vous pouvez allez voir [ici](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/InterfaceWebLog/) à l'étape 3.
+
 ## 1 : Installer rsyslog sur la VM Ansible
 
 ```

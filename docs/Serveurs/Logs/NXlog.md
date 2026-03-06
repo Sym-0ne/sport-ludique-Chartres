@@ -9,6 +9,10 @@ Cela permet de centraliser la collecte et la visualisation des logs, d’identif
 
 ---
 
+## Input
+
+Si l'input n'est pas encore créé vous pouvez allez voir [ici](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/InterfaceWebLog/) à l'étape 3.
+
 ## Installer NXLog sur Windows Server
 
 Vous pouvez télécharger gratuitement l'agent NXLog [ici](https://nxlog.co/downloads/nxlog-ce#nxlog-community-edition).
