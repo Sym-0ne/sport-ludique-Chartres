@@ -32,4 +32,4 @@ Validez. Vous aurez alors une sortie similaire à celle ci-dessous.
 
 ![alt text](resultat.png)
 
-La configuration de Graylog est terminée, maintenant pour la suite il faut allez voir pour configurer les logs sur [Debian](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/Rsyslog/), [Windows](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/NXLog/) et les [Pare-feu](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/InterfaceWebLog/).
+La configuration de Graylog est terminée, maintenant pour la suite il faut allez voir pour configurer les logs sur [Debian](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/Rsyslog/), [Windows](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/NXlog/) et les [Pare-feu](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/LogPFWetVFW/).
