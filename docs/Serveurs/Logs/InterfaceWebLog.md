@@ -18,7 +18,7 @@ Après avoir terminé votre connexion prévol, vous pouvez accéder à l'interfa
 
 ![alt text](graylog.png)
 
-# 3 Créer un input dans Graylog
+# 3 Créer un input dans Graylog pour Windows
 
 La première étape consiste à créer un nouvel **"Input"** dans la configuration de Graylog, car les données sont reçues de cette façon. À partir de l'interface web de Graylog, cliquez sur le menu **"Système"** puis sur **"Inputs"**. Ensuite, sélectionnez **"GELF UDP"** dans la liste, puis cliquez sur **"Launch new input"**.
 
@@ -31,5 +31,20 @@ Une fenêtre apparaît à l'écran... Vous devez configurer ce nouvel **Input**.
 Validez. Vous aurez alors une sortie similaire à celle ci-dessous.
 
 ![alt text](resultat.png)
+
+# 4 Créer un input dans Graylog pour Debian
+
+Choisir **Syslog UDP** et configurer comme ceci :
+
+```
+Paramètre	Valeur
+Bind address	0.0.0.0
+Port	514 ou 1514
+Title	syslog-firewall
+```
+
+Puis cliquer sur **Launch Input**.
+
+# 5 Prochaine étape :
 
 La configuration de Graylog est terminée, maintenant pour la suite il faut allez voir pour configurer les logs sur [Debian](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/Rsyslog/), [Windows](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/NXlog/) et les [Pare-feu](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/Logs/LogPFWetVFW/).
