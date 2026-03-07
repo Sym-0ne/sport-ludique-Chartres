@@ -113,4 +113,4 @@ nav:
           - Configuration WordPress: Services/wordpress2.md
           - Configuration Multi Site WordPress: Services/wordpress3.md
       - Wi-Fi:
-          - Configuration de la borne: Services/wifi.md
+          - Configuration de la borne: Services/Wifi/wifi.md
