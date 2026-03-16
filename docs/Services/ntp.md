@@ -134,7 +134,8 @@ Crée un playbook rapide verif-ntp.yml :
 
     - name: Afficher le statut NTP
       debug:
-        msg: "{{ inventory_hostname }} -> {{ chrony_status.stdout }}"```
+        msg: "{{ inventory_hostname }} -> {{ chrony_status.stdout }}"
+```
 
 Puis lance-le :
 
