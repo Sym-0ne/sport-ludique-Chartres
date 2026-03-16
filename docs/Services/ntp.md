@@ -6,26 +6,29 @@
 Dans l’infrastructure, une VM Debian avec l’adresse IP 10.10.120.12 est
 utilisée comme serveur NTP interne.
 
-Installation de Chrony
+**Installation de Chrony**
 
 Sur la VM 10.10.120.12 :
 
-```sudo apt update sudo apt install chrony -y
+```
+sudo apt update sudo apt install chrony -y
 ```
 
 Chrony est utilisé car il est plus moderne et plus performant que ntpd
 pour la synchronisation du temps.
 
-Configuration du serveur NTP
+**Configuration du serveur NTP**
 
 Le fichier de configuration est situé ici :
 
-```/etc/chrony/chrony.conf
+```
+/etc/chrony/chrony.conf
 ```
 
 Les paramètres principaux ajoutés :
 
-```server 10.10.120.12 iburst driftfile /var/lib/chrony/chrony.drift
+```
+server 10.10.120.12 iburst driftfile /var/lib/chrony/chrony.drift
 rtcsync makestep 1 3
 ```
 
@@ -34,7 +37,8 @@ management à se synchroniser.
 
 Après modification de la configuration :
 
-```sudo systemctl restart chrony sudo systemctl enable chrony
+```
+sudo systemctl restart chrony sudo systemctl enable chrony
 ```
 
 Le serveur 10.10.120.12 sert désormais de référence temporelle pour
@@ -52,12 +56,15 @@ Une VM dédiée sert de serveur Ansible.
 
 Les hôtes sont déclarés dans le fichier :
 
-```/etc/ansible/hosts
+```
+/etc/ansible/hosts
 ```
 
 Exemple de groupe utilisé pour les machines Debian :
 
+```
 [all_linux] vm1 vm2 vm3 vm4
+```
 
 ---
 
@@ -65,8 +72,8 @@ Exemple de groupe utilisé pour les machines Debian :
 
 Un playbook a été créé dans :
 
+```/etc/ansible/playbooks/ntp.yml
 ```
-/etc/ansible/playbooks/ntp.yml```
 
 Ce playbook permet de : 
 
@@ -74,9 +81,10 @@ Ce playbook permet de :
 - Configurer le client NTP pour utiliser 10.10.120.12 
 - Redémarrer le service chrony
 
-Contenu du playbook :
+**Contenu du playbook :**
 
-```-   name: Configure NTP clients hosts: all_linux become: yes
+```
+    -   name: Configure NTP clients hosts: all_linux become: yes
 
     tasks:
 
