@@ -1,7 +1,7 @@
 
-Déploiement d’un serveur NTP interne et automatisation avec Ansible
+# Déploiement d’un serveur NTP interne et automatisation avec Ansible
 
-1. Mise en place du serveur NTP
+## 1. Mise en place du serveur NTP
 
 Dans l’infrastructure, une VM Debian avec l’adresse IP 10.10.120.12 est
 utilisée comme serveur NTP interne.
@@ -36,9 +36,9 @@ sudo systemctl restart chrony sudo systemctl enable chrony
 Le serveur 10.10.120.12 sert désormais de référence temporelle pour
 toute l’infrastructure.
 
-------------------------------------------------------------------------
+---
 
-2. Automatisation avec Ansible
+## 2. Automatisation avec Ansible
 
 L’infrastructure comporte un grand nombre de VM Debian. Afin d’éviter
 une configuration manuelle sur chaque machine, Ansible est utilisé pour
@@ -56,9 +56,9 @@ Exemple de groupe utilisé pour les machines Debian :
 
 [all_linux] vm1 vm2 vm3 vm4
 
-------------------------------------------------------------------------
+---
 
-3. Création du playbook Ansible
+## 3. Création du playbook Ansible
 
 Un playbook a été créé dans :
 
@@ -82,9 +82,9 @@ Contenu du playbook
     -   name: Redémarrer chrony service: name: chrony state: restarted
         enabled: yes
 
-------------------------------------------------------------------------
+---
 
-4. Exécution du playbook
+## 4. Exécution du playbook
 
 Depuis le serveur Ansible :
 
@@ -93,18 +93,32 @@ ansible-playbook /etc/ansible/playbooks/ntp.yml
 Le playbook se connecte en SSH à toutes les machines du groupe all_linux
 et applique automatiquement la configuration NTP.
 
-------------------------------------------------------------------------
+---
 
-5. Vérification
+## 5. Vérification
 
 Pour vérifier que toutes les machines utilisent bien le serveur NTP
 interne :
 
-ansible all_linux -m command -a “chronyc sources”
+2️⃣ Vérifier sur toutes les VM avec Ansible
 
-Les machines doivent afficher :
+Crée un playbook rapide verif-ntp.yml :
 
-^* 10.10.120.12
+- name: Vérifier la synchro NTP sur toutes les VM
+  hosts: all_linux
+  become: yes
 
-Cela signifie que toutes les VM Debian sont synchronisées avec le
-serveur NTP interne de l’infrastructure.
+  tasks:
+    - name: Vérifier les sources NTP
+      command: chronyc sources
+      register: chrony_status
+
+    - name: Afficher le statut NTP
+      debug:
+        msg: "{{ inventory_hostname }} -> {{ chrony_status.stdout }}"
+
+Puis lance-le :
+
+ansible-playbook /etc/ansible/playbooks/verif-ntp.yml
+
+Résultat : tu verras pour chaque VM quelle source NTP elle utilise et si elle est synchronisée avec 10.10.120.12
