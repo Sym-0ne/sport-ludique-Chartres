@@ -44,8 +44,6 @@ L’infrastructure comporte un grand nombre de VM Debian. Afin d’éviter
 une configuration manuelle sur chaque machine, Ansible est utilisé pour
 automatiser l’installation et la configuration du client NTP.
 
-Serveur Ansible
-
 Une VM dédiée sert de serveur Ansible.
 
 Les hôtes sont déclarés dans le fichier :
@@ -64,11 +62,14 @@ Un playbook a été créé dans :
 
 /etc/ansible/playbooks/ntp.yml
 
-Ce playbook permet de : - Installer le paquet chrony - Configurer le
-client NTP pour utiliser 10.10.120.12 - Redémarrer le service chrony
+Ce playbook permet de : 
+
+- Installer le paquet chrony 
+- Configurer le client NTP pour utiliser 10.10.120.12 
+- Redémarrer le service chrony
 
 Contenu du playbook
-
+```
 -   name: Configure NTP clients hosts: all_linux become: yes
 
     tasks:
@@ -80,7 +81,7 @@ Contenu du playbook
         /var/lib/chrony/chrony.drift rtcsync makestep 1 3
 
     -   name: Redémarrer chrony service: name: chrony state: restarted
-        enabled: yes
+        enabled: yes```
 
 ---
 
@@ -100,7 +101,6 @@ et applique automatiquement la configuration NTP.
 Pour vérifier que toutes les machines utilisent bien le serveur NTP
 interne :
 
-2️⃣ Vérifier sur toutes les VM avec Ansible
 
 Crée un playbook rapide verif-ntp.yml :
 
@@ -121,4 +121,6 @@ Puis lance-le :
 
 ansible-playbook /etc/ansible/playbooks/verif-ntp.yml
 
-Résultat : tu verras pour chaque VM quelle source NTP elle utilise et si elle est synchronisée avec 10.10.120.12
+Résultat obtenu : pour chaque VM quelle source NTP elle utilise et si elle est synchronisée avec 10.10.120.12
+
+---
