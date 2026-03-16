@@ -65,8 +65,8 @@ Exemple de groupe utilisé pour les machines Debian :
 
 Un playbook a été créé dans :
 
-```/etc/ansible/playbooks/ntp.yml
 ```
+/etc/ansible/playbooks/ntp.yml```
 
 Ce playbook permet de : 
 
@@ -76,8 +76,7 @@ Ce playbook permet de :
 
 Contenu du playbook :
 
-```
--   name: Configure NTP clients hosts: all_linux become: yes
+```-   name: Configure NTP clients hosts: all_linux become: yes
 
     tasks:
 
@@ -97,8 +96,8 @@ Contenu du playbook :
 
 Depuis le serveur Ansible :
 
-```ansible-playbook /etc/ansible/playbooks/ntp.yml
 ```
+ansible-playbook /etc/ansible/playbooks/ntp.yml```
 
 Le playbook se connecte en SSH à toutes les machines du groupe all_linux
 et applique automatiquement la configuration NTP.
@@ -125,13 +124,12 @@ Crée un playbook rapide verif-ntp.yml :
 
     - name: Afficher le statut NTP
       debug:
-        msg: "{{ inventory_hostname }} -> {{ chrony_status.stdout }}"
-```
+        msg: "{{ inventory_hostname }} -> {{ chrony_status.stdout }}"```
 
 Puis lance-le :
 
-```ansible-playbook /etc/ansible/playbooks/verif-ntp.yml
 ```
+ansible-playbook /etc/ansible/playbooks/verif-ntp.yml```
 
 Résultat obtenu : pour chaque VM quelle source NTP elle utilise et si elle est synchronisée avec 10.10.120.12
 
