@@ -10,7 +10,8 @@ Installation de Chrony
 
 Sur la VM 10.10.120.12 :
 
-sudo apt update sudo apt install chrony -y
+```sudo apt update sudo apt install chrony -y
+```
 
 Chrony est utilisé car il est plus moderne et plus performant que ntpd
 pour la synchronisation du temps.
@@ -19,19 +20,22 @@ Configuration du serveur NTP
 
 Le fichier de configuration est situé ici :
 
-/etc/chrony/chrony.conf
+```/etc/chrony/chrony.conf
+```
 
 Les paramètres principaux ajoutés :
 
-server 10.10.120.12 iburst driftfile /var/lib/chrony/chrony.drift
+```server 10.10.120.12 iburst driftfile /var/lib/chrony/chrony.drift
 rtcsync makestep 1 3
+```
 
 Le serveur NTP est également configuré pour autoriser le réseau de
 management à se synchroniser.
 
 Après modification de la configuration :
 
-sudo systemctl restart chrony sudo systemctl enable chrony
+```sudo systemctl restart chrony sudo systemctl enable chrony
+```
 
 Le serveur 10.10.120.12 sert désormais de référence temporelle pour
 toute l’infrastructure.
@@ -48,7 +52,8 @@ Une VM dédiée sert de serveur Ansible.
 
 Les hôtes sont déclarés dans le fichier :
 
-/etc/ansible/hosts
+```/etc/ansible/hosts
+```
 
 Exemple de groupe utilisé pour les machines Debian :
 
@@ -60,7 +65,8 @@ Exemple de groupe utilisé pour les machines Debian :
 
 Un playbook a été créé dans :
 
-/etc/ansible/playbooks/ntp.yml
+```/etc/ansible/playbooks/ntp.yml
+```
 
 Ce playbook permet de : 
 
@@ -68,7 +74,8 @@ Ce playbook permet de :
 - Configurer le client NTP pour utiliser 10.10.120.12 
 - Redémarrer le service chrony
 
-Contenu du playbook
+Contenu du playbook :
+
 ```
 -   name: Configure NTP clients hosts: all_linux become: yes
 
@@ -81,7 +88,8 @@ Contenu du playbook
         /var/lib/chrony/chrony.drift rtcsync makestep 1 3
 
     -   name: Redémarrer chrony service: name: chrony state: restarted
-        enabled: yes```
+        enabled: yes
+```
 
 ---
 
@@ -89,7 +97,8 @@ Contenu du playbook
 
 Depuis le serveur Ansible :
 
-ansible-playbook /etc/ansible/playbooks/ntp.yml
+```ansible-playbook /etc/ansible/playbooks/ntp.yml
+```
 
 Le playbook se connecte en SSH à toutes les machines du groupe all_linux
 et applique automatiquement la configuration NTP.
@@ -104,6 +113,7 @@ interne :
 
 Crée un playbook rapide verif-ntp.yml :
 
+```
 - name: Vérifier la synchro NTP sur toutes les VM
   hosts: all_linux
   become: yes
@@ -116,10 +126,12 @@ Crée un playbook rapide verif-ntp.yml :
     - name: Afficher le statut NTP
       debug:
         msg: "{{ inventory_hostname }} -> {{ chrony_status.stdout }}"
+```
 
 Puis lance-le :
 
-ansible-playbook /etc/ansible/playbooks/verif-ntp.yml
+```ansible-playbook /etc/ansible/playbooks/verif-ntp.yml
+```
 
 Résultat obtenu : pour chaque VM quelle source NTP elle utilise et si elle est synchronisée avec 10.10.120.12
 
