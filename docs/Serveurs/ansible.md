@@ -2,7 +2,7 @@
 
 ## Contexte 
 
-Ansible est un outil d’automatisation qui permet de gérer et configurer plusieurs machines à distance sans installer d’agent supplémentaire. Dans notre cas, il sera utilisé pour déployer automatiquement l’agent GLPI sur toutes tes VM Linux, ce qui permettra de centraliser facilement l’inventaire matériel et logiciel dans [GLPI](https://sym-0ne.github.io/sport-ludique-Chartres/Services/GLPI/Glpi3/), sans avoir à intervenir manuellement sur chaque machine.
+Ansible est un outil d’automatisation IT utilisé pour gérer la configuration des systèmes, déployer des applications et orchestrer des infrastructures de manière centralisée. Il permet d’automatiser des tâches répétitives sur un ensemble de machines, tout en garantissant une configuration cohérente et reproductible. Son fonctionnement repose sur un modèle sans agent (agentless) : aucune installation n’est nécessaire sur les machines cibles, car la communication s’effectue via des protocoles standards comme SSH pour les systèmes Linux ou WinRM pour Windows.
 
 ---
 
