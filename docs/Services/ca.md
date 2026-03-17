@@ -3,7 +3,11 @@
 ## Objectif :
 ----------
 
-bla bla bla
+Mettre en place une autorité de certification interne (CA) afin de générer et signer des certificats numériques utilisés pour sécuriser les communications au sein de l’infrastructure.
+
+Cette autorité permet de délivrer des certificats SSL/TLS pour des services internes (serveurs web, applications, RDP, etc.) sans dépendre d’une autorité publique. Elle garantit l’authenticité des serveurs, le chiffrement des échanges et l’intégrité des données.
+
+---
 
 ## 1 Mise à jour et installation
 
@@ -13,7 +17,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install openssl -y
 ```
 
---
+---
 
 ## 2. Création de l'autorité de certification (CA interne)
 
@@ -60,7 +64,7 @@ sudo mv /tmp/www.chartres.sportludique.fr.csr.pem /home/certificat
 ```
 
 ### 3.2 Signature du certificat
-
+✅ Le site est maintenant accessible en HTTPS sécurisé via :
 ```
 sudo openssl x509 -req \
   -in /home/certificat/www.chartres.sportludique.fr.csr.pem \
