@@ -103,7 +103,8 @@ nav:
   - Services: 
       - NTP: Services/ntp.md
       - Sécurité:
-          - Certificat SSL/TLS & HTTPS: Services/https.md
+          - Certificat Autorité & SSL: Services/ca.md
+          - Certificat HTTPS: Services/https.md
       - GLPI: 
           - Installation GLPI: Services/GLPI/Glpi.md
           - Liaison AD & GLPI via LDAP: Services/GLPI/Glpi2.md
