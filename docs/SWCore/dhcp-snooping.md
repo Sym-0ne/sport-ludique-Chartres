@@ -11,10 +11,10 @@ uniquement les réponses provenant des ports
 déclarés comme "trusted".
 
 Il crée également une table contenant :
-* Adresse IP
-* Adresse MAC
-* VLAN
-* Port du switch
+- Adresse IP
+- Adresse MAC
+- VLAN
+- Port du switch
 
 Cette table est appelée "DHCP Snooping Binding Table".
 
@@ -25,12 +25,12 @@ Cette table est appelée "DHCP Snooping Binding Table".
 
 Deux types de ports existent :
 
-Trusted Port
+Trusted Port : 
 * Port autorisé à envoyer des réponses DHCP
 * Généralement connecté au serveur DHCP
 * Peut envoyer DHCP OFFER / ACK
 
-Untrusted Port
+Untrusted Port :
 * Ports des utilisateurs
 * Ne peuvent pas envoyer de réponses DHCP
 * Seules les requêtes DHCP sont autorisées
