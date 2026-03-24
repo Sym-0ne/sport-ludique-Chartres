@@ -81,8 +81,8 @@ sudo chown root:root /etc/ssl/private/www.chartres.sportludique.fr.key.pem
 Ensuite il faut vérifier que les fichier "www.chartres.sportludique.fr.cert.pem" et "www.chartres.sportludique.fr.key.pem" soit **bien liée** :
 
 ```
-openssl x509 -noout -modulus -in /etc/ssl/certs/chartres.sportludique.fr.crt.pem | openssl md5
-openssl rsa -noout -modulus -in /etc/ssl/private/chartres.sportludique.fr.key.pem | openssl md5
+openssl x509 -noout -modulus -in /etc/ssl/certs/chartres.sportludique.fr.cert.pem | openssl md5
+sudo openssl rsa -noout -modulus -in /etc/ssl/private/chartres.sportludique.fr.key.pem | openssl md5
 ```
 
 Si ils ont le même hash alors les fichier sont bien liée, sinon il faut recommencer toute l'étape car il faut **absolument qu'ils soit liée sinon le HTTPS ne fonctionnera jamais**.
