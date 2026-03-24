@@ -1,6 +1,6 @@
 # Mise en place - DHCP SNOOPING
 
-## 1. OBJECTIF
+## 1. Objectif 
 ---
 Le DHCP Snooping est une fonctionnalité de sécurité
 qui permet de protéger le réseau contre les serveurs
@@ -11,33 +11,37 @@ uniquement les réponses provenant des ports
 déclarés comme "trusted".
 
 Il crée également une table contenant :
-- Adresse IP
-- Adresse MAC
-- VLAN
-- Port du switch
+
+* Adresse IP
+* Adresse MAC
+* VLAN
+* Port du switch
+
 
 Cette table est appelée "DHCP Snooping Binding Table".
 
 ---
 
-## 2. PRINCIPE DE FONCTIONNEMENT
+## 2. Princpie de fonctionnement 
 ---
 
 Deux types de ports existent :
 
-Trusted Port : 
-* Port autorisé à envoyer des réponses DHCP
-* Généralement connecté au serveur DHCP
-* Peut envoyer DHCP OFFER / ACK
-
-Untrusted Port :
-* Ports des utilisateurs
-* Ne peuvent pas envoyer de réponses DHCP
-* Seules les requêtes DHCP sont autorisées
++----------------+--------------------------------------------------------------+
+| Type de Port   | Description                                                  |
++----------------+--------------------------------------------------------------+
+| Trusted Port   | - Port autorisé à envoyer des réponses DHCP                 |
+|                | - Généralement connecté au serveur DHCP                     |
+|                | - Peut envoyer les messages DHCP OFFER et DHCP ACK          |
++----------------+--------------------------------------------------------------+
+| Untrusted Port | - Ports utilisés par les utilisateurs                       |
+|                | - Ne peuvent pas envoyer de réponses DHCP                   |
+|                | - Seules les requêtes DHCP sont autorisées                  |
++----------------+--------------------------------------------------------------+
 
 ---
 
-## 3. TOPOLOGIE EXEMPLE
+## 3. Topologie 
 ---
 
              DHCP SERVER
@@ -53,7 +57,7 @@ Untrusted Port :
 
 ---
 
-## 4. ACTIVATION DU DHCP SNOOPING
+## 4. Activation du DHCP SNOOPING 
 ---
 
 Entrer en mode configuration :
@@ -70,7 +74,7 @@ dhcp-snooping
 
 ---
 
-## 5. CONFIGURATION DU PORT TRUSTED
+## 5. Configuration du port TRUSTED
 ---
 
 Le port connecté au serveur DHCP doit être configuré
@@ -83,7 +87,7 @@ interface Bridge-Aggregation1    # le port sur lequel se trouve le serveur DHCP 
 dhcp snooping trust   # autorise a voir des réponses DHCP
 ```
 
-## 6. VERIFICATION DE LA CONFIGURATION
+## 6. Vérification de la configuration
 ---
 
 Afficher l'état du DHCP Snooping :
@@ -106,7 +110,7 @@ display dhcp-snooping binding
 
 ---
 
-## 7. CONFIGURATION COMPLETE EXEMPLE
+## 7. Configuration complète
 ---
 
 ```
@@ -125,12 +129,13 @@ dhcp snooping rate-limit 64 #Evite les attaques DHCP Starvation (Sur HP on ne pe
 
 ## 8. Test Complet 
 
-1. On désactive le service DHCP de notre serveur (AD) pour simuler une déni de service causé par l'attaquant (DOS).
-2. On desactive le dhcp-snooping sur notre SWCore.
-3. On lance une requete DHCP sur notre machine cliente, elle récupere belle et bien une ip depuis le DHCP ROG.
-4. On réactive le service DHCP sur notre serveur (AD), la machine récupere encore une ip depuis le DHCP ROG.
-5. On active alors le service dhcp-snooping sur notre SWCore, la machine récupere maitenant l'ip depuis notre DHCP Serveur (AD).
+- On désactive le service DHCP de notre serveur (AD) pour simuler une déni de service causé par l'attaquant (DOS).
+- On desactive le dhcp-snooping sur notre SWCore.
+- On lance une requete DHCP sur notre machine cliente, elle récupere belle et bien une ip depuis le DHCP ROG.
+- On réactive le service DHCP sur notre serveur (AD), la machine récupere encore une ip depuis le DHCP ROG.
+- On active alors le service dhcp-snooping sur notre SWCore, la machine récupere maitenant l'ip depuis notre DHCP Serveur (AD).
 
-6. Conclusion le service fonctionne correctement. 
+
+- Conclusion le service fonctionne correctement. 
 
 ---
