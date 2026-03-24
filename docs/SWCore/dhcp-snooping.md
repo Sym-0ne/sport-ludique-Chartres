@@ -11,10 +11,10 @@ uniquement les réponses provenant des ports
 déclarés comme "trusted".
 
 Il crée également une table contenant :
-- Adresse IP
-- Adresse MAC
-- VLAN
-- Port du switch
+* Adresse IP
+* Adresse MAC
+* VLAN
+* Port du switch
 
 Cette table est appelée "DHCP Snooping Binding Table".
 
@@ -26,14 +26,14 @@ Cette table est appelée "DHCP Snooping Binding Table".
 Deux types de ports existent :
 
 Trusted Port
-- Port autorisé à envoyer des réponses DHCP
-- Généralement connecté au serveur DHCP
-- Peut envoyer DHCP OFFER / ACK
+* Port autorisé à envoyer des réponses DHCP
+* Généralement connecté au serveur DHCP
+* Peut envoyer DHCP OFFER / ACK
 
 Untrusted Port
-- Ports des utilisateurs
-- Ne peuvent pas envoyer de réponses DHCP
-- Seules les requêtes DHCP sont autorisées
+* Ports des utilisateurs
+* Ne peuvent pas envoyer de réponses DHCP
+* Seules les requêtes DHCP sont autorisées
 
 ---
 
@@ -43,12 +43,12 @@ Untrusted Port
              DHCP SERVER
                  |
                  |
-           GE1/0/1 (TRUSTED)
+           fa1/0/1 (TRUSTED)
                SWITCH
             HP 5500
              /   \
             /     \
-      GE1/0/2    GE1/0/3
+      fa1/0/2    fa1/0/3
       CLIENT      CLIENT
 
 ---
@@ -58,11 +58,15 @@ Untrusted Port
 
 Entrer en mode configuration :
 
+```
 system-view
+```
 
 Activer DHCP Snooping :
 
+```
 dhcp-snooping
+```
 
 ---
 
@@ -74,88 +78,47 @@ comme trusted.
 
 Exemple :
 
-interface GigabitEthernet1/0/1
- dhcp-snooping trust
- quit
+```
+interface Bridge-Aggregation1    # le port sur lequel se trouve le serveur DHCP ou le relai DHCP (souvent un port d'interco 802.1Q)
+dhcp snooping trust   # autorise a voir des réponses DHCP
+```
 
----
-
-## 6. PORTS CLIENTS
----
-
-Les ports utilisateurs restent en mode untrusted
-(par défaut).
-
-Exemple :
-
-interface GigabitEthernet1/0/2
- quit
-
-interface GigabitEthernet1/0/3
- quit
-
----
-
-## 7. VERIFICATION DE LA CONFIGURATION
+## 6. VERIFICATION DE LA CONFIGURATION
 ---
 
 Afficher l'état du DHCP Snooping :
 
+```
 display dhcp-snooping
+```
 
 Afficher les ports trusted :
 
+```
 display dhcp-snooping trust
+```
 
 Afficher la table des clients :
 
+```
 display dhcp-snooping binding
+```
 
 ---
 
-## 8. CONFIGURATION COMPLETE EXEMPLE
+## 7. CONFIGURATION COMPLETE EXEMPLE
 ---
 
+```
 system-view
 
 dhcp-snooping
 
-interface GigabitEthernet1/0/1
- dhcp-snooping trust
- quit
+interface Bridge-Aggregation1    # le port sur lequel se trouve le serveur DHCP ou le relai DHCP (souvent un port d'interco 802.1Q)
+dhcp-snooping trust   # autorise a voir des réponses DHCP
 
-interface GigabitEthernet1/0/2
- quit
-
-interface GigabitEthernet1/0/3
- quit
-
----
-
-## 9. OPTION 82 (OPTIONNEL)
----
-
-L'option 82 permet d'ajouter des informations
-sur le port et le VLAN dans les requêtes DHCP.
-
-Activation :
-
-dhcp-snooping information enable
-
-Cela permet au serveur DHCP d'identifier
-le port exact d'où provient la requête.
-
----
-
-## 10. BONNES PRATIQUES
----
-
-- Activer DHCP Snooping sur les switches d'accès
-- Configurer uniquement le port du serveur DHCP
-  comme TRUSTED
-- Laisser tous les ports utilisateurs en UNTRUSTED
-- Vérifier régulièrement la table DHCP Snooping
-- Combiner avec Dynamic ARP Inspection pour
-  une meilleure sécurité
+interface GigaEthernet2/0/25   # on limite le nombre de requetes clients DHCP venant sur ce port
+dhcp snooping rate-limit 64 #Evite les attaques DHCP Starvation (Sur HP on ne peut pas limiter les requetes DHCP en dessous de 64/sec)
+```
 
 ---
