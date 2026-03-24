@@ -22,22 +22,15 @@ Cette table est appelée "DHCP Snooping Binding Table".
 
 ---
 
-## 2. Princpie de fonctionnement 
+## 2. Principe de fonctionnement 
 ---
 
 Deux types de ports existent :
 
-+----------------+--------------------------------------------------------------+
-| Type de Port   | Description                                                  |
-+----------------+--------------------------------------------------------------+
-| Trusted Port   | - Port autorisé à envoyer des réponses DHCP                 |
-|                | - Généralement connecté au serveur DHCP                     |
-|                | - Peut envoyer les messages DHCP OFFER et DHCP ACK          |
-+----------------+--------------------------------------------------------------+
-| Untrusted Port | - Ports utilisés par les utilisateurs                       |
-|                | - Ne peuvent pas envoyer de réponses DHCP                   |
-|                | - Seules les requêtes DHCP sont autorisées                  |
-+----------------+--------------------------------------------------------------+
+| Type de Port       | Description                                                                                                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Trusted Port**   | - Port autorisé à envoyer des réponses DHCP<br>- Généralement connecté au serveur DHCP<br>- Peut envoyer les messages DHCP OFFER et DHCP ACK |
+| **Untrusted Port** | - Ports utilisés par les utilisateurs<br>- Ne peuvent pas envoyer de réponses DHCP<br>- Seules les requêtes DHCP sont autorisées             |
 
 ---
 
