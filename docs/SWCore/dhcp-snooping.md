@@ -122,3 +122,15 @@ dhcp snooping rate-limit 64 #Evite les attaques DHCP Starvation (Sur HP on ne pe
 ```
 
 ---
+
+## 8. Test Complet 
+
+1. On désactive le service DHCP de notre serveur (AD) pour simuler une déni de service causé par l'attaquant (DOS).
+2. On desactive le dhcp-snooping sur notre SWCore.
+3. On lance une requete DHCP sur notre machine cliente, elle récupere belle et bien une ip depuis le DHCP ROG.
+4. On réactive le service DHCP sur notre serveur (AD), la machine récupere encore une ip depuis le DHCP ROG.
+5. On active alors le service dhcp-snooping sur notre SWCore, la machine récupere maitenant l'ip depuis notre DHCP Serveur (AD).
+
+6. Conclusion le service fonctionne correctement. 
+
+---
