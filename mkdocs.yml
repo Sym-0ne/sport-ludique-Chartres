@@ -50,6 +50,7 @@ nav:
       - Syntaxe: DocumentationMkdocs/Syntaxe/Syntaxe.md
   - Switch Core:
       - Configuration du Switch Core & Stack : SWCore/reseau.md
+      - DHCP SnooPing : SWCore/dhcp-snooping.md
       - LACP : SWCore/lacp_hp_a5500.md
   - Routeur:
       - R1: Routeur/R1.md
