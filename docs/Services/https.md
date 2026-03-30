@@ -2,9 +2,6 @@
 
 ---
 
-Voici une version corrigée, structurée et propre pour une documentation technique. J’ai corrigé la numérotation, amélioré certaines formulations et uniformisé les sections.
-Mise en place d’un site HTTPS avec Apache
-
 ## Objectif :
 ----------
 
