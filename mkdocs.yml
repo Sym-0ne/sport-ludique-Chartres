@@ -67,7 +67,7 @@ nav:
       - UFW: Pare-feux/UFW.md
   - HyperViseur:
       - Proxmox & Raid: Hyperviseur/proxmox-raid.md
-      - Incident HyperViseur & Proxmox: HyperViseur/probleme.md
+      - Incident HyperViseur & Proxmox: Hyperviseur/probleme.md
       - Gestion Vlan on VM Proxmox: Hyperviseur/vlan-prox.md
       - Protocoles: 
           - LACP on Proxmox: Hyperviseur/lacp-proxmox.md
