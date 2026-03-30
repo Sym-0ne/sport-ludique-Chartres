@@ -1,7 +1,7 @@
 # Installation d'un serveur GLPI **(Version VIA DOCKER)**
 
 ⚠️ L'installation du GLPI via Docker est différente qu'une installation classique ! <br>
-Pour voir la mise en place du Docker lié à celle de notre GLPI voir [la documentation Docker](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/docker.md).
+Pour voir la mise en place du Docker lié à celle de notre GLPI voir [la documentation Docker](https://sym-0ne.github.io/sport-ludique-Chartres/Serveurs/docker).
 
 ## Objectif :
 ----------
