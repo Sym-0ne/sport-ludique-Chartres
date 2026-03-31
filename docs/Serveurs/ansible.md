@@ -56,6 +56,12 @@ Exemple simple de contenu pour tester sur la machine locale :
 127.0.0.1 ansible_connection=local
 ```
 
+### Créatuib d'yb ytikisateur de liaision dédié (Ansible)
+
+On créer un utilisateur nommée ```ansible``` qui servira d'utilisateur de liaison entre le serveur Ansible et les machines cibles. 
+
+Nous mettrons cet utilisateur dans la configuration ```/etc/ansible/host``` pour ```ansible_user=ansible```
+
 ### Connexion uniquement avec clé (Recommandée pour Ansible)
 
 Se rendre dans le fichier ```sudoers``` : 

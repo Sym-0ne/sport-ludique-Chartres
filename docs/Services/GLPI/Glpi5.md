@@ -107,10 +107,16 @@ Cela permet de configurer automatiquement l’adresse du serveur GLPI pour toute
 
 ---
 
-### 5. Installation manuelle (DC principal)
+### 5. Installation manuelle 
 
-- Installer manuellement l’agent sur CHA-DC-01 :  
-  `"C:\Program Files\GLPI-Agent\glpi-agent.bat" --server http://10.10.120.15/front/inventory.php --force --debug --logger=stderr`
+- Installater l'agent `glpi-agent.1.17-x64.msi` sur le GitHub GLPI
+
+- Faire l'inventaire via l’agent :  
+  `"C:\Program Files\GLPI-Agent\glpi-agent" --server=http://10.10.120.15/front/inventory.php --force`
+
+  ou 
+
+  `"C:\Program Files\GLPI-Agent\glpi-agent" --server=http://10.10.120.15/glpi/front/inventory.php --force`
 
 - Vérifier que l’agent remonte dans GLPI.
 
