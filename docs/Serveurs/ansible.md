@@ -2,7 +2,9 @@
 
 ## Contexte 
 
-Ansible est un outil d’automatisation IT utilisé pour gérer la configuration des systèmes, déployer des applications et orchestrer des infrastructures de manière centralisée. Il permet d’automatiser des tâches répétitives sur un ensemble de machines, tout en garantissant une configuration cohérente et reproductible. Son fonctionnement repose sur un modèle sans agent (agentless) : aucune installation n’est nécessaire sur les machines cibles, car la communication s’effectue via des protocoles standards comme SSH pour les systèmes Linux ou WinRM pour Windows.
+Ansible est un outil d’automatisation IT utilisé pour gérer la configuration des systèmes, déployer des applications et orchestrer des infrastructures de manière centralisée. Il permet d’automatiser des tâches répétitives sur un ensemble de machines, tout en garantissant une configuration cohérente et reproductible.
+
+Son fonctionnement repose sur un modèle sans agent (agentless) : aucune installation n’est nécessaire sur les machines cibles, car la communication s’effectue via des protocoles standards comme SSH pour les systèmes Linux ou WinRM pour Windows.
 
 ---
 
@@ -56,7 +58,7 @@ Exemple simple de contenu pour tester sur la machine locale :
 
 ### Connexion uniquement avec clé (Recommandée pour Ansible)
 
-Se rendre dans le fichier : 
+Se rendre dans le fichier ```sudoers``` : 
 ```
 sudo visudo 
 ```
@@ -64,12 +66,7 @@ sudo visudo
 Ajoute en dessous de Root en bas de page :
 
 ```
-ansible ALL=(ALL) ALL
-```
-
-Ou sans mot de passe (idéal pour Ansible) :
-```
-ansible ALL=(ALL) NOPASSWD: ALL
+ansible ALL=(ALL:ALL) NOPASSWD: ALL
 ```
 
 Tester la connexion :
@@ -123,14 +120,14 @@ serveurs
 
 ## 4. Generation de la clé publique
 
-Il n'est pas possible d'utiliser une connexion SSH via mot de passe car le serveur Ansible ne les connaît pas,
-il faut donc mettre en place une authentification via clé publique, donc on va générer une clé publique pour le serveur Ansible :
+Il n'est pas possible d'utiliser une connexion SSH via mot de passe car le serveur Ansible ne le connaît pas,
+il faut donc mettre en place une authentification via clé publique, nous allons donc générer une clé publique pour le serveur Ansible :
 
 ```
 ssh-keygen -t ed25519
 ```
 
-On ne met pas en place de PassPhrase, car le serveur ne les connaîtra pas non plus donc ça revient au même que le mot de passe !
+On ne met pas en place de PassPhrase, car le serveur ne la connaîtra pas non plus, cela ça reviendrais au même que le mot de passe !
 
 ---
 
@@ -143,7 +140,7 @@ ssh-copy-id *utilisateur*@10.10.120.?
 ```
 
 On y précisera le MÊME utilisateur utilisé dans ```ansible_user``` dans la configuration de l'inventaire via ```sudo nano /etc/ansible/hosts``` <br>
-Faire cela pour toutes les VM présentes dans la configuration, une par une, même s'il y en a un grand nombre.
+Faire cela pour toutes les VM présentes dans la configuration uniquement pour la première fois, une par une, même s'il y en a un grand nombre.
 
 ---
 
@@ -167,11 +164,5 @@ dns-resolver-sec | SUCCESS => {
     "ping": "pong"
 }
 ```
-
----
-
-## 7. Mise en place Agent GLPI
-
-Nous allons pousser un Agent GLPI sur toutes les machines Linux dans la documentation de la Mise en place de l'Inventaire [GLPI](https://sym-0ne.github.io/sport-ludique-Chartres/Services/GLPI/Glpi3/)
 
 ---

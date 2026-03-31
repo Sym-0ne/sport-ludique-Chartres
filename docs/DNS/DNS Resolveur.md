@@ -21,7 +21,7 @@ sudo systemctl status unbound
 
 ## 2. Configuration du DNS
 
-Editer le fichier suivant :
+Éditer le fichier suivant :
 
 ```
 sudo nano /etc/unbound/unbound.conf
@@ -47,11 +47,14 @@ server:
     do-tcp: yes
 
     # Réseaux autorisés à interroger le résolveur
-    access-control: 127.0.0.0/8 allow        # localhost
+    access-control: 127.0.0.1/8 allow        # localhost
     access-control: 172.28.33.0/24 allow     # LAN
-    access-control: 172.28.62.0/24 allow     # DMZ
+    access-control: 172.28.32.0/24 allow     # WIFI SLAM
+    access-control: 172.28.62.0/24 allow     # DMZ PUB
     access-control: 172.28.35.0/24 allow     # CLIENTS
+    access-control: 192.168.20.0/24 allow    # WIFI GUEST
     access-control: 0.0.0.0/0 refuse         # tout le reste bloqué
+
 
     # Désactive DNSSEC
     module-config: "iterator"
@@ -90,7 +93,7 @@ Vérifier la syntaxe :
 sudo unbound-checkconf
 ```
 
-Si il y a des erreurs, le **DNS ne fonctionnerra pas** car vous ne pourrais pas redémarrer le service donc **il faut absolument résoudre les erreurs**.
+Si il y a des erreurs, le **DNS ne fonctionnerra pas** car vous ne pourrez pas redémarrer le service, **il faut donc absolument résoudre les erreurs**.
 
 Sinon redémarrer le service :
 
@@ -105,7 +108,7 @@ Vérifier que le fichier comporte les bonnes adresses IP :
 sudo cat /etc/resolv.conf
 ```
 
-Le résultat attendus est :
+Le résultat attendu est :
 
 ```
 search chartres.sportludique.fr

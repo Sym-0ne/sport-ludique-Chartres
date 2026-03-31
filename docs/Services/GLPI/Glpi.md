@@ -27,10 +27,10 @@ services:
     container_name: glpi_app # Nom du conteneur
     restart: always
     ports:
-      - "172.28.33.8:2000:80"   # Mappage des ports (expliqué en dessous)
-      - "10.10.120.15:2000:80"  
+      - "172.28.33.8.80:80"   
+      - "10.10.120.15:80:80"  
     environment:
-      GLPI_DB_HOST: ${DB_HOST} # Appel de variables, présentes dans le fichier .env
+      GLPI_DB_HOST: ${DB_HOST} 
       GLPI_DB_NAME: ${DB_NAME}
       GLPI_DB_USER: ${DB_USER}
       GLPI_DB_PASSWORD: ${DB_PASSWORD}
@@ -58,7 +58,7 @@ GLPI est installé depuis les dépôts Docker. Étant donné que GLPI est dans u
 
 ---
 
-### 2.2 Mappage des ports
+### 2.2 Mappage des ports (Potentielle Solution)
 
 Compte tenu de l'existence de plusieurs services grâce à Docker, il est possible que plusieurs services aient besoin du même port de sortie (80, 443, etc.). Le mappage des ports permet de résoudre cette problématique : on attribue un port local de la machine à un port virtuel du conteneur, ce qui évite de modifier les fichiers de configuration de nos applications. 
 

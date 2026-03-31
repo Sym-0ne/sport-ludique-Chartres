@@ -20,7 +20,6 @@ L’objectif est de structurer le réseau en différentes zones logiques et de g
 ### 3.1 VLAN concernés 
 | Nom du VLAN     | ID VLAN | Zone associée |
 |-----------------|----------|---------------|
-| Gestion Actif   | 222      | Service       |
 | Client          | 224      | Service       |
 | DMZ             | 226      | Service       |
 | Serveur         | 221      | Service       |
@@ -28,7 +27,7 @@ L’objectif est de structurer le réseau en différentes zones logiques et de g
 ### 3.2 Étapes de création
 1. Dans la section **Vnets**, créer un VLAN pour chaque identifiant mentionné ci-dessus.  
 2. Affecter à chaque VLAN :
-    - Un **nom explicite** (ex. : `VLAN_GestionActif`, `VLAN_Client`, etc.).  
+    - Un **nom explicite** (ex. : `VLAN_Serveur`, `VLAN_Client`, etc.).  
     - La **zone “Service”**.  
 3. **Ne pas cocher** :
     - *Gestion des VLANs*  
