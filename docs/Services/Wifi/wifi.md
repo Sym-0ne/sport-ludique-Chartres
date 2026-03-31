@@ -4,23 +4,23 @@
 
 ---
 
-Permettre aux SLAM de pouvoir accèder à notre réseaux via le Wifi afin qu'il accède à leurs serveurs que nous hebergeons.
+Pouvoir se connecter et administrer la borne Wifi.
 
 ---
 
 ## 1. Configuration du serveur DHCP sur Stormshield
 
-Pour que les clients Wi-Fi puissent accéder au réseau, ils doivent recevoir une adresse IP.
+Pour que la Borne puissent accéder au réseau, elle doit recevoir une adresse IP.
 
 Il faut se connecter à l’interface web du Stormshield puis aller dans **Configuration → Réseau → Services → DHCP Server**.
 
 Ensuite activer le DHCP sur l’interface in, sur le réseau Guest :
 
 ```
-Plage IP	192.168.20.1 – 192.168.20.253
+Plage IP	192.168.99.100 – 192.168.99.200
 Masque	255.255.255.0
-Passerelle	192.168.20.254
-DNS	172.28.62.1
+Passerelle	192.168.99.254
+DNS	172.28.33.4
 ```
 
 Enfin **sauvegarder la configuration** et allez vérifier dans **les logs** quel adresse IP a récuperer la borne Wi-fi.
@@ -39,4 +39,4 @@ Ensuite la borne récupèrera une IP via DHCP et après on pourra accéder à so
 https://IP_DE_LA_BORNE
 ```
 
-Une fois connecter nous pourrons configurer notre Wi-fi Guest.
+Une fois connecter nous pourrons configurer notre Wi-fi Guest et SLAM.
