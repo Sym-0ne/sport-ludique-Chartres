@@ -56,7 +56,7 @@ Exemple simple de contenu pour tester sur la machine locale :
 127.0.0.1 ansible_connection=local
 ```
 
-### Créatuib d'yb ytikisateur de liaision dédié (Ansible)
+### Création d'un utilisateur de liaision dédié (Ansible)
 
 On créer un utilisateur nommée ```ansible``` qui servira d'utilisateur de liaison entre le serveur Ansible et les machines cibles. 
 
