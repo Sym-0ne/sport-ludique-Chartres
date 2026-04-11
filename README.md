@@ -1,6 +1,6 @@
 Projet  – Sport Ludique 
 
-Dans le cadre de mon parcours en BTS Services Informatiques aux Organisations (SIO) 
+Dans le cadre de notre parcours en BTS Services Informatiques aux Organisations (SIO) 
 Parcours SISR, nous avons participé à la réalisation d’un projet dédié à une entreprise nommée Sport 
 Ludique consistant à concevoir et documenter une infrastructure informatique complète en 
 partant de zéro ! 
