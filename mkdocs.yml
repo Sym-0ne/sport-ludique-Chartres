@@ -118,3 +118,5 @@ nav:
           - Configuration Multi Site WordPress: Services/wordpress3.md
       - Wi-Fi:
           - Configuration de la borne: Services/Wifi/wifi.md
+          - Wifi Guest: Services/Wifi/Guest.md
+          - Wifi Slam: Services/Wifi/Slam.md
