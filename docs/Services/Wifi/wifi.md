@@ -14,7 +14,7 @@ Pour que la Borne puissent accéder au réseau, elle doit recevoir une adresse I
 
 Il faut se connecter à l’interface web du Stormshield puis aller dans **Configuration → Réseau → Services → DHCP Server**.
 
-Ensuite activer le DHCP sur l’interface in, sur le réseau Guest :
+Ensuite activer le DHCP sur l’interface in, sur le réseau de Mana de la borne :
 
 ```
 Plage IP	192.168.99.100 – 192.168.99.200
