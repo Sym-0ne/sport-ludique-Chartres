@@ -103,6 +103,8 @@ nav:
       - Serveur Mail: Serveurs/mail.md
       - Docker: Serveurs/docker.md
   - Services: 
+      - SSH sécurisé : Services/ssh_secure_ansible.md
+      - Radius : Services/radius.md
       - NTP: Services/ntp.md
       - Sécurité:
           - Certificat Autorité & SSL: Services/ca.md
