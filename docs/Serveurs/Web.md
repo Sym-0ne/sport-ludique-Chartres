@@ -129,7 +129,6 @@ Ajouter ensuite ces lignes :
 
 ```
 # Exemple de route : up ip route add 'réseau à joindre' via 'passerelle' dev 'interface sortante'
-up ip route add 172.28.32.0/24 via 172.28.62.253 dev ens3
 up ip route add 172.28.33.0/24 via 172.28.62.253 dev ens3
 up ip route add 172.28.35.0/24 via 172.28.62.253 dev ens3
 ```
