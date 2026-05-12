@@ -51,7 +51,7 @@ Le Pôle Chartres assure la coordination des activités de l’ensemble des site
 ---
 
 ### <ins>Schema réseau</ins>
-![](Ressources/shema_reseaux.drawio)
+![](Ressources/schema_reseaux.drawio)
 
 ---
 
