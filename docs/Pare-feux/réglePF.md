@@ -4,47 +4,84 @@
 
 ## Stormshield n°1
 
-| Catégorie                             | Interface | N° | Source         | Port Src | Destination | Port Dest | Protocole | Action |
-| ------------------------------------- | --------- | -- | -------------- | -------- | ----------- | --------- | --------- | ------ |
-| DNS (entrée depuis l'extérieur)       | WAN       | 1  | *              | *        | 172.28.62.1 | 53        | TCP/UDP   | Permit |
-| Reverse Proxy HTTP                    | WAN       | 2  | *              | *        | 172.28.62.5 | 80        | TCP       | Permit |
-| Reverse Proxy HTTPS                   | WAN       | 3  | *              | *        | 172.28.62.5 | 443       | TCP       | Permit |
-| Mail SMTP (entrée depuis l'extérieur) | WAN       | 4  | *              | *        | 172.28.62.2 | 25        | TCP       | Permit |
-| Mail IMAP (entrée depuis l'extérieur) | WAN       | 5  | *              | *        | 172.28.62.2 | 143       | TCP       | Permit |
-| Mail SMTP (sortie vers l'extérieur)   | DMZ → WAN | 6  | 172.28.62.2    | *        | *           | 25        | TCP       | Permit |
-| DNS sortant (DMZ → Internet)          | DMZ → WAN | 7  | 172.28.62.0/24 | *        | *           | 53        | TCP/UDP   | Permit |
-| Accès Internet LAN                    | LAN       | 8  | 172.28.32.0/19 | *        | *           | *         | ANY       | Permit |
-| Bloc tout WAN                         | WAN       | 9  | *              | *        | *           | *         | ANY       | Deny   |
+### Règles de filtrage principales
+
+| ID | État | Action  | Source            | Destination                                                             | Port / Service | Protocole | Inspection | Commentaire             |
+| -- | ---- | ------- | ----------------- | ----------------------------------------------------------------------- | -------------- | --------- | ---------- | ----------------------- |
+| 1  | ON   | Bloquer | Network_guest     | Network_out, Network_lan, Network_Wifi_SLAM, Vlan-clients, Vlan-DMZ-PRV | Any            | -         | IPS        | Isolation Wifi-Guest    |
+| 2  | ON   | Bloquer | Network_Wifi-SLAM | Network_out, Vlan-clients, Vlan-DMZ-PRV, Network_guest                  | Any            | -         | IPS        | Isolation Wifi-SLAM     |
+| 3  | ON   | Passer  | Any               | DNS-Autorité-Primaire                                                   | DNS            | -         | IPS        | Autorisation DNS externe|
+| 4  | ON   | Passer  | Any               | Reverse-Proxy-Primaire                                                  | HTTP / HTTPS   | TCP       | IPS        | Accès reverse proxy     |
+| 5  | ON   | Passer  | Any               | Server-Mail                                                             | SMTP / IMAP    | TCP       | IPS        | Accès serveur mail      |
+| 6  | ON   | Passer  | Server-Mail       | Any                                                                     | SMTP           | TCP       | IPS        | Envoi mails sortants    |
+
+### Section Wifi-SLAM
+
+| ID | État | Action     | Source                                  | Destination           | Port / Service | Protocole | Inspection   | Commentaire                 |
+| -- | ---- | ---------- | --------------------------------------- | --------------------- | -------------- | --------- | ------------ | --------------------------- |
+| 7  | ON   | Passer     | Network_Mana-AP                         | CHA-RADIUS            | RADIUS         | -         | IPS          | Authentification borne WiFi |
+| 8  | ON   | Passer     | Network_Wifi-SLAM (interface Wifi-SLAM) | DNS_Resolver_Primaire | DNS            | -         | IPS          | Résolution DNS              |
+| 9  | ON   | Passer     | Network_Wifi-SLAM (interface Wifi-SLAM) | Internet              | Any            | -         | IPS          | Accès Internet Wifi-SLAM    |
+
+### Section Wifi_Guest
+
+| ID | État | Action                     | Source                                     | Destination | Port / Service | Protocole | Inspection   | Commentaire                   |
+| -- | ---- | -------------------------- | ------------------------------------------ | ----------- | -------------- | --------- | ------------ | ----------------------------- |
+| 12 | ON   | Portail d’authentification | unknown @ Network_guest (interface: guest) | Internet    | HTTP / HTTPS   | -         | IPS          | Authentification utilisateurs |
+| 13 | ON   | Déchiffrer                 | any @ Network_guest (Auth. par : Invité)   | Internet    | ssl_srv        | -         | IPS          | Filtrage SSL CHA-PROXY        |
+| 14 | ON   | Passer                     | any @ Network_guest via Proxy SSL          | Internet    | ssl_srv        | -         | IPS (IPS_01) | Navigation Internet invités   |
+
+### Section Acces_Internet
+
+| ID | État | Action     | Source                          | Destination | Port / Service | Protocole | Inspection   | Commentaire                |
+| -- | ---- | ---------- | ------------------------------- | ----------- | -------------- | --------- | ------------ | -------------------------- |
+| 15 | ON   | Déchiffrer | Réseau-interne (interface: lan) | Internet    | ssl_srv        | -         | IPS          | Filtrage SSL CHA-PROXY     |
+| 16 | ON   | Passer     | Réseau-interne via Proxy SSL    | Internet    | ssl_srv        | -         | IPS (IPS_01) | Navigation Internet LAN    |
+| 17 | ON   | Passer     | Any                             | Any         | Any            | -         | IPS          | Règle globale autorisation |
 
 ---
 
 ## Stormshield n°2
 
-| Catégorie                                | Interface | N° | Source         | Port Src | Destination  | Port Dest | Protocole | Action |
-| ---------------------------------------- | --------- | -- | -------------- | -------- | ------------ | --------- | --------- | ------ |
-| DNS secondaire (entrée depuis extérieur) | WAN       | 1  | *              | *        | 172.28.62.11 | 53        | TCP/UDP   | Permit |
-| Reverse Proxy HTTP secondaire            | WAN       | 2  | *              | *        | 172.28.62.10 | 80        | TCP       | Permit |
-| Reverse Proxy HTTPS secondaire           | WAN       | 3  | *              | *        | 172.28.62.10 | 443       | TCP       | Permit |
-| DNS sortant (DMZ → Internet)             | DMZ → WAN | 4  | 172.28.62.0/24 | *        | *            | 53        | ANY       | Permit |
-| Accès Internet LAN                       | LAN       | 5  | 172.28.32.0/19 | *        | *            | *         | ANY       | Permit |
-| Bloc tout WAN                            | WAN       | 6  | *              | *        | *            | *         | ANY       | Deny   |
+| ID | État | Action  | Source         | Destination              | Port / Service | Protocole | Inspection | Commentaire        |
+| -- | ---- | ------- | -------------- | ------------------------ | -------------- | --------- | ---------- | ------------------ |
+| 1  | ON   | Passer  | Any            | Dns-autorité-secondaire  | DNS            | -         | IPS        | Accès DNS externe  |
+| 2  | ON   | Passer  | Any            | Reverse-Proxy-secondaire | HTTP / HTTPS   | TCP       | IPS        | Accès Reverse Proxy|
+| 3  | ON   | Passer  | Network_dmz1   | Any                      | DNS            | -         | IPS        | DNS sortant        |
+| 4  | ON   | Passer  | Réseau-Interne | Any                      | Any            | -         | IPS        | Accès Internet LAN |
+| 5  | ON   | Bloquer | Any            | Any                      | Any            | -         | IPS        | Bloc tout WAN      |
 
 ---
 
 ## OPNsense
 
-| Catégorie                        | Interface | N° | Source         | Port Src | Destination    | Port Dest | Protocole | Action | Commentaire                |
-| -------------------------------- | --------- | -- | -------------- | -------- | -------------- | --------- | --------- | ------ | -------------------------- |
-| Réseau DMZ → DNS Resolveur 1     | WAN       | 1  | 172.28.62.0/24 | *        | 172.28.33.4    | 53        | TCP/UDP   | Permit | —                          |
-| Réseau DMZ → DNS Resolveur 2     | WAN       | 2  | 172.28.62.0/24 | *        | 172.28.33.5    | 53        | TCP/UDP   | Permit | —                          |
-| Web  → BDD                       | WAN       | 3  | 172.28.62.3    | *        | 192.168.28.10  | 3306      | TCP       | Permit | —                          |
-| REVERSE PROXY 1 → DOCKER (GLPI)  | WAN       | 4  | 172.28.62.5    | *        | 172.28.33.8    | 2000      | TCP       | Permit | ⚠️ Spécifier la passerelle |
-| REVERSE PROXY 2 → DOCKER (GLPI)  | WAN       | 5  | 172.28.62.10   | *        | 172.28.33.8    | 2000      | TCP       | Permit | ⚠️ Spécifier la passerelle |
-| SMTP DMZpub → Clients            | WAN       | 6  | 172.28.62.2    | *        | 172.28.35.0/24 | 25        | TCP       | Permit | —                          |
-| IMAP DMZpub → Clients            | WAN       | 7  | 172.28.62.2    | *        | 172.28.35.0/24 | 143       | TCP       | Permit | —                          |
-| Bloc tout WAN                    | WAN       | 8  | *              | *        | *              | *         | ANY       | Deny   | Règle de blocage           |
-| Internet LAN                     | LAN       | 1  | 172.28.32.0/19 | *        | *              | *         | ANY       | Permit | —                          |
-| Bloc tout                        | LAN       | 2  | *              | *        | *              | *         | ANY       | Deny   | —                          |
-| Bloc tout                        | DMZpriv   | 1  | *              | *        | *              | *         | ANY       | Deny   | Règle par défaut           |
+### DMZPUB
+
+| ID | Protocole    | Source          | Port Source | Destination    | Port Destination | Passerelle | Description                              |
+| -- | ------------ | --------------- | ----------- | -------------- | ---------------- | ---------- | ---------------------------------------- |
+| 1  | IPv4 TCP/UDP | 172.28.62.0/24  | *           | 172.28.33.4    | 53 (DNS)         | *          | DMZ vers DNS interne principal           |
+| 2  | IPv4 TCP/UDP | 172.28.62.0/24  | *           | 172.28.33.5    | 53 (DNS)         | *          | DMZ vers DNS interne secondaire          |
+| 3  | IPv4 TCP/UDP | 172.28.32.0/24  | *           | 172.28.33.4    | 53 (DNS)         | *          | Réseau interne vers DNS principal        |
+| 4  | IPv4 TCP/UDP | 192.168.20.0/24 | *           | 172.28.33.4    | 53 (DNS)         | *          | Wif_Guest accès DNS Interne principal    |
+| 5  | IPv4 TCP     | 172.28.62.3     | *           | 192.168.28.10  | 3306 (MySQL)     | *          | Accès base de données                    |
+| 6  | IPv4 TCP     | 172.28.62.5     | *           | 172.28.33.8    | *                | SWCORE     | Reverse Proxy principal vers GLPI        |
+| 7  | IPv4 TCP     | 172.28.62.10    | *           | 172.28.33.8    | *                | SWCORE     | Reverse Proxy secondaire vers GLPI       |
+| 8  | IPv4 TCP     | 172.28.62.2     | *           | 172.28.35.0/24 | 25 (SMTP)        | *          | Envoi de mails                           |
+| 9  | IPv4 TCP     | 172.28.62.2     | *           | 172.28.35.0/24 | 143 (IMAP)       | *          | Accès messagerie                         |
+| 10 | IPv4 UDP     | 192.168.99.1    | *           | 172.28.33.7    | 1812 (RADIUS)    | *          | Borne Wifi vers serveur Radius           |
+
+### DMZPRV
+
+| ID | Protocole    | Source          | Port Source | Destination    | Port Destination | Passerelle | Description                              |
+| -- | ------------ | --------------- | ----------- | -------------- | ---------------- | ---------- | ---------------------------------------- |
+| 1  | IPv4 *       | *               | *           | *              | *                | *          | Bloc all (la BBD ne peut pas sortir)     |
+
+### LAN
+
+| ID | Protocole | Source         | Port Source | Destination | Port Destination | Passerelle | Description                        |
+| -- | --------- | -------------- | ----------- | ----------- | ---------------- | ---------- | ---------------------------------- |
+| 1  | IPv4 *    | 172.28.32.0/19 | *           | *           | *                | *          | LAN vers DMZ                       |
 
 ---
+
+
