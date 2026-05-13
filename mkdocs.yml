@@ -65,6 +65,8 @@ nav:
       - LDAPS - Liaison PFW & AD: Pare-feux/ldaps-pfw.md
       - VFW: Pare-feux/opnsense.md
       - UFW: Pare-feux/UFW.md
+  - SuperVision:
+      - Zabbix: Pare-feux/zabbix.md
   - HyperViseur:
       - Proxmox & Raid: Hyperviseur/proxmox-raid.md
       - Incident HyperViseur & Proxmox: Hyperviseur/probleme.md
