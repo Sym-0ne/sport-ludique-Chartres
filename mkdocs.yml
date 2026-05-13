@@ -66,7 +66,7 @@ nav:
       - VFW: Pare-feux/opnsense.md
       - UFW: Pare-feux/UFW.md
   - SuperVision:
-      - Zabbix: Pare-feux/zabbix.md
+      - Zabbix: SuperVision/zabbix.md
   - HyperViseur:
       - Proxmox & Raid: Hyperviseur/proxmox-raid.md
       - Incident HyperViseur & Proxmox: Hyperviseur/probleme.md
